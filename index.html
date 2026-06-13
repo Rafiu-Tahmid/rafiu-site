@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAFIU — Figuring out how to build a better life</title>
+<meta name="description" content="Productivity, AI tools, motivation, personal finance and the future of work — for ambitious young Bangladeshis. By Rafiu, IBA, CFA L1.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Noto+Serif+Bengali:wght@600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0B0612;
+  --bg2:#100A1C;
+  --brand:#360D54;          /* true brand purple */
+  --violet:#8B5CF6;         /* glow / interactive */
+  --violet-bright:#A78BFA;  /* text accent */
+  --ink:#EDE9F5;
+  --ink-soft:#9A92AC;
+  --line:rgba(167,139,250,.14);
+  --card:rgba(139,92,246,.05);
+  --card-hover:rgba(139,92,246,.09);
+  --display:'Fraunces',serif;
+  --ui:'Space Grotesk',sans-serif;
+  --body:'Inter',sans-serif;
+}
+html[data-lang="bn"]{--display:'Noto Serif Bengali',serif;--ui:'Noto Sans Bengali',sans-serif;--body:'Noto Sans Bengali',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(900px 500px at 80% -10%, rgba(54,13,84,.55), transparent 60%),
+             radial-gradient(700px 500px at -10% 30%, rgba(54,13,84,.35), transparent 60%);}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+.eyebrow{font-family:var(--display);font-size:11.5px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--violet-bright)}
+html[data-lang="bn"] .eyebrow{letter-spacing:.12em}
+.display{font-family:var(--display);font-weight:800;line-height:1.1;letter-spacing:-.02em}
+html[data-lang="bn"] .display{line-height:1.35;letter-spacing:0}
+.grad{background:linear-gradient(100deg,#C4B5FD 0%,#8B5CF6 55%,#6D28D9 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{font-size:18px;color:var(--ink-soft);max-width:580px}
+.section{padding:84px 0}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700;font-size:14.5px;letter-spacing:.02em;text-decoration:none;border:none;border-radius:12px;padding:15px 28px;cursor:pointer;background:linear-gradient(135deg,#7C3AED,#5B21B6);color:#fff;box-shadow:0 0 0 1px rgba(167,139,250,.25),0 8px 32px rgba(124,58,237,.35);transition:transform .18s,box-shadow .18s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 0 0 1px rgba(167,139,250,.4),0 14px 44px rgba(124,58,237,.5)}
+.btn.ghost{background:rgba(139,92,246,.07);color:var(--ink);box-shadow:0 0 0 1px var(--line)}
+.btn.ghost:hover{background:rgba(139,92,246,.14)}
+.btn:focus-visible,a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--violet);outline-offset:3px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;backdrop-filter:blur(6px)}
+
+/* reveal on scroll */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.btn:hover{transform:none}}
+
+/* ---------- nav ---------- */
+header{position:sticky;top:0;z-index:50;background:rgba(11,6,18,.75);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{display:flex;align-items:center;gap:11px;text-decoration:none}
+.mark{width:36px;height:36px;flex:none}
+.logo .name{font-family:var(--display);font-weight:800;font-size:18px;letter-spacing:.04em}
+.navlinks{display:flex;gap:28px;align-items:center}
+.navlinks a{font-family:var(--display);font-size:13px;font-weight:600;letter-spacing:.06em;text-decoration:none;color:var(--ink-soft);padding:4px 0;position:relative;transition:color .15s}
+.navlinks a::after{content:"";position:absolute;left:0;right:100%;bottom:-3px;height:2px;background:linear-gradient(90deg,#8B5CF6,#C4B5FD);transition:right .2s}
+.navlinks a.active,.navlinks a:hover{color:var(--ink)}
+.navlinks a.active::after{right:0}
+.langbtn{font-family:var(--display);font-size:12px;font-weight:700;letter-spacing:.08em;border:1px solid var(--line);border-radius:10px;background:rgba(139,92,246,.07);color:var(--ink);padding:8px 14px;cursor:pointer;transition:background .15s}
+.langbtn:hover{background:rgba(139,92,246,.16)}
+.menubtn{display:none;background:rgba(139,92,246,.07);border:1px solid var(--line);border-radius:10px;color:var(--ink);font-size:18px;line-height:1;padding:7px 11px;cursor:pointer}
+
+/* ---------- pages ---------- */
+.page{display:none}
+.page.show{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.page.show{animation:none}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding:104px 0 40px;text-align:left}
+.hero .glow{position:absolute;width:560px;height:560px;border-radius:50%;filter:blur(110px);background:radial-gradient(circle,rgba(124,58,237,.4),rgba(54,13,84,.15) 60%,transparent 70%);top:-160px;right:-120px;animation:breathe 7s ease-in-out infinite;pointer-events:none}
+@keyframes breathe{0%,100%{opacity:.8;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
+@media (prefers-reduced-motion:reduce){.hero .glow{animation:none}}
+.hero h1{font-size:clamp(42px,6.4vw,76px);max-width:880px;margin:22px 0 24px}
+.hero .lede{margin-bottom:38px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:46px}
+.chip{font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);border:1px solid var(--line);border-radius:999px;padding:8px 16px;background:rgba(139,92,246,.04)}
+html[data-lang="bn"] .chip{text-transform:none;letter-spacing:.02em;font-size:13px}
+
+/* ---------- stats strip ---------- */
+.strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(54,13,84,.12)}
+.strip .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.stat{padding:26px 22px;border-right:1px solid var(--line)}
+.stat:last-child{border-right:none}
+.stat .k{font-family:var(--display);font-weight:800;font-size:21px}
+.stat .v{font-size:13px;color:var(--ink-soft);margin-top:2px}
+
+/* ---------- home sections ---------- */
+.h2{font-size:clamp(26px,3.6vw,38px);margin-top:14px}
+.vidgrid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:36px}
+.vid{overflow:hidden;border-radius:18px;border:1px solid var(--line);background:var(--card);transition:transform .2s,background .2s}
+.vid:hover{transform:translateY(-4px);background:var(--card-hover)}
+.vid .frame{aspect-ratio:16/9;width:100%;border:none;display:block;background:#000}
+.vid .cap{padding:14px 18px;font-size:14px;color:var(--ink-soft)}
+.platforms{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.platforms a{font-family:var(--display);font-size:13px;font-weight:600;letter-spacing:.05em;text-decoration:none;border:1px solid var(--line);border-radius:12px;padding:11px 20px;background:rgba(139,92,246,.05);transition:background .15s,transform .15s}
+.platforms a:hover{background:rgba(139,92,246,.14);transform:translateY(-2px)}
+
+.cta{position:relative;overflow:hidden;border-radius:24px;border:1px solid var(--line);padding:56px 48px;background:linear-gradient(140deg,rgba(54,13,84,.55),rgba(17,9,30,.7));margin:24px 0 84px}
+.cta::after{content:"";position:absolute;width:420px;height:420px;border-radius:50%;filter:blur(90px);background:rgba(124,58,237,.35);right:-120px;bottom:-200px;pointer-events:none}
+.cta-grid{display:grid;grid-template-columns:1.5fr auto;gap:32px;align-items:center;position:relative;z-index:1}
+
+/* ---------- about ---------- */
+.about-grid{display:grid;grid-template-columns:.95fr 1.3fr;gap:60px;padding:84px 0}
+.about-grid .sticky{position:sticky;top:100px;align-self:start}
+.about-body p{margin-bottom:22px;max-width:62ch;color:#C8C2D6}
+.about-body .big{font-family:var(--display);font-weight:700;font-size:24px;line-height:1.45;margin:34px 0;padding:26px 28px;border-radius:18px;background:var(--card);border:1px solid var(--line);color:var(--ink)}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:34px}
+.fact{padding:20px;border-radius:16px;background:var(--card);border:1px solid var(--line)}
+.fact .eyebrow{font-size:10px;display:block;margin-bottom:8px}
+.fact strong{font-family:var(--display);font-size:15.5px;font-weight:700}
+
+/* ---------- resources ---------- */
+.res-head{padding:84px 0 30px;max-width:740px}
+.res-head h1{font-size:clamp(34px,5vw,54px);margin:16px 0 18px}
+.resgrid{display:grid;grid-template-columns:1fr 1fr;gap:22px;padding-bottom:84px}
+.rescard{display:flex;flex-direction:column;text-decoration:none;border-radius:20px;border:1px solid var(--line);background:var(--card);overflow:hidden;transition:transform .2s,background .2s,box-shadow .2s}
+.rescard:hover{transform:translateY(-5px);background:var(--card-hover);box-shadow:0 18px 50px rgba(124,58,237,.18)}
+.rescover{padding:34px 28px;background:linear-gradient(150deg,#2A0B42,#120722);border-bottom:1px solid var(--line)}
+.rescover .eyebrow{color:#B9A7E8}
+.rescover h3{font-family:var(--display);font-weight:800;font-size:24px;line-height:1.25;margin-top:14px}
+.resmeta{padding:22px 28px;display:flex;justify-content:space-between;align-items:center;gap:14px}
+.resmeta p{font-size:14px;color:var(--ink-soft)}
+.resmeta .tag{font-family:var(--display);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--violet-bright);border:1px solid var(--line);border-radius:999px;padding:6px 13px;white-space:nowrap}
+.rescard.soonc{opacity:.55;pointer-events:none}
+
+/* ---------- resource detail ---------- */
+.rdetail{display:grid;grid-template-columns:1fr 1fr;gap:54px;padding:84px 0;align-items:start}
+.rcover{border-radius:22px;padding:46px 38px;background:linear-gradient(155deg,#33104E,#0F0720);border:1px solid var(--line);min-height:380px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.rcover::after{content:"";position:absolute;width:300px;height:300px;border-radius:50%;filter:blur(80px);background:rgba(139,92,246,.3);right:-90px;top:-90px}
+.rcover h1{font-family:var(--display);font-weight:800;font-size:clamp(28px,3.6vw,40px);line-height:1.18;margin-top:16px;position:relative;z-index:1}
+.rcover .tagchip{font-family:var(--display);font-size:10.5px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;border:1px solid rgba(196,181,253,.3);border-radius:999px;padding:8px 16px;align-self:flex-start;margin-top:30px;color:#C4B5FD;position:relative;z-index:1}
+.rinfo h2{font-family:var(--display);font-size:20px;font-weight:700;margin:6px 0 14px}
+.rinfo>p{color:var(--ink-soft);margin-bottom:24px}
+.rlist{list-style:none;margin:0 0 30px}
+.rlist li{padding:11px 0 11px 28px;border-bottom:1px solid var(--line);position:relative;font-size:15px;color:#C8C2D6}
+.rlist li::before{content:"";position:absolute;left:4px;top:19px;width:7px;height:7px;border-radius:2px;background:var(--violet);box-shadow:0 0 10px rgba(139,92,246,.8)}
+.gate{border-radius:18px;border:1px solid var(--line);background:var(--card);padding:28px}
+.gate h3{font-family:var(--display);font-size:16px;font-weight:700;margin-bottom:6px}
+.gate>p{font-size:13.5px;color:var(--ink-soft);margin-bottom:18px}
+.gate .row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.gate input{width:100%;font-family:var(--body);font-size:15px;color:var(--ink);padding:13px 15px;border:1px solid var(--line);border-radius:12px;background:rgba(11,6,18,.6)}
+.gate input::placeholder{color:#6E6584}
+.dl{display:none;margin-top:18px;padding:20px;border-radius:14px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.25)}
+.dl.show{display:block}
+.dl p{font-size:14px;color:#A7F3C0;margin-bottom:12px}
+.backlink{font-family:var(--display);font-size:13px;font-weight:600;color:var(--ink-soft);text-decoration:none}
+.backlink:hover{color:var(--ink)}
+
+/* ---------- tools ---------- */
+.tooltabs{display:flex;gap:10px;margin:30px 0 36px}
+.tooltabs button{font-family:var(--display);font-weight:700;font-size:14px;padding:12px 24px;border-radius:12px;background:rgba(139,92,246,.06);border:1px solid var(--line);color:var(--ink-soft);cursor:pointer;transition:all .15s}
+.tooltabs button.on{background:linear-gradient(135deg,#7C3AED,#5B21B6);color:#fff;border-color:transparent;box-shadow:0 8px 28px rgba(124,58,237,.35)}
+.tool{display:none}
+.tool.show{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start}
+.panel{border-radius:20px;border:1px solid var(--line);background:var(--card);padding:30px}
+.field{margin-bottom:22px}
+.field label{display:block;font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:9px}
+html[data-lang="bn"] .field label{letter-spacing:.04em;text-transform:none;font-size:13px}
+.field input[type=number]{width:100%;font-family:var(--body);font-size:17px;color:var(--ink);padding:13px 15px;border:1px solid var(--line);border-radius:12px;background:rgba(11,6,18,.6)}
+.field input[type=range]{width:100%;accent-color:var(--violet)}
+.rangeval{font-family:var(--display);font-weight:700;font-size:17px;color:var(--violet-bright)}
+.modes{display:flex;gap:8px;margin-bottom:24px}
+.modes button{font-family:var(--display);font-size:12.5px;font-weight:700;padding:9px 16px;border-radius:10px;background:rgba(139,92,246,.06);border:1px solid var(--line);color:var(--ink-soft);cursor:pointer}
+.modes button.on{background:rgba(139,92,246,.22);color:var(--ink);border-color:rgba(167,139,250,.4)}
+.result{border-radius:20px;padding:30px;background:linear-gradient(150deg,rgba(54,13,84,.5),rgba(15,7,32,.7));border:1px solid rgba(167,139,250,.22);box-shadow:0 18px 60px rgba(124,58,237,.15)}
+.bignum{font-family:var(--display);font-weight:800;font-size:clamp(30px,4vw,44px);line-height:1.1;margin:10px 0 4px}
+.result .sub{font-size:13.5px;color:var(--ink-soft)}
+.split-rows{margin-top:18px}
+.split-row{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line)}
+.split-row:last-child{border-bottom:none}
+.split-row .name{font-family:var(--display);font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+html[data-lang="bn"] .split-row .name{letter-spacing:.02em;text-transform:none;font-size:13.5px}
+.split-row .amt{font-family:var(--display);font-weight:700;font-size:20px}
+.toolnote{font-size:12.5px;color:var(--ink-soft);margin-top:14px;max-width:46ch}
+
+/* ---------- contact ---------- */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;padding:84px 0}
+.cform input,.cform textarea{width:100%;font-family:var(--body);font-size:15.5px;color:var(--ink);padding:13px 15px;border:1px solid var(--line);border-radius:12px;background:rgba(11,6,18,.6)}
+.cform textarea{min-height:140px;resize:vertical}
+.sociallist{list-style:none;margin-top:28px}
+.sociallist li{border-bottom:1px solid var(--line)}
+.sociallist a{display:flex;justify-content:space-between;align-items:center;padding:17px 4px;text-decoration:none;font-family:var(--display);font-size:14px;font-weight:600;color:#C8C2D6;transition:color .15s,padding-left .15s}
+.sociallist a:hover{color:var(--violet-bright);padding-left:10px}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--line);margin-top:40px;background:rgba(11,6,18,.6)}
+.foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;padding:36px 0}
+.foot small{font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--ink-soft)}
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .hero{padding:72px 0 32px}
+  .strip .wrap{grid-template-columns:1fr}
+  .stat{border-right:none;border-bottom:1px solid var(--line)}
+  .stat:last-child{border-bottom:none}
+  .vidgrid,.resgrid,.rdetail,.tool.show{grid-template-columns:1fr}
+  .about-grid,.contact-grid{grid-template-columns:1fr;gap:44px;padding:64px 0}
+  .about-grid .sticky{position:static}
+  .cta{padding:40px 28px}
+  .cta-grid{grid-template-columns:1fr}
+  .gate .row{grid-template-columns:1fr}
+  .navlinks{position:fixed;inset:68px 0 auto 0;background:rgba(11,6,18,.97);backdrop-filter:blur(16px);flex-direction:column;align-items:flex-start;padding:22px 24px 30px;border-bottom:1px solid var(--line);display:none;gap:20px}
+  .navlinks.open{display:flex}
+  .menubtn{display:block}
+}
+
+/* ===== v3 typography: Fraunces display + Space Grotesk UI ===== */
+.eyebrow,.btn,.langbtn,.menubtn,.chip,.resmeta .tag,.tagchip,.field label,.modes button,.tooltabs button,.split-row .name,.sociallist a,.foot small,.backlink,.navlinks a,.gate h3{font-family:var(--ui)}
+.display,.bignum,.rescover h3,.rcover h1,.about-body .big,.stat .k,.fact strong,.rinfo h2,.split-row .amt,.logo .name{font-family:var(--display)}
+.display{font-weight:700;letter-spacing:-.015em}
+html[data-lang="bn"] .display{letter-spacing:0}
+.logo .name{font-weight:700;font-size:20px;letter-spacing:0}
+.navlinks a{font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+html[data-lang="bn"] .navlinks a{text-transform:none;letter-spacing:.03em;font-size:14px}
+.bignum,.rcover h1,.rescover h3{font-weight:700}
+.stat .k{font-weight:600;font-size:22px}
+.fact strong{font-weight:600;font-size:17px}
+.split-row .amt{font-weight:600}
+@media (max-width:900px){#homefacts{grid-template-columns:1fr 1fr !important}}
+
+/* ============ v5 SIGNATURE LAYER : the living workbook ============ */
+::selection{background:#5B21B6;color:#fff}
+html{scrollbar-color:#5B21B6 #0B0612;scrollbar-width:thin}
+/* grain + dot grid texture */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:2;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.05'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+main{position:relative;z-index:1;background-image:radial-gradient(rgba(167,139,250,.05) 1px,transparent 1.4px);background-size:30px 30px}
+/* ghost glyphs */
+.ghost{position:absolute;z-index:-1;font-family:'Noto Serif Bengali','Fraunces',serif;font-weight:700;line-height:.9;color:rgba(139,92,246,.07);pointer-events:none;user-select:none}
+.gnum{font-family:'Fraunces',serif;font-size:clamp(140px,18vw,240px);right:0;top:-34px}
+@media (max-width:700px){.gnum{display:none}.ghost-hero{font-size:200px !important;right:-50px !important;opacity:.7}}
+/* handwritten marginalia */
+.note{font-family:var(--ui);font-size:22px;font-weight:500;color:#C4B5FD;transform:rotate(-2deg);display:inline-block}
+html[data-lang="bn"] .note{font-family:'Noto Sans Bengali',sans-serif;font-size:15px;transform:rotate(-1deg)}
+/* hand-drawn underline draws itself on the hero key words */
+.hero .grad{position:relative;white-space:nowrap}
+.hero .grad::after{content:"";position:absolute;left:0;width:100%;bottom:-.06em;height:.16em;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12' preserveAspectRatio='none'%3E%3Cpath d='M2 8 Q 20 2 40 7 T 80 6 T 118 4' fill='none' stroke='%238B5CF6' stroke-width='3.4' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat;
+  background-size:100% 100%;transform:scaleX(0);transform-origin:left;animation:drawline 1s .45s cubic-bezier(.7,0,.3,1) forwards}
+@keyframes drawline{to{transform:scaleX(1)}}
+@media (prefers-reduced-motion:reduce){.hero .grad::after{animation:none;transform:scaleX(1)}}
+/* NOW — fill-in-the-blank status lines (the workbook, alive) */
+.now{display:flex;gap:26px;align-items:flex-start;margin-top:46px;flex-wrap:wrap}
+.now-k{font-family:var(--ui);font-size:10.5px;font-weight:700;letter-spacing:.3em;color:var(--violet-bright);border:1px solid var(--line);border-radius:999px;padding:7px 14px;margin-top:6px}
+.now-item{display:flex;flex-direction:column;gap:3px}
+.now-item .lbl{font-family:var(--ui);font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft)}
+html[data-lang="bn"] .now-item .lbl{letter-spacing:.04em;text-transform:none;font-size:12px}
+.now-item .fillin{font-family:var(--ui);font-size:23px;font-weight:500;color:var(--ink);border-bottom:1.5px dotted rgba(167,139,250,.5);padding:0 8px 1px}
+html[data-lang="bn"] .now-item .fillin{font-family:'Noto Sans Bengali',sans-serif;font-size:15.5px;padding-bottom:6px}
+/* workbook dotted line under resource titles */
+.rescover h3{padding-bottom:16px;border-bottom:1.5px dotted rgba(196,181,253,.35)}
+.rcover h1{padding-bottom:18px;border-bottom:1.5px dotted rgba(196,181,253,.3)}
+/* chips come alive */
+.chip{transition:transform .15s,border-color .15s,color .15s}
+.chip:hover{transform:translateY(-2px) rotate(-.5deg);border-color:rgba(167,139,250,.55);color:var(--ink)}
+/* sections need a stage for ghosts */
+.section,.hero,.res-head,.about-grid,.contact-grid{position:relative}
+
+/* ============ v6 : precision motion layer ============ */
+.ghost,.gnum{display:none}
+/* notes: clean tracked caps instead of handwriting */
+.note{font-family:var(--ui);font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:#A78BFA;transform:none}
+html[data-lang="bn"] .note{font-family:var(--ui);font-size:12.5px;letter-spacing:.05em;text-transform:none;transform:none}
+/* NOW fill-ins: engineered, dotted lines stay */
+.now-item .fillin{font-family:var(--ui);font-size:14px;font-weight:600;letter-spacing:.02em;color:var(--ink);padding:0 6px 6px}
+html[data-lang="bn"] .now-item .fillin{font-size:14.5px}
+.now-item{flex-direction:column}
+.caret{display:inline-block;width:2px;height:14px;background:#A78BFA;margin-left:7px;vertical-align:-2px;animation:blink 1.1s steps(1) infinite;box-shadow:0 0 8px rgba(139,92,246,.8)}
+@keyframes blink{50%{opacity:0}}
+/* orbit — slow rotating dashed ring behind hero */
+.orbit{position:absolute;z-index:-1;right:-80px;top:10px;width:440px;height:440px;border:1px dashed rgba(167,139,250,.2);border-radius:50%;animation:spin 70s linear infinite}
+.orbit::before{content:"";position:absolute;inset:64px;border:1px solid rgba(167,139,250,.1);border-radius:50%}
+.orbit::after{content:"";position:absolute;inset:140px;border:1px dashed rgba(167,139,250,.07);border-radius:50%}
+.orbit-dot{position:absolute;top:-5px;left:50%;width:9px;height:9px;border-radius:50%;background:#A78BFA;box-shadow:0 0 16px #8B5CF6,0 0 40px rgba(139,92,246,.5)}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (max-width:800px){.orbit{width:280px;height:280px;right:-110px;top:-30px}.orbit::before{inset:42px}.orbit::after{inset:90px}}
+/* hero staggered entrance */
+@keyframes fadeup{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.hero .eyebrow,.hero h1,.hero .lede,.hero > div[style*="flex"],.hero .chips,.hero .now{animation:fadeup .7s cubic-bezier(.2,.7,.3,1) both}
+.hero .eyebrow{animation-delay:.05s}.hero h1{animation-delay:.13s}.hero .lede{animation-delay:.22s}
+.hero > div[style*="flex"]{animation-delay:.3s}.hero .chips{animation-delay:.38s}.hero .now{animation-delay:.46s}
+/* staggered card reveals */
+.rv .fact{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+.rv.in .fact{opacity:1;transform:none}
+.rv.in .fact:nth-child(1){transition-delay:.05s}.rv.in .fact:nth-child(2){transition-delay:.13s}
+.rv.in .fact:nth-child(3){transition-delay:.21s}.rv.in .fact:nth-child(4){transition-delay:.29s}
+.fact{transition:border-color .2s,transform .2s}
+.fact:hover{border-color:rgba(167,139,250,.45);transform:translateY(-3px)}
+/* button sheen sweep */
+.btn{position:relative;overflow:hidden}
+.btn::after{content:"";position:absolute;top:0;left:-90%;width:55%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.17),transparent);transform:skewX(-20deg);transition:left .55s ease;pointer-events:none}
+.btn:hover::after{left:140%}
+/* living gradient border on the workbook CTA */
+.cta::before{content:"";position:absolute;inset:0;border-radius:24px;padding:1px;background:linear-gradient(120deg,rgba(167,139,250,.55),rgba(54,13,84,0) 35%,rgba(167,139,250,.15) 60%,rgba(167,139,250,.55));background-size:250% 250%;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:borderflow 7s linear infinite;pointer-events:none;z-index:1}
+@keyframes borderflow{to{background-position:250% 0}}
+/* scroll progress bar */
+#progress{position:fixed;top:0;left:0;height:2px;width:0;z-index:60;background:linear-gradient(90deg,#8B5CF6,#C4B5FD);box-shadow:0 0 12px rgba(139,92,246,.8)}
+/* result number pulse */
+@keyframes pulse{50%{transform:scale(1.03)}}
+.pulse{animation:pulse .3s ease}
+@media (prefers-reduced-motion:reduce){
+  .orbit,.caret,.cta::before{animation:none}
+  .hero .eyebrow,.hero h1,.hero .lede,.hero > div[style*="flex"],.hero .chips,.hero .now{animation:none}
+  .rv .fact{opacity:1;transform:none;transition:none}
+  .btn::after{display:none}.pulse{animation:none}
+}
+
+/* ============ v7 : global orbit + polish ============ */
+.orbit{position:fixed;z-index:0;right:-90px;top:-90px;
+  width:460px;height:460px;
+  border:1.5px dashed rgba(167,139,250,.5);border-radius:50%;animation:spin 22s linear infinite}
+.orbit::before{content:"";position:absolute;inset:70px;border:1px solid rgba(167,139,250,.26);border-radius:50%}
+.orbit::after{content:"";position:absolute;inset:150px;border:1px dashed rgba(167,139,250,.16);border-radius:50%}
+.orbit-dot{position:absolute;top:-7px;left:50%;width:13px;height:13px;border-radius:50%;background:#A78BFA;
+  box-shadow:0 0 24px #8B5CF6,0 0 58px rgba(139,92,246,.75),0 0 96px rgba(139,92,246,.35)}
+@media (max-width:900px){
+  .orbit{width:300px;height:300px;right:-70px;top:-70px}
+  .orbit::before{inset:46px}.orbit::after{inset:100px}
+  .orbit-dot{width:14px;height:14px;top:-7px;
+    box-shadow:0 0 28px #A78BFA,0 0 64px rgba(139,92,246,.9),0 0 110px rgba(139,92,246,.45)}
+}
+/* scroll hint */
+.scrollhint{margin-top:26px;width:fit-content;font-size:17px;color:var(--ink-soft);
+  animation:fadeup .7s .55s cubic-bezier(.2,.7,.3,1) both, bob 2.2s 1.5s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+/* back to top */
+#totop{position:fixed;right:18px;bottom:18px;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:rgba(20,11,34,.85);backdrop-filter:blur(8px);color:var(--violet-bright);font-size:18px;cursor:pointer;z-index:55;opacity:0;transform:translateY(14px);pointer-events:none;transition:opacity .25s,transform .25s;box-shadow:0 8px 30px rgba(124,58,237,.25)}
+#totop.show{opacity:1;transform:none;pointer-events:auto}
+#totop:hover{border-color:rgba(167,139,250,.55);color:#C4B5FD}
+/* header glow hairline */
+header::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent,rgba(139,92,246,.55),transparent);pointer-events:none}
+/* wordmark dot pulse */
+@keyframes dotpulse{50%{opacity:.35}}
+.logo:hover .name span{animation:dotpulse 1s ease infinite}
+@media (prefers-reduced-motion:reduce){.scrollhint{animation:none}.logo:hover .name span{animation:none}#totop{transition:none}}
+
+/* ============ v9 : new tools + gating ============ */
+.tooltabs{flex-wrap:wrap}
+.tool.show{align-items:start}
+/* zakat status colouring */
+#zStatus{font-weight:600}
+/* focus timer */
+/* prompt library */
+.promptwrap{grid-column:1 / -1}
+.promptintro{max-width:640px;color:var(--ink-soft);margin-bottom:26px}
+.promptgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.pcard{border:1px solid var(--line);border-radius:18px;background:var(--card);padding:24px;display:flex;flex-direction:column;transition:transform .2s,background .2s,box-shadow .2s}
+.pcard:hover{transform:translateY(-4px);background:var(--card-hover);box-shadow:0 16px 44px rgba(124,58,237,.16)}
+.pcard .ptag{font-family:var(--ui);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--violet-bright);align-self:flex-start;border:1px solid var(--line);border-radius:999px;padding:5px 11px}
+.pcard .ptag:first-letter{font-size:13px}
+.pcard[data-flag="1"]{border-color:rgba(167,139,250,.45);background:linear-gradient(155deg,rgba(54,13,84,.5),rgba(15,7,32,.6));box-shadow:0 0 0 1px rgba(167,139,250,.18),0 14px 50px rgba(124,58,237,.18)}
+.pcard[data-flag="1"] .ptag{background:linear-gradient(135deg,#7C3AED,#5B21B6);color:#fff;border-color:transparent;letter-spacing:.1em}
+html[data-lang="bn"] .pcard .ptag{letter-spacing:.04em;text-transform:none;font-size:12px}
+.pcard h4{font-family:var(--display);font-weight:600;font-size:18px;margin:14px 0 8px}
+.pcard .pprev{font-size:13.5px;color:var(--ink-soft);line-height:1.6;flex:1;position:relative;max-height:88px;overflow:hidden}
+.pcard .pprev::after{content:"";position:absolute;left:0;right:0;bottom:0;height:38px;background:linear-gradient(transparent,var(--bg2))}
+.pcard.unlocked .pprev{max-height:none}
+.pcard.unlocked .pprev::after{display:none}
+.pcopy{margin-top:16px;display:inline-flex;align-items:center;gap:8px;align-self:flex-start;font-family:var(--ui);font-size:13px;font-weight:700;border:1px solid var(--line);border-radius:11px;background:rgba(139,92,246,.08);color:var(--ink);padding:10px 16px;cursor:pointer;transition:background .15s}
+.pcopy:hover{background:rgba(139,92,246,.18)}
+.pcopy.done{background:rgba(34,197,94,.15);color:#86efac;border-color:rgba(34,197,94,.3)}
+.pcard .lock{font-size:11px}
+/* modal */
+.modalwrap{position:fixed;inset:0;z-index:80;display:none;align-items:center;justify-content:center;padding:22px;background:rgba(6,3,12,.72);backdrop-filter:blur(6px)}
+.modalwrap.show{display:flex;animation:fade .2s ease}
+.modalbox{position:relative;max-width:440px;width:100%;border-radius:22px;border:1px solid rgba(167,139,250,.25);background:linear-gradient(155deg,#1a0f2b,#0f0720);padding:38px 34px;box-shadow:0 30px 90px rgba(0,0,0,.6)}
+.modalbox h3{font-size:24px;margin:12px 0 8px}
+.modalbox>p{color:var(--ink-soft);font-size:14.5px;margin-bottom:22px}
+.modalx{position:absolute;top:16px;right:18px;background:none;border:none;color:var(--ink-soft);font-size:24px;line-height:1;cursor:pointer}
+.modalx:hover{color:var(--ink)}
+.gm-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.gm-row input{width:100%;font-family:var(--body);font-size:15px;color:var(--ink);padding:13px 15px;border:1px solid var(--line);border-radius:12px;background:rgba(11,6,18,.6)}
+#gm-form .btn{width:100%;justify-content:center}
+.gm-note{font-size:12px;color:var(--ink-soft);margin-top:12px;text-align:center}
+@media (max-width:700px){.promptgrid{grid-template-columns:1fr}.gm-row{grid-template-columns:1fr}}
+
+.platforms a{display:inline-flex;align-items:center;gap:7px}
+.sico{display:inline-flex;align-items:center;opacity:.75}
+.sociallist a{gap:10px}
+
+/* ===== v12 pillar section ===== */
+.pillars-sec{padding-top:20px}
+.pillars-head{max-width:680px;margin-bottom:36px}
+.pillar-list{border-top:1px solid var(--line)}
+.pillar-row{display:flex;align-items:center;gap:26px;padding:26px 8px;border-bottom:1px solid var(--line);position:relative;transition:padding-left .25s}
+.pillar-row::before{content:"";position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,rgba(139,92,246,.12),transparent);transition:width .35s}
+.pillar-row:hover::before{width:100%}
+.pillar-row:hover{padding-left:18px}
+.pillar-row:hover .p-num{color:var(--violet-bright);-webkit-text-stroke:1px transparent}
+.pillar-row:hover h3{color:#fff}
+.p-num2t{}
+
+
+
+
+.p-num{font-family:var(--display);font-weight:700;font-size:clamp(28px,4vw,42px);color:transparent;-webkit-text-stroke:1px rgba(167,139,250,.5);text-stroke:1px rgba(167,139,250,.5);min-width:64px;transition:color .25s,-webkit-text-stroke .25s}
+.p-body h3{transition:color .25s}
+
+.p-body{flex:1}
+.p-body h3{font-family:var(--display);font-weight:600;font-size:clamp(19px,2.6vw,26px);margin-bottom:4px;color:var(--ink)}
+.p-body p{font-size:14.5px;color:var(--ink-soft);max-width:52ch}
+
+
+@media (max-width:700px){
+  .pillar-row{gap:16px;padding:20px 4px}
+  .p-num{min-width:44px}
+
+}
+
+.csuccess{border:1px solid rgba(34,197,94,.3);background:rgba(34,197,94,.08);border-radius:16px;padding:24px;color:#86efac}
+.dl-btns{display:flex;gap:10px;flex-wrap:wrap}
+.dl-btns .btn{flex:1;min-width:150px;justify-content:center;text-align:center}
+</style>
+</head>
+<body>
+<div class="orbit" aria-hidden="true"><span class="orbit-dot"></span></div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#home" aria-label="Rafiu — home">
+      <span class="name">RAFIU<span style="color:var(--violet-bright)">.</span></span>
+    </a>
+    <nav class="navlinks" id="navlinks">
+      <a href="#home" data-route="home" data-en="Home" data-bn="হোম">Home</a>
+      <a href="#about" data-route="about" data-en="About" data-bn="আমার কথা">About</a>
+      <a href="#resources" data-route="resources" data-en="Resources" data-bn="রিসোর্স">Resources</a>
+      <a href="#tools" data-route="tools" data-en="Tools" data-bn="টুলস">Tools</a>
+      <a href="#contact" data-route="contact" data-en="Contact" data-bn="যোগাযোগ">Contact</a>
+    </nav>
+    <div style="display:flex;gap:10px;align-items:center">
+      <button class="langbtn" id="langbtn" aria-label="Switch language">বাংলা</button>
+      <button class="menubtn" id="menubtn" aria-label="Menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ================= HOME ================= -->
+<section class="page" id="page-home">
+  <div class="wrap hero">
+    <div class="glow"></div>
+    <span class="eyebrow" data-en="Rafiu · IBA · CFA Level 1" data-bn="রাফিউ · আইবিএ · সিএফএ লেভেল ১">Rafiu · IBA · CFA Level 1</span>
+    <h1 class="display" data-en='Figuring out how to build a <span class="grad">better life</span> — out loud.' data-bn='একটা <span class="grad">ভালো জীবন</span> কীভাবে গড়ে — সেটাই খুঁজে বের করার চেষ্টা করছি।' data-html="1">Figuring out how to build a <span class="grad">better life</span> — out loud.</h1>
+    <p class="lede" data-en="A channel for ambitious young Bangladeshis who want more from their money, their work and their time. Not theory. Not generic advice. Just what actually moves a life forward — researched honestly and shared as I learn it." data-bn="উচ্চাকাঙ্ক্ষী তরুণ বাংলাদেশিদের জন্য একটা চ্যানেল — যারা নিজের টাকা, কাজ আর সময় থেকে আরও বেশি কিছু চায়। থিওরি না। গৎবাঁধা উপদেশ না। শুধু যা সত্যিই একটা জীবন এগিয়ে নেয় — সততার সাথে রিসার্চ করা, আর শেখার সাথে সাথে শেয়ার করা।">A channel for ambitious young Bangladeshis who want more from their money, their work and their time. Not theory. Not generic advice. Just what actually moves a life forward — researched honestly and shared as I learn it.</p>
+    <div style="display:flex;gap:14px;flex-wrap:wrap">
+      <a class="btn" href="#resources" data-en="Free resources" data-bn="ফ্রি রিসোর্স">Free resources</a>
+      <a class="btn" href="#tools" data-en="Free tools" data-bn="ফ্রি টুলস">Free tools</a>
+      <a class="btn ghost" href="#about" data-en="My story" data-bn="আমার গল্প">My story</a>
+    </div>
+    <div class="scrollhint" aria-hidden="true">↓</div>
+  </div>
+
+
+  <div class="wrap section rv pillars-sec">
+    <div class="pillars-head">
+      <span class="eyebrow" data-en="What we figure out here" data-bn="এখানে যা নিয়ে ভাবি">What we figure out here</span>
+      <h2 class="display h2" data-en="What I'm trying to figure out." data-bn="একটা জীবন সত্যিই এগিয়ে নেয় — এমন পাঁচটা জিনিস।">What I'm trying to figure out.</h2>
+    </div>
+    <div class="pillar-list">
+      <div class="pillar-row">
+        <span class="p-num">01</span>
+        <div class="p-body"><h3 data-en="Personal Finance" data-bn="পার্সোনাল ফাইন্যান্স">Personal Finance</h3><p data-en="Money that works in taka — not borrowed Western theory." data-bn="টাকার বাস্তবতায় কাজ করে এমন অর্থনীতি — ধার করা পশ্চিমা থিওরি নয়।">Money that works in taka — not borrowed Western theory.</p></div>
+        </div>
+      <div class="pillar-row">
+        <span class="p-num">02</span>
+        <div class="p-body"><h3 data-en="Productivity" data-bn="প্রোডাক্টিভিটি">Productivity</h3><p data-en="More of what matters, less of what quietly steals your time." data-bn="যা জরুরি তা বেশি, যা নীরবে সময় কেড়ে নেয় তা কম।">More of what matters, less of what quietly steals your time.</p></div>
+        </div>
+      <div class="pillar-row">
+        <span class="p-num">03</span>
+        <div class="p-body"><h3 data-en="AI Tools" data-bn="এআই টুলস">AI Tools</h3><p data-en="Use the new tools before they quietly replace you." data-bn="নতুন টুলগুলো আপনাকে সরিয়ে দেওয়ার আগেই সেগুলো কাজে লাগান।">Use the new tools before they quietly replace you.</p></div>
+        </div>
+      <div class="pillar-row">
+        <span class="p-num">04</span>
+        <div class="p-body"><h3 data-en="Motivation" data-bn="মোটিভেশন">Motivation</h3><p data-en="The drive to keep going long after the excitement fades." data-bn="উত্তেজনা মিলিয়ে যাওয়ার অনেক পরেও এগিয়ে যাওয়ার তাড়না।">The drive to keep going long after the excitement fades.</p></div>
+        </div>
+      <div class="pillar-row">
+        <span class="p-num">05</span>
+        <div class="p-body"><h3 data-en="Future of Work" data-bn="কাজের ভবিষ্যৎ">Future of Work</h3><p data-en="Staying valuable while the rules of work keep changing." data-bn="কাজের নিয়ম বদলাতে থাকলেও প্রাসঙ্গিক থেকে যাওয়া।">Staying valuable while the rules of work keep changing.</p></div>
+        </div>
+    </div>
+  </div>
+
+  <div class="strip rv">
+    <div class="wrap">
+      <div class="stat"><div class="k" data-en="Learning in public" data-bn="প্রকাশ্যে শিখছি">Learning in public</div><div class="v" data-en="The wins, the mistakes, the process — shared honestly" data-bn="জয়, ভুল, পুরো প্রক্রিয়া — সততার সাথে শেয়ার করা">The wins, the mistakes, the process — shared honestly</div></div>
+      <div class="stat"><div class="k" data-en="Researched obsessively" data-bn="রিসার্চে অবসেসড">Researched obsessively</div><div class="v" data-en="Studies, books and Bangladesh data behind every claim" data-bn="প্রতিটি কথার পেছনে স্টাডি, বই আর বাংলাদেশের ডেটা">Studies, books and Bangladesh data behind every claim</div></div>
+      <div class="stat"><div class="k" data-en="New video every week" data-bn="প্রতি সপ্তাহে নতুন ভিডিও">New video every week</div><div class="v" data-en="Living everything I talk about, simultaneously" data-bn="যা নিয়ে বলি, সেটাই একসাথে যাপন করছি">Living everything I talk about, simultaneously</div></div>
+    </div>
+  </div>
+
+  <div class="wrap section rv">
+    <span class="eyebrow" data-en="A bit about me" data-bn="আমার সম্পর্কে একটু">A bit about me</span>
+    <h2 class="display h2" data-en="Where I'm coming from" data-bn="আমার প্রেক্ষাপট">Where I'm coming from</h2>
+    <div class="facts" id="homefacts" style="grid-template-columns:repeat(4,1fr);margin-top:30px">
+      <div class="fact"><span class="eyebrow">01</span><strong data-en="BBA student at IBA, University of Dhaka" data-bn="বিবিএ, আইবিএ — ঢাকা বিশ্ববিদ্যালয়">BBA student at IBA, University of Dhaka</strong></div>
+      <div class="fact"><span class="eyebrow">02</span><strong data-en="CFA Level 1 passed" data-bn="সিএফএ লেভেল ১ পাস">CFA Level 1 passed</strong></div>
+      <div class="fact"><span class="eyebrow">03</span><strong data-en="Winner of two finance competitions" data-bn="দুটি ফাইন্যান্স প্রতিযোগিতায় চ্যাম্পিয়ন">Winner of two finance competitions</strong></div>
+      <div class="fact"><span class="eyebrow">04</span><strong data-en="30+ courses in programming & finance" data-bn="প্রোগ্রামিং ও ফাইন্যান্সে ৩০+ কোর্স">30+ courses in programming & finance</strong></div>
+    </div>
+    <div style="margin-top:26px"><a class="btn ghost" href="#about" data-en="More about me →" data-bn="আরও জানুন →">More about me →</a></div>
+  </div>
+
+  <div class="wrap section rv">
+    <span class="eyebrow" data-en="Watch" data-bn="দেখুন">Watch</span>
+    <h2 class="display h2" data-en="Latest from the channel" data-bn="চ্যানেলের সাম্প্রতিক ভিডিও">Latest from the channel</h2>
+    <div class="vidgrid" id="vidgrid"></div>
+    <!-- REPLACE # with real profile links -->
+    <div class="platforms">
+      <a href="https://youtube.com/@rafiutahmidchowdhury" target="_blank" rel="noopener" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>YouTube</a>
+      <a href="https://www.facebook.com/FinancewithRafiu" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.88v2.27h3.32l-.53 3.49h-2.79V24C19.61 23.1 24 18.1 24 12.07z"/></svg>Facebook</a>
+      <a href="https://www.tiktok.com/@rafiu.tahmid.chowdhury" target="_blank" rel="noopener" aria-label="TikTok"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.53V6.77a4.85 4.85 0 01-1.02-.08z"/></svg>TikTok</a>
+      <a href="https://www.linkedin.com/in/rafiu-tahmid-chowdhury-a761a5277" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45C23.2 24 24 23.23 24 22.28V1.72C24 .77 23.2 0 22.22 0z"/></svg>LinkedIn</a>
+      <a href="https://www.instagram.com/rafiu_tahmid_chowdhury" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85 0 3.2-.01 3.58-.07 4.85-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07-3.2 0-3.58-.01-4.85-.07-3.26-.15-4.77-1.7-4.92-4.92C2.17 15.58 2.16 15.2 2.16 12c0-3.2.01-3.58.07-4.85C2.38 3.86 3.9 2.31 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16zm0-2.16C8.74 0 8.33.01 7.05.07 2.7.27.27 2.7.07 7.05.01 8.33 0 8.74 0 12c0 3.26.01 3.67.07 4.95.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24c3.26 0 3.67-.01 4.95-.07 4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95 0-3.26-.01-3.67-.07-4.95-.2-4.35-2.63-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 100 12.32A6.16 6.16 0 0012 5.84zm0 10.16a4 4 0 110-8 4 4 0 010 8zm6.4-11.85a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/></svg>Instagram</a>
+    </div>
+  </div>
+
+  <div class="wrap rv">
+    <div class="cta">
+      <div class="cta-grid">
+        <div>
+          <span class="eyebrow" data-en="Latest free resource" data-bn="সর্বশেষ ফ্রি রিসোর্স">Latest free resource</span>
+          <h2 class="display h2" id="ctaTitle">—</h2>
+          <span class="note" id="ctaNote" style="margin-top:12px"></span>
+        </div>
+        <a class="btn" id="ctaBtn" href="#resources" data-en="Get it free →" data-bn="ফ্রি নিন →">Get it free →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="page" id="page-about">
+  <div class="wrap about-grid">
+    <div class="sticky">
+      <span class="eyebrow" data-en="About" data-bn="আমার কথা">About</span>
+      <h1 class="display" style="font-size:clamp(32px,4.4vw,48px);margin-top:16px" data-en='Not an expert. <span class="grad">A student of all of it.</span>' data-bn='বিশেষজ্ঞ না। <span class="grad">এখনও শিখছি।</span>' data-html="1">Not an expert. <span class="grad">A student of all of it.</span></h1>
+      <div class="facts">
+        <div class="fact"><span class="eyebrow" data-en="Studying" data-bn="পড়ছি">Studying</span><strong data-en="BBA, IBA — University of Dhaka" data-bn="বিবিএ, আইবিএ — ঢাবি">BBA, IBA — University of Dhaka</strong></div>
+        <div class="fact"><span class="eyebrow" data-en="Credential" data-bn="ক্রেডেনশিয়াল">Credential</span><strong data-en="CFA Level 1 passer" data-bn="সিএফএ লেভেল ১ পাস">CFA Level 1 passer</strong></div>
+        <div class="fact"><span class="eyebrow" data-en="Next" data-bn="পরের লক্ষ্য">Next</span><strong data-en="CFA Level 2 — May 2027" data-bn="সিএফএ লেভেল ২ — মে ২০২৭">CFA Level 2 — May 2027</strong></div>
+        <div class="fact"><span class="eyebrow" data-en="Output" data-bn="আউটপুট">Output</span><strong data-en="New video every week" data-bn="প্রতি সপ্তাহে নতুন ভিডিও">New video every week</strong></div>
+        <div class="fact"><span class="eyebrow" data-en="Wins" data-bn="জয়">Wins</span><strong data-en="2× finance competition winner" data-bn="২টি ফাইন্যান্স প্রতিযোগিতায় জয়">2× finance competition winner</strong></div>
+        <div class="fact"><span class="eyebrow" data-en="Learning" data-bn="শেখা">Learning</span><strong data-en="30+ courses — programming & finance" data-bn="৩০+ কোর্স — প্রোগ্রামিং ও ফাইন্যান্স">30+ courses — programming & finance</strong></div>
+      </div>
+    </div>
+    <div class="about-body">
+      <p data-en="I'm Rafiu — IBA student, CFA Level 1 passer, and someone trying to build a better life while juggling more than I probably should." data-bn="আমি রাফিউ — আইবিএ-র ছাত্র, সিএফএ লেভেল ১ পাস, আর এমন একজন যে সম্ভবত সামর্থ্যের চেয়ে বেশি কিছু একসাথে সামলে একটা ভালো জীবন গড়ার চেষ্টা করছে।">I'm Rafiu — IBA student, CFA Level 1 passer, and someone trying to build a better life while juggling more than I probably should.</p>
+      <p data-en="Everything I make is about what actually helps an ambitious young Bangladeshi move forward — productivity, AI tools, motivation, personal finance, and the future of work. Not theory. Not generic advice. What I'm actually researching, testing, and living right now." data-bn="আমার সব কনটেন্ট একটাই বিষয়ে — একজন উচ্চাকাঙ্ক্ষী তরুণ বাংলাদেশিকে আসলে কী এগিয়ে নেয়: প্রোডাক্টিভিটি, এআই টুলস, মোটিভেশন, পার্সোনাল ফাইন্যান্স আর কাজের ভবিষ্যৎ। থিওরি না। গৎবাঁধা উপদেশ না। আমি এখন যা রিসার্চ করছি, পরীক্ষা করছি আর যাপন করছি — সেটাই।">Everything I make is about what actually helps an ambitious young Bangladeshi move forward — productivity, AI tools, motivation, personal finance, and the future of work. Not theory. Not generic advice. What I'm actually researching, testing, and living right now.</p>
+      <p class="big" data-en="I'm not an expert. I'm a student of all of this — and I share everything I learn, as I learn it." data-bn="আমি বিশেষজ্ঞ নই। আমি এসবেরই একজন ছাত্র — যা শিখি, শেখার সাথে সাথেই শেয়ার করি।">I'm not an expert. I'm a student of all of this — and I share everything I learn, as I learn it.</p>
+      <p data-en="Everything connects back to one question: how does someone with limited time, limited money, and unlimited pressure actually move forward? I research obsessively — academic studies, the best books, Bangladesh-specific data — and share honestly, in our context. Shariah-compliant options always sit alongside the conventional ones." data-bn="সবকিছু একটাই প্রশ্নে এসে মেলে: সীমিত সময়, সীমিত টাকা আর সীমাহীন চাপ নিয়ে একজন মানুষ আসলে কীভাবে এগোয়? আমি অবসেসড হয়ে রিসার্চ করি — একাডেমিক স্টাডি, সেরা বই, বাংলাদেশের নিজস্ব ডেটা — আর সততার সাথে শেয়ার করি, আমাদের প্রেক্ষাপটে। শরিয়াহসম্মত বিকল্প সবসময় প্রচলিত অপশনগুলোর পাশেই থাকে।">Everything connects back to one question: how does someone with limited time, limited money, and unlimited pressure actually move forward? I research obsessively — academic studies, the best books, Bangladesh-specific data — and share honestly, in our context. Shariah-compliant options always sit alongside the conventional ones.</p>
+      <p data-en="Some background: I've won two finance competitions, cleared CFA Level 1, and completed 30+ courses across programming and finance. All of it feeds directly into what I make — so when I say something is researched, it is." data-bn="একটু প্রেক্ষাপট: দুটি ফাইন্যান্স প্রতিযোগিতায় জিতেছি, সিএফএ লেভেল ১ পাস করেছি, আর প্রোগ্রামিং ও ফাইন্যান্সে ৩০+ কোর্স শেষ করেছি। এর সবটাই সরাসরি আমার কনটেন্টে কাজে লাগে — তাই যখন বলি কিছু রিসার্চ করা, সেটা সত্যিই করা।">Some background: I've won two finance competitions, cleared CFA Level 1, and completed 30+ courses across programming and finance. All of it feeds directly into what I make — so when I say something is researched, it is.</p>
+      <p data-en="Currently building toward CFA Level 2 (May 2027) while running the channel and finishing my degree. Everything I talk about, I'm living simultaneously." data-bn="এখন সিএফএ লেভেল ২-এর (মে ২০২৭) প্রস্তুতি নিচ্ছি, পাশাপাশি চ্যানেল চালাচ্ছি আর ডিগ্রি শেষ করছি। যা নিয়ে কথা বলি, সেটা একই সাথে নিজে যাপন করছি।">Currently building toward CFA Level 2 (May 2027) while running the channel and finishing my degree. Everything I talk about, I'm living simultaneously.</p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:10px">
+        <a class="btn" href="#resources" data-en="Free resources" data-bn="ফ্রি রিসোর্স">Free resources</a>
+        <a class="btn ghost" href="#contact" data-en="Say hello" data-bn="হ্যালো বলুন">Say hello</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RESOURCES (library) ================= -->
+<section class="page" id="page-resources">
+  <div class="wrap">
+    <div class="res-head">
+      <span class="eyebrow" data-en="Resources · Free" data-bn="রিসোর্স · ফ্রি">Resources · Free</span>
+      <h1 class="display" data-en='Workbooks & guides, <span class="grad">built to be used.</span>' data-bn='ওয়ার্কবুক ও গাইড — <span class="grad">ব্যবহারের জন্যই বানানো।</span>' data-html="1">Workbooks & guides, <span class="grad">built to be used.</span></h1>
+      <p class="lede" data-en="Companion materials for the videos. Each one is free — drop your name and email on its page and the download unlocks. New resources land as new videos release." data-bn="ভিডিওগুলোর সঙ্গী ম্যাটেরিয়াল। প্রতিটিই ফ্রি — রিসোর্সের পেজে একটা নাম আর ইমেইল দিন, ডাউনলোড খুলে যাবে। নতুন ভিডিওর সাথে সাথে নতুন রিসোর্স আসতে থাকবে।">Companion materials for the videos. Each one is free — drop your name and email on its page and the download unlocks. New resources land as new videos release.</p>
+    </div>
+    <div class="resgrid" id="resgrid"><!-- cards injected by JS --></div>
+  </div>
+</section>
+
+<!-- ================= RESOURCE DETAIL (template) ================= -->
+<section class="page" id="page-rdetail">
+  <div class="wrap">
+    <div style="padding-top:40px"><a class="backlink" href="#resources" data-en="← All resources" data-bn="← সব রিসোর্স">← All resources</a></div>
+    <div class="rdetail">
+      <div class="rcover">
+        <div>
+          <span class="eyebrow" id="rd-series">RAFIU · WORKBOOK 001</span>
+          <h1 id="rd-title">—</h1>
+        </div>
+        <span class="tagchip">Print · Fill · Practice</span>
+      </div>
+      <div class="rinfo">
+        <span class="eyebrow" data-en="Inside" data-bn="ভেতরে যা আছে">Inside</span>
+        <h2 id="rd-sub">—</h2>
+        <p id="rd-desc">—</p>
+        <ul class="rlist" id="rd-list"></ul>
+        <div class="gate">
+          <h3 data-en="Unlock the free download" data-bn="ফ্রি ডাউনলোড আনলক করুন">Unlock the free download</h3>
+          <p data-en="Just your name and an email — and the download opens up. You'll also hear when new resources release. No spam, one-click unsubscribe." data-bn="শুধু একটা নাম আর ইমেইল — ডাউনলোড খুলে যাবে। নতুন রিসোর্স এলেও জানতে পারবেন। স্প্যাম নেই, এক ক্লিকে আনসাবস্ক্রাইব।">Just your name and an email — and the download opens up. You'll also hear when new resources release. No spam, one-click unsubscribe.</p>
+          <form id="gateform">
+            <div class="row">
+              <input type="text" id="g-nick" required placeholder="Name" data-en-ph="Name" data-bn-ph="নাম" aria-label="Name">
+              <input type="email" id="g-email" required placeholder="you@email.com" data-en-ph="you@email.com" data-bn-ph="আপনার@ইমেইল.com" aria-label="Email">
+            </div>
+            <button class="btn" type="submit" id="g-btn" data-en="Unlock download" data-bn="ডাউনলোড আনলক">Unlock download</button>
+          </form>
+          <div class="dl" id="g-dl">
+            <p id="g-thanks" data-dyn="1"></p>
+            <div class="dl-btns">
+              <a class="btn" id="g-link-en" href="#" target="_blank" rel="noopener" data-en="↓ English version" data-bn="↓ ইংরেজি ভার্সন">↓ English version</a>
+              <a class="btn ghost" id="g-link-bn" href="#" target="_blank" rel="noopener" data-en="↓ বাংলা version" data-bn="↓ বাংলা ভার্সন">↓ বাংলা version</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TOOLS ================= -->
+<section class="page" id="page-tools">
+  <div class="wrap section">
+    <span class="eyebrow" data-en="Tools · Free, no sign-up" data-bn="টুলস · ফ্রি, সাইন-আপ লাগবে না">Tools · Free, no sign-up</span>
+    <h1 class="display" style="font-size:clamp(32px,4.4vw,48px);margin-top:16px;max-width:680px" data-en='Calculators built for <span class="grad">taka</span>, not dollars.' data-bn='ক্যালকুলেটর — ডলারের জন্য না, <span class="grad">টাকার</span> জন্য।' data-html="1">Calculators built for <span class="grad">taka</span>, not dollars.</h1>
+    <div style="margin-top:10px"><span class="note" data-en="↳ built these for myself first" data-bn="↳ আগে নিজের জন্যই বানিয়েছিলাম">↳ built these for myself first</span></div>
+
+    <div class="tooltabs" role="tablist">
+      <button class="on" id="tab-split" data-en="Budget Split" data-bn="বাজেট স্প্লিট" onclick="showTool('split')">Budget Split</button>
+      <button id="tab-growth" data-en="Growth Calculator" data-bn="গ্রোথ ক্যালকুলেটর" onclick="showTool('growth')">Growth Calculator</button>
+      <button id="tab-inflation" data-en="Inflation Check" data-bn="মূল্যস্ফীতি চেক" onclick="showTool('inflation')">Inflation Check</button>
+<button id="tab-prompts" data-en="AI Prompts" data-bn="এআই প্রম্পট" onclick="showTool('prompts')">AI Prompts</button>
+    </div>
+
+    <div class="tool show" id="tool-split">
+      <div class="panel">
+        <div class="field">
+          <label for="inc" data-en="Monthly income (BDT)" data-bn="মাসিক আয় (টাকা)">Monthly income (BDT)</label>
+          <input type="number" id="inc" value="40000" min="0" oninput="calcSplit()">
+        </div>
+        <div class="field">
+          <label data-en="Needs — rent, food, transport" data-bn="প্রয়োজন — বাসা ভাড়া, খাবার, যাতায়াত">Needs — rent, food, transport</label>
+          <input type="range" id="pNeeds" min="0" max="100" value="55" oninput="calcSplit()">
+          <span class="rangeval" id="vNeeds">55%</span>
+        </div>
+        <div class="field">
+          <label data-en="Wants — eating out, fun, subscriptions" data-bn="শখ — বাইরে খাওয়া, বিনোদন, সাবস্ক্রিপশন">Wants — eating out, fun, subscriptions</label>
+          <input type="range" id="pWants" min="0" max="100" value="20" oninput="calcSplit()">
+          <span class="rangeval" id="vWants">20%</span>
+        </div>
+        <div class="field" style="margin-bottom:0">
+          <label data-en="Future — savings & investing (auto-balanced)" data-bn="ভবিষ্যৎ — সঞ্চয় ও বিনিয়োগ (স্বয়ংক্রিয়)">Future — savings & investing (auto-balanced)</label>
+          <span class="rangeval" id="vFuture">25%</span>
+        </div>
+        <p class="toolnote" data-en="Future = whatever is left after needs and wants. If it keeps shrinking toward zero, that's the first thing worth fixing." data-bn="ভবিষ্যৎ = প্রয়োজন আর শখের পরে যা বাকি থাকে। এটা যদি শূন্যের দিকে নামতে থাকে, সবার আগে সেটাই ঠিক করা দরকার।">Future = whatever is left after needs and wants. If it keeps shrinking toward zero, that's the first thing worth fixing.</p>
+      </div>
+      <div class="result">
+        <span class="eyebrow" data-en="Your monthly split" data-bn="আপনার মাসিক ভাগ">Your monthly split</span>
+        <div class="split-rows">
+          <div class="split-row"><span class="name" data-en="Needs" data-bn="প্রয়োজন">Needs</span><span class="amt" id="aNeeds">৳ 22,000</span></div>
+          <div class="split-row"><span class="name" data-en="Wants" data-bn="শখ">Wants</span><span class="amt" id="aWants">৳ 8,000</span></div>
+          <div class="split-row"><span class="name" data-en="Future" data-bn="ভবিষ্যৎ">Future</span><span class="amt grad" id="aFuture">৳ 10,000</span></div>
+        </div>
+        <p class="sub" style="margin-top:18px" id="splitYear" data-dyn="1"></p>
+      </div>
+    </div>
+
+    <div class="tool" id="tool-growth">
+      <div class="panel">
+        <div class="modes" role="tablist">
+          <button class="on" id="mode-sip" data-en="Monthly (SIP)" data-bn="মাসিক (এসআইপি)" onclick="setMode('sip')">Monthly (SIP)</button>
+          <button id="mode-lump" data-en="One-time (Lump sum)" data-bn="এককালীন (লাম্প সাম)" onclick="setMode('lump')">One-time (Lump sum)</button>
+        </div>
+        <div class="field" id="f-sip">
+          <label for="gMonthly" data-en="Monthly investment (BDT)" data-bn="মাসিক বিনিয়োগ (টাকা)">Monthly investment (BDT)</label>
+          <input type="number" id="gMonthly" value="5000" min="0" oninput="calcGrowth()">
+        </div>
+        <div class="field" id="f-lump" style="display:none">
+          <label for="gLump" data-en="One-time investment (BDT)" data-bn="এককালীন বিনিয়োগ (টাকা)">One-time investment (BDT)</label>
+          <input type="number" id="gLump" value="100000" min="0" oninput="calcGrowth()">
+        </div>
+        <div class="field">
+          <label data-en="Expected annual growth rate" data-bn="প্রত্যাশিত বার্ষিক গ্রোথ রেট">Expected annual growth rate</label>
+          <input type="range" id="gRate" min="1" max="25" value="10" step="0.5" oninput="calcGrowth()">
+          <span class="rangeval" id="vRate">10%</span>
+        </div>
+        <div class="field" style="margin-bottom:0">
+          <label data-en="Years" data-bn="বছর">Years</label>
+          <input type="range" id="gYears" min="1" max="40" value="10" oninput="calcGrowth()">
+          <span class="rangeval" id="vYears">10</span>
+        </div>
+        <p class="toolnote" data-en="Growth rate is an assumption, not a promise. This tool is for planning, not advice." data-bn="গ্রোথ রেট একটি অনুমান, প্রতিশ্রুতি নয়। এই টুল পরিকল্পনার জন্য, উপদেশ নয়।">Growth rate is an assumption, not a promise. This tool is for planning, not advice.</p>
+      </div>
+      <div class="result">
+        <span class="eyebrow" data-en="Projected value" data-bn="সম্ভাব্য মূল্য">Projected value</span>
+        <div class="bignum grad" id="gTotal">৳ 0</div>
+        <p class="sub" id="gAfter" data-dyn="1"></p>
+        <div class="split-rows" style="margin-top:18px">
+          <div class="split-row"><span class="name" data-en="You invest" data-bn="আপনার বিনিয়োগ">You invest</span><span class="amt" id="gInvested">৳ 0</span></div>
+          <div class="split-row"><span class="name" data-en="Profit earned" data-bn="অর্জিত মুনাফা">Profit earned</span><span class="amt grad" id="gProfit">৳ 0</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== INFLATION ===== -->
+    <div class="tool" id="tool-inflation">
+      <div class="panel">
+        <div class="field"><label data-en="Amount today (BDT)" data-bn="আজকের পরিমাণ (টাকা)">Amount today (BDT)</label><input type="number" id="iAmt" value="100000" min="0" oninput="calcInfl()"></div>
+        <div class="field"><label data-en="Years ahead" data-bn="কত বছর পরে">Years ahead</label><input type="range" id="iYears" min="1" max="40" value="10" oninput="calcInfl()"><span class="rangeval" id="ivYears">10</span></div>
+        <div class="field" style="margin-bottom:0"><label data-en="Assumed yearly inflation" data-bn="ধরে নেওয়া বার্ষিক মূল্যস্ফীতি">Assumed yearly inflation</label><input type="range" id="iRate" min="1" max="15" value="6" step="0.5" oninput="calcInfl()"><span class="rangeval" id="ivRate">6%</span></div>
+        <p class="toolnote" data-en="Inflation quietly shrinks what your money buys. Idle cash isn't 'safe' — it's a slow leak. This shows the size of it." data-bn="মূল্যস্ফীতি নীরবে আপনার টাকার ক্রয়ক্ষমতা কমিয়ে দেয়। অলস নগদ 'নিরাপদ' নয় — এটি ধীরে ধীরে ফুটো হওয়া। এই টুল সেই ফাঁকটা দেখায়।">Inflation quietly shrinks what your money buys. Idle cash isn't 'safe' — it's a slow leak. This shows the size of it.</p>
+      </div>
+      <div class="result">
+        <span class="eyebrow" data-en="The reality" data-bn="বাস্তবতা">The reality</span>
+        <div class="bignum grad" id="iBuys">৳ 0</div>
+        <p class="sub" id="iBuysSub" data-en="what today's amount will actually buy then" data-bn="আজকের পরিমাণ তখন আসলে যা কিনতে পারবে">what today's amount will actually buy then</p>
+        <div class="split-rows" style="margin-top:18px">
+          <div class="split-row"><span class="name" data-en="To keep today's lifestyle, you'll need" data-bn="আজকের জীবনযাত্রা ধরে রাখতে লাগবে">To keep today's lifestyle, you'll need</span><span class="amt grad" id="iNeed">৳ 0</span></div>
+          <div class="split-row"><span class="name" data-en="Quietly lost to inflation" data-bn="মূল্যস্ফীতিতে নীরবে হারানো">Quietly lost to inflation</span><span class="amt" id="iLost">৳ 0</span></div>
+        </div>
+      </div>
+    </div>
+
+<!-- ===== AI PROMPTS ===== -->
+    <div class="tool" id="tool-prompts">
+      <div class="promptwrap">
+        <p class="promptintro" data-en="Copy-ready prompts I actually use — for money, study, content and career. Unlock the pack with your name and email; copy as many as you like after." data-bn="কপি করার জন্য তৈরি প্রম্পট যেগুলো আমি নিজে ব্যবহার করি — টাকা, পড়াশোনা, কনটেন্ট আর ক্যারিয়ারের জন্য। একটা নাম আর ইমেইল দিয়ে প্যাকটা আনলক করুন; এরপর যত খুশি কপি করুন।">Copy-ready prompts I actually use — for money, study, content and career. Unlock the pack with your name and email; copy as many as you like after.</p>
+        <div class="promptgrid" id="promptGrid"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="page" id="page-contact">
+  <div class="wrap contact-grid">
+    <div>
+      <span class="eyebrow" data-en="Contact" data-bn="যোগাযোগ">Contact</span>
+      <h1 class="display" style="font-size:clamp(32px,4.4vw,48px);margin-top:16px" data-en='Say hello. <span class="grad">I read everything.</span>' data-bn='হ্যালো বলুন। <span class="grad">আমি সবগুলোই পড়ি।</span>' data-html="1">Say hello. <span class="grad">I read everything.</span></h1>
+      <p class="lede" style="margin-top:18px" data-en="Questions, feedback, collaboration ideas — this is the inbox. For quick stuff, the comments on any video work too." data-bn="প্রশ্ন, মতামত, কোলাবরেশনের আইডিয়া — এটাই ইনবক্স। ছোটখাটো কিছুর জন্য যেকোনো ভিডিওর কমেন্টও চলবে।">Questions, feedback, collaboration ideas — this is the inbox. For quick stuff, the comments on any video work too.</p>
+      <ul class="sociallist">
+        <li><a href="https://youtube.com/@rafiutahmidchowdhury" target="_blank" rel="noopener"><span class="sico"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg></span>YouTube <span>→</span></a></li>
+        <li><a href="https://www.facebook.com/FinancewithRafiu" target="_blank" rel="noopener"><span class="sico"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.88v2.27h3.32l-.53 3.49h-2.79V24C19.61 23.1 24 18.1 24 12.07z"/></svg></span>Facebook <span>→</span></a></li>
+        <li><a href="https://www.tiktok.com/@rafiu.tahmid.chowdhury" target="_blank" rel="noopener"><span class="sico"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.53V6.77a4.85 4.85 0 01-1.02-.08z"/></svg></span>TikTok <span>→</span></a></li>
+        <li><a href="https://www.linkedin.com/in/rafiu-tahmid-chowdhury-a761a5277" target="_blank" rel="noopener"><span class="sico"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45C23.2 24 24 23.23 24 22.28V1.72C24 .77 23.2 0 22.22 0z"/></svg></span>LinkedIn <span>→</span></a></li>
+        <li><a href="https://www.instagram.com/rafiu_tahmid_chowdhury" target="_blank" rel="noopener"><span class="sico"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85 0 3.2-.01 3.58-.07 4.85-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07-3.2 0-3.58-.01-4.85-.07-3.26-.15-4.77-1.7-4.92-4.92C2.17 15.58 2.16 15.2 2.16 12c0-3.2.01-3.58.07-4.85C2.38 3.86 3.9 2.31 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16zm0-2.16C8.74 0 8.33.01 7.05.07 2.7.27.27 2.7.07 7.05.01 8.33 0 8.74 0 12c0 3.26.01 3.67.07 4.95.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24c3.26 0 3.67-.01 4.95-.07 4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95 0-3.26-.01-3.67-.07-4.95-.2-4.35-2.63-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 100 12.32A6.16 6.16 0 0012 5.84zm0 10.16a4 4 0 110-8 4 4 0 010 8zm6.4-11.85a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/></svg></span>Instagram <span>→</span></a></li>
+      </ul>
+    </div>
+    <form class="cform" id="contactForm">
+      <div class="field">
+        <label for="cname" data-en="Your name" data-bn="আপনার নাম">Your name</label>
+        <input type="text" id="cname" name="name" required>
+      </div>
+      <div class="field">
+        <label for="cemail" data-en="Your email" data-bn="আপনার ইমেইল">Your email</label>
+        <input type="email" id="cemail" name="email" required>
+      </div>
+      <div class="field">
+        <label for="cmsg" data-en="Message" data-bn="বার্তা">Message</label>
+        <textarea id="cmsg" name="message" required></textarea>
+      </div>
+      <button class="btn" type="submit" id="cbtn" data-en="Send message" data-bn="বার্তা পাঠান">Send message</button>
+    </form>
+    <div class="csuccess" id="contactSuccess" style="display:none">
+      <p data-en="Got it — thank you. I'll reply to your email soon." data-bn="পেয়েছি — ধন্যবাদ। শীঘ্রই আপনার ইমেইলে উত্তর দেব।">Got it — thank you. I'll reply to your email soon.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+
+<div id="gateModal" class="modalwrap" aria-hidden="true">
+  <div class="modalbox">
+    <button class="modalx" id="modalx" aria-label="Close">×</button>
+    <span class="eyebrow" data-en="Free unlock" data-bn="ফ্রি আনলক">Free unlock</span>
+    <h3 id="gm-title" class="display">—</h3>
+    <p id="gm-desc">—</p>
+    <form id="gm-form">
+      <div class="gm-row">
+        <input type="text" id="gm-nick" required placeholder="Name" data-en-ph="Name" data-bn-ph="নাম" aria-label="Name">
+        <input type="email" id="gm-email" required placeholder="you@email.com" data-en-ph="you@email.com" data-bn-ph="আপনার@ইমেইল.com" aria-label="Email">
+      </div>
+      <button class="btn" type="submit" id="gm-btn" data-en="Unlock now" data-bn="এখন আনলক">Unlock now</button>
+      <p class="gm-note" data-en="One email, the whole toolkit. No spam, unsubscribe anytime." data-bn="একটা ইমেইল, পুরো টুলকিট। স্প্যাম নেই, যেকোনো সময় আনসাবস্ক্রাইব।">One email, the whole toolkit. No spam, unsubscribe anytime.</p>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap foot">
+    <a class="logo" href="#home">
+      <span class="name" style="font-size:16px">RAFIU<span style="color:var(--violet-bright)">.</span></span>
+    </a>
+    <small data-en="Figuring out how to build a better life — out loud" data-bn="একটা ভালো জীবন কীভাবে গড়ে — সেটাই খুঁজে বের করার চেষ্টা করছি">Figuring out how to build a better life — out loud</small>
+    <small><span class="note" style="font-size:18px" data-en="built out loud, from Dhaka" data-bn="ঢাকা থেকে, শব্দ করে বানানো">built out loud, from Dhaka</span> · © 2026 Rafiu Tahmid Chowdhury</small>
+  </div>
+</footer>
+
+<script>
+/* =================================================================
+   RESOURCE REGISTRY — add new resources here, nothing else to touch.
+   Each gets its own page at  yoursite.com/#r/ID  (shareable link).
+   download: host the PDF (GitHub repo), paste its link in `download`.
+================================================================= */
+var RESOURCES = {
+  driven: {
+    series: 'RAFIU · WORKBOOK 001',
+    title: {en:'Why Successful People Stay Driven', bn:'সফল মানুষেরা কেন থেমে যায় না'},
+    sub: {en:'The 5-part architecture behind unstoppable motivation', bn:'অদম্য মোটিভেশনের পেছনের ৫টি উপাদান'},
+    desc: {en:'A print-fill-practice companion to the video. Find your weakest component and strengthen it this week.', bn:'ভিডিওর সঙ্গী — প্রিন্ট করুন, পূরণ করুন, চর্চা করুন। আপনার দুর্বলতম উপাদানটি খুঁজে এই সপ্তাহেই শক্ত করুন।'},
+    points: {
+      en:['The 5 components: intrinsic motivation, identity, grit, deliberate practice, meaning',
+          '10 case studies — SRK, Federer, Messi, Rowling, Mandela and more',
+          'Your architecture audit: one specific action this week',
+          'Backed by Pink, Duckworth, Ericsson and Frankl — sources included'],
+      bn:['৫টি উপাদান: ভেতরের তাড়না, পরিচয়, গ্রিট, ডেলিবারেট প্র্যাকটিস, অর্থবোধ',
+          '১০টি কেস স্টাডি — শাহরুখ, ফেদেরার, মেসি, রাওলিং, ম্যান্ডেলা আরও',
+          'আপনার আর্কিটেকচার অডিট: এই সপ্তাহের একটি নির্দিষ্ট কাজ',
+          'পিংক, ডাকওয়ার্থ, এরিকসন ও ফ্রাঙ্কলের গবেষণাভিত্তিক — সোর্সসহ']
+    },
+    blurb: {en:'Companion to the motivation video. 16 pages.', bn:'মোটিভেশন ভিডিওর সঙ্গী। ১৬ পৃষ্ঠা।'},
+    download_en: 'REPLACE_WITH_ENGLISH_PDF_LINK',
+    download_bn: 'REPLACE_WITH_BANGLA_PDF_LINK'
+  }
+  /* ============================================================
+     ↓↓↓  ADD A NEW WORKBOOK — copy this whole block, rename the key (e.g. "yourkey"),
+     fill the fields, upload BOTH PDFs to GitHub, paste their links below.
+     It auto-creates its own page at  rafiu.me/#r/THEKEY  and a library card.
+     Put rafiu.me/#r/THEKEY as the link in your video description.
+
+     TO REMOVE A WORKBOOK: simply delete its whole block (from its key down to
+     its closing  },  ). It vanishes from the site and the library instantly.
+     (Easiest: use the Generator's "Remove a workbook" tab — it tells you exactly
+     what to delete.)
+  ============================================================
+  yourkey: {
+    series: 'RAFIU · WORKBOOK 002',
+    title:  {en:'English title',            bn:'বাংলা টাইটেল'},
+    sub:    {en:'One-line subtitle',         bn:'এক লাইনের সাবটাইটেল'},
+    desc:   {en:'Short paragraph.',          bn:'ছোট প্যারাগ্রাফ।'},
+    points: { en:['Point one','Point two','Point three','Point four'],
+              bn:['পয়েন্ট এক','পয়েন্ট দুই','পয়েন্ট তিন','পয়েন্ট চার'] },
+    blurb:  {en:'Library card teaser',       bn:'কার্ডের এক লাইন'},
+    download_en:'https://YOURNAME.github.io/rafiu-site/resources/yourfile-english.pdf',
+    download_bn:'https://YOURNAME.github.io/rafiu-site/resources/yourfile-bangla.pdf'
+  },
+  ============================================================ */
+};
+
+/* ---------- i18n ---------- */
+var LANG='en';
+var DYN={
+  splitYear:{en:function(a){return 'At this pace, your Future bucket grows by ৳ '+a+' per year — before any growth on top.';},
+             bn:function(a){return 'এই গতিতে আপনার ভবিষ্যৎ তহবিলে বছরে জমবে ৳ '+a+' — গ্রোথ যোগ হওয়ার আগেই।';}},
+  gAfter:{en:function(y){return 'after '+y+' years';},bn:function(y){return y+' বছর পরে';}},
+  thanks:{en:function(n){return 'Thanks, '+n+'! Your download is unlocked:';},bn:function(n){return 'ধন্যবাদ, '+n+'! আপনার ডাউনলোড খুলে গেছে:';}}
+};
+function applyLang(){
+  document.documentElement.setAttribute('data-lang',LANG);
+  document.documentElement.lang=(LANG==='bn'?'bn':'en');
+  var els=document.querySelectorAll('[data-en]');
+  for(var i=0;i<els.length;i++){
+    var t=els[i].getAttribute('data-'+LANG);
+    if(!t)continue;
+    if(els[i].getAttribute('data-html')==='1'){els[i].innerHTML=t;}else{els[i].textContent=t;}
+  }
+  var phs=document.querySelectorAll('[data-en-ph]');
+  for(var j=0;j<phs.length;j++){phs[j].setAttribute('placeholder',phs[j].getAttribute('data-'+LANG+'-ph'));}
+  document.getElementById('langbtn').textContent=(LANG==='en'?'বাংলা':'EN');
+  buildLibrary(); buildPrompts(); buildVideos(); buildLatestCTA(); if(CURRENT_RES)fillDetail(CURRENT_RES);
+  calcSplit();calcGrowth();calcInfl();
+}
+document.getElementById('langbtn').addEventListener('click',function(){LANG=(LANG==='en'?'bn':'en');applyLang();});
+
+/* ---------- resource library + detail ---------- */
+var CURRENT_RES=null;
+function buildLibrary(){
+  var g=document.getElementById('resgrid');g.innerHTML='';
+  for(var id in RESOURCES){
+    var r=RESOURCES[id];
+    var a=document.createElement('a');
+    a.className='rescard';a.href='#r/'+id;
+    a.innerHTML='<div class="rescover"><span class="eyebrow">'+r.series+'</span><h3>'+r.title[LANG]+'</h3></div>'+
+      '<div class="resmeta"><p>'+r.blurb[LANG]+'</p><span class="tag">'+(LANG==='bn'?'ফ্রি':'Free')+'</span></div>';
+    g.appendChild(a);
+  }
+  var soon=document.createElement('div');
+  soon.className='rescard soonc';
+  soon.innerHTML='<div class="rescover"><span class="eyebrow">RAFIU · '+(LANG==='bn'?'শীঘ্রই':'COMING SOON')+'</span><h3>'+(LANG==='bn'?'পরের ভিডিওর সাথে নতুন রিসোর্স':'New resource with the next video')+'</h3></div>'+
+    '<div class="resmeta"><p>'+(LANG==='bn'?'প্রতিটি নতুন ভিডিওর সাথে এখানে নতুন কিছু যোগ হবে।':'Every new video adds something here.')+'</p></div>';
+  g.appendChild(soon);
+}
+function fillDetail(id){
+  var r=RESOURCES[id];if(!r)return;
+  CURRENT_RES=id;
+  document.getElementById('rd-series').textContent=r.series;
+  document.getElementById('rd-title').textContent=r.title[LANG];
+  document.getElementById('rd-sub').textContent=r.sub[LANG];
+  document.getElementById('rd-desc').textContent=r.desc[LANG];
+  var ul=document.getElementById('rd-list');ul.innerHTML='';
+  var pts=r.points[LANG];
+  for(var i=0;i<pts.length;i++){var li=document.createElement('li');li.textContent=pts[i];ul.appendChild(li);}
+  var dlEn=r.download_en||r.download||'#';
+  var dlBn=r.download_bn||r.download||'#';
+  document.getElementById('g-link-en').setAttribute('href',dlEn);
+  var bnBtn=document.getElementById('g-link-bn');
+  if(r.download_bn){ bnBtn.style.display=''; bnBtn.setAttribute('href',dlBn); }
+  else { bnBtn.style.display='none'; }  /* hide Bangla button if no Bangla file given */
+  document.getElementById('g-dl').classList.remove('show');
+  document.getElementById('gateform').style.display='';
+}
+document.getElementById('gateform').addEventListener('submit',function(e){
+  e.preventDefault();
+  var nick=document.getElementById('g-nick').value.trim();
+  var email=document.getElementById('g-email').value.trim();
+  if(!nick||!email)return;
+  var r=RESOURCES[CURRENT_RES];
+  var btn=document.getElementById('g-btn');btn.disabled=true;
+  function unlock(){
+    document.getElementById('g-thanks').textContent=DYN.thanks[LANG](nick);
+    document.getElementById('g-dl').classList.add('show');
+    document.getElementById('gateform').style.display='none';
+    btn.disabled=false;
+  }
+  captureLead({nickname:nick,email:email,resource:CURRENT_RES}).then(unlock,unlock);
+});
+
+/* ---------- routing ---------- */
+var PAGES=['home','about','resources','tools','contact','rdetail'];
+document.addEventListener('click',function(e){
+  var t=e.target,a=null;
+  while(t&&t!==document){if(t.tagName==='A'&&t.getAttribute('href')&&t.getAttribute('href').charAt(0)==='#'){a=t;break;}t=t.parentNode;}
+  if(!a)return;
+  e.preventDefault();
+  var h=a.getAttribute('href').slice(1)||'home';
+  try{if(history.replaceState)history.replaceState(null,'','#'+h);}catch(err){}
+  renderRoute(h);
+});
+function route(){renderRoute((location.hash||'#home').replace('#',''));}
+function renderRoute(h){
+  var page=h;
+  if(h.indexOf('r/')===0){
+    var id=h.slice(2);
+    if(RESOURCES[id]){page='rdetail';fillDetail(id);}else{page='resources';}
+  }
+  if(PAGES.indexOf(page)===-1)page='home';
+  for(var i=0;i<PAGES.length;i++){
+    document.getElementById('page-'+PAGES[i]).classList.toggle('show',PAGES[i]===page);
+  }
+  var links=document.querySelectorAll('[data-route]');
+  var hl=(page==='rdetail'?'resources':page);
+  for(var j=0;j<links.length;j++){links[j].classList.toggle('active',links[j].getAttribute('data-route')===hl);}
+  document.getElementById('navlinks').classList.remove('open');
+  window.scrollTo(0,0);
+  revealInit();
+}
+window.addEventListener('hashchange',route);
+document.getElementById('menubtn').addEventListener('click',function(){
+  document.getElementById('navlinks').classList.toggle('open');
+});
+
+/* ---------- scroll reveal ---------- */
+var IO=null;
+function revealInit(){
+  if(!('IntersectionObserver' in window)){var a=document.querySelectorAll('.rv');for(var i=0;i<a.length;i++)a[i].classList.add('in');return;}
+  if(!IO){IO=new IntersectionObserver(function(es){for(var i=0;i<es.length;i++){if(es[i].isIntersecting){es[i].target.classList.add('in');IO.unobserve(es[i].target);}}},{threshold:.12});}
+  var rs=document.querySelectorAll('.rv:not(.in)');
+  for(var k=0;k<rs.length;k++)IO.observe(rs[k]);
+}
+
+/* ---------- formatting ---------- */
+function num2bn(t){return String(t).replace(/[0-9]/g,function(d){return '০১২৩৪৫৬৭৮৯'.charAt(d);});}
+function loc(t){return LANG==='bn'?num2bn(t):String(t);}
+function tk(n){if(!isFinite(n))n=0;return loc('৳ '+Math.round(n).toLocaleString('en-IN'));}
+
+/* ---------- budget split ---------- */
+function calcSplit(){
+  var inc=parseFloat(document.getElementById('inc').value)||0;
+  var pn=parseInt(document.getElementById('pNeeds').value,10);
+  var pw=parseInt(document.getElementById('pWants').value,10);
+  if(pn+pw>100){pw=100-pn;document.getElementById('pWants').value=pw;}
+  var pf=100-pn-pw;
+  document.getElementById('vNeeds').textContent=loc(pn+'%');
+  document.getElementById('vWants').textContent=loc(pw+'%');
+  document.getElementById('vFuture').textContent=loc(pf+'%');
+  document.getElementById('aNeeds').textContent=tk(inc*pn/100);
+  document.getElementById('aWants').textContent=tk(inc*pw/100);
+  document.getElementById('aFuture').textContent=tk(inc*pf/100);
+  pulse(document.getElementById('aFuture'));
+  var yearly=loc(Math.round(inc*pf/100*12).toLocaleString('en-IN'));
+  document.getElementById('splitYear').textContent=DYN.splitYear[LANG](yearly);
+}
+
+/* ---------- growth calculator ---------- */
+var MODE='sip';
+function setMode(m){
+  MODE=m;
+  document.getElementById('mode-sip').classList.toggle('on',m==='sip');
+  document.getElementById('mode-lump').classList.toggle('on',m==='lump');
+  document.getElementById('f-sip').style.display=(m==='sip'?'block':'none');
+  document.getElementById('f-lump').style.display=(m==='lump'?'block':'none');
+  calcGrowth();
+}
+function calcGrowth(){
+  var rate=parseFloat(document.getElementById('gRate').value);
+  var years=parseInt(document.getElementById('gYears').value,10);
+  document.getElementById('vRate').textContent=loc(rate+'%');
+  document.getElementById('vYears').textContent=loc(years);
+  var total=0,invested=0;
+  if(MODE==='sip'){
+    var m=parseFloat(document.getElementById('gMonthly').value)||0;
+    var i=rate/100/12,n=years*12;
+    invested=m*n;
+    total=i===0?invested:m*((Math.pow(1+i,n)-1)/i)*(1+i);
+  }else{
+    var p=parseFloat(document.getElementById('gLump').value)||0;
+    invested=p;
+    total=p*Math.pow(1+rate/100,years);
+  }
+  document.getElementById('gTotal').textContent=tk(total);
+  pulse(document.getElementById('gTotal'));
+  document.getElementById('gInvested').textContent=tk(invested);
+  document.getElementById('gProfit').textContent=tk(total-invested);
+  document.getElementById('gAfter').textContent=DYN.gAfter[LANG](loc(years));
+}
+
+/* ---------- tool tabs ---------- */
+var TOOLIDS=['split','growth','inflation','prompts'];
+function showTool(t){
+  for(var i=0;i<TOOLIDS.length;i++){
+    var on=TOOLIDS[i]===t;
+    document.getElementById('tool-'+TOOLIDS[i]).classList.toggle('show',on);
+    document.getElementById('tab-'+TOOLIDS[i]).classList.toggle('on',on);
+  }
+}
+
+
+/* ================= STORAGE WIRING =================
+   ONE endpoint. Paste your Google Apps Script web-app URL below.
+   Every gated unlock (resources, zakat PDF, prompt pack) drops a row
+   into your Google Sheet: [timestamp, nickname, email, resource].   */
+/* ============================================================
+   RAFIU — SELF-EDIT GUIDE (update these without coming back to Claude)
+   ============================================================
+   HOW TO ADD A NEW WORKBOOK/RESOURCE:
+   Scroll down to "RESOURCES REGISTRY" and copy the 'driven' block.
+   Paste it as a new entry. Update all fields. Upload the PDF to GitHub.
+   The new card appears automatically on /resources and gets its own link.
+
+   HOW TO UPDATE "NOW" STRIP (monthly):
+   Search for "NOW-STRIP" below and change the 3 fillin values.
+   ============================================================ */
+var SHEET_ENDPOINT='https://script.google.com/macros/s/AKfycbzxq1OJ8ynEjVH716_LlB__0fIGYfo2yD9O7mzLG3y7HYybeusQgcBLOUF1ARKYIZq9/exec';
+
+/* ============================================================
+   FEATURED VIDEOS — change which videos appear on the homepage.
+   Swap the id (the part of a YouTube link after watch?v=).
+   Add or remove entries freely; the grid adjusts automatically.
+   (Tip: use the Workbook & Video Generator tool to make this block.)
+============================================================ */
+var VIDEOS=[
+  {id:'dQw4w9WgXcQ', title:{en:'Featured video', bn:'ফিচার্ড ভিডিও'}},
+  {id:'dQw4w9WgXcQ', title:{en:'Latest upload', bn:'সর্বশেষ আপলোড'}}
+];
+function captureLead(d){
+  try{
+    if(!SHEET_ENDPOINT||SHEET_ENDPOINT.indexOf('YOUR_APPS_SCRIPT')>-1) return Promise.resolve(); /* demo mode */
+    var body='nickname='+encodeURIComponent(d.nickname||'')+'&email='+encodeURIComponent(d.email||'')+'&resource='+encodeURIComponent(d.resource||'')+'&message='+encodeURIComponent(d.message||'');
+    return fetch(SHEET_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body}).catch(function(){});
+  }catch(e){return Promise.resolve();}
+}
+
+/* ================= GATE MODAL ================= */
+var GATE_CB=null;
+function openGate(opt){
+  GATE_CB=opt.onUnlock||null;
+  document.getElementById('gm-title').textContent=opt.title||'Unlock';
+  document.getElementById('gm-desc').textContent=opt.desc||'';
+  document.getElementById('gm-form').dataset.resource=opt.resource||'unlock';
+  document.getElementById('gateModal').classList.add('show');
+  document.getElementById('gateModal').setAttribute('aria-hidden','false');
+}
+function closeGate(){document.getElementById('gateModal').classList.remove('show');document.getElementById('gateModal').setAttribute('aria-hidden','true');}
+document.getElementById('modalx').addEventListener('click',closeGate);
+document.getElementById('gateModal').addEventListener('click',function(e){if(e.target===this)closeGate();});
+document.getElementById('gm-form').addEventListener('submit',function(e){
+  e.preventDefault();
+  var nick=document.getElementById('gm-nick').value.trim();
+  var email=document.getElementById('gm-email').value.trim();
+  if(!nick||!email)return;
+  var res=this.dataset.resource;
+  var btn=document.getElementById('gm-btn');btn.disabled=true;
+  captureLead({nickname:nick,email:email,resource:res}).then(function(){
+    btn.disabled=false;closeGate();
+    document.getElementById('gm-nick').value='';document.getElementById('gm-email').value='';
+    if(GATE_CB)GATE_CB();
+  },function(){btn.disabled=false;closeGate();if(GATE_CB)GATE_CB();});
+});
+
+/* ================= ZAKAT ================= */
+/* ================= INFLATION ================= */
+function calcInfl(){
+  var amt=parseFloat(document.getElementById('iAmt').value)||0;
+  var yrs=parseInt(document.getElementById('iYears').value,10);
+  var r=parseFloat(document.getElementById('iRate').value)/100;
+  document.getElementById('ivYears').textContent=loc(yrs);
+  document.getElementById('ivRate').textContent=loc(document.getElementById('iRate').value+'%');
+  var buys=amt/Math.pow(1+r,yrs);
+  var need=amt*Math.pow(1+r,yrs);
+  document.getElementById('iBuys').textContent=tk(buys);
+  document.getElementById('iNeed').textContent=tk(need);
+  document.getElementById('iLost').textContent=tk(amt-buys);
+  pulse(document.getElementById('iBuys'));
+}
+
+/* ================= AI PROMPT LIBRARY ================= */
+var PROMPTS=[
+ /* ===== FLAGSHIP — META PROMPTS THAT IMPROVE EVERY OTHER PROMPT ===== */
+ {tag:{en:'⭐ Flagship',bn:'⭐ সেরা'},title:{en:'Ask me everything before you answer',bn:'উত্তর দেওয়ার আগে আমাকে সব প্রশ্ন কর'},
+  text:"Before you answer or do anything, I want you to interrogate my request thoroughly. Ask me as many questions as you need — go in every direction that could matter — until you have a 100% (ideally more than 100%) complete picture of what I am actually trying to achieve, who it is for, the constraints I haven't mentioned, the assumptions I am making without realizing it, the edge cases I have not thought about, and the things I would want included if I had thought of them. Do not stop asking until you genuinely cannot think of another useful question. Ask one or two questions at a time, wait for my answer, then dig deeper. Only when you are sure you understand everything, summarize the full picture back to me for confirmation — and then we begin. My request is: [PASTE YOUR REQUEST HERE]"},
+
+ {tag:{en:'⭐ Flagship',bn:'⭐ সেরা'},title:{en:'Stress-test my thinking for blind spots',bn:'আমার চিন্তার অন্ধ দিক খুঁজে বের কর'},
+  text:"I am about to make a decision or finalize an idea. Before I do, I want you to be brutally honest and act as a sharp, well-read critic. Here is what I am thinking: [PASTE YOUR IDEA / DECISION / PLAN]. Now do all of the following: (1) List the cognitive biases I might be falling into — confirmation bias, sunk cost, recency, availability, survivorship, anchoring, optimism bias, etc. — and explain which ones specifically apply here and how. (2) List the things I have NOT considered but absolutely should have — second-order consequences, who is hurt by this, opportunity costs, what could go wrong in 6 months, what an outside observer would notice immediately. (3) Suggest 3 alternative directions or framings I have not taken into account and explain why each might be better. (4) Tell me what a person who deeply disagrees with my approach would say. Be candid, not reassuring."},
+
+ /* ===== PERSONAL FINANCE ===== */
+ {tag:{en:'Personal Finance',bn:'পার্সোনাল ফাইন্যান্স'},title:{en:'Explain any money concept, Dhaka-style',bn:'যেকোনো আর্থিক ধারণা, ঢাকার ভাষায়'},
+  text:"You are a sharp, honest finance teacher for young Bangladeshis. Explain [CONCEPT] to a 24-year-old in Dhaka earning a modest salary. Use one local example (rent, bKash, DPS, sanchayapatra, sukuk, or family obligations). No jargon — and if you must use a term, define it in one line. End with one concrete action they can take this month. Keep it under 150 words."},
+
+ {tag:{en:'Personal Finance',bn:'পার্সোনাল ফাইন্যান্স'},title:{en:'Build my monthly budget from messy numbers',bn:'এলোমেলো হিসাব থেকে মাসিক বাজেট'},
+  text:"My monthly income is [X] BDT. My rough expenses are: [LIST]. Build me a clean monthly budget split into Needs / Wants / Future. Flag anything that looks high for a Dhaka cost of living. Suggest one realistic change that frees up the most money with the least pain. Show before-and-after in a small table. Then tell me what I should automate so I do not have to think about it every month."},
+
+ {tag:{en:'Personal Finance',bn:'পার্সোনাল ফাইন্যান্স'},title:{en:'Should I buy this — the honest answer',bn:'এটা কিনব কি না — সৎ উত্তর'},
+  text:"I am considering buying [ITEM / SERVICE] for [PRICE] BDT. My monthly income is [INCOME] and my monthly savings rate is roughly [%]. Walk me through whether this is a good buy — calculate what % of monthly income, % of yearly savings, and what else I could do with that money over 1, 5, and 10 years if invested instead. Then ask the harder question: am I buying this for status, comfort, or genuine utility? Be honest about the lifestyle inflation risk."},
+
+ {tag:{en:'Personal Finance',bn:'পার্সোনাল ফাইন্যান্স'},title:{en:'Shariah check this investment for me',bn:'এই বিনিয়োগ শরিয়াহসম্মত কিনা যাচাই'},
+  text:"I am considering investing in [SPECIFIC PRODUCT / COMPANY / FUND]. Walk me through the Shariah-compliance considerations: is it likely halal, mixed, or non-halal, and on what grounds (riba exposure, sector screening, debt ratios, gharar, etc.)? Where would a Bangladeshi scholar likely have concerns? Suggest one or two genuinely Shariah-compliant alternatives available in Bangladesh that achieve a similar financial goal. End with the disclaimer that final rulings should come from a qualified scholar."},
+
+ /* ===== PRODUCTIVITY ===== */
+ {tag:{en:'Productivity',bn:'প্রোডাক্টিভিটি'},title:{en:'A weekly review that changes next week',bn:'যে সাপ্তাহিক রিভিউ পরের সপ্তাহ বদলায়'},
+  text:"Act as my accountability partner. Ask me 5 short questions, one at a time, to review my week: what moved forward, what stalled, what drained my time, what I avoided, and what matters most next week. Wait for my answer to each before asking the next. After all answers, give me a 3-item plan for next week — specific, doable, no vague goals."},
+
+ {tag:{en:'Productivity',bn:'প্রোডাক্টিভিটি'},title:{en:'Plan my day in 10 minutes',bn:'১০ মিনিটে আজকের দিনের পরিকল্পনা'},
+  text:"It is the start of my day. My energy level is [LOW / MEDIUM / HIGH]. My open commitments are: [LIST]. The one thing I cannot end the day without doing is: [MOST IMPORTANT TASK]. Now: (1) Block my day into 3 focus sessions and 2 light-work windows. (2) Tell me what to do in each. (3) Flag what I should NOT do today even if I feel like it. (4) Give me one sentence I should read at noon if I am drifting."},
+
+ {tag:{en:'Productivity',bn:'প্রোডাক্টিভিটি'},title:{en:'Find where my time is actually going',bn:'আমার সময় আসলে কোথায় যাচ্ছে খুঁজে বের কর'},
+  text:"Here is how I roughly spent my last 7 days: [LIST hours per category — sleep, work, commute, phone, exercise, meals, family, friends, learning, idle, other]. Now: (1) Show me a clean breakdown out of 168 hours total. (2) Compare it to what someone trying to build a meaningful career should spend in those categories. (3) Identify the single biggest leak — the category I would be shocked to see this much in. (4) Suggest one realistic change for this week. Be blunt."},
+
+ /* ===== AI TOOLS ===== */
+ {tag:{en:'AI Tools',bn:'এআই টুলস'},title:{en:'Make my prompt 10x sharper',bn:'আমার প্রম্পট ১০ গুণ ধারালো কর'},
+  text:"Here is a prompt I am about to use: [PASTE PROMPT]. Critique it like an expert prompt engineer. Specifically tell me: what context is missing, what role/persona would improve it, what constraints I have not specified, what output format I should demand, what examples would help, and where ambiguity will cause weak answers. Then rewrite the prompt the way it should be written — sharper, fuller, more useful — and explain in one line what changed and why."},
+
+ {tag:{en:'AI Tools',bn:'এআই টুলস'},title:{en:'Turn a research paper into a 60-sec script',bn:'গবেষণাপত্র থেকে ৬০ সেকেন্ডের স্ক্রিপ্ট'},
+  text:"Here is a research summary or article: [PASTE]. Write a 60-second short-form video script in simple spoken language. Open with a 1-line hook that creates a knowledge gap. Deliver 3 punchy insights, each anchored to a real number or finding. Close with one takeaway the viewer can use today. Mark [PAUSE] and [ON-SCREEN TEXT] cues. No fluff, no transitions like 'in conclusion'."},
+
+ {tag:{en:'AI Tools',bn:'এআই টুলস'},title:{en:'Summarize anything for my actual brain',bn:'যেকোনো কিছু আমার মাথার জন্য সারাংশ'},
+  text:"Here is a long piece of content (article / video transcript / book chapter): [PASTE]. Give me: (1) The single most important idea in one sentence. (2) The 3-5 supporting points, each in one short line. (3) Any specific number, study, or example I should remember. (4) The one thing the author did NOT address but should have. (5) How this changes what I should do this week. Skip generic openings."},
+
+ /* ===== MOTIVATION ===== */
+ {tag:{en:'Motivation',bn:'মোটিভেশন'},title:{en:'Why am I procrastinating on this?',bn:'এই কাজে আমি কেন গড়িমসি করছি?'},
+  text:"I am avoiding [TASK / DECISION] even though I know it matters. Help me figure out which actual reason is at play here — not a generic answer. Walk me through the most common causes one by one and tell me which fits: (a) fear of failure, (b) fear of success, (c) unclear next step, (d) the task is too big, (e) it conflicts with my identity, (f) I do not actually want the outcome but feel I should, (g) low energy, (h) something else. Then give me the smallest possible action I can take in the next 10 minutes."},
+
+ {tag:{en:'Motivation',bn:'মোটিভেশন'},title:{en:'Help me restart after a bad streak',bn:'খারাপ একটা সময়ের পর কীভাবে আবার শুরু করব'},
+  text:"I have fallen off [HABIT / GOAL / PROJECT] for [TIME PERIOD]. I feel [HOW I FEEL] about it. I do not want a generic 'just start' pep talk. Instead: (1) Help me understand what specifically broke down — was it the system, the goal size, the environment, or something underneath. (2) Tell me what successful comebacks actually look like according to behavior science (Fogg, Clear, Duhigg). (3) Design the smallest possible re-entry action for today that I cannot fail at. (4) Tell me what I should expect to feel in week 1, 2, and 4."},
+
+ {tag:{en:'Motivation',bn:'মোটিভেশন'},title:{en:'Write a letter from my future self',bn:'ভবিষ্যতের আমার থেকে একটা চিঠি'},
+  text:"I want you to write me a letter from my own future self, 5 years from today. Before writing, ask me 4-5 questions about: what I am working on right now, what I am most worried about, what I keep avoiding, what I am most proud of recently, and what I want my life to look like in 5 years. Then write the letter in my future voice — warm but honest, pointing out what mattered, what didn't, what I should keep doing, and what to stop wasting time on. About 300 words."},
+
+ /* ===== FUTURE OF WORK ===== */
+ {tag:{en:'Future of Work',bn:'কাজের ভবিষ্যৎ'},title:{en:'Is my job AI-proof? Stress-test it',bn:'আমার চাকরি কি এআই-প্রুফ? যাচাই কর'},
+  text:"My role is [JOB] and my main daily tasks are: [LIST]. Honestly assess which tasks AI can already do, which it will likely do in 2-3 years, and which stay human (trust, judgment, relationships, accountability). Then give me 3 specific skills to build now so I am the one using AI, not replaced by it. Be candid, not reassuring. End with one professional move I should make in the next 90 days."},
+
+ {tag:{en:'Future of Work',bn:'কাজের ভবিষ্যৎ'},title:{en:'Write my salary negotiation script',bn:'আমার বেতন আলোচনার স্ক্রিপ্ট'},
+  text:"I have a job offer / annual review coming up. My current salary is [X] BDT. The offer / expected raise is [Y] BDT. My target is [Z] BDT. My main leverage points are: [LIST what makes me valuable]. Write me: (1) An opening line for the conversation that does not start by quoting a number. (2) The specific 3-sentence case I make for [Z]. (3) How I respond if they say budget is tight. (4) How I respond if they immediately agree (do not under-celebrate, do not over-negotiate). (5) When to walk away. Keep it Bangladesh-context aware."},
+
+ {tag:{en:'Future of Work',bn:'কাজের ভবিষ্যৎ'},title:{en:'Decode this job offer for red flags',bn:'এই চাকরির অফারের লাল পতাকা খুঁজে বের কর'},
+  text:"Here is a job offer I received: [PASTE JOB DESCRIPTION + OFFER DETAILS]. Walk through it like a wise older sibling. Identify: (1) Green flags — what is genuinely good here. (2) Red flags — vague titles, vague growth promises, missing standard benefits, hours culture warnings, equity that means nothing, etc. (3) The 5 questions I must ask before accepting. (4) Whether the salary is fair for the role and Bangladesh market in 2026. Be honest, not polite."}
+];
+;
+function buildPrompts(){
+  var g=document.getElementById('promptGrid');if(!g)return;g.innerHTML='';
+  for(var i=0;i<PROMPTS.length;i++){(function(pr){
+    var c=document.createElement('div');c.className='pcard'+(PROMPTS_UNLOCKED?' unlocked':'');
+    if(pr.tag.en.indexOf('Flagship')>-1) c.setAttribute('data-flag','1');
+    var copyLbl=PROMPTS_UNLOCKED?(LANG==='bn'?'কপি':'Copy'):(LANG==='bn'?'এই প্রম্পটটি কপি করুন':'Copy this prompt');
+    c.innerHTML='<span class="ptag">'+pr.tag[LANG]+'</span><h4>'+pr.title[LANG]+'</h4><div class="pprev">'+pr.text+'</div>'+
+      '<button class="pcopy">'+copyLbl+'</button>';
+    var btn=c.querySelector('.pcopy');
+    btn.addEventListener('click',function(){
+      if(!PROMPTS_UNLOCKED){
+        openGate({resource:'prompt-pack',
+          title:(LANG==='bn'?'প্রম্পট প্যাক আনলক করুন':'Unlock the prompt pack'),
+          desc:(LANG==='bn'?'একটা নাম আর ইমেইল দিন — সব প্রম্পট কপি করার জন্য খুলে যাবে।':'Your name and email unlocks all prompts to copy — free, one time.'),
+          onUnlock:function(){PROMPTS_UNLOCKED=true;buildPrompts();copyText(pr.text,null);}});
+        return;
+      }
+      copyText(pr.text,btn);
+    });
+    g.appendChild(c);
+  })(PROMPTS[i]);}
+}
+var PROMPTS_UNLOCKED=false;
+function copyText(t,btn){
+  function done(){if(btn){var o=btn.textContent;btn.textContent=(LANG==='bn'?'কপি হয়েছে ✓':'Copied ✓');btn.classList.add('done');setTimeout(function(){btn.classList.remove('done');btn.textContent=(LANG==='bn'?'কপি':'Copy');},1600);}}
+  try{navigator.clipboard.writeText(t).then(done,function(){fallback(t);done();});}
+  catch(e){fallback(t);done();}
+}
+function fallback(t){var a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(a);}
+
+/* ---------- latest-resource CTA (bottom of home) ---------- */
+function buildLatestCTA(){
+  var keys=Object.keys(RESOURCES);
+  if(!keys.length) return;
+  var id=keys[keys.length-1];          /* most recently added entry */
+  var r=RESOURCES[id];
+  var t=document.getElementById('ctaTitle'); if(!t) return;
+  t.textContent=r.title[LANG];
+  document.getElementById('ctaNote').textContent=r.series;
+  document.getElementById('ctaBtn').setAttribute('href','#r/'+id);
+}
+
+/* ---------- featured videos ---------- */
+function buildVideos(){
+  var g=document.getElementById('vidgrid'); if(!g) return; g.innerHTML='';
+  for(var i=0;i<VIDEOS.length;i++){
+    var v=VIDEOS[i];
+    var d=document.createElement('div'); d.className='vid';
+    d.innerHTML='<iframe class="frame" src="https://www.youtube.com/embed/'+v.id+'" title="Video" loading="lazy" allowfullscreen></iframe>'+
+      (v.title?'<div class="cap">'+v.title[LANG]+'</div>':'');
+    g.appendChild(d);
+  }
+}
+
+/* ---------- contact form (graceful, routes to Sheet) ---------- */
+(function(){
+  var f=document.getElementById('contactForm'); if(!f) return;
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var n=document.getElementById('cname').value.trim();
+    var em=document.getElementById('cemail').value.trim();
+    var msg=document.getElementById('cmsg').value.trim();
+    if(!n||!em||!msg) return;
+    var btn=document.getElementById('cbtn'); btn.disabled=true;
+    function done(){ f.style.display='none'; document.getElementById('contactSuccess').style.display='block'; btn.disabled=false; }
+    captureLead({nickname:n,email:em,resource:'Contact message',message:msg}).then(done,done);
+  });
+})();
+
+/* ---------- progress bar + pulse ---------- */
+var pb=document.createElement('div');pb.id='progress';document.body.appendChild(pb);
+var tt=document.createElement('button');tt.id='totop';tt.innerHTML='↑';tt.setAttribute('aria-label','Back to top');document.body.appendChild(tt);
+tt.addEventListener('click',function(){try{window.scrollTo({top:0,behavior:'smooth'});}catch(e){window.scrollTo(0,0);}});
+window.addEventListener('scroll',function(){var h=document.documentElement;var max=h.scrollHeight-h.clientHeight;pb.style.width=(max>0?(h.scrollTop/max*100):0)+'%';tt.classList.toggle('show',h.scrollTop>600);},{passive:true});
+function pulse(el){el.classList.remove('pulse');void el.offsetWidth;el.classList.add('pulse');}
+
+/* ---------- init ---------- */
+buildLibrary();buildPrompts();buildVideos();buildLatestCTA();route();applyLang();calcInfl();
+</script>
+</body>
+</html>
