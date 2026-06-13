@@ -39,7 +39,7 @@ html[data-lang="bn"] .eyebrow{letter-spacing:.12em}
 html[data-lang="bn"] .display{line-height:1.35;letter-spacing:0}
 .grad{background:linear-gradient(100deg,#C4B5FD 0%,#8B5CF6 55%,#6D28D9 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .lede{font-size:18px;color:var(--ink-soft);max-width:580px}
-.section{padding:19px 0}
+.section{padding:84px 0}
 .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700;font-size:14.5px;letter-spacing:.02em;text-decoration:none;border:none;border-radius:12px;padding:15px 28px;cursor:pointer;background:linear-gradient(135deg,#7C3AED,#5B21B6);color:#fff;box-shadow:0 0 0 1px rgba(167,139,250,.25),0 8px 32px rgba(124,58,237,.35);transition:transform .18s,box-shadow .18s}
 .btn:hover{transform:translateY(-2px);box-shadow:0 0 0 1px rgba(167,139,250,.4),0 14px 44px rgba(124,58,237,.5)}
 .btn.ghost{background:rgba(139,92,246,.07);color:var(--ink);box-shadow:0 0 0 1px var(--line)}
@@ -74,7 +74,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(11,6,18,.75);backdrop-fi
 @media (prefers-reduced-motion:reduce){.page.show{animation:none}}
 
 /* ---------- hero ---------- */
-.hero{position:relative;padding:104px 0 40px;text-align:left}
+.hero{position:relative;padding:60px 0 40px;text-align:left}
 .hero .glow{position:absolute;width:560px;height:560px;border-radius:50%;filter:blur(110px);background:radial-gradient(circle,rgba(124,58,237,.4),rgba(54,13,84,.15) 60%,transparent 70%);top:-160px;right:-120px;animation:breathe 7s ease-in-out infinite;pointer-events:none}
 @keyframes breathe{0%,100%{opacity:.8;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
 @media (prefers-reduced-motion:reduce){.hero .glow{animation:none}}
@@ -197,7 +197,7 @@ footer{border-top:1px solid var(--line);margin-top:40px;background:rgba(11,6,18,
 
 /* ---------- responsive ---------- */
 @media (max-width:900px){
-  .hero{padding:72px 0 32px}
+  .hero{padding:40px 0 28px}
   .strip .wrap{grid-template-columns:1fr}
   .stat{border-right:none;border-bottom:1px solid var(--line)}
   .stat:last-child{border-bottom:none}
@@ -418,6 +418,49 @@ html[data-lang="bn"] .pcard .ptag{letter-spacing:.04em;text-transform:none;font-
 .csuccess{border:1px solid rgba(34,197,94,.3);background:rgba(34,197,94,.08);border-radius:16px;padding:24px;color:#86efac}
 .dl-btns{display:flex;gap:10px;flex-wrap:wrap}
 .dl-btns .btn{flex:1;min-width:150px;justify-content:center;text-align:center}
+/* ===== hero with photo ===== */
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:54px;align-items:center}
+.hero-text{min-width:0}
+.hero-photo{position:relative;justify-self:center;width:100%;max-width:380px;aspect-ratio:4/5;border-radius:26px;overflow:hidden;border:1px solid rgba(167,139,250,.25);background:linear-gradient(160deg,rgba(54,13,84,.5),rgba(15,7,32,.7));box-shadow:0 30px 90px rgba(124,58,237,.3),0 0 0 1px rgba(167,139,250,.1)}
+.hero-photo::before{content:"";position:absolute;inset:-40px;z-index:-1;background:radial-gradient(circle at 50% 40%,rgba(124,58,237,.45),transparent 70%);filter:blur(30px)}
+.hero-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-photo .photo-fallback{position:absolute;inset:0;display:none;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:34px;color:var(--violet-bright)}
+.hero-photo.noimg img{display:none}
+.hero-photo.noimg .photo-fallback{display:flex}
+.photo-fallback .dotv{color:#fff}
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr;gap:30px}
+  .hero-photo{max-width:260px;order:-1}
+  .scrollhint{display:none}
+}
+/* about photo */
+.about-photo{width:100%;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:24px;background:linear-gradient(160deg,rgba(54,13,84,.5),rgba(15,7,32,.7));aspect-ratio:3/2;position:relative}
+.about-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.about-photo .photo-fallback{position:absolute;inset:0;display:none;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:26px;color:var(--violet-bright)}
+.about-photo.noimg img{display:none}.about-photo.noimg .photo-fallback{display:flex}
+
+/* ===== orbit (fixed to viewport, scrolls with page in corner) ===== */
+.orbit{position:fixed;z-index:0;right:-115px;top:-115px;width:440px;height:440px;border:1.5px dashed rgba(167,139,250,.35);border-radius:50%;animation:spin 32s linear infinite;pointer-events:none}
+.orbit::before{content:"";position:absolute;inset:62px;border:1px solid rgba(167,139,250,.18);border-radius:50%}
+.orbit::after{content:"";position:absolute;inset:138px;border:1px dashed rgba(167,139,250,.12);border-radius:50%}
+.orbit-dot{position:absolute;top:-6px;left:50%;width:12px;height:12px;border-radius:50%;background:#A78BFA;box-shadow:0 0 20px #8B5CF6,0 0 50px rgba(139,92,246,.6)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero-text,.hero-photo{position:relative;z-index:1}
+@media (max-width:800px){
+  .orbit{width:260px;height:260px;right:-72px;top:-72px;border-color:rgba(167,139,250,.45)}
+  .orbit::before{inset:42px}.orbit::after{inset:92px}
+  .orbit-dot{width:13px;height:13px;box-shadow:0 0 24px #A78BFA,0 0 56px rgba(139,92,246,.8)}
+}
+@media (prefers-reduced-motion:reduce){.orbit{animation:none}}
+/* ===== divider band between pillars and stats ===== */
+.pillar-stat-divider{max-width:1080px;margin:0 auto;padding:0 24px}
+.pillar-stat-divider .line{height:1px;background:linear-gradient(90deg,transparent,rgba(167,139,250,.3),transparent);margin:8px 0}
+.divider-note{text-align:center;font-family:var(--display);font-style:italic;font-size:clamp(16px,2.2vw,20px);color:var(--ink-soft);max-width:620px;margin:22px auto;padding:0 16px}
+html[data-lang="bn"] .divider-note{font-style:normal}
+@media (max-width:900px){
+  .strip{border-top:1px solid var(--line);margin-top:0}
+  .strip .stat{padding:22px 4px}
+}
 </style>
 </head>
 <body>
@@ -447,6 +490,7 @@ html[data-lang="bn"] .pcard .ptag{letter-spacing:.04em;text-transform:none;font-
 <section class="page" id="page-home">
   <div class="wrap hero">
     <div class="glow"></div>
+    <div class="hero-text">
     <span class="eyebrow" data-en="Rafiu · IBA · CFA Level 1" data-bn="রাফিউ · আইবিএ · সিএফএ লেভেল ১">Rafiu · IBA · CFA Level 1</span>
     <h1 class="display" data-en='Figuring out how to build a <span class="grad">better life</span> — out loud.' data-bn='একটা <span class="grad">ভালো জীবন</span> কীভাবে গড়ে — সেটাই খুঁজে বের করার চেষ্টা করছি।' data-html="1">Figuring out how to build a <span class="grad">better life</span> — out loud.</h1>
     <p class="lede" data-en="A channel for ambitious young Bangladeshis who want more from their money, their work and their time. Not theory. Not generic advice. Just what actually moves a life forward — researched honestly and shared as I learn it." data-bn="উচ্চাকাঙ্ক্ষী তরুণ বাংলাদেশিদের জন্য একটা চ্যানেল — যারা নিজের টাকা, কাজ আর সময় থেকে আরও বেশি কিছু চায়। থিওরি না। গৎবাঁধা উপদেশ না। শুধু যা সত্যিই একটা জীবন এগিয়ে নেয় — সততার সাথে রিসার্চ করা, আর শেখার সাথে সাথে শেয়ার করা।">A channel for ambitious young Bangladeshis who want more from their money, their work and their time. Not theory. Not generic advice. Just what actually moves a life forward — researched honestly and shared as I learn it.</p>
@@ -456,11 +500,18 @@ html[data-lang="bn"] .pcard .ptag{letter-spacing:.04em;text-transform:none;font-
       <a class="btn ghost" href="#about" data-en="My story" data-bn="আমার গল্প">My story</a>
     </div>
     <div class="scrollhint" aria-hidden="true">↓</div>
+    </div>
+    <div class="hero-photo">
+      <!-- PHOTO: replace the src below with your hero image link (see guide) -->
+      <img id="heroImg" src="https://raw.githubusercontent.com/Rafiu-Tahmid/rafiu-site/main/rafiu-hero.jpg" alt="Rafiu" onerror="this.closest('.hero-photo').classList.add('noimg')">
+      <div class="photo-fallback" aria-hidden="true"><span>RAFIU<span class="dotv">.</span></span></div>
+    </div>
   </div>
 
 
   <div class="wrap section rv pillars-sec">
     <div class="pillars-head">
+      <span class="eyebrow" data-en="What we figure out here" data-bn="এখানে যা নিয়ে ভাবি">What we figure out here</span>
       <h2 class="display h2" data-en="What I'm trying to figure out." data-bn="একটা জীবন সত্যিই এগিয়ে নেয় — এমন পাঁচটা জিনিস।">What I'm trying to figure out.</h2>
     </div>
     <div class="pillar-list">
@@ -487,27 +538,32 @@ html[data-lang="bn"] .pcard .ptag{letter-spacing:.04em;text-transform:none;font-
     </div>
   </div>
 
+  <div class="pillar-stat-divider rv">
+    <div class="line"></div>
+    <p class="divider-note" data-en="This is the lens behind everything I make — here's how I try to keep it honest." data-bn="এই দৃষ্টিভঙ্গি থেকেই সবকিছু বানাই — কীভাবে এটা সৎ রাখার চেষ্টা করি, দেখুন।">This is the lens behind everything I make — here's how I try to keep it honest.</p>
+    <div class="line"></div>
+  </div>
+
   <div class="strip rv">
     <div class="wrap">
-      <div class="stat"><div class="k" data-en="Learning in public" data-bn="প্রকাশ্যে শিখছি">Learning in public</div><div class="v" data-en="The wins, the mistakes, the process — shared honestly" data-bn="জয়, ভুল, পুরো প্রক্রিয়া — সততার সাথে শেয়ার করা">The wins, the mistakes, the process — shared honestly</div></div>
-      <div class="stat"><div class="k" data-en="Researched obsessively" data-bn="রিসার্চে অবসেসড">Researched obsessively</div><div class="v" data-en="Studies, books and Bangladesh data behind every claim" data-bn="প্রতিটি কথার পেছনে স্টাডি, বই আর বাংলাদেশের ডেটা">Studies, books and Bangladesh data behind every claim</div></div>
-      <div class="stat"><div class="k" data-en="New video every week" data-bn="প্রতি সপ্তাহে নতুন ভিডিও">New video every week</div><div class="v" data-en="Living everything I talk about, simultaneously" data-bn="যা নিয়ে বলি, সেটাই একসাথে যাপন করছি">Living everything I talk about, simultaneously</div></div>
+      <div class="stat"><div class="k" data-en="Learning out loud" data-bn="শিখছি, সবার সামনে">Learning out loud</div><div class="v" data-en="I share what works and what fails, as it happens" data-bn="যা কাজ করে আর যা করে না, দুটোই শেয়ার করি">I share what works and what fails, as it happens</div></div>
+      <div class="stat"><div class="k" data-en="Backed by real sources" data-bn="আসল সোর্স থেকে">Backed by real sources</div><div class="v" data-en="Books, studies and local data, not just opinions" data-bn="বই, গবেষণা আর দেশের ডেটা, শুধু মতামত না">Books, studies and local data, not just opinions</div></div>
+      <div class="stat"><div class="k" data-en="A new video every week" data-bn="প্রতি সপ্তাহে একটা ভিডিও">A new video every week</div><div class="v" data-en="Figuring it out in real time, same as you" data-bn="আপনারই মতো, ধীরে ধীরে বুঝে উঠছি">Figuring it out in real time, same as you</div></div>
     </div>
   </div>
 
-  <div class="wrap section rv">
+  <div class="wrap section rv" style="padding-top:24px">
     <span class="eyebrow" data-en="A bit about me" data-bn="আমার সম্পর্কে একটু">A bit about me</span>
     <h2 class="display h2" data-en="Where I'm coming from" data-bn="আমার প্রেক্ষাপট">Where I'm coming from</h2>
-    <div class="facts" id="homefacts" style="grid-template-columns:repeat(4,1fr);margin-top:30px">
+    <div class="facts" id="homefacts" style="grid-template-columns:repeat(3,1fr);margin-top:30px">
       <div class="fact"><span class="eyebrow">01</span><strong data-en="BBA student at IBA, University of Dhaka" data-bn="বিবিএ, আইবিএ — ঢাকা বিশ্ববিদ্যালয়">BBA student at IBA, University of Dhaka</strong></div>
       <div class="fact"><span class="eyebrow">02</span><strong data-en="CFA Level 1 passed" data-bn="সিএফএ লেভেল ১ পাস">CFA Level 1 passed</strong></div>
       <div class="fact"><span class="eyebrow">03</span><strong data-en="Winner of two finance competitions" data-bn="দুটি ফাইন্যান্স প্রতিযোগিতায় চ্যাম্পিয়ন">Winner of two finance competitions</strong></div>
-      <div class="fact"><span class="eyebrow">04</span><strong data-en="30+ courses in programming & finance" data-bn="প্রোগ্রামিং ও ফাইন্যান্সে ৩০+ কোর্স">30+ courses in programming & finance</strong></div>
     </div>
     <div style="margin-top:26px"><a class="btn ghost" href="#about" data-en="More about me →" data-bn="আরও জানুন →">More about me →</a></div>
   </div>
 
-  <div class="wrap section rv">
+  <div class="wrap section rv" style="padding-top:24px;padding-bottom:40px">
     <span class="eyebrow" data-en="Watch" data-bn="দেখুন">Watch</span>
     <h2 class="display h2" data-en="Latest from the channel" data-bn="চ্যানেলের সাম্প্রতিক ভিডিও">Latest from the channel</h2>
     <div class="vidgrid" id="vidgrid"></div>
@@ -539,6 +595,11 @@ html[data-lang="bn"] .pcard .ptag{letter-spacing:.04em;text-transform:none;font-
 <section class="page" id="page-about">
   <div class="wrap about-grid">
     <div class="sticky">
+      <div class="about-photo">
+        <!-- PHOTO: replace src with your About image link (see guide) -->
+        <img id="aboutImg" src="https://raw.githubusercontent.com/Rafiu-Tahmid/rafiu-site/main/rafiu-about.jpg" alt="Rafiu" onerror="this.closest('.about-photo').classList.add('noimg')">
+        <div class="photo-fallback" aria-hidden="true"><span>RAFIU.</span></div>
+      </div>
       <span class="eyebrow" data-en="About" data-bn="আমার কথা">About</span>
       <h1 class="display" style="font-size:clamp(32px,4.4vw,48px);margin-top:16px" data-en='Not an expert. <span class="grad">A student of all of it.</span>' data-bn='বিশেষজ্ঞ না। <span class="grad">এখনও শিখছি।</span>' data-html="1">Not an expert. <span class="grad">A student of all of it.</span></h1>
       <div class="facts">
@@ -547,7 +608,6 @@ html[data-lang="bn"] .pcard .ptag{letter-spacing:.04em;text-transform:none;font-
         <div class="fact"><span class="eyebrow" data-en="Next" data-bn="পরের লক্ষ্য">Next</span><strong data-en="CFA Level 2 — May 2027" data-bn="সিএফএ লেভেল ২ — মে ২০২৭">CFA Level 2 — May 2027</strong></div>
         <div class="fact"><span class="eyebrow" data-en="Output" data-bn="আউটপুট">Output</span><strong data-en="New video every week" data-bn="প্রতি সপ্তাহে নতুন ভিডিও">New video every week</strong></div>
         <div class="fact"><span class="eyebrow" data-en="Wins" data-bn="জয়">Wins</span><strong data-en="2× finance competition winner" data-bn="২টি ফাইন্যান্স প্রতিযোগিতায় জয়">2× finance competition winner</strong></div>
-        <div class="fact"><span class="eyebrow" data-en="Learning" data-bn="শেখা">Learning</span><strong data-en="30+ courses — programming & finance" data-bn="৩০+ কোর্স — প্রোগ্রামিং ও ফাইন্যান্স">30+ courses — programming & finance</strong></div>
       </div>
     </div>
     <div class="about-body">
@@ -555,7 +615,7 @@ html[data-lang="bn"] .pcard .ptag{letter-spacing:.04em;text-transform:none;font-
       <p data-en="Everything I make is about what actually helps an ambitious young Bangladeshi move forward — productivity, AI tools, motivation, personal finance, and the future of work. Not theory. Not generic advice. What I'm actually researching, testing, and living right now." data-bn="আমার সব কনটেন্ট একটাই বিষয়ে — একজন উচ্চাকাঙ্ক্ষী তরুণ বাংলাদেশিকে আসলে কী এগিয়ে নেয়: প্রোডাক্টিভিটি, এআই টুলস, মোটিভেশন, পার্সোনাল ফাইন্যান্স আর কাজের ভবিষ্যৎ। থিওরি না। গৎবাঁধা উপদেশ না। আমি এখন যা রিসার্চ করছি, পরীক্ষা করছি আর যাপন করছি — সেটাই।">Everything I make is about what actually helps an ambitious young Bangladeshi move forward — productivity, AI tools, motivation, personal finance, and the future of work. Not theory. Not generic advice. What I'm actually researching, testing, and living right now.</p>
       <p class="big" data-en="I'm not an expert. I'm a student of all of this — and I share everything I learn, as I learn it." data-bn="আমি বিশেষজ্ঞ নই। আমি এসবেরই একজন ছাত্র — যা শিখি, শেখার সাথে সাথেই শেয়ার করি।">I'm not an expert. I'm a student of all of this — and I share everything I learn, as I learn it.</p>
       <p data-en="Everything connects back to one question: how does someone with limited time, limited money, and unlimited pressure actually move forward? I research obsessively — academic studies, the best books, Bangladesh-specific data — and share honestly, in our context. Shariah-compliant options always sit alongside the conventional ones." data-bn="সবকিছু একটাই প্রশ্নে এসে মেলে: সীমিত সময়, সীমিত টাকা আর সীমাহীন চাপ নিয়ে একজন মানুষ আসলে কীভাবে এগোয়? আমি অবসেসড হয়ে রিসার্চ করি — একাডেমিক স্টাডি, সেরা বই, বাংলাদেশের নিজস্ব ডেটা — আর সততার সাথে শেয়ার করি, আমাদের প্রেক্ষাপটে। শরিয়াহসম্মত বিকল্প সবসময় প্রচলিত অপশনগুলোর পাশেই থাকে।">Everything connects back to one question: how does someone with limited time, limited money, and unlimited pressure actually move forward? I research obsessively — academic studies, the best books, Bangladesh-specific data — and share honestly, in our context. Shariah-compliant options always sit alongside the conventional ones.</p>
-      <p data-en="Some background: I've won two finance competitions, cleared CFA Level 1, and completed 30+ courses across programming and finance. All of it feeds directly into what I make — so when I say something is researched, it is." data-bn="একটু প্রেক্ষাপট: দুটি ফাইন্যান্স প্রতিযোগিতায় জিতেছি, সিএফএ লেভেল ১ পাস করেছি, আর প্রোগ্রামিং ও ফাইন্যান্সে ৩০+ কোর্স শেষ করেছি। এর সবটাই সরাসরি আমার কনটেন্টে কাজে লাগে — তাই যখন বলি কিছু রিসার্চ করা, সেটা সত্যিই করা।">Some background: I've won two finance competitions, cleared CFA Level 1, and completed 30+ courses across programming and finance. All of it feeds directly into what I make — so when I say something is researched, it is.</p>
+      <p data-en="For what it's worth: I've won two finance competitions and passed CFA Level 1. I mention it only so you know what I share isn't pulled from thin air — there's real work behind it." data-bn="যদি জানতে চান: দুটি ফাইন্যান্স প্রতিযোগিতায় জিতেছি, সিএফএ লেভেল ১ পাস করেছি। এটুকু বললাম শুধু এটা বোঝাতে যে আমি যা শেয়ার করি তা হাওয়া থেকে আসে না — পেছনে আসল খাটুনি আছে।">For what it's worth: I've won two finance competitions and passed CFA Level 1. I mention it only so you know what I share isn't pulled from thin air — there's real work behind it.</p>
       <p data-en="Currently building toward CFA Level 2 (May 2027) while running the channel and finishing my degree. Everything I talk about, I'm living simultaneously." data-bn="এখন সিএফএ লেভেল ২-এর (মে ২০২৭) প্রস্তুতি নিচ্ছি, পাশাপাশি চ্যানেল চালাচ্ছি আর ডিগ্রি শেষ করছি। যা নিয়ে কথা বলি, সেটা একই সাথে নিজে যাপন করছি।">Currently building toward CFA Level 2 (May 2027) while running the channel and finishing my degree. Everything I talk about, I'm living simultaneously.</p>
       <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:10px">
         <a class="btn" href="#resources" data-en="Free resources" data-bn="ফ্রি রিসোর্স">Free resources</a>
@@ -792,7 +852,7 @@ html[data-lang="bn"] .pcard .ptag{letter-spacing:.04em;text-transform:none;font-
       <span class="name" style="font-size:16px">RAFIU<span style="color:var(--violet-bright)">.</span></span>
     </a>
     <small data-en="Figuring out how to build a better life — out loud" data-bn="একটা ভালো জীবন কীভাবে গড়ে — সেটাই খুঁজে বের করার চেষ্টা করছি">Figuring out how to build a better life — out loud</small>
-    <small><span class="note" style="font-size:18px" data-en="built out loud, from Dhaka" data-bn="ঢাকা থেকে, শব্দ করে বানানো">built out loud, from Dhaka</span> · © 2026 Rafiu Tahmid Chowdhury</small>
+    <small><span data-en="Made in Dhaka" data-bn="ঢাকায় তৈরি">Made in Dhaka</span> · © 2026 Rafiu Tahmid Chowdhury</small>
   </div>
 </footer>
 
@@ -820,7 +880,7 @@ var RESOURCES = {
     },
     blurb: {en:'Companion to the motivation video. 16 pages.', bn:'মোটিভেশন ভিডিওর সঙ্গী। ১৬ পৃষ্ঠা।'},
     download_en: 'https://raw.githubusercontent.com/Rafiu-Tahmid/rafiu-site/main/WhySuccessfulPeopleStayDriven_EN.pdf',
-    download_bn: 'https://raw.githubusercontent.com/Rafiu-Tahmid/rafiu-site/main/WhySuccessfulPeopleStayDriven_BN_1'
+    download_bn: 'https://raw.githubusercontent.com/Rafiu-Tahmid/rafiu-site/main/WhySuccessfulPeopleStayDriven_BN_1 (1).pdf'
   }
   /* ============================================================
      ↓↓↓  ADD A NEW WORKBOOK — copy this whole block, rename the key (e.g. "yourkey"),
@@ -1059,8 +1119,8 @@ var SHEET_ENDPOINT='https://script.google.com/macros/s/AKfycbzxq1OJ8ynEjVH716_Ll
    (Tip: use the Workbook & Video Generator tool to make this block.)
 ============================================================ */
 var VIDEOS=[
-  {id:'8qQXWrSLQaA', title:{en:'Featured Video', bn:'ফিচার্ড ভিডিও'}},
-  {id:'9U_uoMl0bHE', title:{en:'Featured Video', bn:'ফিচার্ড ভিডিও'}}
+  {id:'8qQXWrSLQaA', title:{en:'Featured video', bn:'ফিচার্ড ভিডিও'}},
+  {id:'9U_uoMl0bHE', title:{en:'Featured video', bn:'ফিচার্ড ভিডিও'}}
 ];
 function captureLead(d){
   try{
