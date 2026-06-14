@@ -479,6 +479,16 @@ html[data-lang="bn"] .divider-note{font-style:normal}
 .cur-line{font-family:var(--display);font-size:clamp(18px,2.4vw,23px);line-height:1.5;color:var(--ink);position:relative;z-index:1;max-width:60ch}
 html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
 .cur-foot{display:inline-block;margin-top:18px;font-family:var(--ui);font-size:12px;letter-spacing:.04em;color:var(--ink-soft);position:relative;z-index:1}
+.chartbox{margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
+.donut{width:160px;height:160px;display:block;margin:0 auto}
+.donut .seg{transition:stroke-dasharray .5s cubic-bezier(.4,0,.2,1)}
+.barsvg,.linesvg{width:100%;height:auto;display:block}
+.bar-seg{transition:height .5s cubic-bezier(.4,0,.2,1),y .5s cubic-bezier(.4,0,.2,1)}
+.chart-legend{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:14px;font-family:var(--ui);font-size:11.5px;color:var(--ink-soft)}
+.chart-legend span{display:inline-flex;align-items:center;gap:6px}
+.chart-legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.line-path{fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.line-area{opacity:.18}
 </style>
 </head>
 <body>
@@ -752,6 +762,7 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
           <div class="split-row"><span class="name" data-en="Wants" data-bn="শখ">Wants</span><span class="amt" id="aWants">৳ 8,000</span></div>
           <div class="split-row"><span class="name" data-en="Future" data-bn="ভবিষ্যৎ">Future</span><span class="amt grad" id="aFuture">৳ 10,000</span></div>
         </div>
+        <div class="chartbox"><svg id="splitChart" viewBox="0 0 200 200" class="donut"></svg></div>
         <p class="sub" style="margin-top:18px" id="splitYear" data-dyn="1"></p>
       </div>
     </div>
@@ -790,6 +801,7 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
           <div class="split-row"><span class="name" data-en="You invest" data-bn="আপনার বিনিয়োগ">You invest</span><span class="amt" id="gInvested">৳ 0</span></div>
           <div class="split-row"><span class="name" data-en="Profit earned" data-bn="অর্জিত মুনাফা">Profit earned</span><span class="amt grad" id="gProfit">৳ 0</span></div>
         </div>
+        <div class="chartbox"><svg id="growthChart" viewBox="0 0 320 160" class="barsvg"></svg></div>
       </div>
     </div>
 
@@ -809,6 +821,7 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
           <div class="split-row"><span class="name" data-en="To keep today's lifestyle, you'll need" data-bn="আজকের জীবনযাত্রা ধরে রাখতে লাগবে">To keep today's lifestyle, you'll need</span><span class="amt grad" id="iNeed">৳ 0</span></div>
           <div class="split-row"><span class="name" data-en="Quietly lost to inflation" data-bn="মূল্যস্ফীতিতে নীরবে হারানো">Quietly lost to inflation</span><span class="amt" id="iLost">৳ 0</span></div>
         </div>
+        <div class="chartbox"><svg id="inflChart" viewBox="0 0 320 160" class="linesvg"></svg></div>
       </div>
     </div>
 
@@ -1066,6 +1079,93 @@ function loc(t){return LANG==='bn'?num2bn(t):String(t);}
 function tk(n){if(!isFinite(n))n=0;return loc('৳ '+Math.round(n).toLocaleString('en-IN'));}
 
 /* ---------- budget split ---------- */
+/* ================= TOOL CHARTS (pure SVG) ================= */
+function chartColors(){return {needs:'#8B5CF6',wants:'#A78BFA',future:'#34d399',invest:'#6D28D9',profit:'#34d399',line:'#A78BFA'};}
+
+/* Donut for budget split */
+function drawSplitChart(pn,pw,pf){
+  var el=document.getElementById('splitChart'); if(!el) return;
+  var c=chartColors();
+  var segs=[{v:pn,col:c.needs},{v:pw,col:c.wants},{v:pf,col:c.future}];
+  var R=70, CX=100, CY=100, C=2*Math.PI*R;
+  var off=0, html='<circle cx="100" cy="100" r="70" fill="none" stroke="rgba(167,139,250,.1)" stroke-width="26"/>';
+  for(var i=0;i<segs.length;i++){
+    var frac=Math.max(0,segs[i].v)/100;
+    var len=frac*C;
+    html+='<circle class="seg" cx="100" cy="100" r="70" fill="none" stroke="'+segs[i].col+'" stroke-width="26" '+
+          'stroke-dasharray="'+len+' '+(C-len)+'" stroke-dashoffset="'+(-off)+'" transform="rotate(-90 100 100)"/>';
+    off+=len;
+  }
+  var futureLbl=(LANG==='bn'?'ভবিষ্যৎ':'Future');
+  html+='<text x="100" y="94" text-anchor="middle" font-family="Sora,serif" font-weight="700" font-size="26" fill="#EDE9F5">'+loc(pf+"%")+'</text>';
+  html+='<text x="100" y="116" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="11" fill="#9A92AC" letter-spacing="1">'+futureLbl.toUpperCase()+'</text>';
+  el.innerHTML=html;
+  var lg=document.getElementById('splitLegend');
+  if(!lg){lg=document.createElement('div');lg.id='splitLegend';lg.className='chart-legend';el.parentNode.appendChild(lg);}
+  lg.innerHTML='<span><i style="background:'+c.needs+'"></i>'+(LANG==='bn'?'প্রয়োজন':'Needs')+'</span>'+
+               '<span><i style="background:'+c.wants+'"></i>'+(LANG==='bn'?'শখ':'Wants')+'</span>'+
+               '<span><i style="background:'+c.future+'"></i>'+futureLbl+'</span>';
+}
+
+/* Grouped bars for growth: invested (base) + profit (stacked) across time checkpoints */
+function drawGrowthChart(invested,total,years,rate,monthly,lump,mode){
+  var el=document.getElementById('growthChart'); if(!el) return;
+  var c=chartColors();
+  var W=320,H=160,padL=8,padR=8,padT=10,padB=22;
+  var steps=Math.min(years,6); if(steps<1)steps=1;
+  var pts=[];
+  for(var k=1;k<=steps;k++){
+    var yr=Math.round(years*k/steps);
+    var inv,tot;
+    if(mode==='sip'){var i=rate/100/12,n=yr*12;inv=monthly*n;tot=(i===0)?inv:monthly*((Math.pow(1+i,n)-1)/i)*(1+i);}
+    else{inv=lump;tot=lump*Math.pow(1+rate/100,yr);}
+    pts.push({yr:yr,inv:inv,tot:tot});
+  }
+  var maxV=Math.max.apply(null,pts.map(function(p){return p.tot;}))||1;
+  var bw=(W-padL-padR)/pts.length*0.55;
+  var gap=(W-padL-padR)/pts.length;
+  var html='';
+  for(var j=0;j<pts.length;j++){
+    var x=padL+gap*j+(gap-bw)/2;
+    var invH=(pts[j].inv/maxV)*(H-padT-padB);
+    var totH=(pts[j].tot/maxV)*(H-padT-padB);
+    var proH=totH-invH;
+    var invY=H-padB-invH, proY=H-padB-totH;
+    html+='<rect class="bar-seg" x="'+x+'" y="'+proY+'" width="'+bw+'" height="'+proH+'" fill="'+c.profit+'" rx="2"/>';
+    html+='<rect class="bar-seg" x="'+x+'" y="'+invY+'" width="'+bw+'" height="'+invH+'" fill="'+c.invest+'" rx="2"/>';
+    html+='<text x="'+(x+bw/2)+'" y="'+(H-7)+'" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="9" fill="#9A92AC">'+loc(pts[j].yr+'y')+'</text>';
+  }
+  el.innerHTML=html;
+  var lg=document.getElementById('growthLegend');
+  if(!lg){lg=document.createElement('div');lg.id='growthLegend';lg.className='chart-legend';el.parentNode.appendChild(lg);}
+  lg.innerHTML='<span><i style="background:'+c.invest+'"></i>'+(LANG==='bn'?'বিনিয়োগ':'Invested')+'</span>'+
+               '<span><i style="background:'+c.profit+'"></i>'+(LANG==='bn'?'মুনাফা':'Profit')+'</span>';
+}
+
+/* Line for inflation: purchasing power decaying over years */
+function drawInflChart(amt,rate,years){
+  var el=document.getElementById('inflChart'); if(!el) return;
+  var c=chartColors();
+  var W=320,H=160,padL=10,padR=10,padT=12,padB=22;
+  var n=Math.min(years,20); if(n<1)n=1;
+  var pts=[];
+  for(var y=0;y<=n;y++){pts.push(amt/Math.pow(1+rate/100,y));}
+  var maxV=amt, minV=pts[pts.length-1];
+  function X(i){return padL+(W-padL-padR)*i/n;}
+  function Y(v){return padT+(H-padT-padB)*(1-(v-0)/(maxV-0));}
+  var d='', area='';
+  for(var i=0;i<pts.length;i++){
+    d+=(i===0?'M':'L')+X(i).toFixed(1)+' '+Y(pts[i]).toFixed(1)+' ';
+  }
+  area='M'+X(0)+' '+(H-padB)+' '+d.replace('M','L')+'L'+X(n)+' '+(H-padB)+' Z';
+  var html='<path class="line-area" d="'+area+'" fill="'+c.line+'"/>'+
+           '<path class="line-path" d="'+d+'" stroke="'+c.line+'"/>'+
+           '<circle cx="'+X(n)+'" cy="'+Y(pts[n])+'" r="4" fill="'+c.line+'"/>'+
+           '<text x="'+padL+'" y="'+(H-7)+'" font-family="Space Grotesk,sans-serif" font-size="9" fill="#9A92AC">'+(LANG==='bn'?'এখন':'now')+'</text>'+
+           '<text x="'+(W-padR)+'" y="'+(H-7)+'" text-anchor="end" font-family="Space Grotesk,sans-serif" font-size="9" fill="#9A92AC">'+loc(n+'y')+'</text>';
+  el.innerHTML=html;
+}
+
 function calcSplit(){
   var inc=parseFloat(document.getElementById('inc').value)||0;
   var pn=parseInt(document.getElementById('pNeeds').value,10);
@@ -1081,6 +1181,7 @@ function calcSplit(){
   pulse(document.getElementById('aFuture'));
   var yearly=loc(Math.round(inc*pf/100*12).toLocaleString('en-IN'));
   document.getElementById('splitYear').textContent=DYN.splitYear[LANG](yearly);
+  drawSplitChart(pn,pw,pf);
 }
 
 /* ---------- growth calculator ---------- */
@@ -1114,6 +1215,9 @@ function calcGrowth(){
   document.getElementById('gInvested').textContent=tk(invested);
   document.getElementById('gProfit').textContent=tk(total-invested);
   document.getElementById('gAfter').textContent=DYN.gAfter[LANG](loc(years));
+  var mAmt=parseFloat(document.getElementById('gMonthly').value)||0;
+  var lAmt=parseFloat(document.getElementById('gLump').value)||0;
+  drawGrowthChart(invested,total,years,rate,mAmt,lAmt,MODE);
 }
 
 /* ---------- tool tabs ---------- */
@@ -1203,6 +1307,7 @@ function calcInfl(){
   document.getElementById('iNeed').textContent=tk(need);
   document.getElementById('iLost').textContent=tk(amt-buys);
   pulse(document.getElementById('iBuys'));
+  drawInflChart(amt,parseFloat(document.getElementById('iRate').value),yrs);
 }
 
 /* ================= AI PROMPT LIBRARY ================= */
