@@ -387,8 +387,8 @@ html[data-lang="bn"] .pcard .ptag{letter-spacing:.04em;text-transform:none;font-
 .sociallist a{gap:10px}
 
 /* ===== v12 pillar section ===== */
-.pillars-sec{padding-top:20px}
-.pillars-head{max-width:680px;margin-bottom:36px}
+.pillars-sec{padding-top:52px}
+.pillars-head{max-width:680px;margin-bottom:24px}
 .pillar-list{border-top:1px solid var(--line)}
 .pillar-row{display:flex;align-items:center;gap:26px;padding:26px 8px;border-bottom:1px solid var(--line);position:relative;transition:padding-left .25s}
 .pillar-row::before{content:"";position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,rgba(139,92,246,.12),transparent);transition:width .35s}
@@ -429,9 +429,18 @@ html[data-lang="bn"] .pcard .ptag{letter-spacing:.04em;text-transform:none;font-
 .hero-photo.noimg .photo-fallback{display:flex}
 .photo-fallback .dotv{color:#fff}
 @media (max-width:860px){
-  .hero{grid-template-columns:1fr;gap:30px}
-  .hero-photo{max-width:260px;order:-1}
+  .hero{grid-template-columns:1fr;gap:22px}
+  .hero-photo{max-width:180px;aspect-ratio:1/1;order:-1;border-radius:20px}
+  .hero-photo img{object-position:center top}
   .scrollhint{display:none}
+}
+@media (max-width:560px){
+  .hero-photo{max-width:150px}
+}
+@media (max-width:600px){
+  .wrap{padding:0 20px}
+  .strip .stat{padding-left:20px;padding-right:20px}
+  .pillar-row{padding-left:4px;padding-right:4px}
 }
 /* about photo */
 .about-photo{width:100%;border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:24px;background:linear-gradient(160deg,rgba(54,13,84,.5),rgba(15,7,32,.7));aspect-ratio:3/2;position:relative}
@@ -461,6 +470,15 @@ html[data-lang="bn"] .divider-note{font-style:normal}
   .strip{border-top:1px solid var(--line);margin-top:0}
   .strip .stat{padding:22px 4px}
 }
+.currently-card{border:1px solid var(--line);border-radius:22px;background:linear-gradient(155deg,rgba(54,13,84,.4),rgba(15,7,32,.55));padding:34px 34px 28px;position:relative;overflow:hidden;max-width:760px}
+.currently-card::after{content:"";position:absolute;width:240px;height:240px;border-radius:50%;filter:blur(70px);background:rgba(124,58,237,.25);right:-80px;top:-80px;pointer-events:none}
+.cur-head{display:flex;align-items:center;gap:10px;margin-bottom:16px;position:relative;z-index:1}
+.cur-dot{width:9px;height:9px;border-radius:50%;background:#34d399;box-shadow:0 0 0 0 rgba(52,211,153,.6);animation:livepulse 2s ease-out infinite}
+@keyframes livepulse{0%{box-shadow:0 0 0 0 rgba(52,211,153,.5)}70%{box-shadow:0 0 0 10px rgba(52,211,153,0)}100%{box-shadow:0 0 0 0 rgba(52,211,153,0)}}
+@media (prefers-reduced-motion:reduce){.cur-dot{animation:none}}
+.cur-line{font-family:var(--display);font-size:clamp(18px,2.4vw,23px);line-height:1.5;color:var(--ink);position:relative;z-index:1;max-width:60ch}
+html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
+.cur-foot{display:inline-block;margin-top:18px;font-family:var(--ui);font-size:12px;letter-spacing:.04em;color:var(--ink-soft);position:relative;z-index:1}
 </style>
 </head>
 <body>
@@ -493,7 +511,7 @@ html[data-lang="bn"] .divider-note{font-style:normal}
     <div class="hero-text">
     <span class="eyebrow" data-en="Rafiu · IBA · CFA Level 1" data-bn="রাফিউ · আইবিএ · সিএফএ লেভেল ১">Rafiu · IBA · CFA Level 1</span>
     <h1 class="display" data-en='Figuring out how to build a <span class="grad">better life</span> — out loud.' data-bn='একটা <span class="grad">ভালো জীবন</span> কীভাবে গড়ে — সেটাই খুঁজে বের করার চেষ্টা করছি।' data-html="1">Figuring out how to build a <span class="grad">better life</span> — out loud.</h1>
-    <p class="lede" data-en="A channel for ambitious young Bangladeshis who want more from their money, their work and their time. Not theory. Not generic advice. Just what actually moves a life forward — researched honestly and shared as I learn it." data-bn="উচ্চাকাঙ্ক্ষী তরুণ বাংলাদেশিদের জন্য একটা চ্যানেল — যারা নিজের টাকা, কাজ আর সময় থেকে আরও বেশি কিছু চায়। থিওরি না। গৎবাঁধা উপদেশ না। শুধু যা সত্যিই একটা জীবন এগিয়ে নেয় — সততার সাথে রিসার্চ করা, আর শেখার সাথে সাথে শেয়ার করা।">A channel for ambitious young Bangladeshis who want more from their money, their work and their time. Not theory. Not generic advice. Just what actually moves a life forward — researched honestly and shared as I learn it.</p>
+    <p class="lede" data-en="I make videos about money, productivity, AI, motivation and where work is heading — the stuff I always wished someone in Bangladesh was talking about properly. I am not an expert handing down answers. I am a student figuring it out, and writing down what I learn so it might save you some time." data-bn="আমি ভিডিও বানাই টাকা, প্রোডাক্টিভিটি, এআই, মোটিভেশন আর কাজের ভবিষ্যৎ নিয়ে — যেসব নিয়ে বাংলাদেশে কেউ ঠিকঠাক কথা বলুক, সেটা আমি সবসময় চাইতাম। আমি কোনো বিশেষজ্ঞ নই যে উপর থেকে উত্তর দেব। আমি একজন ছাত্র, নিজেই বুঝে উঠছি — আর যা শিখি লিখে রাখছি, যাতে আপনার কিছুটা সময় বাঁচে।">I make videos about money, productivity, AI, motivation and where work is heading — the stuff I always wished someone in Bangladesh was talking about properly. I am not an expert handing down answers. I am a student figuring it out, and writing down what I learn so it might save you some time.</p>
     <div style="display:flex;gap:14px;flex-wrap:wrap">
       <a class="btn" href="#resources" data-en="Free resources" data-bn="ফ্রি রিসোর্স">Free resources</a>
       <a class="btn" href="#tools" data-en="Free tools" data-bn="ফ্রি টুলস">Free tools</a>
@@ -511,7 +529,6 @@ html[data-lang="bn"] .divider-note{font-style:normal}
 
   <div class="wrap section rv pillars-sec">
     <div class="pillars-head">
-      <span class="eyebrow" data-en="What we figure out here" data-bn="এখানে যা নিয়ে ভাবি">What we figure out here</span>
       <h2 class="display h2" data-en="What I'm trying to figure out." data-bn="একটা জীবন সত্যিই এগিয়ে নেয় — এমন পাঁচটা জিনিস।">What I'm trying to figure out.</h2>
     </div>
     <div class="pillar-list">
@@ -540,15 +557,30 @@ html[data-lang="bn"] .divider-note{font-style:normal}
 
   <div class="pillar-stat-divider rv">
     <div class="line"></div>
-    <p class="divider-note" data-en="This is the lens behind everything I make — here's how I try to keep it honest." data-bn="এই দৃষ্টিভঙ্গি থেকেই সবকিছু বানাই — কীভাবে এটা সৎ রাখার চেষ্টা করি, দেখুন।">This is the lens behind everything I make — here's how I try to keep it honest.</p>
+    <p class="divider-note" data-en="That's what I talk about. Here's how I try not to waste your time with it." data-bn="এগুলো নিয়েই কথা বলি। আর চেষ্টা করি যেন আপনার সময়টা নষ্ট না করি।">That's what I talk about. Here's how I try not to waste your time with it.</p>
     <div class="line"></div>
   </div>
 
   <div class="strip rv">
     <div class="wrap">
-      <div class="stat"><div class="k" data-en="Learning out loud" data-bn="শিখছি, সবার সামনে">Learning out loud</div><div class="v" data-en="I share what works and what fails, as it happens" data-bn="যা কাজ করে আর যা করে না, দুটোই শেয়ার করি">I share what works and what fails, as it happens</div></div>
-      <div class="stat"><div class="k" data-en="Backed by real sources" data-bn="আসল সোর্স থেকে">Backed by real sources</div><div class="v" data-en="Books, studies and local data, not just opinions" data-bn="বই, গবেষণা আর দেশের ডেটা, শুধু মতামত না">Books, studies and local data, not just opinions</div></div>
-      <div class="stat"><div class="k" data-en="A new video every week" data-bn="প্রতি সপ্তাহে একটা ভিডিও">A new video every week</div><div class="v" data-en="Figuring it out in real time, same as you" data-bn="আপনারই মতো, ধীরে ধীরে বুঝে উঠছি">Figuring it out in real time, same as you</div></div>
+      <div class="stat"><div class="k" data-en="I started this for me" data-bn="শুরুটা নিজের জন্যই">I started this for me</div><div class="v" data-en="If even one video helps you too, that's a bonus" data-bn="একটা ভিডিও যদি আপনারও কাজে লাগে, সেটাই বোনাস">If even one video helps you too, that's a bonus</div></div>
+      <div class="stat"><div class="k" data-en="I read before I talk" data-bn="বলার আগে পড়ি">I read before I talk</div><div class="v" data-en="Books, real studies, local numbers — not just my opinion" data-bn="বই, আসল গবেষণা, দেশের সংখ্যা — শুধু আমার মত না">Books, real studies, local numbers — not just my opinion</div></div>
+      <div class="stat"><div class="k" data-en="Still figuring it out" data-bn="এখনও বুঝে উঠছি">Still figuring it out</div><div class="v" data-en="Same boat as you — just a few steps in already" data-bn="আপনার মতোই — শুধু কয়েক ধাপ আগে নেমেছি">Same boat as you — just a few steps in already</div></div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       CURRENTLY — update this whenever. Keep it honest and specific.
+       This is the personality of the site; change it freely.
+  ============================================================ -->
+  <div class="wrap section rv" style="padding-top:40px;padding-bottom:8px">
+    <div class="currently-card">
+      <div class="cur-head">
+        <span class="cur-dot"></span>
+        <span class="eyebrow" data-en="Currently" data-bn="এই মুহূর্তে">Currently</span>
+      </div>
+      <p class="cur-line" data-en="Right now I'm a little obsessed with one question: how much of my whole content operation can I run with AI? Research, scripts, systems — all of it. This website is part of that experiment. I'm literally building it by talking to an AI, with basically no coding background." data-bn="এই মুহূর্তে আমি একটা প্রশ্নে একটু বুঁদ হয়ে আছি: আমার পুরো কনটেন্ট অপারেশনের কতটা আমি এআই দিয়ে চালাতে পারি? রিসার্চ, স্ক্রিপ্ট, সিস্টেম — সবকিছু। এই ওয়েবসাইটটাও সেই পরীক্ষারই অংশ। আমি আক্ষরিক অর্থেই এটা বানাচ্ছি একটা এআই-এর সাথে কথা বলে, প্রায় কোনো কোডিং জ্ঞান ছাড়াই।">Right now I'm a little obsessed with one question: how much of my whole content operation can I run with AI? Research, scripts, systems — all of it. This website is part of that experiment. I'm literally building it by talking to an AI, with basically no coding background.</p>
+      <span class="cur-foot" data-en="— updated whenever something changes" data-bn="— যখন কিছু বদলায়, তখন আপডেট করি">— updated whenever something changes</span>
     </div>
   </div>
 
@@ -611,11 +643,11 @@ html[data-lang="bn"] .divider-note{font-style:normal}
       </div>
     </div>
     <div class="about-body">
-      <p data-en="I'm Rafiu — IBA student, CFA Level 1 passer, and someone trying to build a better life while juggling more than I probably should." data-bn="আমি রাফিউ — আইবিএ-র ছাত্র, সিএফএ লেভেল ১ পাস, আর এমন একজন যে সম্ভবত সামর্থ্যের চেয়ে বেশি কিছু একসাথে সামলে একটা ভালো জীবন গড়ার চেষ্টা করছে।">I'm Rafiu — IBA student, CFA Level 1 passer, and someone trying to build a better life while juggling more than I probably should.</p>
-      <p data-en="Everything I make is about what actually helps an ambitious young Bangladeshi move forward — productivity, AI tools, motivation, personal finance, and the future of work. Not theory. Not generic advice. What I'm actually researching, testing, and living right now." data-bn="আমার সব কনটেন্ট একটাই বিষয়ে — একজন উচ্চাকাঙ্ক্ষী তরুণ বাংলাদেশিকে আসলে কী এগিয়ে নেয়: প্রোডাক্টিভিটি, এআই টুলস, মোটিভেশন, পার্সোনাল ফাইন্যান্স আর কাজের ভবিষ্যৎ। থিওরি না। গৎবাঁধা উপদেশ না। আমি এখন যা রিসার্চ করছি, পরীক্ষা করছি আর যাপন করছি — সেটাই।">Everything I make is about what actually helps an ambitious young Bangladeshi move forward — productivity, AI tools, motivation, personal finance, and the future of work. Not theory. Not generic advice. What I'm actually researching, testing, and living right now.</p>
-      <p class="big" data-en="I'm not an expert. I'm a student of all of this — and I share everything I learn, as I learn it." data-bn="আমি বিশেষজ্ঞ নই। আমি এসবেরই একজন ছাত্র — যা শিখি, শেখার সাথে সাথেই শেয়ার করি।">I'm not an expert. I'm a student of all of this — and I share everything I learn, as I learn it.</p>
+      <p data-en="I'm Rafiu. I study at IBA, I passed CFA Level 1, and like a lot of people my age, I'm trying to figure out how to build a life that actually works — financially and otherwise." data-bn="আমি রাফিউ। আইবিএ-তে পড়ি, সিএফএ লেভেল ১ পাস করেছি, আর আমার বয়সী অনেকের মতোই চেষ্টা করছি — কীভাবে এমন একটা জীবন গড়া যায় যেটা সত্যিই কাজ করে, টাকার দিক থেকেও, বাকি সবদিক থেকেও।">I'm Rafiu. I study at IBA, I passed CFA Level 1, and like a lot of people my age, I'm trying to figure out how to build a life that actually works — financially and otherwise.</p>
+      <p data-en="Honestly? I started this channel for myself first. Making videos forces me to actually learn things — money, productivity, AI, motivation — instead of just scrolling past them. Even if the channel goes nowhere, I'll have read the books and done the research. That felt like a deal worth taking." data-bn="সত্যি বলতে? এই চ্যানেলটা আমি প্রথমে নিজের জন্যই শুরু করেছি। ভিডিও বানাতে গেলে জিনিসগুলো আসলেই শিখতে হয় — টাকা, প্রোডাক্টিভিটি, এআই, মোটিভেশন — শুধু স্ক্রল করে পেরিয়ে যাওয়া যায় না। চ্যানেল যদি কোথাও নাও পৌঁছায়, তবু বইগুলো পড়া হবে, রিসার্চটা করা হবে। এই ডিলটা আমার কাছে লাভজনক মনে হয়েছিল।">Honestly? I started this channel for myself first. Making videos forces me to actually learn things — money, productivity, AI, motivation — instead of just scrolling past them. Even if the channel goes nowhere, I'll have read the books and done the research. That felt like a deal worth taking.</p>
+      <p class="big" data-en="The other reason I make this: I kept wishing someone in Bangladesh was talking about this stuff properly. Nobody really was. So I figured I'd try." data-bn="আরেকটা কারণ: আমি বারবার চাইতাম বাংলাদেশে কেউ এসব নিয়ে ঠিকঠাক কথা বলুক। সেভাবে কেউ বলছিল না। তাই ভাবলাম, আমিই চেষ্টা করি।">The other reason I make this: I kept wishing someone in Bangladesh was talking about this stuff properly. Nobody really was. So I figured I'd try.</p>
       <p data-en="Everything connects back to one question: how does someone with limited time, limited money, and unlimited pressure actually move forward? I research obsessively — academic studies, the best books, Bangladesh-specific data — and share honestly, in our context. Shariah-compliant options always sit alongside the conventional ones." data-bn="সবকিছু একটাই প্রশ্নে এসে মেলে: সীমিত সময়, সীমিত টাকা আর সীমাহীন চাপ নিয়ে একজন মানুষ আসলে কীভাবে এগোয়? আমি অবসেসড হয়ে রিসার্চ করি — একাডেমিক স্টাডি, সেরা বই, বাংলাদেশের নিজস্ব ডেটা — আর সততার সাথে শেয়ার করি, আমাদের প্রেক্ষাপটে। শরিয়াহসম্মত বিকল্প সবসময় প্রচলিত অপশনগুলোর পাশেই থাকে।">Everything connects back to one question: how does someone with limited time, limited money, and unlimited pressure actually move forward? I research obsessively — academic studies, the best books, Bangladesh-specific data — and share honestly, in our context. Shariah-compliant options always sit alongside the conventional ones.</p>
-      <p data-en="For what it's worth: I've won two finance competitions and passed CFA Level 1. I mention it only so you know what I share isn't pulled from thin air — there's real work behind it." data-bn="যদি জানতে চান: দুটি ফাইন্যান্স প্রতিযোগিতায় জিতেছি, সিএফএ লেভেল ১ পাস করেছি। এটুকু বললাম শুধু এটা বোঝাতে যে আমি যা শেয়ার করি তা হাওয়া থেকে আসে না — পেছনে আসল খাটুনি আছে।">For what it's worth: I've won two finance competitions and passed CFA Level 1. I mention it only so you know what I share isn't pulled from thin air — there's real work behind it.</p>
+      <p data-en="I've won a couple of finance competitions and cleared CFA Level 1 — I only mention it so you know I do the homework before I open my mouth. But I'm still early in all of this. I'm not ahead of you by much. Maybe a few steps." data-bn="দুয়েকটা ফাইন্যান্স প্রতিযোগিতায় জিতেছি, সিএফএ লেভেল ১ পাস করেছি — এটুকু বলি শুধু এটা বোঝাতে যে মুখ খোলার আগে পড়াশোনাটা করি। তবে আমিও এসবে নতুন। আপনার চেয়ে খুব বেশি এগিয়ে নেই। হয়তো কয়েক ধাপ।">I've won a couple of finance competitions and cleared CFA Level 1 — I only mention it so you know I do the homework before I open my mouth. But I'm still early in all of this. I'm not ahead of you by much. Maybe a few steps.</p>
       <p data-en="Currently building toward CFA Level 2 (May 2027) while running the channel and finishing my degree. Everything I talk about, I'm living simultaneously." data-bn="এখন সিএফএ লেভেল ২-এর (মে ২০২৭) প্রস্তুতি নিচ্ছি, পাশাপাশি চ্যানেল চালাচ্ছি আর ডিগ্রি শেষ করছি। যা নিয়ে কথা বলি, সেটা একই সাথে নিজে যাপন করছি।">Currently building toward CFA Level 2 (May 2027) while running the channel and finishing my degree. Everything I talk about, I'm living simultaneously.</p>
       <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:10px">
         <a class="btn" href="#resources" data-en="Free resources" data-bn="ফ্রি রিসোর্স">Free resources</a>
