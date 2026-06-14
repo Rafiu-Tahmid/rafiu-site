@@ -120,7 +120,11 @@ html[data-lang="bn"] .chip{text-transform:none;letter-spacing:.02em;font-size:13
 /* ---------- resources ---------- */
 .res-head{padding:84px 0 30px;max-width:740px}
 .res-head h1{font-size:clamp(34px,5vw,54px);margin:16px 0 18px}
-.resgrid{display:grid;grid-template-columns:1fr 1fr;gap:22px;padding-bottom:84px}
+.resgrid{display:block;padding-bottom:84px}
+.res-cat-head{margin:38px 0 18px;max-width:680px}
+.res-cat-head .eyebrow{display:block;font-size:13px;letter-spacing:.18em}
+.res-cat-head p{font-size:13.5px;color:var(--ink-soft);margin-top:7px}
+.res-cards{display:grid;grid-template-columns:1fr 1fr;gap:22px}
 .rescard{display:flex;flex-direction:column;text-decoration:none;border-radius:20px;border:1px solid var(--line);background:var(--card);overflow:hidden;transition:transform .2s,background .2s,box-shadow .2s}
 .rescard:hover{transform:translateY(-5px);background:var(--card-hover);box-shadow:0 18px 50px rgba(124,58,237,.18)}
 .rescover{padding:34px 28px;background:linear-gradient(150deg,#2A0B42,#120722);border-bottom:1px solid var(--line)}
@@ -201,7 +205,7 @@ footer{border-top:1px solid var(--line);margin-top:40px;background:rgba(11,6,18,
   .strip .wrap{grid-template-columns:1fr}
   .stat{border-right:none;border-bottom:1px solid var(--line)}
   .stat:last-child{border-bottom:none}
-  .vidgrid,.resgrid,.rdetail,.tool.show{grid-template-columns:1fr}
+  .vidgrid,.resgrid,.res-cards,.rdetail,.tool.show{grid-template-columns:1fr}
   .about-grid,.contact-grid{grid-template-columns:1fr;gap:44px;padding:64px 0}
   .about-grid .sticky{position:static}
   .cta{padding:40px 28px}
@@ -487,8 +491,11 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
 .chart-legend{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:14px;font-family:var(--ui);font-size:11.5px;color:var(--ink-soft)}
 .chart-legend span{display:inline-flex;align-items:center;gap:6px}
 .chart-legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
-.line-path{fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
-.line-area{opacity:.18}
+.line-path{fill:none;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round}
+.line-area{opacity:1}
+.barsvg,.linesvg{overflow:visible}
+.debt-row input{font-family:var(--body);font-size:14px;color:var(--ink);padding:10px 11px;border:1px solid var(--line);border-radius:10px;background:rgba(11,6,18,.6);width:100%}
+.debt-row .d-rm{padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);cursor:pointer;font-size:13px}
 </style>
 </head>
 <body>
@@ -730,7 +737,13 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
       <button class="on" id="tab-split" data-en="Budget Split" data-bn="বাজেট স্প্লিট" onclick="showTool('split')">Budget Split</button>
       <button id="tab-growth" data-en="Growth Calculator" data-bn="গ্রোথ ক্যালকুলেটর" onclick="showTool('growth')">Growth Calculator</button>
       <button id="tab-inflation" data-en="Inflation Check" data-bn="মূল্যস্ফীতি চেক" onclick="showTool('inflation')">Inflation Check</button>
-<button id="tab-prompts" data-en="AI Prompts" data-bn="এআই প্রম্পট" onclick="showTool('prompts')">AI Prompts</button>
+      <button id="tab-loan" data-en="Loan Cost" data-bn="ঋণের খরচ" onclick="showTool('loan')">Loan Cost</button>
+      <button id="tab-rentbuy" data-en="Rent vs Buy" data-bn="ভাড়া না কেনা" onclick="showTool('rentbuy')">Rent vs Buy</button>
+      <button id="tab-emergency" data-en="Emergency Fund" data-bn="ইমার্জেন্সি ফান্ড" onclick="showTool('emergency')">Emergency Fund</button>
+      <button id="tab-goal" data-en="Goal Timeline" data-bn="লক্ষ্যের সময়" onclick="showTool('goal')">Goal Timeline</button>
+      <button id="tab-tco" data-en="Car/Bike Cost" data-bn="গাড়ি/বাইক খরচ" onclick="showTool('tco')">Car/Bike Cost</button>
+      <button id="tab-debt" data-en="Debt Payoff" data-bn="দেনা শোধ" onclick="showTool('debt')">Debt Payoff</button>
+      <button id="tab-prompts" data-en="AI Prompts" data-bn="এআই প্রম্পট" onclick="showTool('prompts')">AI Prompts</button>
     </div>
 
     <div class="tool show" id="tool-split">
@@ -801,7 +814,7 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
           <div class="split-row"><span class="name" data-en="You invest" data-bn="আপনার বিনিয়োগ">You invest</span><span class="amt" id="gInvested">৳ 0</span></div>
           <div class="split-row"><span class="name" data-en="Profit earned" data-bn="অর্জিত মুনাফা">Profit earned</span><span class="amt grad" id="gProfit">৳ 0</span></div>
         </div>
-        <div class="chartbox"><svg id="growthChart" viewBox="0 0 320 160" class="barsvg"></svg></div>
+        <div class="chartbox"><svg id="growthChart" viewBox="0 0 320 180" class="barsvg"></svg></div>
       </div>
     </div>
 
@@ -821,11 +834,143 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
           <div class="split-row"><span class="name" data-en="To keep today's lifestyle, you'll need" data-bn="আজকের জীবনযাত্রা ধরে রাখতে লাগবে">To keep today's lifestyle, you'll need</span><span class="amt grad" id="iNeed">৳ 0</span></div>
           <div class="split-row"><span class="name" data-en="Quietly lost to inflation" data-bn="মূল্যস্ফীতিতে নীরবে হারানো">Quietly lost to inflation</span><span class="amt" id="iLost">৳ 0</span></div>
         </div>
-        <div class="chartbox"><svg id="inflChart" viewBox="0 0 320 160" class="linesvg"></svg></div>
+        <div class="chartbox"><svg id="inflChart" viewBox="0 0 320 180" class="linesvg"></svg></div>
       </div>
     </div>
 
-<!-- ===== AI PROMPTS ===== -->
+    <!-- ===== LOAN / FINANCING TRUE COST ===== -->
+    <div class="tool" id="tool-loan">
+      <div class="panel">
+        <div class="modes" role="tablist">
+          <button class="on" id="lmode-red" data-en="Reducing balance" data-bn="রিডিউসিং ব্যালেন্স" onclick="setLoanMode('red')">Reducing balance</button>
+          <button id="lmode-flat" data-en="Flat rate" data-bn="ফ্ল্যাট রেট" onclick="setLoanMode('flat')">Flat rate</button>
+        </div>
+        <div class="field"><label data-en="Amount financed (BDT)" data-bn="অর্থায়নের পরিমাণ (টাকা)">Amount financed (BDT)</label><input type="number" id="lAmt" value="500000" min="0" oninput="calcLoan()"></div>
+        <div class="field"><label data-en="Yearly profit rate" data-bn="বার্ষিক প্রফিট রেট">Yearly profit rate</label><input type="range" id="lRate" min="4" max="30" value="12" step="0.5" oninput="calcLoan()"><span class="rangeval" id="lvRate">12%</span></div>
+        <div class="field" style="margin-bottom:0"><label data-en="Tenure (years)" data-bn="মেয়াদ (বছর)">Tenure (years)</label><input type="range" id="lYears" min="1" max="25" value="5" oninput="calcLoan()"><span class="rangeval" id="lvYears">5</span></div>
+        <p class="toolnote" data-en="A flat rate looks smaller but costs much more — it charges on the full amount the whole time. Reducing balance is usually fairer. Compare halal financing before you sign." data-bn="ফ্ল্যাট রেট ছোট দেখায়, কিন্তু খরচ অনেক বেশি — পুরো সময় পুরো অঙ্কের উপর হিসাব হয়। রিডিউসিং ব্যালেন্স সাধারণত বেশি ন্যায্য। সই করার আগে শরিয়াহসম্মত অর্থায়ন তুলনা করুন।">A flat rate looks smaller but costs much more — it charges on the full amount the whole time. Reducing balance is usually fairer. Compare halal financing before you sign.</p>
+      </div>
+      <div class="result">
+        <span class="eyebrow" data-en="Monthly payment" data-bn="মাসিক কিস্তি">Monthly payment</span>
+        <div class="bignum grad" id="lEmi">৳ 0</div>
+        <div class="split-rows" style="margin-top:18px">
+          <div class="split-row"><span class="name" data-en="Total you'll pay back" data-bn="মোট ফেরত দেবেন">Total you'll pay back</span><span class="amt" id="lTotal">৳ 0</span></div>
+          <div class="split-row"><span class="name" data-en="Extra — the true cost" data-bn="অতিরিক্ত — আসল খরচ">Extra — the true cost</span><span class="amt grad" id="lExtra">৳ 0</span></div>
+        </div>
+        <div class="chartbox"><svg id="loanChart" viewBox="0 0 200 200" class="donut"></svg></div>
+      </div>
+    </div>
+
+    <!-- ===== RENT VS BUY ===== -->
+    <div class="tool" id="tool-rentbuy">
+      <div class="panel">
+        <div class="field"><label data-en="Flat price (BDT)" data-bn="ফ্ল্যাটের দাম (টাকা)">Flat price (BDT)</label><input type="number" id="rbPrice" value="8000000" min="0" oninput="calcRentBuy()"></div>
+        <div class="field"><label data-en="Down payment" data-bn="ডাউন পেমেন্ট">Down payment</label><input type="range" id="rbDown" min="10" max="60" value="30" oninput="calcRentBuy()"><span class="rangeval" id="rbvDown">30%</span></div>
+        <div class="field"><label data-en="Financing profit rate" data-bn="অর্থায়নের প্রফিট রেট">Financing profit rate</label><input type="range" id="rbRate" min="6" max="18" value="11" step="0.5" oninput="calcRentBuy()"><span class="rangeval" id="rbvRate">11%</span></div>
+        <div class="field"><label data-en="Loan tenure (years)" data-bn="ঋণের মেয়াদ (বছর)">Loan tenure (years)</label><input type="range" id="rbTenure" min="5" max="25" value="15" oninput="calcRentBuy()"><span class="rangeval" id="rbvTenure">15</span></div>
+        <div class="field"><label data-en="Comparable monthly rent (BDT)" data-bn="তুলনাযোগ্য মাসিক ভাড়া (টাকা)">Comparable monthly rent (BDT)</label><input type="number" id="rbRent" value="25000" min="0" oninput="calcRentBuy()"></div>
+        <div class="field"><label data-en="Years you'll actually stay" data-bn="আসলে কত বছর থাকবেন">Years you'll actually stay</label><input type="range" id="rbStay" min="1" max="30" value="10" oninput="calcRentBuy()"><span class="rangeval" id="rbvStay">10</span></div>
+        <div class="field" style="margin-bottom:0"><label data-en="Assumed yearly flat appreciation" data-bn="ধরে নেওয়া বার্ষিক দাম বৃদ্ধি">Assumed yearly flat appreciation</label><input type="range" id="rbApp" min="0" max="12" value="5" step="0.5" oninput="calcRentBuy()"><span class="rangeval" id="rbvApp">5%</span></div>
+        <p class="toolnote" data-en="Rough planning model. Assumes rent rises ~6%/year, ignores transfer fees, maintenance and registration. The point isn't a verdict — it's seeing the real numbers behind 'rent is wasted money'." data-bn="মোটামুটি একটা মডেল। ধরা হয়েছে ভাড়া বছরে ~৬% বাড়ে, ট্রান্সফার ফি, মেইনটেন্যান্স ও রেজিস্ট্রেশন বাদ। উদ্দেশ্য রায় দেওয়া নয় — 'ভাড়া মানেই টাকা নষ্ট' কথাটার পেছনের আসল সংখ্যা দেখা।">Rough planning model. Assumes rent rises ~6%/year, ignores transfer fees, maintenance and registration. The point isn't a verdict — it's seeing the real numbers behind 'rent is wasted money'.</p>
+      </div>
+      <div class="result">
+        <span class="eyebrow" data-en="Over your stay" data-bn="থাকার পুরো সময়ে">Over your stay</span>
+        <div class="bignum grad" id="rbVerdict">—</div>
+        <p class="sub" id="rbVerdictSub" data-dyn="1"></p>
+        <div class="split-rows" style="margin-top:18px">
+          <div class="split-row"><span class="name" data-en="True cost of buying" data-bn="কেনার আসল খরচ">True cost of buying</span><span class="amt" id="rbBuy">৳ 0</span></div>
+          <div class="split-row"><span class="name" data-en="True cost of renting" data-bn="ভাড়ার আসল খরচ">True cost of renting</span><span class="amt" id="rbRentC">৳ 0</span></div>
+          <div class="split-row"><span class="name" data-en="Equity you'd own" data-bn="যে মালিকানা গড়বে">Equity you'd own</span><span class="amt grad" id="rbEquity">৳ 0</span></div>
+        </div>
+        <div class="chartbox"><svg id="rbChart" viewBox="0 0 320 180" class="barsvg"></svg></div>
+      </div>
+    </div>
+
+    <!-- ===== EMERGENCY FUND ===== -->
+    <div class="tool" id="tool-emergency">
+      <div class="panel">
+        <div class="field"><label data-en="Monthly essential expenses (BDT)" data-bn="মাসিক জরুরি খরচ (টাকা)">Monthly essential expenses (BDT)</label><input type="number" id="eExp" value="30000" min="0" oninput="calcEmergency()"></div>
+        <div class="field"><label data-en="Months of cushion you want" data-bn="কত মাসের কুশন চান">Months of cushion you want</label><input type="range" id="eMonths" min="3" max="12" value="6" oninput="calcEmergency()"><span class="rangeval" id="evMonths">6</span></div>
+        <div class="field"><label data-en="Already saved (BDT)" data-bn="ইতিমধ্যে জমানো (টাকা)">Already saved (BDT)</label><input type="number" id="eSaved" value="40000" min="0" oninput="calcEmergency()"></div>
+        <div class="field" style="margin-bottom:0"><label data-en="You can set aside monthly (BDT)" data-bn="মাসে আলাদা রাখতে পারেন (টাকা)">You can set aside monthly (BDT)</label><input type="number" id="eMonthly" value="8000" min="0" oninput="calcEmergency()"></div>
+        <p class="toolnote" data-en="This is the layer before investing. Keep it somewhere liquid you won't touch — a separate account or a Shariah-compliant liquid fund. Boring on purpose." data-bn="বিনিয়োগের আগের স্তর এটাই। এমন জায়গায় রাখুন যা সহজে তোলা যায় অথচ হাত দেবেন না — আলাদা একটা অ্যাকাউন্ট বা শরিয়াহসম্মত লিকুইড ফান্ড। ইচ্ছে করেই বোরিং।">This is the layer before investing. Keep it somewhere liquid you won't touch — a separate account or a Shariah-compliant liquid fund. Boring on purpose.</p>
+      </div>
+      <div class="result">
+        <span class="eyebrow" data-en="Your target" data-bn="আপনার লক্ষ্য">Your target</span>
+        <div class="bignum grad" id="eTarget">৳ 0</div>
+        <div class="split-rows" style="margin-top:18px">
+          <div class="split-row"><span class="name" data-en="Still to go" data-bn="আরও বাকি">Still to go</span><span class="amt" id="eGap">৳ 0</span></div>
+          <div class="split-row"><span class="name" data-en="Months to get there" data-bn="পৌঁছাতে যত মাস">Months to get there</span><span class="amt grad" id="eWhen">—</span></div>
+        </div>
+        <div class="chartbox"><svg id="emgChart" viewBox="0 0 200 200" class="donut"></svg></div>
+      </div>
+    </div>
+
+    <!-- ===== GOAL TIMELINE ===== -->
+    <div class="tool" id="tool-goal">
+      <div class="panel">
+        <div class="field"><label data-en="Goal amount (BDT)" data-bn="লক্ষ্যের পরিমাণ (টাকা)">Goal amount (BDT)</label><input type="number" id="glTarget" value="1000000" min="0" oninput="calcGoal()"></div>
+        <div class="field"><label data-en="Already have (BDT)" data-bn="এখন আছে (টাকা)">Already have (BDT)</label><input type="number" id="glHave" value="50000" min="0" oninput="calcGoal()"></div>
+        <div class="field"><label data-en="Monthly contribution (BDT)" data-bn="মাসিক জমা (টাকা)">Monthly contribution (BDT)</label><input type="number" id="glMonthly" value="10000" min="0" oninput="calcGoal()"></div>
+        <div class="field" style="margin-bottom:0"><label data-en="Expected yearly growth rate" data-bn="প্রত্যাশিত বার্ষিক গ্রোথ রেট">Expected yearly growth rate</label><input type="range" id="glRate" min="0" max="20" value="8" step="0.5" oninput="calcGoal()"><span class="rangeval" id="glvRate">8%</span></div>
+        <p class="toolnote" data-en="Set the growth rate to 0 to see pure saving with no investing. Growth is an assumption, not a promise — use it to plan, not to bet." data-bn="গ্রোথ রেট ০ দিলে দেখবেন শুধু সঞ্চয়, কোনো বিনিয়োগ ছাড়া। গ্রোথ একটা অনুমান, প্রতিশ্রুতি নয় — পরিকল্পনার জন্য, বাজির জন্য নয়।">Set the growth rate to 0 to see pure saving with no investing. Growth is an assumption, not a promise — use it to plan, not to bet.</p>
+      </div>
+      <div class="result">
+        <span class="eyebrow" data-en="You'll reach it in" data-bn="পৌঁছাবেন">You'll reach it in</span>
+        <div class="bignum grad" id="glWhen">—</div>
+        <div class="split-rows" style="margin-top:18px">
+          <div class="split-row"><span class="name" data-en="You'll contribute" data-bn="আপনি জমাবেন">You'll contribute</span><span class="amt" id="glContrib">৳ 0</span></div>
+          <div class="split-row"><span class="name" data-en="Growth adds" data-bn="গ্রোথ যোগ করবে">Growth adds</span><span class="amt grad" id="glGrowth">৳ 0</span></div>
+        </div>
+        <div class="chartbox"><svg id="goalChart" viewBox="0 0 320 180" class="linesvg"></svg></div>
+      </div>
+    </div>
+
+    <!-- ===== CAR/BIKE TCO ===== -->
+    <div class="tool" id="tool-tco">
+      <div class="panel">
+        <div class="field"><label data-en="Purchase price (BDT)" data-bn="কেনার দাম (টাকা)">Purchase price (BDT)</label><input type="number" id="tPrice" value="200000" min="0" oninput="calcTco()"></div>
+        <div class="field"><label data-en="Years you'll keep it" data-bn="কত বছর রাখবেন">Years you'll keep it</label><input type="range" id="tYears" min="1" max="15" value="5" oninput="calcTco()"><span class="rangeval" id="tvYears">5</span></div>
+        <div class="field"><label data-en="Fuel / charging per month (BDT)" data-bn="মাসিক জ্বালানি / চার্জ (টাকা)">Fuel / charging per month (BDT)</label><input type="number" id="tFuel" value="4000" min="0" oninput="calcTco()"></div>
+        <div class="field"><label data-en="Maintenance per year (BDT)" data-bn="বছরে রক্ষণাবেক্ষণ (টাকা)">Maintenance per year (BDT)</label><input type="number" id="tMaint" value="12000" min="0" oninput="calcTco()"></div>
+        <div class="field"><label data-en="Insurance, tax, reg per year (BDT)" data-bn="বছরে বীমা, ট্যাক্স, রেজি (টাকা)">Insurance, tax, reg per year (BDT)</label><input type="number" id="tIns" value="8000" min="0" oninput="calcTco()"></div>
+        <div class="field" style="margin-bottom:0"><label data-en="Resale value at the end" data-bn="শেষে রিসেল ভ্যালু">Resale value at the end</label><input type="range" id="tResale" min="0" max="90" value="40" oninput="calcTco()"><span class="rangeval" id="tvResale">40%</span></div>
+        <p class="toolnote" data-en="The sticker price is the smallest part. Fuel, upkeep and the value it loses while you own it are the real bill. This shows what it actually costs to keep." data-bn="স্টিকারের দামটাই সবচেয়ে ছোট অংশ। জ্বালানি, রক্ষণাবেক্ষণ আর মালিক থাকা অবস্থায় যে দাম হারায় — সেটাই আসল বিল। রাখতে আসলে কত খরচ, তা এখানে দেখায়।">The sticker price is the smallest part. Fuel, upkeep and the value it loses while you own it are the real bill. This shows what it actually costs to keep.</p>
+      </div>
+      <div class="result">
+        <span class="eyebrow" data-en="True cost to own" data-bn="রাখার আসল খরচ">True cost to own</span>
+        <div class="bignum grad" id="tcoPerMonth">৳ 0</div>
+        <p class="sub" data-en="per month, all in" data-bn="প্রতি মাসে, সব মিলিয়ে">per month, all in</p>
+        <div class="split-rows" style="margin-top:18px">
+          <div class="split-row"><span class="name" data-en="Total over the period" data-bn="পুরো সময়ের মোট">Total over the period</span><span class="amt" id="tcoTotal">৳ 0</span></div>
+          <div class="split-row"><span class="name" data-en="Lost to depreciation" data-bn="অবচয়ে হারানো">Lost to depreciation</span><span class="amt" id="tcoDep">৳ 0</span></div>
+          <div class="split-row"><span class="name" data-en="That's per day" data-bn="দৈনিক হিসাবে">That's per day</span><span class="amt grad" id="tcoPerDay">৳ 0</span></div>
+        </div>
+        <div class="chartbox"><svg id="tcoChart" viewBox="0 0 200 200" class="donut"></svg></div>
+      </div>
+    </div>
+
+    <!-- ===== DEBT SNOWBALL VS AVALANCHE ===== -->
+    <div class="tool" id="tool-debt">
+      <div class="panel">
+        <p class="sub" style="margin:0 0 16px" data-en="List your debts. Avalanche pays the highest-rate one first (saves the most). Snowball clears the smallest one first (best for momentum)." data-bn="আপনার দেনাগুলো লিখুন। অ্যাভ্যালাঞ্চ আগে সবচেয়ে বেশি রেটেরটা শোধ করে (সবচেয়ে সাশ্রয়ী)। স্নোবল আগে সবচেয়ে ছোটটা শেষ করে (গতি ধরে রাখতে ভালো)।">List your debts. Avalanche pays the highest-rate one first (saves the most). Snowball clears the smallest one first (best for momentum).</p>
+        <div id="debtRows"></div>
+        <button class="btn ghost" type="button" style="padding:9px 16px;font-size:13px" onclick="addDebtRow()" data-en="+ Add a debt" data-bn="+ আরেকটি দেনা">+ Add a debt</button>
+        <div class="field" style="margin:20px 0 0"><label data-en="Extra you can pay monthly (BDT)" data-bn="মাসে অতিরিক্ত দিতে পারেন (টাকা)">Extra you can pay monthly (BDT)</label><input type="number" id="dExtra" value="5000" min="0" oninput="calcDebt()"></div>
+        <p class="toolnote" data-en="Rates here are yearly profit/finance rates on what you owe. If a plan never clears, your payments are below the monthly cost of the debt — that's the real alarm." data-bn="এখানে রেট মানে আপনি যা বকেয়া তার উপর বার্ষিক প্রফিট/ফাইন্যান্স রেট। কোনো প্ল্যান যদি কখনো শেষ না হয়, বুঝবেন আপনার কিস্তি দেনার মাসিক খরচের চেয়েও কম — সেটাই আসল বিপদসংকেত।">Rates here are yearly profit/finance rates on what you owe. If a plan never clears, your payments are below the monthly cost of the debt — that's the real alarm.</p>
+      </div>
+      <div class="result">
+        <span class="eyebrow" data-en="Avalanche saves you" data-bn="অ্যাভ্যালাঞ্চ বাঁচায়">Avalanche saves you</span>
+        <div class="bignum grad" id="dSaves">৳ 0</div>
+        <div class="split-rows" style="margin-top:18px">
+          <div class="split-row"><span class="name" data-en="Avalanche — time / extra paid" data-bn="অ্যাভ্যালাঞ্চ — সময় / অতিরিক্ত">Avalanche — time / extra paid</span><span class="amt" id="dAva">—</span></div>
+          <div class="split-row"><span class="name" data-en="Snowball — time / extra paid" data-bn="স্নোবল — সময় / অতিরিক্ত">Snowball — time / extra paid</span><span class="amt" id="dSnow">—</span></div>
+        </div>
+        <div class="chartbox"><svg id="debtChart" viewBox="0 0 320 180" class="linesvg"></svg></div>
+      </div>
+    </div>
+
+    <!-- ===== AI PROMPTS ===== -->
     <div class="tool" id="tool-prompts">
       <div class="promptwrap">
         <p class="promptintro" data-en="Copy-ready prompts I actually use — for money, study, content and career. Unlock the pack with your name and email; copy as many as you like after." data-bn="কপি করার জন্য তৈরি প্রম্পট যেগুলো আমি নিজে ব্যবহার করি — টাকা, পড়াশোনা, কনটেন্ট আর ক্যারিয়ারের জন্য। একটা নাম আর ইমেইল দিয়ে প্যাকটা আনলক করুন; এরপর যত খুশি কপি করুন।">Copy-ready prompts I actually use — for money, study, content and career. Unlock the pack with your name and email; copy as many as you like after.</p>
@@ -907,8 +1052,15 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
    Each gets its own page at  yoursite.com/#r/ID  (shareable link).
    download: host the PDF (GitHub repo), paste its link in `download`.
 ================================================================= */
+/* =================================================================
+   RESOURCE REGISTRY — FALLBACK ONLY.
+   Resources are now added live via your Google Sheet + Drive (see
+   RESOURCES_API above). Once that's connected, this block is ignored
+   and only used if the live fetch ever fails. Safe to leave as-is.
+================================================================= */
 var RESOURCES = {
   driven: {
+    cat: 'workbook',
     series: 'RAFIU · WORKBOOK 001',
     title: {en:'Why Successful People Stay Driven', bn:'সফল মানুষেরা কেন থেমে যায় না'},
     sub: {en:'The 5-part architecture behind unstoppable motivation', bn:'অদম্য মোটিভেশনের পেছনের ৫টি উপাদান'},
@@ -973,27 +1125,66 @@ function applyLang(){
   for(var j=0;j<phs.length;j++){phs[j].setAttribute('placeholder',phs[j].getAttribute('data-'+LANG+'-ph'));}
   document.getElementById('langbtn').textContent=(LANG==='en'?'বাংলা':'EN');
   buildLibrary(); buildPrompts(); buildVideos(); buildLatestCTA(); if(CURRENT_RES)fillDetail(CURRENT_RES);
-  calcSplit();calcGrowth();calcInfl();
+  calcSplit();calcGrowth();calcInfl();calcLoan();calcRentBuy();calcEmergency();calcGoal();calcTco();calcDebt();
 }
 document.getElementById('langbtn').addEventListener('click',function(){LANG=(LANG==='en'?'bn':'en');applyLang();});
 
 /* ---------- resource library + detail ---------- */
 var CURRENT_RES=null;
+/* =================================================================
+   LIVE RESOURCES  —  reads your Google Sheet + Drive via Apps Script.
+   ▼▼▼  PASTE your deployed Apps Script web-app URL between the quotes.
+        (Leave it blank to just use the built-in resource below.)      */
+var RESOURCES_API='https://script.google.com/macros/s/AKfycbxKrzS-BL8se9mE21g9Yf6jjaECZZPGaS1RuGYzLJkerCZF4n-EMzriqIiY-dUyfdE8/exec';
+/* ================================================================= */
+function _normRes(item){
+  function L(v){ if(v&&typeof v==='object') return {en:(v.en||''),bn:(v.bn||v.en||'')}; return {en:(v||''),bn:(v||'')}; }
+  function arr(a){ if(Object.prototype.toString.call(a)==='[object Array]') return a;
+    if(typeof a==='string') return a.split('\n').map(function(s){return s.trim();}).filter(Boolean); return []; }
+  var pts=item.points||{}, en=arr(pts.en), bn=arr(pts.bn); if(!bn.length) bn=en;
+  return {cat:(item.cat||'workbook'),series:(item.series||'RAFIU · RESOURCE'),
+    title:L(item.title),sub:L(item.sub),desc:L(item.desc),blurb:L(item.blurb),
+    points:{en:en,bn:bn},download_en:(item.download_en||item.download||''),download_bn:(item.download_bn||'')};
+}
+function loadResources(){
+  if(!RESOURCES_API) return;
+  fetch(RESOURCES_API).then(function(r){return r.json();}).then(function(d){
+    var list=(d&&d.resources)?d.resources:(Object.prototype.toString.call(d)==='[object Array]'?d:null);
+    if(!list||!list.length) return;
+    var obj={},i;
+    for(i=0;i<list.length;i++){var it=list[i];
+      var k=(it.key||it.slug||'').toString().toLowerCase().replace(/[^a-z0-9-]+/g,'-').replace(/^-+|-+$/g,'');
+      if(!k)k='res'+i; obj[k]=_normRes(it);}
+    RESOURCES=obj;
+    buildLibrary(); buildLatestCTA();
+    var h=(location.hash||'').replace('#','');
+    if(h.indexOf('r/')===0) route();
+  }).catch(function(){});
+}
+
+var RES_CATS=[
+  {key:'workbook', en:'Workbooks', bn:'ওয়ার্কবুক', den:'Print-fill-practice companions to the videos.', dbn:'ভিডিওর সঙ্গী — প্রিন্ট করুন, পূরণ করুন, চর্চা করুন।'},
+  {key:'cheatsheet', en:'Cheat sheets', bn:'চিট শিট', den:"One-page references you'll actually keep.", dbn:'এক পৃষ্ঠার রেফারেন্স — যেগুলো আসলেই কাজে রাখবেন।'},
+  {key:'iba', en:'IBA Prep', bn:'আইবিএ প্রস্তুতি', den:'My roadmap and honest guidance — no pirated books, just what helped.', dbn:'আমার রোডম্যাপ আর সৎ পরামর্শ — কোনো পাইরেটেড বই নয়, যা কাজে দিয়েছে শুধু সেটাই।'}
+];
+function resCardHTML(id,r){
+  return '<a class="rescard" href="#r/'+id+'"><div class="rescover"><span class="eyebrow">'+r.series+'</span><h3>'+r.title[LANG]+'</h3></div>'+
+    '<div class="resmeta"><p>'+r.blurb[LANG]+'</p><span class="tag">'+(LANG==='bn'?'ফ্রি':'Free')+'</span></div></a>';
+}
+function soonCardHTML(){
+  return '<div class="rescard soonc"><div class="rescover"><span class="eyebrow">RAFIU · '+(LANG==='bn'?'শীঘ্রই':'COMING SOON')+'</span><h3>'+(LANG==='bn'?'শিগগিরই যোগ হচ্ছে':'Landing here soon')+'</h3></div>'+
+    '<div class="resmeta"><p>'+(LANG==='bn'?'এই অংশটা এখন সাজানো হচ্ছে — পরের ভিডিওগুলোর সাথে ভরে উঠবে।':'This shelf is being stocked — it fills up as the next videos drop.')+'</p></div></div>';
+}
 function buildLibrary(){
-  var g=document.getElementById('resgrid');g.innerHTML='';
-  for(var id in RESOURCES){
-    var r=RESOURCES[id];
-    var a=document.createElement('a');
-    a.className='rescard';a.href='#r/'+id;
-    a.innerHTML='<div class="rescover"><span class="eyebrow">'+r.series+'</span><h3>'+r.title[LANG]+'</h3></div>'+
-      '<div class="resmeta"><p>'+r.blurb[LANG]+'</p><span class="tag">'+(LANG==='bn'?'ফ্রি':'Free')+'</span></div>';
-    g.appendChild(a);
+  var g=document.getElementById('resgrid'); g.innerHTML=''; var ci,id;
+  for(ci=0;ci<RES_CATS.length;ci++){
+    var cat=RES_CATS[ci];
+    var head='<div class="res-cat-head"><span class="eyebrow">'+(LANG==='bn'?cat.bn:cat.en)+'</span><p>'+(LANG==='bn'?cat.dbn:cat.den)+'</p></div>';
+    var cards='';
+    for(id in RESOURCES){ var r=RESOURCES[id]; if((r.cat||'workbook')===cat.key) cards+=resCardHTML(id,r); }
+    if(!cards) cards=soonCardHTML();
+    g.insertAdjacentHTML('beforeend','<section class="res-cat">'+head+'<div class="res-cards">'+cards+'</div></section>');
   }
-  var soon=document.createElement('div');
-  soon.className='rescard soonc';
-  soon.innerHTML='<div class="rescover"><span class="eyebrow">RAFIU · '+(LANG==='bn'?'শীঘ্রই':'COMING SOON')+'</span><h3>'+(LANG==='bn'?'পরের ভিডিওর সাথে নতুন রিসোর্স':'New resource with the next video')+'</h3></div>'+
-    '<div class="resmeta"><p>'+(LANG==='bn'?'প্রতিটি নতুন ভিডিওর সাথে এখানে নতুন কিছু যোগ হবে।':'Every new video adds something here.')+'</p></div>';
-  g.appendChild(soon);
 }
 function fillDetail(id){
   var r=RESOURCES[id];if(!r)return;
@@ -1082,19 +1273,48 @@ function tk(n){if(!isFinite(n))n=0;return loc('৳ '+Math.round(n).toLocaleStrin
 /* ================= TOOL CHARTS (pure SVG) ================= */
 function chartColors(){return {needs:'#8B5CF6',wants:'#A78BFA',future:'#34d399',invest:'#6D28D9',profit:'#34d399',line:'#A78BFA'};}
 
+/* ---- chart helpers ---- */
+function niceMax(v){
+  if(!(v>0))return 1;
+  var pow=Math.pow(10,Math.floor(Math.log10(v)));
+  var n=v/pow;
+  var step=n<=1?1:n<=2?2:n<=2.5?2.5:n<=5?5:10;
+  return step*pow;
+}
+function abbrTk(n){
+  n=Math.round(n);
+  var s;
+  if(n>=10000000)      s=(n/10000000).toFixed(n>=100000000?0:1).replace(/\.0$/,'')+'Cr';
+  else if(n>=100000)   s=(n/100000).toFixed(n>=1000000?0:1).replace(/\.0$/,'')+'L';
+  else if(n>=1000)     s=Math.round(n/1000)+'k';
+  else                 s=String(n);
+  return loc('৳'+s);
+}
+function topRoundRect(x,y,w,h,r){
+  r=Math.max(0,Math.min(r,h,w/2));
+  return 'M'+x+' '+(y+h)+' V'+(y+r)+' Q'+x+' '+y+' '+(x+r)+' '+y+
+         ' H'+(x+w-r)+' Q'+(x+w)+' '+y+' '+(x+w)+' '+(y+r)+' V'+(y+h)+' Z';
+}
+
 /* Donut for budget split */
 function drawSplitChart(pn,pw,pf){
   var el=document.getElementById('splitChart'); if(!el) return;
   var c=chartColors();
   var segs=[{v:pn,col:c.needs},{v:pw,col:c.wants},{v:pf,col:c.future}];
-  var R=70, CX=100, CY=100, C=2*Math.PI*R;
-  var off=0, html='<circle cx="100" cy="100" r="70" fill="none" stroke="rgba(167,139,250,.1)" stroke-width="26"/>';
+  var R=70, CX=100, CY=100, C=2*Math.PI*R, gap=4;
+  var defs='<defs>'+
+    '<filter id="dGlow" x="-25%" y="-25%" width="150%" height="150%">'+
+      '<feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#8B5CF6" flood-opacity="0.45"/>'+
+    '</filter></defs>';
+  var off=0, html=defs+'<circle cx="100" cy="100" r="70" fill="none" stroke="rgba(167,139,250,.09)" stroke-width="26"/>';
   for(var i=0;i<segs.length;i++){
     var frac=Math.max(0,segs[i].v)/100;
-    var len=frac*C;
+    var full=frac*C;
+    var len=Math.max(0,full-gap);
     html+='<circle class="seg" cx="100" cy="100" r="70" fill="none" stroke="'+segs[i].col+'" stroke-width="26" '+
+          'stroke-linecap="round" filter="url(#dGlow)" '+
           'stroke-dasharray="'+len+' '+(C-len)+'" stroke-dashoffset="'+(-off)+'" transform="rotate(-90 100 100)"/>';
-    off+=len;
+    off+=full;
   }
   var futureLbl=(LANG==='bn'?'ভবিষ্যৎ':'Future');
   html+='<text x="100" y="94" text-anchor="middle" font-family="Sora,serif" font-weight="700" font-size="26" fill="#EDE9F5">'+loc(pf+"%")+'</text>';
@@ -1107,33 +1327,48 @@ function drawSplitChart(pn,pw,pf){
                '<span><i style="background:'+c.future+'"></i>'+futureLbl+'</span>';
 }
 
-/* Grouped bars for growth: invested (base) + profit (stacked) across time checkpoints */
+/* Stacked bars for growth: invested (base) + profit (top) across time checkpoints */
 function drawGrowthChart(invested,total,years,rate,monthly,lump,mode){
   var el=document.getElementById('growthChart'); if(!el) return;
   var c=chartColors();
-  var W=320,H=160,padL=8,padR=8,padT=10,padB=22;
+  var W=320,H=180,padL=42,padR=12,padT=14,padB=30;
+  var plotH=H-padT-padB, plotW=W-padL-padR, baseY=H-padB;
   var steps=Math.min(years,6); if(steps<1)steps=1;
   var pts=[];
   for(var k=1;k<=steps;k++){
     var yr=Math.round(years*k/steps);
     var inv,tot;
-    if(mode==='sip'){var i=rate/100/12,n=yr*12;inv=monthly*n;tot=(i===0)?inv:monthly*((Math.pow(1+i,n)-1)/i)*(1+i);}
+    if(mode==='sip'){var ii=rate/100/12,nn=yr*12;inv=monthly*nn;tot=(ii===0)?inv:monthly*((Math.pow(1+ii,nn)-1)/ii)*(1+ii);}
     else{inv=lump;tot=lump*Math.pow(1+rate/100,yr);}
     pts.push({yr:yr,inv:inv,tot:tot});
   }
-  var maxV=Math.max.apply(null,pts.map(function(p){return p.tot;}))||1;
-  var bw=(W-padL-padR)/pts.length*0.55;
-  var gap=(W-padL-padR)/pts.length;
-  var html='';
+  var maxV=niceMax(Math.max.apply(null,pts.map(function(p){return p.tot;}))||1);
+  function Y(v){return baseY-(v/maxV)*plotH;}
+
+  var defs='<defs>'+
+    '<linearGradient id="gInv" x1="0" y1="0" x2="0" y2="1">'+
+      '<stop offset="0" stop-color="#7C3AED"/><stop offset="1" stop-color="#4C1D95"/></linearGradient>'+
+    '<linearGradient id="gPro" x1="0" y1="0" x2="0" y2="1">'+
+      '<stop offset="0" stop-color="#4ade80"/><stop offset="1" stop-color="#22a567"/></linearGradient>'+
+    '</defs>';
+  var html=defs;
+
+  /* gridlines + Y labels */
+  for(var g=0;g<=4;g++){
+    var gy=padT+plotH*g/4, gv=maxV*(1-g/4);
+    html+='<line x1="'+padL+'" y1="'+gy.toFixed(1)+'" x2="'+(W-padR)+'" y2="'+gy.toFixed(1)+'" stroke="rgba(167,139,250,'+(g===4?'.28':'.10')+')" stroke-width="1"/>';
+    html+='<text x="'+(padL-6)+'" y="'+(gy+3).toFixed(1)+'" text-anchor="end" font-family="Space Grotesk,sans-serif" font-size="8.5" fill="#7E7690">'+abbrTk(gv)+'</text>';
+  }
+
+  var gapX=plotW/pts.length, bw=Math.min(34,gapX*0.5);
   for(var j=0;j<pts.length;j++){
-    var x=padL+gap*j+(gap-bw)/2;
-    var invH=(pts[j].inv/maxV)*(H-padT-padB);
-    var totH=(pts[j].tot/maxV)*(H-padT-padB);
-    var proH=totH-invH;
-    var invY=H-padB-invH, proY=H-padB-totH;
-    html+='<rect class="bar-seg" x="'+x+'" y="'+proY+'" width="'+bw+'" height="'+proH+'" fill="'+c.profit+'" rx="2"/>';
-    html+='<rect class="bar-seg" x="'+x+'" y="'+invY+'" width="'+bw+'" height="'+invH+'" fill="'+c.invest+'" rx="2"/>';
-    html+='<text x="'+(x+bw/2)+'" y="'+(H-7)+'" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="9" fill="#9A92AC">'+loc(pts[j].yr+'y')+'</text>';
+    var x=padL+gapX*j+(gapX-bw)/2;
+    var invY=Y(pts[j].inv), totY=Y(pts[j].tot);
+    var invH=baseY-invY, proH=invY-totY;
+    html+='<rect class="bar-seg" x="'+x.toFixed(1)+'" y="'+invY.toFixed(1)+'" width="'+bw.toFixed(1)+'" height="'+Math.max(0,invH).toFixed(1)+'" fill="url(#gInv)"/>';
+    if(proH>0.5) html+='<path class="bar-seg" d="'+topRoundRect(x,totY,bw,proH,3)+'" fill="url(#gPro)"/>';
+    else html+='<rect class="bar-seg" x="'+x.toFixed(1)+'" y="'+totY.toFixed(1)+'" width="'+bw.toFixed(1)+'" height="'+Math.max(0,proH).toFixed(1)+'" fill="url(#gPro)"/>';
+    html+='<text x="'+(x+bw/2).toFixed(1)+'" y="'+(H-9)+'" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="9" fill="#9A92AC">'+loc(pts[j].yr)+(LANG==='bn'?'বছর':'y')+'</text>';
   }
   el.innerHTML=html;
   var lg=document.getElementById('growthLegend');
@@ -1146,24 +1381,357 @@ function drawGrowthChart(invested,total,years,rate,monthly,lump,mode){
 function drawInflChart(amt,rate,years){
   var el=document.getElementById('inflChart'); if(!el) return;
   var c=chartColors();
-  var W=320,H=160,padL=10,padR=10,padT=12,padB=22;
-  var n=Math.min(years,20); if(n<1)n=1;
+  var W=320,H=180,padL=42,padR=14,padT=14,padB=30;
+  var plotH=H-padT-padB, plotW=W-padL-padR, baseY=H-padB;
+  var n=Math.min(years,40); if(n<1)n=1;
   var pts=[];
   for(var y=0;y<=n;y++){pts.push(amt/Math.pow(1+rate/100,y));}
-  var maxV=amt, minV=pts[pts.length-1];
-  function X(i){return padL+(W-padL-padR)*i/n;}
-  function Y(v){return padT+(H-padT-padB)*(1-(v-0)/(maxV-0));}
-  var d='', area='';
-  for(var i=0;i<pts.length;i++){
-    d+=(i===0?'M':'L')+X(i).toFixed(1)+' '+Y(pts[i]).toFixed(1)+' ';
+  var maxV=niceMax(amt);
+  function X(i){return padL+plotW*i/n;}
+  function Y(v){return padT+plotH*(1-v/maxV);}
+
+  var defs='<defs>'+
+    '<linearGradient id="iArea" x1="0" y1="0" x2="0" y2="1">'+
+      '<stop offset="0" stop-color="#A78BFA" stop-opacity="0.40"/>'+
+      '<stop offset="1" stop-color="#A78BFA" stop-opacity="0"/></linearGradient>'+
+    '<linearGradient id="iStroke" x1="0" y1="0" x2="1" y2="0">'+
+      '<stop offset="0" stop-color="#C4B5FD"/><stop offset="1" stop-color="#7C3AED"/></linearGradient>'+
+    '</defs>';
+  var html=defs;
+
+  /* gridlines + Y labels */
+  for(var g=0;g<=4;g++){
+    var gy=padT+plotH*g/4, gv=maxV*(1-g/4);
+    html+='<line x1="'+padL+'" y1="'+gy.toFixed(1)+'" x2="'+(W-padR)+'" y2="'+gy.toFixed(1)+'" stroke="rgba(167,139,250,'+(g===4?'.28':'.10')+')" stroke-width="1"/>';
+    html+='<text x="'+(padL-6)+'" y="'+(gy+3).toFixed(1)+'" text-anchor="end" font-family="Space Grotesk,sans-serif" font-size="8.5" fill="#7E7690">'+abbrTk(gv)+'</text>';
   }
-  area='M'+X(0)+' '+(H-padB)+' '+d.replace('M','L')+'L'+X(n)+' '+(H-padB)+' Z';
-  var html='<path class="line-area" d="'+area+'" fill="'+c.line+'"/>'+
-           '<path class="line-path" d="'+d+'" stroke="'+c.line+'"/>'+
-           '<circle cx="'+X(n)+'" cy="'+Y(pts[n])+'" r="4" fill="'+c.line+'"/>'+
-           '<text x="'+padL+'" y="'+(H-7)+'" font-family="Space Grotesk,sans-serif" font-size="9" fill="#9A92AC">'+(LANG==='bn'?'এখন':'now')+'</text>'+
-           '<text x="'+(W-padR)+'" y="'+(H-7)+'" text-anchor="end" font-family="Space Grotesk,sans-serif" font-size="9" fill="#9A92AC">'+loc(n+'y')+'</text>';
+
+  var d='',area='';
+  for(var i=0;i<pts.length;i++){ d+=(i===0?'M':'L')+X(i).toFixed(1)+' '+Y(pts[i]).toFixed(1)+' '; }
+  area='M'+X(0).toFixed(1)+' '+baseY+' '+d.replace('M','L')+'L'+X(n).toFixed(1)+' '+baseY+' Z';
+
+  html+='<path class="line-area" d="'+area+'" fill="url(#iArea)"/>'+
+        '<path class="line-path" d="'+d+'" stroke="url(#iStroke)"/>';
+
+  /* X ticks: now, mid, end */
+  var ticks=[{i:0,l:(LANG==='bn'?'এখন':'now')},{i:Math.round(n/2),l:loc(Math.round(n/2))+(LANG==='bn'?'বছর':'y')},{i:n,l:loc(n)+(LANG==='bn'?'বছর':'y')}];
+  for(var t=0;t<ticks.length;t++){
+    var tx=X(ticks[t].i), anc=t===0?'start':(t===ticks.length-1?'end':'middle');
+    html+='<text x="'+tx.toFixed(1)+'" y="'+(H-9)+'" text-anchor="'+anc+'" font-family="Space Grotesk,sans-serif" font-size="9" fill="#9A92AC">'+ticks[t].l+'</text>';
+  }
+  /* start + end markers */
+  html+='<circle cx="'+X(0).toFixed(1)+'" cy="'+Y(pts[0]).toFixed(1)+'" r="3" fill="#C4B5FD"/>';
+  html+='<circle cx="'+X(n).toFixed(1)+'" cy="'+Y(pts[n]).toFixed(1)+'" r="5" fill="#7C3AED" stroke="#0B0612" stroke-width="1.5"/>';
+  html+='<circle cx="'+X(n).toFixed(1)+'" cy="'+Y(pts[n]).toFixed(1)+'" r="9" fill="#7C3AED" opacity="0.18"/>';
   el.innerHTML=html;
+}
+
+/* ================= NEW TOOL CHARTS ================= */
+function gv(id){var e=document.getElementById(id);return e?(parseFloat(e.value)||0):0;}
+function setRV(id,txt){var e=document.getElementById(id);if(e)e.textContent=txt;}
+function fmtDur(m){
+  if(m>=1200) return (LANG==='bn'?'৫০+ বছর':'50+ yrs');
+  var y=Math.floor(m/12), mo=Math.round(m%12), s='';
+  if(y) s+=loc(y)+(LANG==='bn'?' বছর':'y');
+  if(mo) s+=(s?' ':'')+loc(mo)+(LANG==='bn'?' মাস':'mo');
+  return s||(loc(0)+(LANG==='bn'?' মাস':'mo'));
+}
+function sampleArr(a,N){
+  if(a.length<=N) return a.slice();
+  var out=[],step=(a.length-1)/(N-1),i;
+  for(i=0;i<N;i++) out.push(a[Math.round(i*step)]);
+  return out;
+}
+
+/* generic donut */
+function drawDonut(svgId,legendId,segs,centerBig,centerSmall){
+  var el=document.getElementById(svgId); if(!el) return;
+  var C=2*Math.PI*70,total=0,i;
+  for(i=0;i<segs.length;i++) total+=Math.max(0,segs[i].v);
+  if(total<=0) total=1;
+  var gap=segs.length>1?4:0;
+  var fid='dG_'+svgId;
+  var html='<defs><filter id="'+fid+'" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#8B5CF6" flood-opacity="0.4"/></filter></defs>'+
+           '<circle cx="100" cy="100" r="70" fill="none" stroke="rgba(167,139,250,.09)" stroke-width="26"/>';
+  var off=0;
+  for(i=0;i<segs.length;i++){
+    var frac=Math.max(0,segs[i].v)/total, full=frac*C, len=Math.max(0,full-gap);
+    html+='<circle class="seg" cx="100" cy="100" r="70" fill="none" stroke="'+segs[i].col+'" stroke-width="26" stroke-linecap="round" filter="url(#'+fid+')" '+
+          'stroke-dasharray="'+len+' '+(C-len)+'" stroke-dashoffset="'+(-off)+'" transform="rotate(-90 100 100)"/>';
+    off+=full;
+  }
+  html+='<text x="100" y="96" text-anchor="middle" font-family="Sora,serif" font-weight="700" font-size="22" fill="#EDE9F5">'+centerBig+'</text>';
+  html+='<text x="100" y="116" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="10" fill="#9A92AC" letter-spacing="1">'+centerSmall+'</text>';
+  el.innerHTML=html;
+  if(legendId){
+    var lg=document.getElementById(legendId);
+    if(!lg){lg=document.createElement('div');lg.id=legendId;lg.className='chart-legend';el.parentNode.appendChild(lg);}
+    var lh='';for(i=0;i<segs.length;i++){ if(segs[i].label) lh+='<span><i style="background:'+segs[i].col+'"></i>'+segs[i].label+'</span>'; }
+    lg.innerHTML=lh;
+  }
+}
+
+/* generic vertical bars with Y axis */
+function drawBars(svgId,legendId,bars){
+  var el=document.getElementById(svgId); if(!el) return;
+  var W=320,H=180,padL=46,padR=12,padT=16,padB=30;
+  var plotH=H-padT-padB, plotW=W-padL-padR, baseY=H-padB,i,g;
+  var maxV=niceMax(Math.max.apply(null,bars.map(function(b){return b.value;}))||1);
+  function Y(val){return baseY-(val/maxV)*plotH;}
+  var html='';
+  for(g=0;g<=4;g++){
+    var gy=padT+plotH*g/4, gval=maxV*(1-g/4);
+    html+='<line x1="'+padL+'" y1="'+gy.toFixed(1)+'" x2="'+(W-padR)+'" y2="'+gy.toFixed(1)+'" stroke="rgba(167,139,250,'+(g===4?'.28':'.10')+')" stroke-width="1"/>';
+    html+='<text x="'+(padL-6)+'" y="'+(gy+3).toFixed(1)+'" text-anchor="end" font-family="Space Grotesk,sans-serif" font-size="8.5" fill="#7E7690">'+abbrTk(gval)+'</text>';
+  }
+  var gapX=plotW/bars.length, bw=Math.min(74,gapX*0.46);
+  for(i=0;i<bars.length;i++){
+    var x=padL+gapX*i+(gapX-bw)/2, by=Y(bars[i].value), bh=baseY-by;
+    html+='<path d="'+topRoundRect(x,by,bw,Math.max(0,bh),4)+'" fill="'+bars[i].col+'"/>';
+    html+='<text x="'+(x+bw/2).toFixed(1)+'" y="'+(by-6).toFixed(1)+'" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="9.5" font-weight="600" fill="#C4B5FD">'+abbrTk(bars[i].value)+'</text>';
+    html+='<text x="'+(x+bw/2).toFixed(1)+'" y="'+(H-9)+'" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="9.5" fill="#9A92AC">'+bars[i].label+'</text>';
+  }
+  el.innerHTML=html;
+  if(legendId){var lg=document.getElementById(legendId);if(lg)lg.innerHTML='';}
+}
+
+/* goal: climbing balance line + goal marker */
+function drawGoalChart(yearBal,goal){
+  var el=document.getElementById('goalChart'); if(!el) return;
+  var W=320,H=180,padL=46,padR=14,padT=16,padB=30;
+  var plotH=H-padT-padB, plotW=W-padL-padR, baseY=H-padB;
+  var n=yearBal.length-1; if(n<1){yearBal=[yearBal[0]||0,yearBal[0]||0];n=1;}
+  var maxV=niceMax(Math.max(goal, yearBal[yearBal.length-1])||1);
+  function X(i){return padL+plotW*i/n;}
+  function Y(val){return padT+plotH*(1-val/maxV);}
+  var html='<defs><linearGradient id="glArea" x1="0" y1="0" x2="0" y2="1">'+
+    '<stop offset="0" stop-color="#34d399" stop-opacity="0.38"/><stop offset="1" stop-color="#34d399" stop-opacity="0"/></linearGradient>'+
+    '<linearGradient id="glStroke" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#A78BFA"/><stop offset="1" stop-color="#34d399"/></linearGradient></defs>',g;
+  for(g=0;g<=4;g++){
+    var gy=padT+plotH*g/4, gval=maxV*(1-g/4);
+    html+='<line x1="'+padL+'" y1="'+gy.toFixed(1)+'" x2="'+(W-padR)+'" y2="'+gy.toFixed(1)+'" stroke="rgba(167,139,250,'+(g===4?'.28':'.10')+')" stroke-width="1"/>';
+    html+='<text x="'+(padL-6)+'" y="'+(gy+3).toFixed(1)+'" text-anchor="end" font-family="Space Grotesk,sans-serif" font-size="8.5" fill="#7E7690">'+abbrTk(gval)+'</text>';
+  }
+  var d='',i;
+  for(i=0;i<yearBal.length;i++) d+=(i===0?'M':'L')+X(i).toFixed(1)+' '+Y(yearBal[i]).toFixed(1)+' ';
+  var area='M'+X(0).toFixed(1)+' '+baseY+' '+d.replace('M','L')+'L'+X(n).toFixed(1)+' '+baseY+' Z';
+  html+='<path class="line-area" d="'+area+'" fill="url(#glArea)"/><path class="line-path" d="'+d+'" stroke="url(#glStroke)"/>';
+  /* goal line */
+  var gyl=Y(goal);
+  html+='<line x1="'+padL+'" y1="'+gyl.toFixed(1)+'" x2="'+(W-padR)+'" y2="'+gyl.toFixed(1)+'" stroke="#34d399" stroke-width="1" stroke-dasharray="4 4" opacity="0.7"/>';
+  html+='<text x="'+(W-padR)+'" y="'+(gyl-5).toFixed(1)+'" text-anchor="end" font-family="Space Grotesk,sans-serif" font-size="9" fill="#34d399">'+(LANG==='bn'?'লক্ষ্য':'goal')+'</text>';
+  /* x labels */
+  var ticks=[{i:0,l:(LANG==='bn'?'এখন':'now')},{i:Math.round(n/2),l:loc(Math.round(n/2))+(LANG==='bn'?'বছর':'y')},{i:n,l:loc(n)+(LANG==='bn'?'বছর':'y')}];
+  for(i=0;i<ticks.length;i++){var anc=i===0?'start':(i===ticks.length-1?'end':'middle');
+    html+='<text x="'+X(ticks[i].i).toFixed(1)+'" y="'+(H-9)+'" text-anchor="'+anc+'" font-family="Space Grotesk,sans-serif" font-size="9" fill="#9A92AC">'+ticks[i].l+'</text>';}
+  html+='<circle cx="'+X(n).toFixed(1)+'" cy="'+Y(yearBal[yearBal.length-1]).toFixed(1)+'" r="5" fill="#34d399" stroke="#0B0612" stroke-width="1.5"/>';
+  el.innerHTML=html;
+}
+
+/* debt: two declining lines */
+function drawDebtChart(ava,snow){
+  var el=document.getElementById('debtChart'); if(!el) return;
+  if(!ava||!ava.length){el.innerHTML='';return;}
+  var W=320,H=180,padL=46,padR=14,padT=16,padB=30;
+  var plotH=H-padT-padB, plotW=W-padL-padR, baseY=H-padB;
+  var aS=sampleArr(ava,48), sS=sampleArr(snow,48);
+  var months=Math.max(ava.length,snow.length)-1; if(months<1)months=1;
+  var maxV=niceMax(Math.max(ava[0]||0,snow[0]||0)||1),g,i;
+  function X(arr,i){return padL+plotW*i/(arr.length-1);}
+  function Y(val){return padT+plotH*(1-val/maxV);}
+  var html='',gv2;
+  for(g=0;g<=4;g++){
+    var gy=padT+plotH*g/4; gv2=maxV*(1-g/4);
+    html+='<line x1="'+padL+'" y1="'+gy.toFixed(1)+'" x2="'+(W-padR)+'" y2="'+gy.toFixed(1)+'" stroke="rgba(167,139,250,'+(g===4?'.28':'.10')+')" stroke-width="1"/>';
+    html+='<text x="'+(padL-6)+'" y="'+(gy+3).toFixed(1)+'" text-anchor="end" font-family="Space Grotesk,sans-serif" font-size="8.5" fill="#7E7690">'+abbrTk(gv2)+'</text>';
+  }
+  function path(arr,col){var d='';for(i=0;i<arr.length;i++)d+=(i===0?'M':'L')+X(arr,i).toFixed(1)+' '+Y(arr[i]).toFixed(1)+' ';
+    return '<path class="line-path" d="'+d+'" stroke="'+col+'"/>';}
+  html+=path(sS,'#A78BFA');   /* snowball */
+  html+=path(aS,'#34d399');   /* avalanche on top */
+  /* x labels */
+  var mid=Math.round(months/2);
+  html+='<text x="'+padL+'" y="'+(H-9)+'" font-family="Space Grotesk,sans-serif" font-size="9" fill="#9A92AC">'+loc(0)+'</text>';
+  html+='<text x="'+(padL+plotW/2).toFixed(1)+'" y="'+(H-9)+'" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="9" fill="#9A92AC">'+fmtDur(mid)+'</text>';
+  html+='<text x="'+(W-padR)+'" y="'+(H-9)+'" text-anchor="end" font-family="Space Grotesk,sans-serif" font-size="9" fill="#9A92AC">'+fmtDur(months)+'</text>';
+  el.innerHTML=html;
+  var lg=document.getElementById('debtLegend');
+  if(!lg){lg=document.createElement('div');lg.id='debtLegend';lg.className='chart-legend';el.parentNode.appendChild(lg);}
+  lg.innerHTML='<span><i style="background:#34d399"></i>'+(LANG==='bn'?'অ্যাভ্যালাঞ্চ':'Avalanche')+'</span><span><i style="background:#A78BFA"></i>'+(LANG==='bn'?'স্নোবল':'Snowball')+'</span>';
+}
+
+/* ---------- LOAN ---------- */
+var LOANMODE='red';
+function setLoanMode(m){LOANMODE=m;
+  document.getElementById('lmode-red').classList.toggle('on',m==='red');
+  document.getElementById('lmode-flat').classList.toggle('on',m==='flat');
+  calcLoan();
+}
+function calcLoan(){
+  if(!document.getElementById('lAmt'))return;
+  var P=gv('lAmt'),rate=gv('lRate'),yrs=gv('lYears');
+  setRV('lvRate',loc(rate+'%'));setRV('lvYears',loc(yrs));
+  var emi,total,extra,i=rate/100/12,n=yrs*12;
+  if(LOANMODE==='flat'){extra=P*rate/100*yrs;total=P+extra;emi=n>0?total/n:0;}
+  else{emi=(i===0)?(n>0?P/n:0):P*i*Math.pow(1+i,n)/(Math.pow(1+i,n)-1);total=emi*n;extra=total-P;}
+  document.getElementById('lEmi').textContent=tk(emi);
+  document.getElementById('lTotal').textContent=tk(total);
+  document.getElementById('lExtra').textContent=tk(extra);
+  var pct=P>0?Math.round(extra/P*100):0;
+  drawDonut('loanChart','loanLegend',
+    [{v:P,col:'#6D28D9',label:(LANG==='bn'?'মূল':'Borrowed')},{v:extra,col:'#C4B5FD',label:(LANG==='bn'?'অতিরিক্ত':'Extra')}],
+    loc('+'+pct+'%'),(LANG==='bn'?'অতিরিক্ত':'EXTRA'));
+}
+
+/* ---------- RENT VS BUY ---------- */
+function calcRentBuy(){
+  if(!document.getElementById('rbPrice'))return;
+  var price=gv('rbPrice'),down=gv('rbDown'),rate=gv('rbRate'),tenure=gv('rbTenure'),rent=gv('rbRent'),stay=gv('rbStay'),app=gv('rbApp');
+  setRV('rbvDown',loc(down+'%'));setRV('rbvRate',loc(rate+'%'));setRV('rbvTenure',loc(tenure));setRV('rbvStay',loc(stay));setRV('rbvApp',loc(app+'%'));
+  var loan=price*(1-down/100),i=rate/100/12,m=tenure*12;
+  var emi=(i===0)?(m>0?loan/m:0):loan*i*Math.pow(1+i,m)/(Math.pow(1+i,m)-1);
+  var paidM=Math.min(stay,tenure)*12, emisPaid=emi*paidM, downAmt=price*down/100;
+  var bal;
+  if(paidM>=m) bal=0;
+  else if(i===0) bal=loan-(loan/m)*paidM;
+  else bal=loan*(Math.pow(1+i,m)-Math.pow(1+i,paidM))/(Math.pow(1+i,m)-1);
+  var flatVal=price*Math.pow(1+app/100,stay), equity=flatVal-bal;
+  var buyCash=downAmt+emisPaid, buyTrue=buyCash-equity;
+  var rentTotal=0,yy; for(yy=0;yy<stay;yy++) rentTotal+=rent*12*Math.pow(1.06,yy);
+  document.getElementById('rbBuy').textContent=tk(buyTrue);
+  document.getElementById('rbRentC').textContent=tk(rentTotal);
+  document.getElementById('rbEquity').textContent=tk(equity);
+  var diff=rentTotal-buyTrue, big=Math.max(Math.abs(buyTrue),rentTotal,1), wash=Math.abs(diff)/big<0.03;
+  var vEl=document.getElementById('rbVerdict'), sEl=document.getElementById('rbVerdictSub');
+  if(wash){ vEl.textContent=(LANG==='bn'?'প্রায় সমান':'About even'); }
+  else if(diff>0){ vEl.textContent=(LANG==='bn'?'কেনা সাশ্রয়ী':'Buying wins'); }
+  else { vEl.textContent=(LANG==='bn'?'ভাড়া সাশ্রয়ী':'Renting wins'); }
+  sEl.textContent=(wash? (LANG==='bn'?'এই ধারণাগুলোতে পার্থক্য সামান্য':'the gap is small on these assumptions')
+    : (LANG==='bn'? ('পার্থক্য '+tk(Math.abs(diff))+' · '+loc(stay)+' বছরে') : ('by '+tk(Math.abs(diff))+' over '+loc(stay)+' years')));
+  drawBars('rbChart',null,[
+    {label:(LANG==='bn'?'কেনা':'Buy'),value:Math.max(0,buyCash),col:'#7C3AED'},
+    {label:(LANG==='bn'?'ভাড়া':'Rent'),value:Math.max(0,rentTotal),col:'#A78BFA'}
+  ]);
+}
+
+/* ---------- EMERGENCY FUND ---------- */
+function calcEmergency(){
+  if(!document.getElementById('eExp'))return;
+  var exp=gv('eExp'),months=gv('eMonths'),saved=gv('eSaved'),monthly=gv('eMonthly');
+  setRV('evMonths',loc(months));
+  var target=exp*months, gap=Math.max(0,target-saved), pct=target>0?Math.min(100,Math.round(saved/target*100)):0;
+  document.getElementById('eTarget').textContent=tk(target);
+  document.getElementById('eGap').textContent=tk(gap);
+  var when;
+  if(gap<=0) when=(LANG==='bn'?'হয়ে গেছে ✓':'Done ✓');
+  else if(monthly>0) when=fmtDur(Math.ceil(gap/monthly));
+  else when=(LANG==='bn'?'মাসিক জমা দিন':'set a monthly amount');
+  document.getElementById('eWhen').textContent=when;
+  drawDonut('emgChart',null,
+    [{v:Math.min(saved,target),col:'#34d399'},{v:gap,col:'#3A2E55'}],
+    loc(pct+'%'),(LANG==='bn'?'পূর্ণ':'FUNDED'));
+}
+
+/* ---------- GOAL TIMELINE ---------- */
+function calcGoal(){
+  if(!document.getElementById('glTarget'))return;
+  var target=gv('glTarget'),have=gv('glHave'),monthly=gv('glMonthly'),rate=gv('glRate');
+  setRV('glvRate',loc(rate+'%'));
+  var i=rate/100/12,bal=have,m=0,cap=600;
+  while(bal<target && m<cap){bal=bal*(1+i)+monthly;m++;}
+  var reached=bal>=target;
+  /* yearly series for chart */
+  var yb=[have],b2=have,mm=0,yrs=reached?Math.ceil(m/12):50;
+  for(var yloop=1;yloop<=yrs;yloop++){for(var c=0;c<12;c++){b2=b2*(1+i)+monthly;}yb.push(b2);}
+  var contribTotal=have+monthly*m, growthAdded=Math.max(0,bal-(have+monthly*m));
+  document.getElementById('glWhen').textContent=reached?fmtDur(m):(LANG==='bn'?'৫০+ বছরেও না':'not within 50 yrs');
+  document.getElementById('glContrib').textContent=tk(contribTotal);
+  document.getElementById('glGrowth').textContent=tk(growthAdded);
+  drawGoalChart(yb,target);
+}
+
+/* ---------- CAR/BIKE TCO ---------- */
+function calcTco(){
+  if(!document.getElementById('tPrice'))return;
+  var price=gv('tPrice'),years=gv('tYears'),fuel=gv('tFuel'),maint=gv('tMaint'),ins=gv('tIns'),resale=gv('tResale');
+  setRV('tvYears',loc(years));setRV('tvResale',loc(resale+'%'));
+  var dep=price*(1-resale/100),fuelT=fuel*12*years,maintT=maint*years,insT=ins*years;
+  var total=dep+fuelT+maintT+insT, perMonth=years>0?total/(years*12):0, perDay=years>0?total/(years*365):0;
+  document.getElementById('tcoPerMonth').textContent=tk(perMonth);
+  document.getElementById('tcoTotal').textContent=tk(total);
+  document.getElementById('tcoDep').textContent=tk(dep);
+  document.getElementById('tcoPerDay').textContent=tk(perDay);
+  drawDonut('tcoChart','tcoLegend',[
+    {v:dep,col:'#6D28D9',label:(LANG==='bn'?'অবচয়':'Depreciation')},
+    {v:fuelT,col:'#8B5CF6',label:(LANG==='bn'?'জ্বালানি':'Fuel')},
+    {v:maintT,col:'#A78BFA',label:(LANG==='bn'?'রক্ষণাবেক্ষণ':'Maintenance')},
+    {v:insT,col:'#34d399',label:(LANG==='bn'?'বীমা/ট্যাক্স':'Insurance')}
+  ],abbrTk(total),(LANG==='bn'?'মোট':'TOTAL'));
+}
+
+/* ---------- DEBT SNOWBALL VS AVALANCHE ---------- */
+function debtRowHTML(bal,rate,min){
+  return '<div class="debt-row" style="display:grid;grid-template-columns:1.25fr 1fr 1fr auto;gap:8px;margin-bottom:8px;align-items:center">'+
+    '<input class="d-bal" type="number" min="0" placeholder="'+(LANG==='bn'?'বকেয়া ৳':'Balance ৳')+'" value="'+(bal||'')+'" oninput="calcDebt()">'+
+    '<input class="d-rate" type="number" min="0" placeholder="'+(LANG==='bn'?'রেট %/বছর':'Rate %/yr')+'" value="'+(rate||'')+'" oninput="calcDebt()">'+
+    '<input class="d-min" type="number" min="0" placeholder="'+(LANG==='bn'?'ন্যূনতম/মাস':'Min/mo ৳')+'" value="'+(min||'')+'" oninput="calcDebt()">'+
+    '<button class="d-rm" type="button" onclick="this.parentNode.remove();calcDebt()" aria-label="remove">✕</button></div>';
+}
+function addDebtRow(bal,rate,min){
+  var box=document.getElementById('debtRows'); if(!box)return;
+  box.insertAdjacentHTML('beforeend',debtRowHTML(bal,rate,min));
+}
+function readDebts(){
+  var rows=document.querySelectorAll('#debtRows .debt-row'),list=[],i;
+  for(i=0;i<rows.length;i++){
+    var bal=parseFloat(rows[i].querySelector('.d-bal').value)||0;
+    var rate=parseFloat(rows[i].querySelector('.d-rate').value)||0;
+    var min=parseFloat(rows[i].querySelector('.d-min').value)||0;
+    if(bal>0) list.push({bal:bal,rate:rate,min:min});
+  }
+  return list;
+}
+function simDebt(list,strategy,extra){
+  var d=list.map(function(x){return {bal:x.bal,mr:x.rate/100/12,min:x.min};});
+  var baseMins=0,k; for(k=0;k<d.length;k++) baseMins+=d[k].min;
+  var month=0,profit=0,cap=1200,series=[],i;
+  while(month<cap){
+    var rem=0; for(k=0;k<d.length;k++) rem+=d[k].bal;
+    series.push(rem);
+    if(rem<=1) break;
+    for(k=0;k<d.length;k++){ if(d[k].bal>0){var p=d[k].bal*d[k].mr; d[k].bal+=p; profit+=p;} }
+    var budget=extra+baseMins;
+    for(k=0;k<d.length;k++){ if(d[k].bal>0){var pm=Math.min(d[k].min,d[k].bal); d[k].bal-=pm; budget-=pm;} }
+    if(budget<0) budget=0;
+    var guard=0;
+    while(budget>0.5 && guard<d.length+2){
+      var ti=-1;
+      for(k=0;k<d.length;k++){ if(d[k].bal>0.5){ if(ti<0)ti=k;
+        else if(strategy==='snow'){ if(d[k].bal<d[ti].bal) ti=k; }
+        else { if(d[k].mr>d[ti].mr) ti=k; } } }
+      if(ti<0) break;
+      var pay=Math.min(budget,d[ti].bal); d[ti].bal-=pay; budget-=pay; guard++;
+    }
+    month++;
+  }
+  return {months:month,profit:profit,series:series,cleared:month<cap};
+}
+function calcDebt(){
+  if(!document.getElementById('dExtra'))return;
+  var list=readDebts(),extra=gv('dExtra');
+  var aEl=document.getElementById('dAva'),sEl=document.getElementById('dSnow'),bigEl=document.getElementById('dSaves');
+  if(!list.length){
+    aEl.textContent='—';sEl.textContent='—';bigEl.textContent=tk(0);
+    var de=document.getElementById('debtChart');if(de)de.innerHTML='';
+    var dl=document.getElementById('debtLegend');if(dl)dl.innerHTML='';
+    return;
+  }
+  var ava=simDebt(list,'ava',extra), snow=simDebt(list,'snow',extra);
+  function rowTxt(r){ return r.cleared? (fmtDur(r.months)+' · '+tk(r.profit)) : (LANG==='bn'?'শোধ হয় না':"won't clear"); }
+  aEl.textContent=rowTxt(ava); sEl.textContent=rowTxt(snow);
+  var saves=(ava.cleared&&snow.cleared)?Math.max(0,snow.profit-ava.profit):0;
+  bigEl.textContent=tk(saves);
+  drawDebtChart(ava.series,snow.series);
 }
 
 function calcSplit(){
@@ -1221,7 +1789,7 @@ function calcGrowth(){
 }
 
 /* ---------- tool tabs ---------- */
-var TOOLIDS=['split','growth','inflation','prompts'];
+var TOOLIDS=['split','growth','inflation','loan','rentbuy','emergency','goal','tco','debt','prompts'];
 function showTool(t){
   for(var i=0;i<TOOLIDS.length;i++){
     var on=TOOLIDS[i]===t;
@@ -1407,7 +1975,7 @@ function fallback(t){var a=document.createElement('textarea');a.value=t;a.style.
 function buildLatestCTA(){
   var keys=Object.keys(RESOURCES);
   if(!keys.length) return;
-  var id=keys[keys.length-1];          /* most recently added entry */
+  var id=keys[0];                      /* newest entry (live list is newest-first) */
   var r=RESOURCES[id];
   var t=document.getElementById('ctaTitle'); if(!t) return;
   t.textContent=r.title[LANG];
@@ -1450,7 +2018,8 @@ window.addEventListener('scroll',function(){var h=document.documentElement;var m
 function pulse(el){el.classList.remove('pulse');void el.offsetWidth;el.classList.add('pulse');}
 
 /* ---------- init ---------- */
-buildLibrary();buildPrompts();buildVideos();buildLatestCTA();route();applyLang();calcInfl();
+addDebtRow(150000,24,4000);addDebtRow(60000,16,2000);
+buildLibrary();buildPrompts();buildVideos();buildLatestCTA();route();applyLang();calcInfl();calcLoan();calcRentBuy();calcEmergency();calcGoal();calcTco();calcDebt();loadResources();
 </script>
 </body>
 </html>
