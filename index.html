@@ -269,7 +269,7 @@ html[data-lang="bn"] .now-item .fillin{font-family:'Noto Sans Bengali',sans-seri
 .section,.hero,.res-head,.about-grid,.contact-grid{position:relative}
 
 /* ============ v6 : precision motion layer ============ */
-.ghost,.gnum{display:none}
+/* (removed stray .ghost/.gnum display:none — it was hiding .btn.ghost buttons) */
 /* notes: clean tracked caps instead of handwriting */
 .note{font-family:var(--ui);font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:#A78BFA;transform:none}
 html[data-lang="bn"] .note{font-family:var(--ui);font-size:12.5px;letter-spacing:.05em;text-transform:none;transform:none}
@@ -1135,7 +1135,7 @@ var CURRENT_RES=null;
    LIVE RESOURCES  —  reads your Google Sheet + Drive via Apps Script.
    ▼▼▼  PASTE your deployed Apps Script web-app URL between the quotes.
         (Leave it blank to just use the built-in resource below.)      */
-var RESOURCES_API='https://script.google.com/macros/s/AKfycbxKrzS-BL8se9mE21g9Yf6jjaECZZPGaS1RuGYzLJkerCZF4n-EMzriqIiY-dUyfdE8/exec';
+var RESOURCES_API='';
 /* ================================================================= */
 function _normRes(item){
   function L(v){ if(v&&typeof v==='object') return {en:(v.en||''),bn:(v.bn||v.en||'')}; return {en:(v||''),bn:(v||'')}; }
