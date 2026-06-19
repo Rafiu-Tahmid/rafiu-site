@@ -496,6 +496,64 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
 .barsvg,.linesvg{overflow:visible}
 .debt-row input{font-family:var(--body);font-size:14px;color:var(--ink);padding:10px 11px;border:1px solid var(--line);border-radius:10px;background:rgba(11,6,18,.6);width:100%}
 .debt-row .d-rm{padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);cursor:pointer;font-size:13px}
+
+/* ===== START HERE (course tracks) ===== */
+.sh-intro{padding-top:46px;max-width:760px}
+.sh-tracks{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px;margin-top:36px}
+.sh-track{display:flex;flex-direction:column;gap:10px;text-align:left;border:1px solid var(--line);border-radius:18px;padding:24px 22px;background:var(--card);cursor:pointer;transition:background .15s,transform .15s,border-color .15s}
+.sh-track:hover{background:var(--card-hover);transform:translateY(-3px);border-color:rgba(167,139,250,.32)}
+.sh-track .num{font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.18em;color:var(--violet-bright)}
+.sh-track h3{font-family:var(--display);font-weight:800;font-size:21px;line-height:1.2}
+.sh-track p{font-size:14px;color:var(--ink-soft);line-height:1.55}
+.sh-track .meta{margin-top:auto;display:flex;align-items:center;gap:10px;font-family:var(--ui);font-size:12px;letter-spacing:.04em;color:var(--ink-soft)}
+.sh-bar{flex:1;height:5px;border-radius:99px;background:rgba(167,139,250,.15);overflow:hidden}
+.sh-bar i{display:block;height:100%;background:linear-gradient(90deg,#8B5CF6,#C4B5FD);width:0}
+.sh-backrow{padding-top:30px}
+/* prominent "All tracks" back button */
+.sh-back{display:inline-flex;align-items:center;gap:8px;font-family:var(--ui);font-size:13px;font-weight:700;letter-spacing:.03em;color:var(--ink);text-decoration:none;background:rgba(139,92,246,.14);border:1px solid var(--line);border-radius:999px;padding:10px 18px;transition:background .15s,border-color .15s}
+.sh-back:hover{background:rgba(139,92,246,.26);border-color:var(--violet-bright)}
+/* topbar icon button (search) */
+.iconbtn{font-size:15px;line-height:1;border:1px solid var(--line);border-radius:10px;background:rgba(139,92,246,.07);color:var(--ink);padding:9px 12px;cursor:pointer;transition:background .15s}
+.iconbtn:hover{background:rgba(139,92,246,.16)}
+/* thumbs-up */
+.thumb{display:inline-flex;align-items:center;gap:6px;font-family:var(--ui);font-size:13px;font-weight:600;color:var(--ink-soft);background:transparent;border:1px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer;transition:all .15s}
+.thumb:hover{color:var(--ink);border-color:var(--violet-bright);background:rgba(139,92,246,.1)}
+.thumb.voted{color:var(--violet-bright);border-color:transparent;background:rgba(139,92,246,.18);cursor:default}
+.pfoot{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:auto}
+.rd-thumb{margin:18px 0 4px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.rd-thumb .lbl{font-family:var(--ui);font-size:13px;color:var(--ink-soft)}
+/* global search overlay */
+.searchwrap{position:fixed;inset:0;z-index:120;background:rgba(7,4,12,.72);backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;padding:12vh 20px 20px}
+.searchwrap.show{display:flex}
+.searchbox{width:100%;max-width:640px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 30px 80px rgba(0,0,0,.5);position:relative}
+.searchbox input{width:100%;font-family:var(--body);font-size:17px;color:var(--ink);padding:14px 46px 14px 16px;border:1px solid var(--line);border-radius:12px;background:rgba(11,6,18,.6)}
+.searchbox input::placeholder{color:#6E6584}
+#searchClose{position:absolute;top:27px;right:29px;border:none;background:transparent;color:var(--ink-soft);font-size:18px;cursor:pointer}
+.searchresults{margin-top:12px;max-height:52vh;overflow:auto;display:flex;flex-direction:column;gap:6px}
+.sr-item{display:flex;align-items:center;gap:12px;text-align:left;width:100%;background:transparent;border:1px solid transparent;border-radius:10px;padding:11px 12px;cursor:pointer;transition:background .12s}
+.sr-item:hover{background:rgba(139,92,246,.12)}
+.sr-type{font-family:var(--ui);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--violet-bright);border:1px solid var(--line);border-radius:999px;padding:3px 9px;flex:none}
+.sr-name{font-size:15px;color:var(--ink)}
+.sr-empty{font-size:14px;color:var(--ink-soft);padding:14px 6px}
+.sh-trackhead{margin:8px 0 6px}
+.sh-vids{display:flex;flex-direction:column;gap:16px;margin-top:26px}
+.sh-vid{border:1px solid var(--line);border-radius:18px;background:var(--card);overflow:hidden;transition:border-color .15s}
+.sh-vid.done{border-color:rgba(52,211,153,.4)}
+.sh-vrow{display:flex;gap:16px;align-items:flex-start;padding:20px 22px}
+.sh-vnum{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:15px;background:rgba(139,92,246,.12);border:1px solid var(--line);color:var(--ink)}
+.sh-vid.done .sh-vnum{background:rgba(52,211,153,.15);border-color:rgba(52,211,153,.45);color:#34d399}
+.sh-vbody{flex:1;min-width:0}
+.sh-vbody h4{font-family:var(--display);font-weight:700;font-size:18px;line-height:1.3}
+.sh-vbody p{font-size:14px;color:var(--ink-soft);line-height:1.55;margin-top:4px}
+.sh-vacts{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.sh-btn{display:inline-flex;align-items:center;gap:7px;font-family:var(--ui);font-weight:600;font-size:13px;letter-spacing:.02em;border-radius:11px;padding:10px 16px;cursor:pointer;border:1px solid var(--line);background:rgba(139,92,246,.07);color:var(--ink);text-decoration:none;transition:background .15s}
+.sh-btn:hover{background:rgba(139,92,246,.16)}
+.sh-btn.play{background:linear-gradient(135deg,#7C3AED,#5B21B6);border:none;color:#fff}
+.sh-btn.dn{color:#34d399}
+.sh-embed{position:relative;width:100%;aspect-ratio:16/9;background:#000;display:none;border-top:1px solid var(--line)}
+.sh-embed.open{display:block}
+.sh-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.sh-empty{border:1px dashed var(--line);border-radius:16px;padding:26px;color:var(--ink-soft);font-size:14px;text-align:center;margin-top:24px}
 </style>
 </head>
 <body>
@@ -514,6 +572,7 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
       <a href="#contact" data-route="contact" data-en="Contact" data-bn="যোগাযোগ">Contact</a>
     </nav>
     <div style="display:flex;gap:10px;align-items:center">
+      <button class="iconbtn" id="searchbtn" aria-label="Search">🔍</button>
       <button class="langbtn" id="langbtn" aria-label="Switch language">বাংলা</button>
       <button class="menubtn" id="menubtn" aria-label="Menu">☰</button>
     </div>
@@ -530,8 +589,9 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
     <h1 class="display" data-en='Figuring out how to build a <span class="grad">better life</span> — out loud.' data-bn='একটা <span class="grad">ভালো জীবন</span> কীভাবে গড়ে — সেটাই খুঁজে বের করার চেষ্টা করছি।' data-html="1">Figuring out how to build a <span class="grad">better life</span> — out loud.</h1>
     <p class="lede" data-en="I make videos about money, productivity, AI, motivation and where work is heading — the stuff I always wished someone in Bangladesh was talking about properly. I am not an expert handing down answers. I am a student figuring it out, and writing down what I learn so it might save you some time." data-bn="আমি ভিডিও বানাই টাকা, প্রোডাক্টিভিটি, এআই, মোটিভেশন আর কাজের ভবিষ্যৎ নিয়ে — যেসব নিয়ে বাংলাদেশে কেউ ঠিকঠাক কথা বলুক, সেটা আমি সবসময় চাইতাম। আমি কোনো বিশেষজ্ঞ নই যে উপর থেকে উত্তর দেব। আমি একজন ছাত্র, নিজেই বুঝে উঠছি — আর যা শিখি লিখে রাখছি, যাতে আপনার কিছুটা সময় বাঁচে।">I make videos about money, productivity, AI, motivation and where work is heading — the stuff I always wished someone in Bangladesh was talking about properly. I am not an expert handing down answers. I am a student figuring it out, and writing down what I learn so it might save you some time.</p>
     <div style="display:flex;gap:14px;flex-wrap:wrap">
-      <a class="btn" href="#resources" data-en="Free resources" data-bn="ফ্রি রিসোর্স">Free resources</a>
-      <a class="btn" href="#tools" data-en="Free tools" data-bn="ফ্রি টুলস">Free tools</a>
+      <a class="btn" href="#start" data-en="▶ Start here" data-bn="▶ শুরু করুন এখান থেকে">▶ Start here</a>
+      <a class="btn ghost" href="#resources" data-en="Free resources" data-bn="ফ্রি রিসোর্স">Free resources</a>
+      <a class="btn ghost" href="#tools" data-en="Free tools" data-bn="ফ্রি টুলস">Free tools</a>
       <a class="btn ghost" href="#about" data-en="My story" data-bn="আমার গল্প">My story</a>
     </div>
     <div class="scrollhint" aria-hidden="true">↓</div>
@@ -640,6 +700,27 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
   </div>
 </section>
 
+<!-- ================= START HERE ================= -->
+<section class="page" id="page-starthere">
+  <div class="wrap">
+    <div class="sh-intro">
+      <span class="eyebrow" data-en="Start Here · Free" data-bn="শুরু করুন · ফ্রি">Start Here &middot; Free</span>
+      <h1 class="display" data-en='New here? <span class="grad">Start with video one.</span>' data-bn='নতুন এসেছেন? <span class="grad">প্রথম ভিডিও দিয়ে শুরু করুন।</span>' data-html="1">New here? <span class="grad">Start with video one.</span></h1>
+      <p class="lede" data-en="My videos come out in no fixed order, so it is hard to know where to begin. Pick a track below and go from the first video down — each one builds on the last, with its workbook beside it. It remembers where you stopped on this device." data-bn="আমার ভিডিওগুলো কোনো নির্দিষ্ট ক্রমে আসে না, তাই কোথা থেকে শুরু করবেন বোঝা কঠিন। নিচ থেকে একটা ট্র্যাক বেছে প্রথম ভিডিও থেকে নিচের দিকে এগোন — প্রতিটি আগেরটার উপর গড়ে ওঠে, সঙ্গে থাকে ওয়ার্কবুক। এই ডিভাইসে কোথায় থেমেছিলেন, মনে রাখে।">My videos come out in no fixed order, so it is hard to know where to begin. Pick a track below and go from the first video down &mdash; each one builds on the last, with its workbook beside it. It remembers where you stopped on this device.</p>
+    </div>
+    <div id="sh-trackgrid" class="sh-tracks"><!-- tracks injected by JS --></div>
+    <div id="sh-trackview" style="display:none">
+      <div class="sh-backrow"><a class="sh-back" href="#start" onclick="closeTrack();return false;" data-en="← All tracks" data-bn="← সব ট্র্যাক">← All tracks</a></div>
+      <div class="sh-trackhead">
+        <span class="eyebrow" id="sh-vt-eyebrow"></span>
+        <h2 class="display" id="sh-vt-title" style="font-size:clamp(26px,3.2vw,34px);margin-top:8px"></h2>
+        <p class="lede" id="sh-vt-desc" style="margin-top:8px"></p>
+      </div>
+      <div id="sh-vids" class="sh-vids"></div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= ABOUT ================= -->
 <section class="page" id="page-about">
   <div class="wrap about-grid">
@@ -703,6 +784,7 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
         <h2 id="rd-sub">—</h2>
         <p id="rd-desc">—</p>
         <ul class="rlist" id="rd-list"></ul>
+        <div class="rd-thumb" id="rd-thumb"></div>
         <div class="gate">
           <h3 data-en="Unlock the free download" data-bn="ফ্রি ডাউনলোড আনলক করুন">Unlock the free download</h3>
           <p data-en="Just your name and an email — and the download opens up. You'll also hear when new resources release. No spam, one-click unsubscribe." data-bn="শুধু একটা নাম আর ইমেইল — ডাউনলোড খুলে যাবে। নতুন রিসোর্স এলেও জানতে পারবেন। স্প্যাম নেই, এক ক্লিকে আনসাবস্ক্রাইব।">Just your name and an email — and the download opens up. You'll also hear when new resources release. No spam, one-click unsubscribe.</p>
@@ -738,6 +820,7 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
       <button id="tab-growth" data-en="Growth Calculator" data-bn="গ্রোথ ক্যালকুলেটর" onclick="showTool('growth')">Growth Calculator</button>
       <button id="tab-inflation" data-en="Inflation Check" data-bn="মূল্যস্ফীতি চেক" onclick="showTool('inflation')">Inflation Check</button>
       <button id="tab-loan" data-en="Loan Cost" data-bn="ঋণের খরচ" onclick="showTool('loan')">Loan Cost</button>
+      <button id="tab-halal" data-en="Halal Financing" data-bn="হালাল অর্থায়ন" onclick="showTool('halal')">Halal Financing</button>
       <button id="tab-rentbuy" data-en="Rent vs Buy" data-bn="ভাড়া না কেনা" onclick="showTool('rentbuy')">Rent vs Buy</button>
       <button id="tab-emergency" data-en="Emergency Fund" data-bn="ইমার্জেন্সি ফান্ড" onclick="showTool('emergency')">Emergency Fund</button>
       <button id="tab-goal" data-en="Goal Timeline" data-bn="লক্ষ্যের সময়" onclick="showTool('goal')">Goal Timeline</button>
@@ -858,6 +941,30 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
           <div class="split-row"><span class="name" data-en="Extra — the true cost" data-bn="অতিরিক্ত — আসল খরচ">Extra — the true cost</span><span class="amt grad" id="lExtra">৳ 0</span></div>
         </div>
         <div class="chartbox"><svg id="loanChart" viewBox="0 0 200 200" class="donut"></svg></div>
+      </div>
+    </div>
+
+    <!-- ===== HALAL FINANCING ===== -->
+    <div class="tool" id="tool-halal">
+      <div class="panel">
+        <div class="modes" role="tablist">
+          <button class="on" id="hc-mur" data-en="Murabaha" data-bn="মুরাবাহা" onclick="setHalalContract('mur')">Murabaha</button>
+          <button id="hc-ija" data-en="Ijarah" data-bn="ইজারা" onclick="setHalalContract('ija')">Ijarah</button>
+          <button id="hc-dim" data-en="Diminishing Musharaka" data-bn="ডিমিনিশিং মুশারাকা" onclick="setHalalContract('dim')">Diminishing Musharaka</button>
+        </div>
+        <div class="field"><label id="hLblAmt" data-en="Asset cost (BDT)" data-bn="পণ্যের দাম (টাকা)">Asset cost (BDT)</label><input type="number" id="hAmt" value="500000" min="0" oninput="calcHalal()"></div>
+        <div class="field"><label id="hLblRate" data-en="Yearly profit margin" data-bn="বার্ষিক প্রফিট মার্জিন">Yearly profit margin</label><input type="range" id="hRate" min="4" max="30" value="12" step="0.5" oninput="calcHalal()"><span class="rangeval" id="hvRate">12%</span></div>
+        <div class="field" style="margin-bottom:0"><label id="hLblYears" data-en="Term (years)" data-bn="মেয়াদ (বছর)">Term (years)</label><input type="range" id="hYears" min="1" max="25" value="5" oninput="calcHalal()"><span class="rangeval" id="hvYears">5</span></div>
+        <p class="toolnote" id="hNote" data-en="Murabaha: the bank buys the asset, then sells it to you at cost plus a profit margin both sides agree on upfront. The price is fixed and doesn't grow if you fall behind. Good for a car, bike, or appliances." data-bn="মুরাবাহা: ব্যাংক পণ্যটি কিনে আপনার কাছে দাম + আগে থেকে দুই পক্ষের ঠিক করা প্রফিট মার্জিনে বিক্রি করে। দাম স্থির — পিছিয়ে পড়লেও বাড়ে না। গাড়ি, বাইক বা যন্ত্রপাতির জন্য ভালো।">Murabaha: the bank buys the asset, then sells it to you at cost plus a profit margin both sides agree on upfront. The price is fixed and doesn't grow if you fall behind. Good for a car, bike, or appliances.</p>
+      </div>
+      <div class="result">
+        <span class="eyebrow" id="hEyebrow" data-en="Monthly payment" data-bn="মাসিক কিস্তি">Monthly payment</span>
+        <div class="bignum grad" id="hEmi">৳ 0</div>
+        <div class="split-rows" style="margin-top:18px">
+          <div class="split-row"><span class="name" id="hRow1" data-en="Total price you'll pay" data-bn="মোট যত দাম দেবেন">Total price you'll pay</span><span class="amt" id="hTotal">৳ 0</span></div>
+          <div class="split-row"><span class="name" id="hRow2" data-en="Bank's profit (disclosed)" data-bn="ব্যাংকের প্রফিট (প্রকাশিত)">Bank's profit (disclosed)</span><span class="amt grad" id="hExtra">৳ 0</span></div>
+        </div>
+        <div class="chartbox"><svg id="halalChart" viewBox="0 0 200 200" class="donut"></svg></div>
       </div>
     </div>
 
@@ -1019,6 +1126,13 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
 </main>
 
 
+<div id="searchOverlay" class="searchwrap" aria-hidden="true">
+  <div class="searchbox">
+    <input id="searchInput" type="text" placeholder="Search tools, resources, prompts, videos…" data-en-ph="Search tools, resources, prompts, videos…" data-bn-ph="টুল, রিসোর্স, প্রম্পট, ভিডিও খুঁজুন…" aria-label="Search">
+    <button id="searchClose" aria-label="Close">✕</button>
+    <div id="searchResults" class="searchresults"></div>
+  </div>
+</div>
 <div id="gateModal" class="modalwrap" aria-hidden="true">
   <div class="modalbox">
     <button class="modalx" id="modalx" aria-label="Close">×</button>
@@ -1125,9 +1239,10 @@ function applyLang(){
   for(var j=0;j<phs.length;j++){phs[j].setAttribute('placeholder',phs[j].getAttribute('data-'+LANG+'-ph'));}
   document.getElementById('langbtn').textContent=(LANG==='en'?'বাংলা':'EN');
   buildLibrary(); buildPrompts(); buildVideos(); buildLatestCTA(); if(CURRENT_RES)fillDetail(CURRENT_RES);
-  calcSplit();calcGrowth();calcInfl();calcLoan();calcRentBuy();calcEmergency();calcGoal();calcTco();calcDebt();
+  calcSplit();calcGrowth();calcInfl();calcLoan();calcHalal();calcRentBuy();calcEmergency();calcGoal();calcTco();calcDebt();
+  buildTracks(); if(SH_CURRENT) openTrack(SH_CURRENT,true);
 }
-document.getElementById('langbtn').addEventListener('click',function(){LANG=(LANG==='en'?'bn':'en');applyLang();});
+document.getElementById('langbtn').addEventListener('click',function(){LANG=(LANG==='en'?'bn':'en');try{localStorage.setItem('rafiu_lang',LANG);}catch(e){}applyLang();});
 
 /* ---------- resource library + detail ---------- */
 var CURRENT_RES=null;
@@ -1157,6 +1272,7 @@ function loadResources(){
       if(!k)k='res'+i; obj[k]=_normRes(it);}
     RESOURCES=obj;
     buildLibrary(); buildLatestCTA();
+    if(d&&d.videos&&d.videos.length){COURSE_VIDEOS=d.videos;buildTracks();if(SH_CURRENT)openTrack(SH_CURRENT,true);}
     var h=(location.hash||'').replace('#','');
     if(h.indexOf('r/')===0) route();
   }).catch(function(){});
@@ -1204,6 +1320,8 @@ function fillDetail(id){
   else { bnBtn.style.display='none'; }  /* hide Bangla button if no Bangla file given */
   document.getElementById('g-dl').classList.remove('show');
   document.getElementById('gateform').style.display='';
+  var th=document.getElementById('rd-thumb');
+  if(th) th.innerHTML='<span class="lbl">'+(LANG==='bn'?'এটা সহায়ক ছিল?':'Was this helpful?')+'</span>'+thumbBtn('resource',id);
 }
 document.getElementById('gateform').addEventListener('submit',function(e){
   e.preventDefault();
@@ -1222,7 +1340,7 @@ document.getElementById('gateform').addEventListener('submit',function(e){
 });
 
 /* ---------- routing ---------- */
-var PAGES=['home','about','resources','tools','contact','rdetail'];
+var PAGES=['home','starthere','about','resources','tools','contact','rdetail'];
 document.addEventListener('click',function(e){
   var t=e.target,a=null;
   while(t&&t!==document){if(t.tagName==='A'&&t.getAttribute('href')&&t.getAttribute('href').charAt(0)==='#'){a=t;break;}t=t.parentNode;}
@@ -1234,7 +1352,9 @@ document.addEventListener('click',function(e){
 });
 function route(){renderRoute((location.hash||'#home').replace('#',''));}
 function renderRoute(h){
+  try{localStorage.setItem('rafiu_route',h);}catch(e){}   /* remember last route */
   var page=h;
+  if(h==='start'){page='starthere';}
   if(h.indexOf('r/')===0){
     var id=h.slice(2);
     if(RESOURCES[id]){page='rdetail';fillDetail(id);}else{page='resources';}
@@ -1583,6 +1703,166 @@ function calcLoan(){
     loc('+'+pct+'%'),(LANG==='bn'?'অতিরিক্ত':'EXTRA'));
 }
 
+
+/* =================================================================
+   START HERE — course tracks (driven by the Videos tab in your Sheet).
+   Edit videos in the Sheet, not here. COURSE_VIDEOS below is only a
+   day-one fallback shown until the live Videos feed loads.
+   ================================================================= */
+var SH_TRACKS=[
+  {key:'crash',      en:'Crash Course',     bn:'ক্র্যাশ কোর্স',         den:'Five videos, one from each pillar — the fastest way in. Start here, then pick a track below.', dbn:'পাঁচটি ভিডিও, প্রতিটি পিলার থেকে একটি — শুরুর সবচেয়ে দ্রুত পথ। এখান থেকে শুরু করুন, তারপর নিচের ট্র্যাক বেছে নিন।', match:[]},
+  {key:'finance',    en:'Personal Finance', bn:'পার্সোনাল ফাইন্যান্স', den:'Handle money with calm and a plan.',        dbn:'টাকা সামলান ঠান্ডা মাথায়, পরিকল্পনা নিয়ে।',     match:['personal finance','finance','money','পার্সোনাল ফাইন্যান্স','ফাইন্যান্স']},
+  {key:'productivity',en:'Productivity',     bn:'প্রোডাক্টিভিটি',       den:'Get more done without burning out.',         dbn:'পুড়ে না গিয়ে বেশি কাজ করুন।',                   match:['productivity','প্রোডাক্টিভিটি']},
+  {key:'ai',         en:'AI Tools',         bn:'এআই টুলস',             den:'Use AI as a real, daily helper.',            dbn:'এআইকে রোজকার সত্যিকারের সহকারী বানান।',          match:['ai tools','ai','এআই টুলস','এআই']},
+  {key:'motivation', en:'Motivation',       bn:'মোটিভেশন',             den:'The mindset to keep going.',                 dbn:'এগিয়ে যাওয়ার মানসিকতা।',                        match:['motivation','mindset','মোটিভেশন']},
+  {key:'future',     en:'Future of Work',   bn:'কাজের ভবিষ্যৎ',        den:'Where work is heading, and how to be ready.', dbn:'কাজ কোন দিকে যাচ্ছে, আর কীভাবে প্রস্তুত হবেন।',  match:['future of work','future','work','কাজের ভবিষ্যৎ']}
+];
+var COURSE_VIDEOS=[
+  {id:'8qQXWrSLQaA', track:['Personal Finance'], order:1, title:{en:'Start with the basics', bn:'শুরু করুন বেসিক দিয়ে'}, blurb:{en:'A first, calm look at handling your money.', bn:'টাকা সামলানোর শান্ত প্রথম ধাপ।'}, resource:''},
+  {id:'9U_uoMl0bHE', track:['Personal Finance','Motivation'], order:2, title:{en:'Why this actually matters', bn:'কেন এটা আসলেই জরুরি'}, blurb:{en:'The mindset behind every money decision.', bn:'প্রতিটি টাকার সিদ্ধান্তের পেছনের মানসিকতা।'}, resource:''}
+];
+function _normVid(v,idx){
+  function L(x){ if(x&&typeof x==='object') return {en:(x.en||''),bn:(x.bn||x.en||'')}; return {en:(x||''),bn:(x||'')}; }
+  var tr=v.track; if(typeof tr==='string') tr=tr.split(',').map(function(s){return s.trim();}).filter(Boolean);
+  if(Object.prototype.toString.call(tr)!=='[object Array]') tr=[];
+  var ord=parseFloat(v.order); if(!isFinite(ord)) ord=idx+1;
+  return {id:(v.id||''),track:tr,order:ord,title:L(v.title),blurb:L(v.blurb),resource:(v.resource||'')};
+}
+/* Crash Course = first video from each pillar, in pillar order (deduped) */
+function crashVids(){
+  var out=[],seen={},n;
+  for(n=0;n<SH_TRACKS.length;n++){var c=SH_TRACKS[n]; if(c.key==='crash')continue;
+    var vs=vidsFor(c); if(vs.length){var v=vs[0]; if(!seen[v.id]){seen[v.id]=1;out.push(v);}}
+  }
+  return out;
+}
+function vidsFor(cfg){
+  if(cfg.key==='crash') return crashVids();
+  var out=[],i;
+  for(i=0;i<COURSE_VIDEOS.length;i++){var v=_normVid(COURSE_VIDEOS[i],i);
+    var hit=false;
+    for(var t=0;t<v.track.length;t++){var tn=v.track[t].toLowerCase().trim();
+      if(cfg.match.indexOf(tn)>=0){hit=true;break;}}
+    if(hit) out.push(v);
+  }
+  out.sort(function(a,b){return a.order-b.order;});
+  return out;
+}
+/* ----- watched progress (this device only; degrades silently) ----- */
+var SH_KEY='rafiu_watched_v1';
+function shGet(){try{return JSON.parse(localStorage.getItem(SH_KEY)||'[]')||[];}catch(e){return [];}}
+function shSave(a){try{localStorage.setItem(SH_KEY,JSON.stringify(a));}catch(e){}}
+function isWatched(id){return shGet().indexOf(id)>=0;}
+function toggleWatched(id){var a=shGet();var i=a.indexOf(id);if(i>=0)a.splice(i,1);else a.push(id);shSave(a);buildTracks();if(SH_CURRENT)openTrack(SH_CURRENT,true);}
+/* ----- render track grid ----- */
+function buildTracks(){
+  var g=document.getElementById('sh-trackgrid'); if(!g) return;
+  var html='',n;
+  for(n=0;n<SH_TRACKS.length;n++){var cfg=SH_TRACKS[n];
+    var vids=vidsFor(cfg),total=vids.length,done=0;
+    for(var k=0;k<vids.length;k++) if(isWatched(vids[k].id)) done++;
+    var pct=total?Math.round(done/total*100):0;
+    var meta=total? (loc(done)+' / '+loc(total)+' '+(LANG==='bn'?'দেখা':'watched')) : (LANG==='bn'?'শীঘ্রই':'coming soon');
+    html+='<div class="sh-track" onclick="openTrack(\''+cfg.key+'\')">'+
+      '<span class="num">'+(LANG==='bn'?'ট্র্যাক ':'TRACK ')+loc(n+1)+'</span>'+
+      '<h3>'+(LANG==='bn'?cfg.bn:cfg.en)+'</h3>'+
+      '<p>'+(LANG==='bn'?cfg.dbn:cfg.den)+'</p>'+
+      '<div class="meta"><div class="sh-bar"><i style="width:'+pct+'%"></i></div><span>'+meta+'</span></div>'+
+      '</div>';
+  }
+  g.innerHTML=html;
+}
+/* ----- open a single track ----- */
+var SH_CURRENT=null;
+function openTrack(key,keep){
+  var cfg=null; for(var n=0;n<SH_TRACKS.length;n++) if(SH_TRACKS[n].key===key) cfg=SH_TRACKS[n];
+  if(!cfg) return;
+  SH_CURRENT=key;
+  document.getElementById('sh-trackgrid').style.display='none';
+  document.getElementById('sh-trackview').style.display='';
+  document.getElementById('sh-vt-eyebrow').textContent=(LANG==='bn'?'ট্র্যাক · ':'TRACK · ')+(LANG==='bn'?cfg.bn:cfg.en);
+  document.getElementById('sh-vt-title').textContent=(LANG==='bn'?cfg.bn:cfg.en);
+  document.getElementById('sh-vt-desc').textContent=(LANG==='bn'?cfg.dbn:cfg.den);
+  var vids=vidsFor(cfg),box=document.getElementById('sh-vids');
+  if(!vids.length){box.innerHTML='<div class="sh-empty">'+(LANG==='bn'?'এই ট্র্যাকে ভিডিও শিগগিরই যোগ হচ্ছে।':'Videos for this track are coming soon.')+'</div>';
+    if(!keep) window.scrollTo(0,0); return; }
+  var html='',i;
+  for(i=0;i<vids.length;i++){var v=vids[i],done=isWatched(v.id);
+    var resBtn = v.resource && RESOURCES[v.resource] ?
+      '<a class="sh-btn" href="#r/'+v.resource+'">'+(LANG==='bn'?'📄 ওয়ার্কবুক':'📄 Workbook')+'</a>' : '';
+    html+='<div class="sh-vid'+(done?' done':'')+'" id="shv-'+v.id+'">'+
+      '<div class="sh-vrow">'+
+        '<div class="sh-vnum">'+(done?'✓':loc(i+1))+'</div>'+
+        '<div class="sh-vbody">'+
+          '<h4>'+(v.title[LANG]||v.title.en||(LANG==='bn'?'ভিডিও':'Video'))+'</h4>'+
+          (v.blurb[LANG]?'<p>'+v.blurb[LANG]+'</p>':'')+
+          '<div class="sh-vacts">'+
+            '<button class="sh-btn play" onclick="playVid(\''+v.id+'\')">'+(LANG==='bn'?'▶ দেখুন':'▶ Watch')+'</button>'+
+            resBtn+
+            '<button class="sh-btn'+(done?' dn':'')+'" onclick="toggleWatched(\''+v.id+'\')">'+(done?(LANG==='bn'?'✓ দেখা হয়েছে':'✓ Done'):(LANG==='bn'?'দেখা হয়েছে বলুন':'Mark done'))+'</button>'+
+            thumbBtn('video',v.id)+
+          '</div>'+
+        '</div>'+
+      '</div>'+
+      '<div class="sh-embed" id="emb-'+v.id+'"></div>'+
+    '</div>';
+  }
+  box.innerHTML=html;
+  if(!keep) window.scrollTo(0,0);
+}
+function closeTrack(){SH_CURRENT=null;document.getElementById('sh-trackview').style.display='none';document.getElementById('sh-trackgrid').style.display='';buildTracks();window.scrollTo(0,0);}
+function playVid(id){
+  var e=document.getElementById('emb-'+id); if(!e) return;
+  if(e.classList.contains('open')){e.classList.remove('open');e.innerHTML='';return;}
+  e.innerHTML='<iframe src="https://www.youtube.com/embed/'+id+'?rel=0&autoplay=1" title="video" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>';
+  e.classList.add('open');
+}
+
+/* ---------- HALAL FINANCING ---------- */
+var HALALC='mur';
+var HALALCFG={
+ mur:{math:'flat',
+   en:{amt:"Asset cost (BDT)",rate:"Yearly profit margin",yr:"Term (years)",eye:"Monthly payment",r1:"Total price you'll pay",r2:"Bank's profit (disclosed)",base:"Cost",extra:"Profit",note:"Murabaha: the bank buys the asset, then sells it to you at cost plus a profit margin both sides agree on upfront. The price is fixed and doesn't grow if you fall behind. Good for a car, bike, or appliances."},
+   bn:{amt:"পণ্যের দাম (টাকা)",rate:"বার্ষিক প্রফিট মার্জিন",yr:"মেয়াদ (বছর)",eye:"মাসিক কিস্তি",r1:"মোট যত দাম দেবেন",r2:"ব্যাংকের প্রফিট (প্রকাশিত)",base:"দাম",extra:"প্রফিট",note:"মুরাবাহা: ব্যাংক পণ্যটি কিনে আপনার কাছে দাম + আগে থেকে দুই পক্ষের ঠিক করা প্রফিট মার্জিনে বিক্রি করে। দাম স্থির — পিছিয়ে পড়লেও বাড়ে না। গাড়ি, বাইক বা যন্ত্রপাতির জন্য ভালো।"}},
+ ija:{math:'red',
+   en:{amt:"Asset value (BDT)",rate:"Yearly profit rate",yr:"Lease term (years)",eye:"Monthly rent",r1:"Total rent over the term",r2:"Extra over asset value",base:"Value",extra:"Extra",note:"Ijarah: the bank owns the asset and leases it to you. Your payments are rent, not loan repayment, and ownership can pass to you at the end. Good for equipment or property."},
+   bn:{amt:"সম্পদের মূল্য (টাকা)",rate:"বার্ষিক প্রফিট রেট",yr:"ইজারার মেয়াদ (বছর)",eye:"মাসিক ভাড়া",r1:"মোট ভাড়া",r2:"সম্পদমূল্যের চেয়ে অতিরিক্ত",base:"মূল্য",extra:"অতিরিক্ত",note:"ইজারা: ব্যাংক সম্পদের মালিক, আপনাকে ভাড়ায় দেয়। আপনার পেমেন্ট ভাড়া, ঋণ শোধ নয়; শেষে মালিকানা আপনার কাছে আসতে পারে। যন্ত্রপাতি বা সম্পত্তির জন্য ভালো।"}},
+ dim:{math:'red',
+   en:{amt:"Home price (BDT)",rate:"Yearly profit rate",yr:"Buyout term (years)",eye:"Monthly payment",r1:"Total you'll pay",r2:"Extra \u2014 rent over the years",base:"Your share",extra:"Extra",note:"Diminishing Musharaka: you and the bank co-own the home. You pay rent on the bank's share and buy that share bit by bit, so each month you own more and the rent shrinks. The common way to finance a home."},
+   bn:{amt:"বাড়ির দাম (টাকা)",rate:"বার্ষিক প্রফিট রেট",yr:"বাইআউট মেয়াদ (বছর)",eye:"মাসিক কিস্তি",r1:"মোট যত দেবেন",r2:"অতিরিক্ত — বছরের ভাড়া",base:"আপনার অংশ",extra:"অতিরিক্ত",note:"ডিমিনিশিং মুশারাকা: আপনি আর ব্যাংক মিলে বাড়ির যৌথ মালিক। ব্যাংকের অংশের উপর ভাড়া দেন আর সেই অংশ একটু একটু করে কিনে নেন — প্রতি মাসে আপনার মালিকানা বাড়ে, ভাড়া কমে। বাড়ি কেনার সবচেয়ে প্রচলিত উপায়।"}}
+};
+function setHA(id,en,bn){var e=document.getElementById(id);if(!e)return;e.setAttribute('data-en',en);e.setAttribute('data-bn',bn);e.textContent=(LANG==='bn'?bn:en);}
+function setHalalContract(c){HALALC=c;
+  document.getElementById('hc-mur').classList.toggle('on',c==='mur');
+  document.getElementById('hc-ija').classList.toggle('on',c==='ija');
+  document.getElementById('hc-dim').classList.toggle('on',c==='dim');
+  var cf=HALALCFG[c];
+  setHA('hLblAmt',cf.en.amt,cf.bn.amt);
+  setHA('hLblRate',cf.en.rate,cf.bn.rate);
+  setHA('hLblYears',cf.en.yr,cf.bn.yr);
+  setHA('hEyebrow',cf.en.eye,cf.bn.eye);
+  setHA('hRow1',cf.en.r1,cf.bn.r1);
+  setHA('hRow2',cf.en.r2,cf.bn.r2);
+  setHA('hNote',cf.en.note,cf.bn.note);
+  calcHalal();
+}
+function calcHalal(){
+  if(!document.getElementById('hAmt'))return;
+  var P=gv('hAmt'),rate=gv('hRate'),yrs=gv('hYears');
+  setRV('hvRate',loc(rate+'%'));setRV('hvYears',loc(yrs));
+  var cf=HALALCFG[HALALC],i=rate/100/12,n=yrs*12,emi,total,extra;
+  if(cf.math==='flat'){extra=P*rate/100*yrs;total=P+extra;emi=n>0?total/n:0;}
+  else{emi=(i===0)?(n>0?P/n:0):P*i*Math.pow(1+i,n)/(Math.pow(1+i,n)-1);total=emi*n;extra=total-P;}
+  document.getElementById('hEmi').textContent=tk(emi);
+  document.getElementById('hTotal').textContent=tk(total);
+  document.getElementById('hExtra').textContent=tk(extra);
+  var pct=P>0?Math.round(extra/P*100):0;
+  var lab=cf[LANG];
+  drawDonut('halalChart','halalLegend',
+    [{v:P,col:'#6D28D9',label:lab.base},{v:extra,col:'#C4B5FD',label:lab.extra}],
+    loc('+'+pct+'%'),(LANG==='bn'?'অতিরিক্ত':'EXTRA'));
+}
+
 /* ---------- RENT VS BUY ---------- */
 function calcRentBuy(){
   if(!document.getElementById('rbPrice'))return;
@@ -1789,7 +2069,7 @@ function calcGrowth(){
 }
 
 /* ---------- tool tabs ---------- */
-var TOOLIDS=['split','growth','inflation','loan','rentbuy','emergency','goal','tco','debt','prompts'];
+var TOOLIDS=['split','growth','inflation','loan','halal','rentbuy','emergency','goal','tco','debt','prompts'];
 function showTool(t){
   for(var i=0;i<TOOLIDS.length;i++){
     var on=TOOLIDS[i]===t;
@@ -1880,11 +2160,11 @@ function calcInfl(){
 
 /* ================= AI PROMPT LIBRARY ================= */
 var PROMPTS=[
- /* ===== FLAGSHIP — META PROMPTS THAT IMPROVE EVERY OTHER PROMPT ===== */
- {tag:{en:'⭐ Flagship',bn:'⭐ সেরা'},title:{en:'Ask me everything before you answer',bn:'উত্তর দেওয়ার আগে আমাকে সব প্রশ্ন কর'},
+ /* ===== MY PICKS — META PROMPTS THAT IMPROVE EVERY OTHER PROMPT ===== */
+ {tag:{en:'⭐ My picks',bn:'⭐ আমার বাছাই'},title:{en:'Ask me everything before you answer',bn:'উত্তর দেওয়ার আগে আমাকে সব প্রশ্ন কর'},
   text:"Before you answer or do anything, I want you to interrogate my request thoroughly. Ask me as many questions as you need — go in every direction that could matter — until you have a 100% (ideally more than 100%) complete picture of what I am actually trying to achieve, who it is for, the constraints I haven't mentioned, the assumptions I am making without realizing it, the edge cases I have not thought about, and the things I would want included if I had thought of them. Do not stop asking until you genuinely cannot think of another useful question. Ask one or two questions at a time, wait for my answer, then dig deeper. Only when you are sure you understand everything, summarize the full picture back to me for confirmation — and then we begin. My request is: [PASTE YOUR REQUEST HERE]"},
 
- {tag:{en:'⭐ Flagship',bn:'⭐ সেরা'},title:{en:'Stress-test my thinking for blind spots',bn:'আমার চিন্তার অন্ধ দিক খুঁজে বের কর'},
+ {tag:{en:'⭐ My picks',bn:'⭐ আমার বাছাই'},title:{en:'Stress-test my thinking for blind spots',bn:'আমার চিন্তার অন্ধ দিক খুঁজে বের কর'},
   text:"I am about to make a decision or finalize an idea. Before I do, I want you to be brutally honest and act as a sharp, well-read critic. Here is what I am thinking: [PASTE YOUR IDEA / DECISION / PLAN]. Now do all of the following: (1) List the cognitive biases I might be falling into — confirmation bias, sunk cost, recency, availability, survivorship, anchoring, optimism bias, etc. — and explain which ones specifically apply here and how. (2) List the things I have NOT considered but absolutely should have — second-order consequences, who is hurt by this, opportunity costs, what could go wrong in 6 months, what an outside observer would notice immediately. (3) Suggest 3 alternative directions or framings I have not taken into account and explain why each might be better. (4) Tell me what a person who deeply disagrees with my approach would say. Be candid, not reassuring."},
 
  /* ===== PERSONAL FINANCE ===== */
@@ -1945,10 +2225,10 @@ function buildPrompts(){
   var g=document.getElementById('promptGrid');if(!g)return;g.innerHTML='';
   for(var i=0;i<PROMPTS.length;i++){(function(pr){
     var c=document.createElement('div');c.className='pcard'+(PROMPTS_UNLOCKED?' unlocked':'');
-    if(pr.tag.en.indexOf('Flagship')>-1) c.setAttribute('data-flag','1');
+    if(pr.tag.en.indexOf('My picks')>-1) c.setAttribute('data-flag','1');
     var copyLbl=PROMPTS_UNLOCKED?(LANG==='bn'?'কপি':'Copy'):(LANG==='bn'?'এই প্রম্পটটি কপি করুন':'Copy this prompt');
     c.innerHTML='<span class="ptag">'+pr.tag[LANG]+'</span><h4>'+pr.title[LANG]+'</h4><div class="pprev">'+pr.text+'</div>'+
-      '<button class="pcopy">'+copyLbl+'</button>';
+      '<div class="pfoot"><button class="pcopy">'+copyLbl+'</button>'+thumbBtn('prompt',_slug(pr.title.en))+'</div>';
     var btn=c.querySelector('.pcopy');
     btn.addEventListener('click',function(){
       if(!PROMPTS_UNLOCKED){
@@ -2017,9 +2297,190 @@ tt.addEventListener('click',function(){try{window.scrollTo({top:0,behavior:'smoo
 window.addEventListener('scroll',function(){var h=document.documentElement;var max=h.scrollHeight-h.clientHeight;pb.style.width=(max>0?(h.scrollTop/max*100):0)+'%';tt.classList.toggle('show',h.scrollTop>600);},{passive:true});
 function pulse(el){el.classList.remove('pulse');void el.offsetWidth;el.classList.add('pulse');}
 
+/* ================= ANALYTICS (privacy-light, batched) =================
+   Anonymous viewer behaviour. ONE beacon per visit -> RESOURCES_API
+   (same Apps Script as resources). No raw values, no IP. Writes two Sheet
+   tabs: "Sessions" (1 row/visit) + "Events" (1 row/action).
+   To disable tracking entirely: delete this whole block. ============== */
+(function(){
+  var ENDPOINT=(typeof RESOURCES_API!=='undefined')?RESOURCES_API:'';
+  if(!ENDPOINT) return;
+  var T0=Date.now();
+  function ms(){return Date.now()-T0;}
+  function qp(k){var m=new RegExp('[?&]'+k+'=([^&]*)').exec(location.search);return m?decodeURIComponent(m[1].replace(/\+/g,' ')):'';}
+  function rid(){return 's'+Date.now().toString(36)+Math.random().toString(36).slice(2,8);}
+  function device(){var u=navigator.userAgent;if(/iPad|Tablet|PlayBook|Silk/i.test(u)||(/Android/i.test(u)&&!/Mobile/i.test(u)))return 'tablet';return /Mobi|Android|iPhone|iPod/i.test(u)?'mobile':'desktop';}
+  function screenB(){var w=window.innerWidth||0;return w<480?'<480':w<768?'480-768':w<1200?'768-1200':'1200+';}
+  function tzone(){try{return Intl.DateTimeFormat().resolvedOptions().timeZone||'';}catch(e){return '';}}
+
+  var EV=[];
+  function push(type,target,detail,dwell){EV.push({offset_ms:ms(),type:type,target:target||'',detail:(detail==null?'':detail),dwell_ms:(dwell==null?'':dwell)});}
+
+  var S={session_id:rid(),referrer:document.referrer||'',utm_source:qp('utm_source'),utm_medium:qp('utm_medium'),utm_campaign:qp('utm_campaign'),
+    device:device(),screen:screenB(),lang_at_load:(typeof LANG!=='undefined'?LANG:'en'),lang_switched:'n',timezone:tzone(),
+    entry_route:'',exit_route:'',route_path:'',routes_count:0,duration_sec:0,
+    tools_opened:'',tools_count:0,max_scroll_pct:0,resource_views:0,
+    gate_opened:'n',email_submitted:'n',download_clicked:'n',contact_started:'n',contact_submitted:'n'};
+  var ROUTES=[],TOOLS={};
+
+  /* route dwell + view (wrap renderRoute) */
+  var curRoute=null,curRouteT=0,scrollHit={};
+  var curTool=null,curToolT=0;
+  function enterTool(t){if(t==null)return;leaveTool();curTool=t;curToolT=Date.now();TOOLS[t]=1;push('tool_open',t);S.tools_opened=Object.keys(TOOLS).join(',');S.tools_count=Object.keys(TOOLS).length;}
+  function leaveTool(){if(curTool!=null){push('tool_dwell',curTool,'',Date.now()-curToolT);curTool=null;}}
+  function leaveRoute(){if(curRoute!=null){leaveTool();push('route_dwell',curRoute,'',Date.now()-curRouteT);}}
+  function enterRoute(page,raw){
+    curRoute=page;curRouteT=Date.now();scrollHit={};
+    if(!S.entry_route)S.entry_route=page;
+    S.exit_route=page;ROUTES.push(page);S.routes_count=ROUTES.length;S.route_path=ROUTES.slice(-12).join('>');
+    push('route_view',page);
+    if(page==='rdetail'&&raw&&raw.indexOf('r/')===0){var id=raw.slice(2);if(window.RESOURCES&&RESOURCES[id]){S.resource_views++;S.gate_opened='y';push('resource_view',id);}}
+    if(page==='tools'){var on=document.querySelector('.tooltabs button.on');enterTool(on?on.id.replace('tab-',''):'split');}
+  }
+  if(typeof renderRoute==='function'){var _rr=renderRoute;renderRoute=function(h){leaveRoute();var r=_rr.apply(this,arguments);
+    var pg=document.querySelector('.page.show');var pid=pg?pg.id.replace('page-',''):(''+h);enterRoute(pid,(''+h));return r;};}
+
+  /* tool switches (wrap showTool) */
+  if(typeof showTool==='function'){var _st=showTool;showTool=function(t){var r=_st.apply(this,arguments);if(t!==curTool)enterTool(t);return r;};}
+
+  /* tool field interaction -> coarse BUCKET only (never the raw value) */
+  var FIELD_BUCKETS={inc:'salary',pNeeds:'monthly',pWants:'monthly',
+    gMonthly:'monthly',gLump:'amount',gRate:'rate',gYears:'years',
+    iAmt:'amount',iYears:'years',iRate:'rate',
+    lAmt:'amount',lRate:'rate',lYears:'years',
+    hAmt:'amount',hRate:'rate',hYears:'years',
+    rbPrice:'amount',rbDown:'share',rbRate:'rate',rbTenure:'years',rbRent:'monthly',rbStay:'years',rbApp:'rate',
+    eExp:'monthly',eMonths:'months',eSaved:'amount',eMonthly:'monthly',
+    glTarget:'amount',glHave:'amount',glMonthly:'monthly',glRate:'rate',
+    tPrice:'amount',tYears:'years',tFuel:'monthly',tMaint:'monthly',tIns:'monthly',tResale:'share',
+    dExtra:'monthly'};
+  function bucket(type,v){v=parseFloat(v);if(!isFinite(v))return '';
+    switch(type){
+      case 'salary': return v<20000?'<20k':v<40000?'20-40k':v<60000?'40-60k':v<100000?'60-100k':'100k+';
+      case 'monthly':return v<5000?'<5k':v<10000?'5-10k':v<20000?'10-20k':v<40000?'20-40k':'40k+';
+      case 'amount': return v<100000?'<1L':v<500000?'1-5L':v<2500000?'5-25L':v<10000000?'25L-1Cr':'1Cr+';
+      case 'rate':   return v<5?'<5%':v<8?'5-8%':v<12?'8-12%':v<18?'12-18%':'18%+';
+      case 'share':  return v<20?'<20%':v<40?'20-40%':v<60?'40-60%':v<80?'60-80%':'80%+';
+      case 'years':  return v<3?'<3y':v<7?'3-7y':v<15?'7-15y':v<25?'15-25y':'25y+';
+      case 'months': return v<=3?'<=3m':v<=6?'4-6m':v<=9?'7-9m':'10m+';
+    } return '';}
+  var pt=document.getElementById('page-tools'),lastB={};
+  if(pt){var onIn=function(e){var el=e.target;if(!el||!el.id||curTool==null)return;var bt=FIELD_BUCKETS[el.id];var b=bt?bucket(bt,el.value):'';var k=curTool+'|'+el.id;if(lastB[k]===b)return;lastB[k]=b;push('tool_input',curTool,el.id+(b?(':'+b):''));};
+    pt.addEventListener('input',onIn,true);pt.addEventListener('change',onIn,true);}
+
+  /* language switch */
+  var lb=document.getElementById('langbtn');
+  if(lb)lb.addEventListener('click',function(){S.lang_switched='y';push('lang_switch',(typeof LANG!=='undefined'?LANG:''));});
+
+  /* gate modal opened (wrap openGate) */
+  if(typeof openGate==='function'){var _og=openGate;openGate=function(opt){S.gate_opened='y';push('gate_open',(opt&&opt.resource)||'unlock');return _og.apply(this,arguments);};}
+
+  /* email submit + contact submit (wrap captureLead) */
+  if(typeof captureLead==='function'){var _cl=captureLead;captureLead=function(d){try{if(d&&d.resource==='Contact message'){S.contact_submitted='y';push('contact_submit');}else{S.email_submitted='y';push('email_submit',(d&&d.resource)||'');}}catch(e){}return _cl.apply(this,arguments);};}
+
+  /* download clicks */
+  document.addEventListener('click',function(e){var a=e.target&&e.target.closest?e.target.closest('#g-link-en,#g-link-bn'):null;if(a){S.download_clicked='y';push('download',(window.CURRENT_RES||''),(a.id==='g-link-bn'?'bn':'en'));}},true);
+
+  /* contact start */
+  ['cname','cemail','cmsg'].forEach(function(id){var el=document.getElementById(id);if(el)el.addEventListener('focus',function(){if(S.contact_started!=='y'){S.contact_started='y';push('contact_start');}});});
+
+  /* scroll depth milestones per route */
+  window.addEventListener('scroll',function(){var h=document.documentElement;var max=h.scrollHeight-h.clientHeight;var pct=max>0?Math.round(h.scrollTop/max*100):0;
+    if(pct>S.max_scroll_pct)S.max_scroll_pct=pct;
+    [25,50,75,100].forEach(function(mk){if(pct>=mk&&!scrollHit[mk]){scrollHit[mk]=1;push('scroll_depth',curRoute,mk);}});},{passive:true});
+
+  /* send once, on leave */
+  var sent=false;
+  function flush(){if(sent)return;sent=true;leaveRoute();S.duration_sec=Math.round(ms()/1000);
+    var payload=JSON.stringify({kind:'analytics',session:S,events:EV});
+    try{var blob=new Blob([payload],{type:'text/plain;charset=UTF-8'});if(navigator.sendBeacon&&navigator.sendBeacon(ENDPOINT,blob))return;}catch(e){}
+    try{fetch(ENDPOINT,{method:'POST',mode:'no-cors',keepalive:true,headers:{'Content-Type':'text/plain'},body:payload});}catch(e){}}
+  window.addEventListener('pagehide',flush);
+  document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')flush();});
+  window.track=function(t,tg,d){try{push(t,tg,d);}catch(e){}}; /* public event logger for search/thumbs */
+  window.__analytics={S:S,EV:EV,flush:flush}; /* test hook */
+})();
+
+/* ================= THUMBS-UP + GLOBAL SEARCH ================= */
+function _slug(s){return String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,40);}
+/* thumbs (device-only dedupe via localStorage; votes logged to analytics Events) */
+var THUMB_KEY='rafiu_thumbs_v1';
+function thumbGet(){try{return JSON.parse(localStorage.getItem(THUMB_KEY)||'[]');}catch(e){return [];}}
+function thumbHas(k){return thumbGet().indexOf(k)>=0;}
+function thumbLbl(v){return v?(LANG==='bn'?'ধন্যবাদ 🙏':'Thanks 🙏'):(LANG==='bn'?'👍 সহায়ক':'👍 Helpful');}
+function thumbBtn(kind,id){var v=thumbHas(kind+':'+id);
+  return '<button class="thumb'+(v?' voted':'')+'" data-tk="'+kind+'" data-ti="'+id+'" onclick="voteThumb(this)">'+thumbLbl(v)+'</button>';}
+function voteThumb(btn){var kind=btn.getAttribute('data-tk'),id=btn.getAttribute('data-ti'),k=kind+':'+id;
+  if(thumbHas(k))return;var a=thumbGet();a.push(k);try{localStorage.setItem(THUMB_KEY,JSON.stringify(a));}catch(e){}
+  if(window.track)window.track('thumb',k);
+  btn.classList.add('voted');btn.textContent=thumbLbl(true);}
+
+/* global search — searches tools, resources, prompts, videos; logs every query */
+(function(){
+  var ov=document.getElementById('searchOverlay'),inp=document.getElementById('searchInput'),
+      res=document.getElementById('searchResults'),sbtn=document.getElementById('searchbtn'),cls=document.getElementById('searchClose');
+  if(!ov||!inp)return;
+  function openS(){ov.classList.add('show');ov.setAttribute('aria-hidden','false');inp.value='';res.innerHTML='';setTimeout(function(){inp.focus();},30);if(window.track)window.track('search_open','');}
+  function closeS(){ov.classList.remove('show');ov.setAttribute('aria-hidden','true');}
+  if(sbtn)sbtn.addEventListener('click',openS);
+  if(cls)cls.addEventListener('click',closeS);
+  ov.addEventListener('click',function(e){if(e.target===ov)closeS();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('show'))closeS();});
+  function index(){
+    var ix=[],i,k;
+    var tabs=document.querySelectorAll('.tooltabs button');
+    for(i=0;i<tabs.length;i++){var t=tabs[i],id=t.id.replace('tab-','');
+      ix.push({type:'tool',id:id,en:t.getAttribute('data-en')||t.textContent,bn:t.getAttribute('data-bn')||t.textContent,
+        hay:((t.getAttribute('data-en')||'')+' '+(t.getAttribute('data-bn')||'')).toLowerCase()});}
+    if(window.RESOURCES)for(k in RESOURCES){var r=RESOURCES[k];
+      ix.push({type:'resource',id:k,en:r.title.en,bn:r.title.bn,
+        hay:(r.title.en+' '+r.title.bn+' '+((r.sub&&r.sub.en)||'')+' '+((r.sub&&r.sub.bn)||'')+' '+((r.desc&&r.desc.en)||'')+' '+((r.desc&&r.desc.bn)||'')).toLowerCase()});}
+    if(window.PROMPTS)for(i=0;i<PROMPTS.length;i++){var p=PROMPTS[i];
+      ix.push({type:'prompt',id:_slug(p.title.en),en:p.title.en,bn:p.title.bn,
+        hay:(p.title.en+' '+p.title.bn+' '+p.tag.en+' '+p.tag.bn+' '+p.text).toLowerCase()});}
+    if(window.COURSE_VIDEOS)for(i=0;i<COURSE_VIDEOS.length;i++){var v=COURSE_VIDEOS[i];
+      ix.push({type:'video',id:v.id,track:(v.track&&v.track[0])||'',en:(v.title.en||''),bn:(v.title.bn||''),
+        hay:((v.title.en||'')+' '+(v.title.bn||'')+' '+((v.blurb&&v.blurb.en)||'')+' '+((v.blurb&&v.blurb.bn)||'')).toLowerCase()});}
+    return ix;
+  }
+  var TYPEL={tool:{en:'Tool',bn:'টুল'},resource:{en:'Resource',bn:'রিসোর্স'},prompt:{en:'Prompt',bn:'প্রম্পট'},video:{en:'Video',bn:'ভিডিও'}};
+  function run(q){
+    q=q.trim();res.innerHTML='';if(!q)return;
+    var ql=q.toLowerCase(),terms=ql.split(/\s+/),ix=index(),out=[],i,j;
+    for(i=0;i<ix.length;i++){var it=ix[i],ok=true,score=0;
+      for(j=0;j<terms.length;j++){if(it.hay.indexOf(terms[j])<0){ok=false;break;}
+        if((it.en+' '+it.bn).toLowerCase().indexOf(terms[j])>=0)score+=2;else score+=1;}
+      if(ok){it._s=score;out.push(it);}}
+    out.sort(function(a,b){return b._s-a._s;});
+    if(window.track)window.track('search',q,out.length);
+    if(!out.length){res.innerHTML='<div class="sr-empty">'+(LANG==='bn'?'কিছু পাওয়া যায়নি — কী খুঁজছিলেন, নোট রাখলাম।':'Nothing found — noted what you were after.')+'</div>';return;}
+    var html='';
+    for(i=0;i<Math.min(out.length,12);i++){var o=out[i],nm=(LANG==='bn'?o.bn:o.en)||o.en;
+      html+='<button class="sr-item" data-t="'+o.type+'" data-i="'+o.id+'" data-tr="'+(o.track||'')+'">'+
+        '<span class="sr-type">'+(LANG==='bn'?TYPEL[o.type].bn:TYPEL[o.type].en)+'</span>'+
+        '<span class="sr-name">'+nm+'</span></button>';}
+    res.innerHTML=html;
+    var items=res.querySelectorAll('.sr-item');
+    for(i=0;i<items.length;i++)items[i].addEventListener('click',function(){go(this.getAttribute('data-t'),this.getAttribute('data-i'),this.getAttribute('data-tr'),q);});
+  }
+  function nav(h){try{if(history.replaceState)history.replaceState(null,'','#'+h);}catch(e){}renderRoute(h);}
+  function go(type,id,track,q){
+    if(window.track)window.track('search_click',type+':'+id,q);
+    closeS();
+    if(type==='tool'){nav('tools');if(window.showTool)showTool(id);}
+    else if(type==='resource'){nav('r/'+id);}
+    else if(type==='prompt'){nav('tools');if(window.showTool)showTool('prompts');}
+    else if(type==='video'){nav('start');if(track&&window.openTrack)openTrack(track);}
+  }
+  var deb;inp.addEventListener('input',function(){clearTimeout(deb);var q=inp.value;deb=setTimeout(function(){run(q);},350);});
+})();
+
 /* ---------- init ---------- */
+/* restore saved language + last route (continue where you left off); explicit deep links win */
+try{var _sl=localStorage.getItem('rafiu_lang');if(_sl==='bn'||_sl==='en')LANG=_sl;}catch(e){}
+try{var _h0=(location.hash||'').replace('#','');if(!_h0||_h0==='home'){var _sr=localStorage.getItem('rafiu_route');if(_sr&&_sr!=='home'&&_sr!=='rdetail')location.hash='#'+_sr;}}catch(e){}
 addDebtRow(150000,24,4000);addDebtRow(60000,16,2000);
-buildLibrary();buildPrompts();buildVideos();buildLatestCTA();route();applyLang();calcInfl();calcLoan();calcRentBuy();calcEmergency();calcGoal();calcTco();calcDebt();loadResources();
+buildLibrary();buildPrompts();buildVideos();buildLatestCTA();buildTracks();route();applyLang();calcInfl();calcLoan();setHalalContract('mur');calcRentBuy();calcEmergency();calcGoal();calcTco();calcDebt();loadResources();
 </script>
 </body>
 </html>
