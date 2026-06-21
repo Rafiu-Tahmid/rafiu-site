@@ -1728,11 +1728,18 @@ function _normVid(v,idx){
   var ord=parseFloat(v.order); if(!isFinite(ord)) ord=idx+1;
   return {id:(v.id||''),track:tr,order:ord,title:L(v.title),blurb:L(v.blurb),resource:(v.resource||'')};
 }
-/* Crash Course = first video from each pillar, in pillar order (deduped) */
+/* Crash Course videos:
+   1) MANUAL — any video tagged "Crash Course" (Track contains "crash"), by Order. If any exist, use them.
+   2) AUTO   — otherwise, the first video of each pillar, in pillar order (deduped). */
 function crashVids(){
+  var i,explicit=[];
+  for(i=0;i<COURSE_VIDEOS.length;i++){var v=_normVid(COURSE_VIDEOS[i],i);
+    for(var t=0;t<v.track.length;t++){ if(v.track[t].toLowerCase().trim().indexOf('crash')>=0){explicit.push(v);break;} }
+  }
+  if(explicit.length){ explicit.sort(function(a,b){return a.order-b.order;}); return explicit; }
   var out=[],seen={},n;
   for(n=0;n<SH_TRACKS.length;n++){var c=SH_TRACKS[n]; if(c.key==='crash')continue;
-    var vs=vidsFor(c); if(vs.length){var v=vs[0]; if(!seen[v.id]){seen[v.id]=1;out.push(v);}}
+    var vs=vidsFor(c); if(vs.length){var v2=vs[0]; if(!seen[v2.id]){seen[v2.id]=1;out.push(v2);}}
   }
   return out;
 }
