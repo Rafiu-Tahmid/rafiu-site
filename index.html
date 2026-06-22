@@ -5,9 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RAFIU — Figuring out how to build a better life</title>
 <meta name="description" content="Productivity, AI tools, motivation, personal finance and the future of work — for ambitious young Bangladeshis. By Rafiu, IBA, CFA L1.">
+<link rel="canonical" href="https://risewithrafiu.com/">
+<meta name="theme-color" content="#360D54">
+<!-- Social share preview (Open Graph + Twitter). Add a share image later: make a 1200x630 PNG named share.png, put it in the repo root, then uncomment the two image lines below. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="RAFIU">
+<meta property="og:url" content="https://risewithrafiu.com/">
+<meta property="og:title" content="RAFIU — Figuring out how to build a better life">
+<meta property="og:description" content="Personal finance, productivity, AI tools, motivation and the future of work — for ambitious young Bangladeshis. Bilingual, Shariah-aware, sourced not asserted.">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="bn_BD">
+<!-- <meta property="og:image" content="https://risewithrafiu.com/share.png"> -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="RAFIU — Figuring out how to build a better life">
+<meta name="twitter:description" content="Personal finance, productivity, AI tools, motivation and the future of work — for ambitious young Bangladeshis. Bilingual, Shariah-aware.">
+<!-- <meta name="twitter:image" content="https://risewithrafiu.com/share.png"> -->
+<!-- Favicon: inline purple "R" — no separate file needed, works offline -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23360D54'/%3E%3Ctext x='32' y='46' font-family='Georgia,serif' font-size='42' font-weight='700' fill='%23EDE9F5' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Noto+Serif+Bengali:wght@600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Fonts load async so they never block first paint (white-screen fix). System fallbacks render instantly, real fonts swap in when ready. -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Noto+Serif+Bengali:wght@600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Noto+Serif+Bengali:wght@600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 <style>
 :root{
   --bg:#0B0612;
@@ -20,10 +39,104 @@
   --line:rgba(167,139,250,.14);
   --card:rgba(139,92,246,.05);
   --card-hover:rgba(139,92,246,.09);
-  --display:'Fraunces',serif;
-  --ui:'Space Grotesk',sans-serif;
-  --body:'Inter',sans-serif;
+  --display:'Fraunces',Georgia,'Times New Roman',serif;
+  --ui:'Space Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+  /* surfaces that used to be hardcoded dark — now themeable */
+  --field-bg:rgba(11,6,18,.6);
+  --header-bg:rgba(11,6,18,.75);
+  --nav-bg:rgba(11,6,18,.97);
+  --footer-bg:rgba(11,6,18,.6);
+  --modal-bg:linear-gradient(155deg,#1a0f2b,#0f0720);
 }
+/* ===== LIGHT THEME (cream) — brand purple unchanged; dark theme is the default/untouched ===== */
+html[data-theme="light"]{
+  --bg:#F4ECDC; --bg2:#EDE3CF;
+  --ink:#241828; --ink-soft:#665E72;
+  --line:rgba(54,13,84,.12);
+  --card:#FBF6EC; --card-hover:#FFFCF4;
+  --violet-bright:#6D28D9;
+  --field-bg:#FFFDF7;
+  --header-bg:rgba(244,236,220,.82);
+  --nav-bg:rgba(244,236,220,.97);
+  --footer-bg:rgba(237,227,207,.7);
+  --modal-bg:linear-gradient(155deg,#FFFFFF,#F4ECDC);
+}
+/* warm editorial paper: ivory cards float on soft layered shadows (was a flat translucent tint) */
+html[data-theme="light"] .card,
+html[data-theme="light"] .pcard{box-shadow:0 1px 2px rgba(54,13,84,.04),0 16px 34px -16px rgba(54,13,84,.26);border-color:rgba(54,13,84,.10);backdrop-filter:none}
+html[data-theme="light"] .pcard:hover{box-shadow:0 2px 4px rgba(54,13,84,.05),0 22px 46px -16px rgba(124,58,237,.30)}
+html[data-theme="light"] .hero .glow{background:radial-gradient(circle,rgba(124,58,237,.16),transparent 70%)}
+html[data-theme="light"] .grad{background:linear-gradient(100deg,#7C3AED 0%,#6D28D9 55%,#360D54 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+html[data-theme="light"] .pillar-row:hover h3{color:var(--brand)}
+html[data-theme="light"] main{background-image:radial-gradient(rgba(54,13,84,.05) 1px,transparent 1.4px)}
+/* dark resource covers stay dark on cream (deliberate brand accent) — force their inner text light */
+html[data-theme="light"] .rcover .eyebrow,
+html[data-theme="light"] .rcover h1{color:#EDE6FA}
+html[data-theme="light"] .rescover h3{color:#EDE6FA}
+html[data-theme="light"] .hero-photo{background:linear-gradient(160deg,#2A0B42,#120722);box-shadow:0 24px 70px rgba(54,13,84,.22),0 0 0 1px rgba(124,58,237,.12)}
+/* muddy semi-transparent dark panels → warm cream panels with dark text */
+html[data-theme="light"] .result{background:#FBF6EC;border:1px solid rgba(54,13,84,.10);border-left:3px solid #7C3AED;box-shadow:0 1px 2px rgba(54,13,84,.04),0 16px 38px -16px rgba(124,58,237,.24)}
+html[data-theme="light"] .pcard[data-flag="1"]{background:#FFFCF4;border-color:rgba(124,58,237,.28);box-shadow:0 1px 2px rgba(54,13,84,.05),0 18px 46px -16px rgba(124,58,237,.28)}
+/* light-violet text accents that vanished on cream */
+html[data-theme="light"] .note{color:#6D28D9}
+html[data-theme="light"] #totop:hover{color:#6D28D9}
+/* outline numerals + oversized glows tuned for cream */
+html[data-theme="light"] .p-num{-webkit-text-stroke:1px rgba(124,58,237,.55);text-stroke:1px rgba(124,58,237,.55)}
+html[data-theme="light"] .searchbox{box-shadow:0 24px 60px rgba(124,58,237,.14)}
+html[data-theme="light"] .modalbox{box-shadow:0 28px 70px rgba(54,13,84,.22)}
+/* ===== light theme: buttons & pill controls stay dark-purple (like the dark UI) on the cream page ===== */
+html[data-theme="light"] .btn.ghost,
+html[data-theme="light"] .langbtn,
+html[data-theme="light"] .menubtn,
+html[data-theme="light"] .iconbtn,
+html[data-theme="light"] .tooltabs button,
+html[data-theme="light"] .modes button,
+html[data-theme="light"] .platforms a,
+html[data-theme="light"] .pcopy,
+html[data-theme="light"] .sh-btn,
+html[data-theme="light"] .sh-back,
+html[data-theme="light"] .thumb,
+html[data-theme="light"] .chip{
+  background:linear-gradient(135deg,#3A1259,#280B40);
+  color:#EDE6FA;
+  border-color:rgba(167,139,250,.35);
+  box-shadow:none;
+}
+html[data-theme="light"] .btn.ghost:hover,
+html[data-theme="light"] .langbtn:hover,
+html[data-theme="light"] .menubtn:hover,
+html[data-theme="light"] .iconbtn:hover,
+html[data-theme="light"] .tooltabs button:hover,
+html[data-theme="light"] .modes button:hover,
+html[data-theme="light"] .platforms a:hover,
+html[data-theme="light"] .pcopy:hover,
+html[data-theme="light"] .sh-btn:hover,
+html[data-theme="light"] .sh-back:hover,
+html[data-theme="light"] .thumb:hover,
+html[data-theme="light"] .chip:hover{
+  background:linear-gradient(135deg,#4A1A70,#33104E);
+  color:#fff;
+  border-color:rgba(167,139,250,.5);
+}
+/* active tab / mode / vote / play = brightest brand gradient (must beat the dark base above) */
+html[data-theme="light"] .tooltabs button.on,
+html[data-theme="light"] .modes button.on,
+html[data-theme="light"] .thumb.voted,
+html[data-theme="light"] .sh-btn.play{
+  background:linear-gradient(135deg,#7C3AED,#5B21B6);
+  color:#fff;
+  border-color:transparent;
+}
+/* home feature panels (Currently card + Latest-free-resource CTA) were muddy semi-transparent over cream → solid dark-purple panels with light text */
+html[data-theme="light"] .cta{background:linear-gradient(140deg,#2E0E48,#160A28);border-color:rgba(167,139,250,.3);--ink:#EFE8FA;--ink-soft:#CBC2DD;--violet-bright:#C4B5FD}
+html[data-theme="light"] .cta h2,html[data-theme="light"] .cta .note{color:#EFE8FA}
+html[data-theme="light"] .currently-card{background:linear-gradient(155deg,#2A0B42,#140726);border-color:rgba(167,139,250,.3);--ink:#EFE8FA;--ink-soft:#CBC2DD;--violet-bright:#C4B5FD}
+html[data-theme="light"] .currently-card .cur-line{color:#EFE8FA}
+/* hardcoded light text that was invisible on cream: About paragraphs, contact social links, in-chart SVG labels */
+html[data-theme="light"] .about-body p{color:#2A2335}
+html[data-theme="light"] .sociallist a{color:#2A2335}
+html[data-theme="light"] .chartbox text{fill:#2E2740}
 html[data-lang="bn"]{--display:'Noto Serif Bengali',serif;--ui:'Noto Sans Bengali',sans-serif;--body:'Noto Sans Bengali',sans-serif}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -53,7 +166,7 @@ html[data-lang="bn"] .display{line-height:1.35;letter-spacing:0}
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.btn:hover{transform:none}}
 
 /* ---------- nav ---------- */
-header{position:sticky;top:0;z-index:50;background:rgba(11,6,18,.75);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+header{position:sticky;top:0;z-index:50;background:var(--header-bg);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
 .logo{display:flex;align-items:center;gap:11px;text-decoration:none}
 .mark{width:36px;height:36px;flex:none}
@@ -150,7 +263,7 @@ html[data-lang="bn"] .chip{text-transform:none;letter-spacing:.02em;font-size:13
 .gate h3{font-family:var(--display);font-size:16px;font-weight:700;margin-bottom:6px}
 .gate>p{font-size:13.5px;color:var(--ink-soft);margin-bottom:18px}
 .gate .row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
-.gate input{width:100%;font-family:var(--body);font-size:15px;color:var(--ink);padding:13px 15px;border:1px solid var(--line);border-radius:12px;background:rgba(11,6,18,.6)}
+.gate input{width:100%;font-family:var(--body);font-size:15px;color:var(--ink);padding:13px 15px;border:1px solid var(--line);border-radius:12px;background:var(--field-bg)}
 .gate input::placeholder{color:#6E6584}
 .dl{display:none;margin-top:18px;padding:20px;border-radius:14px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.25)}
 .dl.show{display:block}
@@ -168,9 +281,16 @@ html[data-lang="bn"] .chip{text-transform:none;letter-spacing:.02em;font-size:13
 .field{margin-bottom:22px}
 .field label{display:block;font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:9px}
 html[data-lang="bn"] .field label{letter-spacing:.04em;text-transform:none;font-size:13px}
-.field input[type=number]{width:100%;font-family:var(--body);font-size:17px;color:var(--ink);padding:13px 15px;border:1px solid var(--line);border-radius:12px;background:rgba(11,6,18,.6)}
+.field input[type=number]{width:100%;font-family:var(--body);font-size:17px;color:var(--ink);padding:13px 15px;border:1px solid var(--line);border-radius:12px;background:var(--field-bg)}
 .field input[type=range]{width:100%;accent-color:var(--violet)}
 .rangeval{font-family:var(--display);font-weight:700;font-size:17px;color:var(--violet-bright)}
+/* slider + type-a-value combo (number input injected by JS next to each slider) */
+.rangerow{display:flex;align-items:center;gap:14px}
+.rangerow input[type=range]{flex:1;min-width:0}
+.field input[type=number].rangenum{flex:none;width:92px;text-align:center;font-family:var(--display);font-weight:700;font-size:16px;color:var(--violet-bright);padding:9px 8px;border:1px solid var(--line);border-radius:10px;background:var(--field-bg);-moz-appearance:textfield}
+.rangenum::-webkit-outer-spin-button,.rangenum::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.rangenum:focus{outline:none;border-color:var(--violet-bright)}
+.rangeunit{flex:none;font-family:var(--display);font-weight:700;font-size:15px;color:var(--violet-bright);margin-left:-8px}
 .modes{display:flex;gap:8px;margin-bottom:24px}
 .modes button{font-family:var(--display);font-size:12.5px;font-weight:700;padding:9px 16px;border-radius:10px;background:rgba(139,92,246,.06);border:1px solid var(--line);color:var(--ink-soft);cursor:pointer}
 .modes button.on{background:rgba(139,92,246,.22);color:var(--ink);border-color:rgba(167,139,250,.4)}
@@ -187,7 +307,7 @@ html[data-lang="bn"] .split-row .name{letter-spacing:.02em;text-transform:none;f
 
 /* ---------- contact ---------- */
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;padding:84px 0}
-.cform input,.cform textarea{width:100%;font-family:var(--body);font-size:15.5px;color:var(--ink);padding:13px 15px;border:1px solid var(--line);border-radius:12px;background:rgba(11,6,18,.6)}
+.cform input,.cform textarea{width:100%;font-family:var(--body);font-size:15.5px;color:var(--ink);padding:13px 15px;border:1px solid var(--line);border-radius:12px;background:var(--field-bg)}
 .cform textarea{min-height:140px;resize:vertical}
 .sociallist{list-style:none;margin-top:28px}
 .sociallist li{border-bottom:1px solid var(--line)}
@@ -195,7 +315,7 @@ html[data-lang="bn"] .split-row .name{letter-spacing:.02em;text-transform:none;f
 .sociallist a:hover{color:var(--violet-bright);padding-left:10px}
 
 /* ---------- footer ---------- */
-footer{border-top:1px solid var(--line);margin-top:40px;background:rgba(11,6,18,.6)}
+footer{border-top:1px solid var(--line);margin-top:40px;background:var(--footer-bg)}
 .foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;padding:36px 0}
 .foot small{font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--ink-soft)}
 
@@ -211,7 +331,7 @@ footer{border-top:1px solid var(--line);margin-top:40px;background:rgba(11,6,18,
   .cta{padding:40px 28px}
   .cta-grid{grid-template-columns:1fr}
   .gate .row{grid-template-columns:1fr}
-  .navlinks{position:fixed;inset:68px 0 auto 0;background:rgba(11,6,18,.97);backdrop-filter:blur(16px);flex-direction:column;align-items:flex-start;padding:22px 24px 30px;border-bottom:1px solid var(--line);display:none;gap:20px}
+  .navlinks{position:fixed;inset:68px 0 auto 0;background:var(--nav-bg);backdrop-filter:blur(16px);flex-direction:column;align-items:flex-start;padding:22px 24px 30px;border-bottom:1px solid var(--line);display:none;gap:20px}
   .navlinks.open{display:flex}
   .menubtn{display:block}
 }
@@ -375,13 +495,13 @@ html[data-lang="bn"] .pcard .ptag{letter-spacing:.04em;text-transform:none;font-
 /* modal */
 .modalwrap{position:fixed;inset:0;z-index:80;display:none;align-items:center;justify-content:center;padding:22px;background:rgba(6,3,12,.72);backdrop-filter:blur(6px)}
 .modalwrap.show{display:flex;animation:fade .2s ease}
-.modalbox{position:relative;max-width:440px;width:100%;border-radius:22px;border:1px solid rgba(167,139,250,.25);background:linear-gradient(155deg,#1a0f2b,#0f0720);padding:38px 34px;box-shadow:0 30px 90px rgba(0,0,0,.6)}
+.modalbox{position:relative;max-width:440px;width:100%;border-radius:22px;border:1px solid rgba(167,139,250,.25);background:var(--modal-bg);padding:38px 34px;box-shadow:0 30px 90px rgba(0,0,0,.6)}
 .modalbox h3{font-size:24px;margin:12px 0 8px}
 .modalbox>p{color:var(--ink-soft);font-size:14.5px;margin-bottom:22px}
 .modalx{position:absolute;top:16px;right:18px;background:none;border:none;color:var(--ink-soft);font-size:24px;line-height:1;cursor:pointer}
 .modalx:hover{color:var(--ink)}
 .gm-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
-.gm-row input{width:100%;font-family:var(--body);font-size:15px;color:var(--ink);padding:13px 15px;border:1px solid var(--line);border-radius:12px;background:rgba(11,6,18,.6)}
+.gm-row input{width:100%;font-family:var(--body);font-size:15px;color:var(--ink);padding:13px 15px;border:1px solid var(--line);border-radius:12px;background:var(--field-bg)}
 #gm-form .btn{width:100%;justify-content:center}
 .gm-note{font-size:12px;color:var(--ink-soft);margin-top:12px;text-align:center}
 @media (max-width:700px){.promptgrid{grid-template-columns:1fr}.gm-row{grid-template-columns:1fr}}
@@ -494,7 +614,7 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
 .line-path{fill:none;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round}
 .line-area{opacity:1}
 .barsvg,.linesvg{overflow:visible}
-.debt-row input{font-family:var(--body);font-size:14px;color:var(--ink);padding:10px 11px;border:1px solid var(--line);border-radius:10px;background:rgba(11,6,18,.6);width:100%}
+.debt-row input{font-family:var(--body);font-size:14px;color:var(--ink);padding:10px 11px;border:1px solid var(--line);border-radius:10px;background:var(--field-bg);width:100%}
 .debt-row .d-rm{padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);cursor:pointer;font-size:13px}
 
 /* ===== START HERE (course tracks) ===== */
@@ -526,7 +646,7 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
 .searchwrap{position:fixed;inset:0;z-index:120;background:rgba(7,4,12,.72);backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;padding:12vh 20px 20px}
 .searchwrap.show{display:flex}
 .searchbox{width:100%;max-width:640px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 30px 80px rgba(0,0,0,.5);position:relative}
-.searchbox input{width:100%;font-family:var(--body);font-size:17px;color:var(--ink);padding:14px 46px 14px 16px;border:1px solid var(--line);border-radius:12px;background:rgba(11,6,18,.6)}
+.searchbox input{width:100%;font-family:var(--body);font-size:17px;color:var(--ink);padding:14px 46px 14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--field-bg)}
 .searchbox input::placeholder{color:#6E6584}
 #searchClose{position:absolute;top:27px;right:29px;border:none;background:transparent;color:var(--ink-soft);font-size:18px;cursor:pointer}
 .searchresults{margin-top:12px;max-height:52vh;overflow:auto;display:flex;flex-direction:column;gap:6px}
@@ -555,6 +675,10 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
 .sh-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .sh-empty{border:1px dashed var(--line);border-radius:16px;padding:26px;color:var(--ink-soft);font-size:14px;text-align:center;margin-top:24px}
 </style>
+<script>
+/* Theme boot — runs before paint so there's no flash. Saved choice wins; otherwise follow the OS/system setting. Default dark if anything fails. */
+(function(){try{var t=localStorage.getItem('rafiu_theme');if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark';}document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();
+</script>
 </head>
 <body>
 <div class="orbit" aria-hidden="true"><span class="orbit-dot"></span></div>
@@ -573,6 +697,7 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
     </nav>
     <div style="display:flex;gap:10px;align-items:center">
       <button class="iconbtn" id="searchbtn" aria-label="Search">🔍</button>
+      <button class="iconbtn" id="themebtn" aria-label="Toggle light or dark theme">🌙</button>
       <button class="langbtn" id="langbtn" aria-label="Switch language">বাংলা</button>
       <button class="menubtn" id="menubtn" aria-label="Menu">☰</button>
     </div>
@@ -1243,6 +1368,10 @@ function applyLang(){
   buildTracks(); if(SH_CURRENT) openTrack(SH_CURRENT,true);
 }
 document.getElementById('langbtn').addEventListener('click',function(){LANG=(LANG==='en'?'bn':'en');try{localStorage.setItem('rafiu_lang',LANG);}catch(e){}applyLang();});
+/* Theme toggle — flips light/dark, saves the choice, updates the icon (button shows the theme you'll switch TO). */
+function syncThemeIcon(){var cur=document.documentElement.getAttribute('data-theme')||'dark';var b=document.getElementById('themebtn');if(b)b.textContent=(cur==='light'?'🌙':'☀️');}
+document.getElementById('themebtn').addEventListener('click',function(){var cur=document.documentElement.getAttribute('data-theme')||'dark';var next=(cur==='light'?'dark':'light');document.documentElement.setAttribute('data-theme',next);try{localStorage.setItem('rafiu_theme',next);}catch(e){}syncThemeIcon();});
+syncThemeIcon();
 
 /* ---------- resource library + detail ---------- */
 var CURRENT_RES=null;
@@ -2490,6 +2619,36 @@ try{var _sl=localStorage.getItem('rafiu_lang');if(_sl==='bn'||_sl==='en')LANG=_s
 try{var _h0=(location.hash||'').replace('#','');if(!_h0||_h0==='home'){var _sr=localStorage.getItem('rafiu_route');if(_sr&&_sr!=='home'&&_sr!=='rdetail')location.hash='#'+_sr;}}catch(e){}
 addDebtRow(150000,24,4000);addDebtRow(60000,16,2000);
 buildLibrary();buildPrompts();buildVideos();buildLatestCTA();buildTracks();route();applyLang();calcInfl();calcLoan();setHalalContract('mur');calcRentBuy();calcEmergency();calcGoal();calcTco();calcDebt();loadResources();
+/* ---- sliders: pair each with an editable number input (keep the slider, also let people type) ---- */
+function attachRangeNumbers(){
+  var ranges=document.querySelectorAll('.field input[type=range]');
+  for(var i=0;i<ranges.length;i++){(function(r){
+    if(r.dataset.numbound) return; r.dataset.numbound='1';
+    /* sibling .rangeval readout holds the formatted value (e.g. "12%") — read its unit, then hide it */
+    var rv=r.nextElementSibling;
+    while(rv && !(rv.classList && rv.classList.contains('rangeval'))) rv=rv.nextElementSibling;
+    var unit=''; if(rv){var t=(rv.textContent||'').trim(); if(t.slice(-1)==='%') unit='%';}
+    var num=document.createElement('input');
+    num.type='number'; num.className='rangenum';
+    num.min=r.min; num.max=r.max; num.step=r.step||'1'; num.value=r.value;
+    num.setAttribute('inputmode','decimal'); num.setAttribute('aria-label','Type a value');
+    var row=document.createElement('div'); row.className='rangerow';
+    r.parentNode.insertBefore(row,r); row.appendChild(r); row.appendChild(num);
+    if(unit){var u=document.createElement('span'); u.className='rangeunit'; u.textContent=unit; row.appendChild(u);}
+    if(rv) rv.style.display='none';
+    var lock=false;
+    r.addEventListener('input',function(){ if(lock) return; num.value=r.value; });
+    num.addEventListener('input',function(){
+      if(num.value==='') return;
+      var v=parseFloat(num.value); if(isNaN(v)) return;
+      var mn=parseFloat(r.min), mx=parseFloat(r.max);
+      if(!isNaN(mn)&&v<mn) v=mn; if(!isNaN(mx)&&v>mx) v=mx;
+      lock=true; r.value=v; r.dispatchEvent(new Event('input',{bubbles:false})); lock=false;
+    });
+    num.addEventListener('blur',function(){ num.value=r.value; });
+  })(ranges[i]);}
+}
+attachRangeNumbers();
 </script>
 </body>
 </html>
