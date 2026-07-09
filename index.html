@@ -1,6 +1,16 @@
 <!DOCTYPE html>
+<!--
+  © 2026 Rafiu Tahmid. All rights reserved.
+  This site — its design, code, copy, calculators and Bangla/English content —
+  is the original work of Rafiu Tahmid. No part may be copied, republished,
+  rehosted, or redistributed, in whole or in part, without written permission.
+  Unauthorized reproduction or claiming this work as your own is prohibited.
+  Contact: rafiutc18@gmail.com
+-->
 <html lang="en">
 <head>
+<meta name="author" content="Rafiu Tahmid">
+<meta name="copyright" content="© 2026 Rafiu Tahmid. All rights reserved.">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RAFIU — Figuring out how to build a better life</title>
@@ -20,6 +30,21 @@
 <meta name="twitter:title" content="RAFIU — Figuring out how to build a better life">
 <meta name="twitter:description" content="Personal finance, productivity, AI tools, motivation and the future of work — for ambitious young Bangladeshis. Bilingual, Shariah-aware.">
 <!-- <meta name="twitter:image" content="https://risewithrafiu.com/share.png"> -->
+<!-- Structured data: helps Google understand + surface the site and the rates dataset -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"WebSite","name":"RAFIU","url":"https://risewithrafiu.com/","inLanguage":["en","bn"],
+  "description":"Personal finance, productivity, AI tools, motivation and the future of work — for young Bangladeshis. Bilingual, Shariah-aware, sourced not asserted.",
+  "author":{"@type":"Person","name":"Rafiu Tahmid","email":"rafiutc18@gmail.com"}},
+ {"@type":"Dataset","name":"Bangladesh bank deposit rates — FDR, DPS & savings comparison",
+  "alternateName":"বাংলাদেশ ব্যাংক ডিপোজিট রেট তুলনা — এফডিআর, ডিপিএস, সেভিংস",
+  "url":"https://risewithrafiu.com/#rates",
+  "description":"Monthly-refreshed comparison of savings, FDR and DPS profit/growth rates across Bangladeshi banks, Islamic banks and NBFIs, plus open-end mutual fund NAVs and life-insurer claim settlement ratios. Every row cites its primary source and as-of date.",
+  "creator":{"@type":"Person","name":"Rafiu Tahmid"},
+  "spatialCoverage":"Bangladesh","inLanguage":["en","bn"],"isAccessibleForFree":true,
+  "variableMeasured":["Savings rate","FDR 3/6/12/36-month rate","DPS 3/5-year rate","Mutual fund NAV","Life insurer claim settlement ratio"]}
+]}
+</script>
 <!-- Favicon: inline purple "R" — no separate file needed, works offline -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23360D54'/%3E%3Ctext x='32' y='46' font-family='Georgia,serif' font-size='42' font-weight='700' fill='%23EDE9F5' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -282,6 +307,7 @@ html[data-lang="bn"] .chip{text-transform:none;letter-spacing:.02em;font-size:13
 .field label{display:block;font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:9px}
 html[data-lang="bn"] .field label{letter-spacing:.04em;text-transform:none;font-size:13px}
 .field input[type=number]{width:100%;font-family:var(--body);font-size:17px;color:var(--ink);padding:13px 15px;border:1px solid var(--line);border-radius:12px;background:var(--field-bg)}
+.field select{width:100%;font-family:var(--body);font-size:16px;color:var(--ink);padding:13px 15px;border:1px solid var(--line);border-radius:12px;background:var(--field-bg)}
 .field input[type=range]{width:100%;accent-color:var(--violet)}
 .rangeval{font-family:var(--display);font-weight:700;font-size:17px;color:var(--violet-bright)}
 /* slider + type-a-value combo (number input injected by JS next to each slider) */
@@ -416,8 +442,10 @@ html[data-lang="bn"] .now-item .fillin{font-size:14.5px}
 .rv.in .fact{opacity:1;transform:none}
 .rv.in .fact:nth-child(1){transition-delay:.05s}.rv.in .fact:nth-child(2){transition-delay:.13s}
 .rv.in .fact:nth-child(3){transition-delay:.21s}.rv.in .fact:nth-child(4){transition-delay:.29s}
-.fact{transition:border-color .2s,transform .2s}
-.fact:hover{border-color:rgba(167,139,250,.45);transform:translateY(-3px)}
+.fact{transition:border-color .25s ease,transform .25s ease,box-shadow .25s ease,background .25s ease}
+.fact:hover{border-color:rgba(167,139,250,.5);transform:translateY(-3px);background:var(--card-hover);box-shadow:0 12px 32px -14px rgba(124,58,237,.38)}
+.fact .eyebrow{transition:color .25s ease}
+.fact:hover .eyebrow{color:var(--violet-bright)}
 /* button sheen sweep */
 .btn{position:relative;overflow:hidden}
 .btn::after{content:"";position:absolute;top:0;left:-90%;width:55%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.17),transparent);transform:skewX(-20deg);transition:left .55s ease;pointer-events:none}
@@ -692,6 +720,7 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
       <a href="#home" data-route="home" data-en="Home" data-bn="হোম">Home</a>
       <a href="#about" data-route="about" data-en="About" data-bn="আমার কথা">About</a>
       <a href="#resources" data-route="resources" data-en="Resources" data-bn="রিসোর্স">Resources</a>
+      <a href="#rates" data-route="rates" data-en="Rates" data-bn="রেট">Rates</a>
       <a href="#tools" data-route="tools" data-en="Tools" data-bn="টুলস">Tools</a>
       <a href="#contact" data-route="contact" data-en="Contact" data-bn="যোগাযোগ">Contact</a>
     </nav>
@@ -933,6 +962,106 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
   </div>
 </section>
 
+<!-- ================= RATES (Bangladesh Money) ================= -->
+<section class="page" id="page-rates">
+  <style>
+    #page-rates .rt-badge{display:inline-block;background:rgba(52,211,153,.12);color:#34d399;border:1px solid rgba(52,211,153,.28);padding:3px 11px;border-radius:20px;font-size:11px;font-weight:700;margin-top:6px}
+    #page-rates .rt-meta{display:flex;gap:14px;flex-wrap:wrap;align-items:center;font-size:12.5px;color:var(--ink-soft);margin:16px 0 12px}
+    #page-rates .rt-dot{width:7px;height:7px;border-radius:50%;background:#34d399;display:inline-block;margin-right:6px;box-shadow:0 0 8px #34d399}
+    #page-rates .rt-fresh{color:#34d399;font-weight:700}
+    #page-rates .rt-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:16px;background:var(--card,rgba(139,92,246,.05))}
+    #page-rates table.rt-tbl{border-collapse:collapse;width:100%;min-width:640px;font-size:14px}
+    #page-rates .rt-tbl th,#page-rates .rt-tbl td{padding:13px 12px;text-align:center;border-bottom:1px solid var(--line)}
+    #page-rates .rt-tbl thead th{background:rgba(124,58,237,.16);color:var(--violet-bright);font-weight:700;font-size:12px;letter-spacing:.03em;white-space:nowrap}
+    #page-rates .rt-tbl tbody th{text-align:left;font-weight:700;color:var(--ink);background:rgba(139,92,246,.05);white-space:nowrap}
+    #page-rates .rt-tbl tbody tr:hover td{background:rgba(167,139,250,.06)}
+    #page-rates .rt-tbl td .rt-asof{display:block;font-size:10px;color:var(--ink-soft);margin-top:2px}
+    #page-rates .rt-tbl td.rt-best span{background:linear-gradient(135deg,#7C3AED,#5B21B6);color:#fff;font-weight:800;padding:4px 9px;border-radius:8px;box-shadow:0 6px 18px rgba(124,58,237,.4);display:inline-block}
+    #page-rates .rt-star{color:#ffd76a;font-size:10px;margin-left:3px}
+    #page-rates .rt-tr{font-size:9px;margin-left:3px;cursor:help;vertical-align:1px}
+    #page-rates .rt-up{color:#34d399}
+    #page-rates .rt-dn{color:#f87171}
+    #page-rates .rt-note{color:#e9a9a9;font-size:11.5px;margin:12px 2px 0;line-height:1.6}
+    #page-rates .rt-foot{color:var(--ink-soft);font-size:11.5px;margin:6px 2px 0;line-height:1.6}
+    #page-rates .rt-subh{font-family:var(--display);font-weight:700;font-size:clamp(20px,2.6vw,26px);color:var(--ink);margin:34px 2px 4px}
+    #page-rates .rt-subnote{color:var(--ink-soft);font-size:12.5px;line-height:1.6;margin:0 2px 14px;max-width:760px}
+    #page-rates .rt-tbl td.rt-fund{text-align:left;color:var(--ink-soft);font-size:12.5px;white-space:nowrap}
+    #page-rates .rt-dotr{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px;vertical-align:middle;box-shadow:0 0 0 2px rgba(0,0,0,.12)}
+    #page-rates tr.rt-norow th,#page-rates tr.rt-norow td{opacity:.62}
+    #page-rates .rt-nd{color:#b08; color:var(--ink-soft); font-style:italic}
+    #page-rates .rt-info{position:relative;display:inline-block;margin-left:7px;width:16px;height:16px;line-height:14px;text-align:center;font-size:11px;font-weight:700;color:var(--ink-soft);background:none;border:1px solid var(--line);border-radius:50%;cursor:help;vertical-align:middle;padding:0;font-family:var(--ui)}
+    #page-rates .rt-sort{cursor:pointer;user-select:none}
+    #page-rates .rt-sort:hover{color:var(--violet-bright)}
+    #page-rates .rt-tbl thead th.rt-sort.on{color:#fff;background:rgba(124,58,237,.32)}
+    #page-rates .rt-calc{display:inline-block;margin-left:8px;font-family:var(--ui);font-size:10.5px;font-weight:700;color:var(--violet-bright);background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.28);border-radius:7px;padding:2px 7px;cursor:pointer;vertical-align:middle}
+    #page-rates .rt-calc:hover{background:rgba(124,58,237,.22)}
+    #page-rates .rt-cond{display:block;margin-top:5px;color:#ffd9a8;font-size:11px;line-height:1.5}
+    #page-rates .rt-stale{color:#e0a04d}
+    #page-rates .rt-pop{display:none;position:absolute;left:50%;bottom:140%;transform:translateX(-50%);width:230px;background:#1c1230;color:#efe9fb;border:1px solid rgba(167,139,250,.4);border-radius:10px;padding:10px 12px;font-size:11.5px;line-height:1.55;font-weight:500;z-index:40;box-shadow:0 14px 34px rgba(0,0,0,.45);white-space:normal;text-align:left}
+    #page-rates .rt-pop a{color:#c4b5fd;text-decoration:underline}
+    #page-rates .rt-info:hover .rt-pop,#page-rates .rt-info:focus-within .rt-pop{display:block}
+    #page-rates .rt-legend{display:flex;gap:14px;flex-wrap:wrap;align-items:center;font-size:11.5px;color:var(--ink-soft);margin:12px 2px 0}
+    #page-rates .rt-legend span{display:inline-flex;align-items:center;gap:6px}
+    #page-rates .rt-legend i{width:9px;height:9px;border-radius:50%;display:inline-block;box-shadow:0 0 0 2px rgba(0,0,0,.12)}
+    #page-rates .rt-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.04em;padding:2px 7px;border-radius:20px;margin-left:8px;vertical-align:middle}
+    #page-rates .rt-isl{background:rgba(52,211,153,.14);color:#34d399;border:1px solid rgba(52,211,153,.3)}
+    #page-rates .rt-conv{background:rgba(167,139,250,.14);color:var(--violet-bright);border:1px solid rgba(167,139,250,.3)}
+    #page-rates .rt-nbfi{background:rgba(245,158,66,.14);color:#f59e42;border:1px solid rgba(245,158,66,.3)}
+    #page-rates #rt-filter{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 14px}
+    #page-rates .rt-fbtn{font-family:var(--ui);font-weight:700;font-size:12.5px;padding:7px 15px;border-radius:20px;background:rgba(139,92,246,.07);border:1px solid var(--line);color:var(--ink-soft);cursor:pointer;transition:all .15s}
+    #page-rates .rt-fbtn.on{background:linear-gradient(135deg,#7C3AED,#5B21B6);color:#fff;border-color:transparent;box-shadow:0 6px 20px rgba(124,58,237,.32)}
+    #page-rates .rt-disc-link{background:none;border:none;padding:0;margin:0 2px 16px;cursor:pointer;font-family:var(--body);font-size:13px;color:#fbbf24;text-decoration:underline dotted;text-underline-offset:3px}
+    #page-rates .rt-disc-link:hover{color:var(--ink)}
+    .rt-dm .modalbox{max-width:600px;max-height:82vh;overflow-y:auto}
+    .rt-dm h4{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--violet-bright);margin:18px 0 8px}
+    .rt-dm ol{margin:0 0 4px 18px;padding:0;color:var(--ink-soft);font-size:14px;line-height:1.65}
+    .rt-dm ol li{margin-bottom:8px}
+    .rt-dm .rt-dm-ok{margin-top:18px;width:100%;font-family:var(--ui);font-size:15px;font-weight:600;padding:12px;border:none;border-radius:12px;cursor:pointer;background:linear-gradient(135deg,#7C3AED,#5B21B6);color:#fff}
+  </style>
+  <div class="wrap">
+    <div class="res-head">
+      <span class="eyebrow" data-en="Bangladesh Money · Rates" data-bn="বাংলাদেশ মানি · রেট">Bangladesh Money · Rates</span>
+      <h1 class="display" data-en='Bank profit rates, <span class="grad">side by side.</span>' data-bn='ব্যাংক মুনাফার হার, <span class="grad">পাশাপাশি।</span>' data-html="1">Bank profit rates, <span class="grad">side by side.</span></h1>
+      <p class="lede" data-en="Shariah-compliant deposit & DPS profit rates from across Bangladesh, in one place. The numbers the banks publish — gathered automatically so you don't have to dig through 20 websites." data-bn="বাংলাদেশের নানা ব্যাংকের শরীয়াহসম্মত ডিপোজিট ও ডিপিএস মুনাফার হার, এক জায়গায়। ব্যাংকের প্রকাশিত হার — স্বয়ংক্রিয়ভাবে সংগ্রহ করা, যাতে আপনাকে ২০টা ওয়েবসাইট ঘাঁটতে না হয়।">Shariah-compliant deposit &amp; DPS profit rates from across Bangladesh, in one place.</p>
+      <span class="rt-badge" data-en="☪ Profit rate — not interest" data-bn="☪ মুনাফার হার — সুদ নয়">☪ Profit rate — not interest</span>
+    </div>
+    <div class="rt-meta">
+      <span><span class="rt-dot"></span><b data-en="Auto-updated monthly" data-bn="প্রতি মাসে স্বয়ংক্রিয় হালনাগাদ">Auto-updated monthly</b></span>
+      <span id="rt-stamp" data-dyn="1"></span>
+      <span id="rt-fresh" class="rt-fresh" data-dyn="1"></span>
+    </div>
+    <button type="button" class="rt-disc-link" onclick="rtDiscShow()">ⓘ <span data-en="Important notes about this data — please read once" data-bn="এই তথ্য নিয়ে জরুরি কথা — একবার পড়ে নিন">Important notes about this data — please read once</span></button>
+    <div id="rt-filter">
+      <button class="rt-fbtn on" data-f="all" onclick="rtSetFilter('all')" data-en="All banks" data-bn="সব ব্যাংক">All banks</button>
+      <button class="rt-fbtn" data-f="I" onclick="rtSetFilter('I')" data-en="☪ Islamic" data-bn="☪ ইসলামী">☪ Islamic</button>
+      <button class="rt-fbtn" data-f="C" onclick="rtSetFilter('C')" data-en="Conventional" data-bn="প্রচলিত">Conventional</button>
+      <button class="rt-fbtn" data-f="N" onclick="rtSetFilter('N')" data-en="NBFI" data-bn="এনবিএফআই">NBFI</button>
+    </div>
+    <!-- Static rows below = crawlable fallback data (same numbers as the JS fallback); render() replaces them on load with sorted/live data -->
+    <div class="rt-scroll"><table class="rt-tbl"><thead id="rt-head"><tr><th>Bank</th><th>Savings</th><th>FDR 3m</th><th>FDR 6m</th><th>FDR 1y</th><th>FDR 3y</th><th>DPS 3y</th><th>DPS 5y</th></tr></thead><tbody id="rt-body"><tr><th>BRAC Bank</th><td>0.50%</td><td>8.50%</td><td>9.00%</td><td>9.00%</td><td>9.00%</td><td>9.00%</td><td>9.00%</td></tr><tr><th>Eastern Bank</th><td>2.00%</td><td>6.35%</td><td>6.50%</td><td>6.50%</td><td>7.25%</td><td>9.75%</td><td>9.75%</td></tr><tr><th>EXIM Bank (Islamic)</th><td>3.00%</td><td>5.00%</td><td>5.25%</td><td>5.50%</td><td>6.00%</td><td>5.25%</td><td>5.50%</td></tr><tr><th>IBBL (Islamic)</th><td>2.50%</td><td>9.50%</td><td>9.80%</td><td>10.00%</td><td>10.50%</td><td>6.75%</td><td>7.25%</td></tr><tr><th>IIDFC (NBFI)</th><td>—</td><td>10.00%</td><td>11.00%</td><td>11.00%</td><td>11.00%</td><td>—</td><td>—</td></tr><tr><th>LankaBangla Finance (NBFI)</th><td>—</td><td>10.00%</td><td>10.50%</td><td>10.75%</td><td>10.50%</td><td>—</td><td>—</td></tr><tr><th>Shahjalal Islami</th><td>2.00%</td><td>7.50%</td><td>7.50%</td><td>8.00%</td><td>8.25%</td><td>9.00%</td><td>9.25%</td></tr><tr><th>Trust Bank</th><td>0.50%</td><td>8.00%</td><td>8.00%</td><td>8.00%</td><td>—</td><td>10.00%</td><td>10.00%</td></tr><tr><th>UCB Islamic</th><td>2.75%</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><th>SIBL (Islamic)</th><td>3.00%</td><td>8.50%</td><td>8.75%</td><td>10.00%</td><td>10.50%</td><td>8.75%</td><td>9.00%</td></tr><tr><th>Al-Arafah Islami</th><td>3.00%</td><td>10.00%</td><td>10.00%</td><td>10.50%</td><td>11.00%</td><td>—</td><td>—</td></tr><tr><th>DBH Finance (NBFI)</th><td>—</td><td>9.25%</td><td>9.25%</td><td>9.25%</td><td>8.50%</td><td>8.50%</td><td>8.00%</td></tr></tbody></table></div>
+    <p class="rt-note" data-en="⚠ Rates change without notice. Always confirm with the bank before deciding. Shown for comparison only — this is not financial advice." data-bn="⚠ হার যেকোনো সময় পরিবর্তন হতে পারে। সিদ্ধান্তের আগে অবশ্যই ব্যাংকে নিশ্চিত হয়ে নিন। শুধু তুলনার জন্য — এটি আর্থিক পরামর্শ নয়।">⚠ Rates change without notice. Always confirm with the bank before deciding.</p>
+    <p class="rt-foot" data-en="Sorted alphabetically — click any column heading to sort by it. FDR = fixed/term deposit, DPS = monthly savings scheme. Hover the ⓘ on any row to see its source & date." data-bn="বর্ণানুক্রমে সাজানো — যেকোনো কলামের শিরোনামে ক্লিক করে সাজাতে পারেন। FDR = মেয়াদি আমানত, DPS = মাসিক সঞ্চয় স্কিম। যেকোনো সারির ⓘ-তে হোভার করলে উৎস ও তারিখ দেখা যাবে।">Sorted alphabetically — click any column heading to sort by it. FDR = term deposit, DPS = monthly savings scheme.</p>
+    <div class="rt-legend" aria-label="reliability key">
+      <span data-en="Data reliability:" data-bn="তথ্যের নির্ভরযোগ্যতা:">Data reliability:</span>
+      <span><i style="background:#34d399"></i><span data-en="Primary (own sheet)" data-bn="প্রাইমারি (নিজস্ব শিট)">Primary (own sheet)</span></span>
+      <span><i style="background:#38bdf8"></i><span data-en="Regulator / exchange" data-bn="নিয়ন্ত্রক / এক্সচেঞ্জ">Regulator / exchange</span></span>
+      <span><i style="background:#fbbf24"></i><span data-en="Brokerage portal" data-bn="ব্রোকারেজ পোর্টাল">Brokerage portal</span></span>
+      <span><i style="background:#fb923c"></i><span data-en="Press" data-bn="সংবাদমাধ্যম">Press</span></span>
+      <span><i style="background:#7d7790"></i><span data-en="No data yet" data-bn="এখনো তথ্য নেই">No data yet</span></span>
+    </div>
+
+    <h2 class="rt-subh" data-en="Mutual funds — by asset manager" data-bn="মিউচুয়াল ফান্ড — অ্যাসেট ম্যানেজার অনুযায়ী">Mutual funds — by asset manager</h2>
+    <p class="rt-subnote" data-en="One open-end fund per manager. NAV is the per-unit value; “Return YTD” is the fund’s net asset value growth so far this year — past performance, not a promise." data-bn="প্রতি ম্যানেজারের একটি ওপেন-এন্ড ফান্ড। NAV হলো প্রতি ইউনিটের মূল্য; “রিটার্ন YTD” মানে এ বছর ফান্ডের সম্পদমূল্যের বৃদ্ধি — অতীত ফলাফল, কোনো নিশ্চয়তা নয়।">One open-end fund per manager. NAV = per-unit value; “Return YTD” is fund growth so far this year — past performance, not a promise.</p>
+    <div style="margin:0 2px 10px"><button type="button" id="rt-funds-toggle" class="rt-fbtn" onclick="rtFundsAll()" data-en="Show all funds" data-bn="সব ফান্ড দেখান">Show all funds</button></div>
+    <div class="rt-scroll"><table class="rt-tbl"><thead id="rt-amc-head"></thead><tbody id="rt-amc-body"></tbody></table></div>
+
+    <h2 class="rt-subh" data-en="Life insurers — who actually pays claims" data-bn="লাইফ বিমা — কারা আসলে দাবি পরিশোধ করে">Life insurers — who actually pays claims</h2>
+    <p class="rt-subnote" data-en="For life cover the number that matters is the claim settlement ratio — the share of claims the company actually paid. Figures are IDRA data (FY2022) reported via the press." data-bn="লাইফ কভারের ক্ষেত্রে আসল সংখ্যা হলো দাবি নিষ্পত্তির হার — কোম্পানি কত শতাংশ দাবি আসলে পরিশোধ করেছে। তথ্য আইডিআরএ (অর্থবছর ২০২২), সংবাদমাধ্যমে প্রকাশিত।">For life cover the number that matters is the claim settlement ratio — the share of claims actually paid. Figures: IDRA (FY2022), via press.</p>
+    <div class="rt-scroll"><table class="rt-tbl"><thead id="rt-ins-head"></thead><tbody id="rt-ins-body"></tbody></table></div>
+    <p class="rt-foot" data-en="☪ Shariah / Takaful rows are tagged. Profit rate, not interest. NBFI & insurer coverage grows over time." data-bn="☪ শরীয়াহ / তাকাফুল সারি ট্যাগ করা। মুনাফার হার, সুদ নয়। সময়ের সাথে এনবিএফআই ও বিমার কভারেজ বাড়বে।">☪ Shariah / Takaful rows are tagged. Profit rate, not interest.</p>
+  </div>
+</section>
+
 <!-- ================= TOOLS ================= -->
 <section class="page" id="page-tools">
   <div class="wrap section">
@@ -951,6 +1080,7 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
       <button id="tab-goal" data-en="Goal Timeline" data-bn="লক্ষ্যের সময়" onclick="showTool('goal')">Goal Timeline</button>
       <button id="tab-tco" data-en="Car/Bike Cost" data-bn="গাড়ি/বাইক খরচ" onclick="showTool('tco')">Car/Bike Cost</button>
       <button id="tab-debt" data-en="Debt Payoff" data-bn="দেনা শোধ" onclick="showTool('debt')">Debt Payoff</button>
+      <button id="tab-zakat" data-en="Zakat" data-bn="যাকাত" onclick="showTool('zakat')">Zakat</button>
       <button id="tab-prompts" data-en="AI Prompts" data-bn="এআই প্রম্পট" onclick="showTool('prompts')">AI Prompts</button>
     </div>
 
@@ -1202,6 +1332,34 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
       </div>
     </div>
 
+    <!-- ===== ZAKAT ===== -->
+    <div class="tool" id="tool-zakat">
+      <div class="panel">
+        <div class="field"><label data-en="Cash, bKash & bank balance (BDT)" data-bn="নগদ, বিকাশ ও ব্যাংক ব্যালেন্স (টাকা)">Cash, bKash &amp; bank balance (BDT)</label><input type="number" id="zCash" value="80000" min="0" oninput="calcZakat()"></div>
+        <div class="field"><label data-en="Shares, funds & other investments (BDT)" data-bn="শেয়ার, ফান্ড ও অন্যান্য বিনিয়োগ (টাকা)">Shares, funds &amp; other investments (BDT)</label><input type="number" id="zInvest" value="0" min="0" oninput="calcZakat()"></div>
+        <div class="field"><label data-en="Gold & silver you own — market value (BDT)" data-bn="আপনার সোনা ও রুপা — বাজারমূল্য (টাকা)">Gold &amp; silver you own — market value (BDT)</label><input type="number" id="zMetal" value="0" min="0" oninput="calcZakat()"></div>
+        <div class="field"><label data-en="Money others owe you, expected back (BDT)" data-bn="অন্যের কাছে পাওনা, ফেরত আশা করেন (টাকা)">Money others owe you, expected back (BDT)</label><input type="number" id="zLent" value="0" min="0" oninput="calcZakat()"></div>
+        <div class="field"><label data-en="Debts you must pay right now (BDT)" data-bn="এখনই শোধ করতে হবে এমন দেনা (টাকা)">Debts you must pay right now (BDT)</label><input type="number" id="zDebt" value="0" min="0" oninput="calcZakat()"></div>
+        <div class="field"><label data-en="Nisab standard" data-bn="নিসাব মানদণ্ড">Nisab standard</label>
+          <select id="zStd" onchange="zStdSwap()">
+            <option value="silver" selected data-en="Silver — 612.36g (more people qualify to give)" data-bn="রুপা — ৬১২.৩৬ গ্রাম (বেশি মানুষের উপর প্রযোজ্য)">Silver — 612.36g (more people qualify to give)</option>
+            <option value="gold" data-en="Gold — 87.48g" data-bn="সোনা — ৮৭.৪৮ গ্রাম">Gold — 87.48g</option>
+          </select></div>
+        <div class="field" style="margin-bottom:0"><label data-en="That metal's price per gram (BDT)" data-bn="সেই ধাতুর প্রতি গ্রাম দাম (টাকা)">That metal's price per gram (BDT)</label><input type="number" id="zPrice" value="240" min="1" oninput="calcZakat()"></div>
+        <p class="toolnote" data-en="Zakat is 2.5% of wealth that has stayed above nisab for one lunar year (hawl). The price field is prefilled from BAJUS mid-2026 — check today's rate before you calculate. Business inventory also counts if you trade. I'm a student, not a mufti — please confirm the details with your local scholar." data-bn="যাকাত হলো সম্পদের ২.৫% — যা এক চান্দ্র বছর (হাওল) ধরে নিসাবের উপরে থেকেছে। দামের ঘরটি ২০২৬-এর মাঝামাঝি বাজুস রেট দিয়ে পূরণ করা — হিসাবের আগে আজকের রেট দেখে নিন। ব্যবসার পণ্যও গণ্য হয়। আমি একজন ছাত্র, মুফতি নই — বিস্তারিত আপনার স্থানীয় আলেমের সাথে মিলিয়ে নিন।">Zakat is 2.5% of wealth that has stayed above nisab for one lunar year (hawl). The price field is prefilled from BAJUS mid-2026 — check today's rate before you calculate. Business inventory also counts if you trade. I'm a student, not a mufti — please confirm the details with your local scholar.</p>
+      </div>
+      <div class="result">
+        <span class="eyebrow" data-en="Zakat due this year" data-bn="এ বছরের যাকাত">Zakat due this year</span>
+        <div class="bignum grad" id="zDue">৳ 0</div>
+        <div class="split-rows" style="margin-top:18px">
+          <div class="split-row"><span class="name" data-en="Your zakatable wealth" data-bn="আপনার যাকাতযোগ্য সম্পদ">Your zakatable wealth</span><span class="amt" id="zNet">৳ 0</span></div>
+          <div class="split-row"><span class="name" data-en="Nisab threshold" data-bn="নিসাব সীমা">Nisab threshold</span><span class="amt" id="zNisab">৳ 0</span></div>
+          <div class="split-row"><span class="name" data-en="Set aside monthly" data-bn="মাসে আলাদা রাখলে">Set aside monthly</span><span class="amt grad" id="zMonthly">—</span></div>
+        </div>
+        <p class="toolnote" id="zStatus" style="margin-top:14px"></p>
+      </div>
+    </div>
+
     <!-- ===== AI PROMPTS ===== -->
     <div class="tool" id="tool-prompts">
       <div class="promptwrap">
@@ -1272,6 +1430,35 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
       <button class="btn" type="submit" id="gm-btn" data-en="Unlock now" data-bn="এখন আনলক">Unlock now</button>
       <p class="gm-note" data-en="One email, the whole toolkit. No spam, unsubscribe anytime." data-bn="একটা ইমেইল, পুরো টুলকিট। স্প্যাম নেই, যেকোনো সময় আনসাবস্ক্রাইব।">One email, the whole toolkit. No spam, unsubscribe anytime.</p>
     </form>
+  </div>
+</div>
+
+<!-- Rates disclaimers — auto-opens once per device on first visit to #rates; the ⓘ link reopens it anytime. Both languages always shown. -->
+<div id="rtDiscModal" class="modalwrap rt-dm" role="dialog" aria-modal="true" aria-label="Important notes about the rates data" aria-hidden="true">
+  <div class="modalbox">
+    <button class="modalx" onclick="rtDiscHide()" aria-label="Close">×</button>
+    <h3 class="display" style="margin-top:4px">Before you use these numbers <span style="color:var(--ink-soft)">·</span> এই সংখ্যাগুলো ব্যবহারের আগে</h3>
+    <h4>In plain English</h4>
+    <ol>
+      <li>These rates come from the banks' own published rate sheets. Your real offer can be different — banks change rates, add conditions, and sometimes negotiate.</li>
+      <li>A higher rate is not always better. How strong the bank is, how good the service is, and how easily you can take your money out matter just as much.</li>
+      <li>Islamic bank profit rates are provisional (expected) — the final profit can be a little different.</li>
+      <li>Rates shown are for regular individual accounts at the smallest published amount tier. Bigger deposits often earn more, and some banks' savings rates rise with your balance.</li>
+      <li>All numbers are before tax — government tax on profit and excise duty on deposits will reduce what you actually receive.</li>
+      <li>Every row shows its source and date — tap the ⓘ on a row to see where its number came from. Where a bank blocks automatic reading of its own site, the row comes from Bangladesh Bank's published chart instead (blue dot).</li>
+      <li>This page is for comparison and learning only. It is not financial advice. Always confirm with the bank before deciding.</li>
+    </ol>
+    <h4>সহজ বাংলায়</h4>
+    <ol>
+      <li>এই হারগুলো ব্যাংকের নিজস্ব প্রকাশিত রেট শিট থেকে নেওয়া। আপনি বাস্তবে ভিন্ন হার পেতে পারেন — ব্যাংক হার বদলায়, শর্ত জোড়ে, কখনো দরকষাকষিও হয়।</li>
+      <li>বেশি হার মানেই ভালো নয়। ব্যাংক কতটা মজবুত, সেবা কেমন, আর টাকা তুলতে কতটা সহজ — এগুলোও সমান জরুরি।</li>
+      <li>ইসলামী ব্যাংকের মুনাফার হার সাময়িক (প্রত্যাশিত) — চূড়ান্ত মুনাফা কিছুটা ভিন্ন হতে পারে।</li>
+      <li>দেখানো হারগুলো সাধারণ ব্যক্তিগত অ্যাকাউন্টের, সবচেয়ে ছোট প্রকাশিত অঙ্কের স্তরের। বড় আমানতে প্রায়ই বেশি হার মেলে, আর কিছু ব্যাংকে সঞ্চয়ের হার ব্যালেন্সের সাথে বাড়ে।</li>
+      <li>সব সংখ্যা করের আগের হিসাব — মুনাফার ওপর সরকারি কর আর আমানতের ওপর আবগারি শুল্ক বাদ দিলে হাতে কম আসবে।</li>
+      <li>প্রতিটি সারিতে উৎস ও তারিখ দেওয়া আছে — সারির ⓘ চাপলে দেখবেন সংখ্যাটা কোথা থেকে এসেছে। কোনো ব্যাংকের সাইট স্বয়ংক্রিয়ভাবে পড়া না গেলে সারিটা আসে বাংলাদেশ ব্যাংকের প্রকাশিত চার্ট থেকে (নীল বিন্দু)।</li>
+      <li>এই পেজ শুধু তুলনা আর শেখার জন্য। এটি আর্থিক পরামর্শ নয়। সিদ্ধান্তের আগে অবশ্যই ব্যাংকে নিশ্চিত হয়ে নিন।</li>
+    </ol>
+    <button type="button" class="rt-dm-ok" onclick="rtDiscHide()">I understand · বুঝেছি</button>
   </div>
 </div>
 
@@ -1364,7 +1551,7 @@ function applyLang(){
   for(var j=0;j<phs.length;j++){phs[j].setAttribute('placeholder',phs[j].getAttribute('data-'+LANG+'-ph'));}
   document.getElementById('langbtn').textContent=(LANG==='en'?'বাংলা':'EN');
   buildLibrary(); buildPrompts(); buildVideos(); buildLatestCTA(); if(CURRENT_RES)fillDetail(CURRENT_RES);
-  calcSplit();calcGrowth();calcInfl();calcLoan();calcHalal();calcRentBuy();calcEmergency();calcGoal();calcTco();calcDebt();
+  calcSplit();calcGrowth();calcInfl();calcLoan();calcHalal();calcRentBuy();calcEmergency();calcGoal();calcTco();calcDebt();calcZakat();
   buildTracks(); if(SH_CURRENT) openTrack(SH_CURRENT,true);
 }
 document.getElementById('langbtn').addEventListener('click',function(){LANG=(LANG==='en'?'bn':'en');try{localStorage.setItem('rafiu_lang',LANG);}catch(e){}applyLang();});
@@ -1390,20 +1577,28 @@ function _normRes(item){
     title:L(item.title),sub:L(item.sub),desc:L(item.desc),blurb:L(item.blurb),
     points:{en:en,bn:bn},download_en:(item.download_en||item.download||''),download_bn:(item.download_bn||'')};
 }
+/* stale-while-revalidate: render instantly from the last good feed (localStorage),
+   then refresh quietly in the background. Site stays up even if Apps Script hiccups. */
+var FEED_CACHE_KEY='rafiu_feed_cache_v1';
+function applyFeed(d){
+  var list=(d&&d.resources)?d.resources:(Object.prototype.toString.call(d)==='[object Array]'?d:null);
+  if(!list||!list.length) return false;
+  var obj={},i;
+  for(i=0;i<list.length;i++){var it=list[i];
+    var k=(it.key||it.slug||'').toString().toLowerCase().replace(/[^a-z0-9-]+/g,'-').replace(/^-+|-+$/g,'');
+    if(!k)k='res'+i; obj[k]=_normRes(it);}
+  RESOURCES=obj;
+  buildLibrary(); buildLatestCTA();
+  if(d&&d.videos&&d.videos.length){COURSE_VIDEOS=d.videos;buildTracks();if(SH_CURRENT)openTrack(SH_CURRENT,true);}
+  var h=(location.hash||'').replace('#','');
+  if(h.indexOf('r/')===0) route();
+  return true;
+}
 function loadResources(){
   if(!RESOURCES_API) return;
+  try{ var c=localStorage.getItem(FEED_CACHE_KEY); if(c) applyFeed(JSON.parse(c)); }catch(e){}
   fetch(RESOURCES_API).then(function(r){return r.json();}).then(function(d){
-    var list=(d&&d.resources)?d.resources:(Object.prototype.toString.call(d)==='[object Array]'?d:null);
-    if(!list||!list.length) return;
-    var obj={},i;
-    for(i=0;i<list.length;i++){var it=list[i];
-      var k=(it.key||it.slug||'').toString().toLowerCase().replace(/[^a-z0-9-]+/g,'-').replace(/^-+|-+$/g,'');
-      if(!k)k='res'+i; obj[k]=_normRes(it);}
-    RESOURCES=obj;
-    buildLibrary(); buildLatestCTA();
-    if(d&&d.videos&&d.videos.length){COURSE_VIDEOS=d.videos;buildTracks();if(SH_CURRENT)openTrack(SH_CURRENT,true);}
-    var h=(location.hash||'').replace('#','');
-    if(h.indexOf('r/')===0) route();
+    if(applyFeed(d)){ try{ localStorage.setItem(FEED_CACHE_KEY,JSON.stringify(d)); }catch(e){} }
   }).catch(function(){});
 }
 
@@ -1469,7 +1664,7 @@ document.getElementById('gateform').addEventListener('submit',function(e){
 });
 
 /* ---------- routing ---------- */
-var PAGES=['home','starthere','about','resources','tools','contact','rdetail'];
+var PAGES=['home','starthere','about','resources','rates','tools','contact','rdetail'];
 document.addEventListener('click',function(e){
   var t=e.target,a=null;
   while(t&&t!==document){if(t.tagName==='A'&&t.getAttribute('href')&&t.getAttribute('href').charAt(0)==='#'){a=t;break;}t=t.parentNode;}
@@ -1496,9 +1691,36 @@ function renderRoute(h){
   var hl=(page==='rdetail'?'resources':page);
   for(var j=0;j<links.length;j++){links[j].classList.toggle('active',links[j].getAttribute('data-route')===hl);}
   document.getElementById('navlinks').classList.remove('open');
+  /* per-route <title> + meta description — one URL, but each view still tells search engines what it is */
+  var SEOT={
+    home:      {t:'RAFIU — Figuring out how to build a better life',d:'Personal finance, productivity, AI tools and motivation for young Bangladeshis. Bilingual, Shariah-aware, sourced not asserted.'},
+    rates:     {t:'Bangladesh bank FDR, DPS & savings rates compared — RAFIU',d:'Live comparison of FDR, DPS and savings profit/growth rates across Bangladeshi banks, Islamic banks and NBFIs — every rate sourced and dated. ব্যাংক ডিপোজিট রেট তুলনা।'},
+    tools:     {t:'Free personal-finance calculators for Bangladesh — RAFIU',d:'Budget split, growth, inflation, halal financing, emergency fund, zakat and more — built for Bangladeshi taka, in English and Bangla.'},
+    resources: {t:'Free workbooks & cheat sheets — RAFIU',d:'Print-and-fill personal-finance workbooks and one-page cheat sheets, in English and Bangla. Free.'},
+    starthere: {t:'Start Here — guided video tracks — RAFIU',d:'Short video tracks on personal finance, productivity, AI tools, motivation and the future of work — with companion workbooks.'},
+    about:     {t:'About Rafiu — RAFIU',d:'A student of finance sharing what he learns — translator, not guru. IBA, CFA L1.'},
+    contact:   {t:'Contact — RAFIU',d:'Questions, corrections, suggestions — write to Rafiu.'}
+  };
+  var se=SEOT[page]||SEOT.home;
+  try{ document.title=se.t; var md=document.querySelector('meta[name="description"]'); if(md) md.setAttribute('content',se.d); }catch(e){}
+  if(page==='rates') rtDiscMaybe();   /* first visit to rates -> show the disclaimers popup once */
   window.scrollTo(0,0);
   revealInit();
 }
+
+/* ---------- rates disclaimers popup (auto once per device; ⓘ link reopens) ---------- */
+var RT_DISC_KEY='rafiu_rt_disc_v1';
+function rtDiscShow(){ var m=document.getElementById('rtDiscModal'); if(!m) return;
+  m.classList.add('show'); m.setAttribute('aria-hidden','false');
+  if(window.track) track('rates_disclaimer_open',''); }
+function rtDiscHide(){ var m=document.getElementById('rtDiscModal'); if(!m) return;
+  m.classList.remove('show'); m.setAttribute('aria-hidden','true');
+  try{ localStorage.setItem(RT_DISC_KEY,'1'); }catch(e){} }
+function rtDiscMaybe(){ var seen=null; try{ seen=localStorage.getItem(RT_DISC_KEY); }catch(e){}
+  if(!seen) rtDiscShow(); }
+document.addEventListener('keydown',function(e){ if(e.key==='Escape') rtDiscHide(); });
+document.addEventListener('click',function(e){ var m=document.getElementById('rtDiscModal');
+  if(m && e.target===m) rtDiscHide(); });
 window.addEventListener('hashchange',route);
 document.getElementById('menubtn').addEventListener('click',function(){
   document.getElementById('navlinks').classList.toggle('open');
@@ -2205,7 +2427,30 @@ function calcGrowth(){
 }
 
 /* ---------- tool tabs ---------- */
-var TOOLIDS=['split','growth','inflation','loan','halal','rentbuy','emergency','goal','tco','debt','prompts'];
+var TOOLIDS=['split','growth','inflation','loan','halal','rentbuy','emergency','goal','tco','debt','zakat','prompts'];
+
+/* ===== ZAKAT ===== */
+var Z_NISAB={silver:612.36,gold:87.48};                 /* grams */
+var Z_DEFPRICE={silver:240,gold:19000};                 /* ৳/gram, BAJUS mid-2026 — user-editable */
+function zStdSwap(){                                    /* switching standard prefills that metal's price */
+  var std=document.getElementById('zStd').value;
+  document.getElementById('zPrice').value=Z_DEFPRICE[std]||240;
+  calcZakat();
+}
+function calcZakat(){
+  function n(id){ var v=parseFloat(document.getElementById(id).value); return isFinite(v)?Math.max(0,v):0; }
+  var net=n('zCash')+n('zInvest')+n('zMetal')+n('zLent')-n('zDebt'); if(net<0) net=0;
+  var std=document.getElementById('zStd').value;
+  var nisab=(Z_NISAB[std]||Z_NISAB.silver)*Math.max(1,n('zPrice'));
+  var due=net>=nisab?net*0.025:0;
+  document.getElementById('zNet').textContent=tk(net);
+  document.getElementById('zNisab').textContent=tk(nisab);
+  document.getElementById('zDue').textContent=due>0?tk(due):(LANG==='bn'?'যাকাত ফরজ নয়':'No zakat due');
+  document.getElementById('zMonthly').textContent=due>0?tk(due/12):'—';
+  document.getElementById('zStatus').textContent = due>0
+    ? (LANG==='bn'?'আপনার সম্পদ নিসাবের উপরে — এক চান্দ্র বছর পূর্ণ হয়ে থাকলে এই পরিমাণ যাকাত দিন।':'Your wealth is above nisab — if it has stayed there a full lunar year, this is what you give.')
+    : (LANG==='bn'?'আপনার সম্পদ নিসাবের নিচে — এ বছর যাকাত ফরজ নয়। চাইলে সদকা সবসময় খোলা।':'Your wealth is below nisab — zakat is not due this year. Sadaqah is always open, if you wish.');
+}
 function showTool(t){
   for(var i=0;i<TOOLIDS.length;i++){
     var on=TOOLIDS[i]===t;
@@ -2618,7 +2863,7 @@ function voteThumb(btn){var kind=btn.getAttribute('data-tk'),id=btn.getAttribute
 try{var _sl=localStorage.getItem('rafiu_lang');if(_sl==='bn'||_sl==='en')LANG=_sl;}catch(e){}
 try{var _h0=(location.hash||'').replace('#','');if(!_h0||_h0==='home'){var _sr=localStorage.getItem('rafiu_route');if(_sr&&_sr!=='home'&&_sr!=='rdetail')location.hash='#'+_sr;}}catch(e){}
 addDebtRow(150000,24,4000);addDebtRow(60000,16,2000);
-buildLibrary();buildPrompts();buildVideos();buildLatestCTA();buildTracks();route();applyLang();calcInfl();calcLoan();setHalalContract('mur');calcRentBuy();calcEmergency();calcGoal();calcTco();calcDebt();loadResources();
+buildLibrary();buildPrompts();buildVideos();buildLatestCTA();buildTracks();route();applyLang();calcInfl();calcLoan();setHalalContract('mur');calcRentBuy();calcEmergency();calcGoal();calcTco();calcDebt();calcZakat();loadResources();
 /* ---- sliders: pair each with an editable number input (keep the slider, also let people type) ---- */
 function attachRangeNumbers(){
   var ranges=document.querySelectorAll('.field input[type=range]');
@@ -2649,6 +2894,300 @@ function attachRangeNumbers(){
   })(ranges[i]);}
 }
 attachRangeNumbers();
+</script>
+
+<!-- ================= BANK RATES (Bangladesh Money) — isolated ================= -->
+<script>
+(function(){
+  /* 7-field schema + bilingual column labels */
+  var COLS=[
+    {k:'savings',en:'Savings',bn:'সেভিংস'},
+    {k:'fdr_3m', en:'FDR 3m', bn:'এফডিআর ৩মা'},
+    {k:'fdr_6m', en:'FDR 6m', bn:'এফডিআর ৬মা'},
+    {k:'fdr_1y', en:'FDR 1y', bn:'এফডিআর ১বছ'},
+    {k:'fdr_3y', en:'FDR 3y', bn:'এফডিআর ৩বছ'},
+    {k:'dps_3y', en:'DPS 3y', bn:'ডিপিএস ৩বছ'},
+    {k:'dps_5y', en:'DPS 5y', bn:'ডিপিএস ৫বছ'}
+  ];
+  /* REAL numbers pulled live from each bank's own published rate sheet.
+     This is the offline fallback; the live ?rates=1 feed (when present) overrides it. */
+  /* tiers: P=Primary (bank's own site / Bangladesh Bank) · R=Regulator/exchange (BB/IDRA/DSE/CDBL)
+            · B=Brokerage portal · Pr=Press · X=No data found. Every row carries src+srcName+asof+tier. */
+  function nd(bank,type){ return {bank:bank,type:type,savings:null,fdr_3m:null,fdr_6m:null,fdr_1y:null,fdr_3y:null,dps_3y:null,dps_5y:null,tier:'X',src:'',srcName:'',asof:''}; }
+  var FALLBACK=[
+    /* — banks/NBFIs with data from the institution's OWN published rate sheet (Primary) — */
+    {bank:'IBBL',          type:'I',savings:2.50,fdr_3m:9.50,fdr_6m:9.80,fdr_1y:10.00,fdr_3y:10.50,dps_3y:6.75,dps_5y:7.25,tier:'P',srcName:'IBBL Mudaraba profit-rate sheet',src:'https://www.islamibankbd.com/',asof:'Jan 2026'},
+    {bank:'EXIM Bank',     type:'I',savings:3.00,fdr_3m:5.00,fdr_6m:5.25,fdr_1y:5.50, fdr_3y:6.00, dps_3y:5.25,dps_5y:5.50,tier:'P',srcName:'EXIM Bank profit-rate sheet (w.e.f. 1 Jul 2026)',src:'https://www.eximbankbd.com/deposit/Deposit_Rates',asof:'Jul 2026'},
+    {bank:'SIBL',          type:'I',savings:3.00,fdr_3m:8.50,fdr_6m:8.75,fdr_1y:10.00,fdr_3y:10.50,dps_3y:8.75,dps_5y:9.00,tier:'P',srcName:'SIBL provisional profit-rate sheet (eff. 1 Jun 2024)',src:'https://www.siblbd.com/',asof:'Jun 2024'},
+    {bank:'AB Islami',     type:'I',savings:4.00,fdr_3m:12.00,fdr_6m:12.00,fdr_1y:12.00,fdr_3y:null,dps_3y:10.00,dps_5y:10.00,tier:'P',srcName:'AB Bank Islami provisional profit rates (w.e.f. 24 Oct 2024)',src:'https://abbl.com/islami-banking/provisional-profit-rates/',asof:'Oct 2024'},
+    {bank:'Al-Arafah Islami',type:'I',savings:3.00,fdr_3m:10.00,fdr_6m:10.00,fdr_1y:10.50,fdr_3y:11.00,dps_3y:null,dps_5y:null,tier:'P',srcName:'AIBL revised provisional profit-rate circular (26 Jan 2025)',src:'https://www.aibl.com.bd/',asof:'Jan 2025'},
+    {bank:'UCB Islamic',   type:'I',savings:2.75,fdr_3m:null,fdr_6m:null,fdr_1y:null, fdr_3y:null, dps_3y:null,dps_5y:null,tier:'R',srcName:'Bangladesh Bank deposit rate chart (UCB row; term rates published only as ranges)',src:'https://www.bb.org.bd/en/index.php/financialactivity/interestdeposit',asof:'Jun 2026'},
+    {bank:'Shahjalal Islami',type:'I',savings:2.00,fdr_3m:7.50,fdr_6m:7.50,fdr_1y:8.00, fdr_3y:8.25, dps_3y:9.00,dps_5y:9.25,tier:'P',srcName:'Shahjalal Islami profit-rate sheet',src:'https://www.sjiblbd.com/',asof:'Apr 2026'},
+    {bank:'BRAC Bank',     type:'C',savings:0.50,fdr_3m:8.50,fdr_6m:9.00,fdr_1y:9.00, fdr_3y:9.00, dps_3y:9.00,dps_5y:9.00,tier:'P',srcName:'BRAC Bank deposit interest rate',src:'https://www.bracbank.com/en/page/deposit-interest-rate',asof:'Mar 2026'},
+    {bank:'Eastern Bank',  type:'C',savings:2.00,fdr_3m:6.35,fdr_6m:6.50,fdr_1y:6.50, fdr_3y:7.25, dps_3y:9.75,dps_5y:9.75,tier:'P',srcName:'EBL deposit rates',src:'https://www.ebl.com.bd/',asof:'May 2026'},
+    {bank:'Trust Bank',    type:'C',savings:0.50,fdr_3m:8.00,fdr_6m:8.00,fdr_1y:8.00, fdr_3y:null, dps_3y:10.00,dps_5y:10.00,tier:'P',srcName:'Trust Bank deposit rates (eff. 26 Jan 2026)',src:'https://www.tblbd.com/rates-and-charges/deposit-rates',asof:'Jan 2026'},
+    {bank:'IIDFC',         type:'N',savings:null,fdr_3m:10.00,fdr_6m:11.00,fdr_1y:11.00,fdr_3y:11.00,dps_3y:null,dps_5y:null,tier:'P',srcName:'IIDFC deposit rate sheet (eff. 1 Jul 2026)',src:'https://www.iidfc.com/deposit/interest-rate-details/deposit-rate-sheet',asof:'Jul 2026'},
+    {bank:'Jamuna Bank',   type:'C',savings:2.00,fdr_3m:null,fdr_6m:null,fdr_1y:null,fdr_3y:null,dps_3y:9.50,dps_5y:9.00,tier:'P',srcName:'Jamuna Bank deposit schemes sheet (eff. 1 Mar 2025; FDR published only as a range)',src:'https://jamunabankbd.com/',asof:'Mar 2025'},
+    {bank:'NCC Bank',      type:'C',savings:0.50,fdr_3m:8.75,fdr_6m:9.00,fdr_1y:9.25,fdr_3y:8.75,dps_3y:null,dps_5y:null,tier:'P',srcName:'NCC Bank deposit rate chart (eff. 8 Jan 2026)',src:'https://www.nccbank.com.bd/',asof:'Jan 2026'},
+    {bank:'Premier Bank',  type:'C',savings:3.00,fdr_3m:9.00,fdr_6m:9.00,fdr_1y:9.25,fdr_3y:7.00,dps_3y:null,dps_5y:null,tier:'P',srcName:'Premier Bank deposit rates (w.e.f. May 2025)',src:'https://premierbankltd.com/',asof:'May 2025'},
+    {bank:'Pubali Bank',   type:'C',savings:2.50,fdr_3m:8.00,fdr_6m:8.25,fdr_1y:8.50,fdr_3y:null,dps_3y:null,dps_5y:null,tier:'R',srcName:'Bangladesh Bank deposit rate chart (Pubali row)',src:'https://www.bb.org.bd/en/index.php/financialactivity/interestdeposit',asof:'Jun 2026'},
+    {bank:'DBH Finance',   type:'N',savings:null,fdr_3m:9.25,fdr_6m:9.25,fdr_1y:9.25,fdr_3y:8.50,dps_3y:8.50,dps_5y:8.00,tier:'P',srcName:'DBH deposit card rates (eff. 2 Nov 2025)',src:'https://dbhfinance.com/',asof:'Nov 2025'},
+    {bank:'LankaBangla Finance',type:'N',savings:null,fdr_3m:10.00,fdr_6m:10.50,fdr_1y:10.75,fdr_3y:10.50,dps_3y:null,dps_5y:null,tier:'P',srcName:'LankaBangla deposit rates (eff. 27 Apr 2025)',src:'https://www.lankabangla.com/deposit-rates/',asof:'Apr 2025'},
+    /* — named but NO reliable current rate captured yet (primary sites are JS-only / scanned PDFs / captcha-walled). Shown honestly as no-data. — */
+    nd('First Security Islami','I'), nd('Global Islami','I'), nd('Union Bank','I'),
+    nd('Standard Chartered','C'), nd('HSBC Bangladesh','C'), nd('City Bank','C'), nd('Dutch-Bangla','C'), nd('Dhaka Bank','C'),
+    nd('National Bank','C'), nd('Prime Bank','C'), nd('Bank Asia','C'), nd('Mutual Trust','C'),
+    nd('Mercantile Bank','C'), nd('Midland Bank','C'), nd('One Bank','C'),
+    nd('Sonali Bank','C'), nd('Agrani Bank','C'), nd('Janata Bank','C'),
+    nd('IDLC Finance','N'), nd('IPDC Finance','N'), nd('United Finance','N'),
+    nd('National Housing Fin.','N'), nd('Phoenix Finance','N'), nd('Bay Leasing','N'), nd('Uttara Finance','N')
+  ];
+  /* ASSET MANAGEMENT COMPANIES — representative open-end fund per AMC.
+     NAV/unit, NAV return YTD, AUM (BDT mn). Source: LankaBangla weekly open-end review, NAV as on 11 Jun 2026. */
+  var AMC_DATA=[
+    {amc:'ICB AMC',         fund:'Bangladesh Fund',          nav:86.48, ytd:10.70, aum:15102, type:'C',asof:'Jun 2026'},
+    {amc:'IDLC AML',        fund:'IDLC Growth Fund',         nav:13.22, ytd:13.10, aum:931,  type:'C',asof:'Jun 2026'},
+    {amc:'LankaBangla AMC', fund:'LankaBangla 1st Balanced', nav:11.46, ytd:8.70,  aum:360,  type:'C',asof:'Jun 2026'},
+    {amc:'VIPB AMC',        fund:'VIPB Accelerated Income',  nav:12.67, ytd:9.00,  aum:328,  type:'C',asof:'Jun 2026'},
+    {amc:'Shanta AMC',      fund:'Shanta Fixed Income Fund', nav:11.96, ytd:7.00,  aum:2191, type:'C',asof:'Jun 2026'},
+    {amc:'UCB AML',         fund:'UCB Income Plus Fund',     nav:14.16, ytd:5.30,  aum:3687, type:'C',asof:'Jun 2026'},
+    {amc:'EDGE AMC',        fund:'EDGE AMC Growth Fund',     nav:16.11, ytd:12.40, aum:427,  type:'C',asof:'Jun 2026'},
+    {amc:'RACE Management',  fund:'RACE Financial Inclusion Fund',nav:10.14,ytd:2.10,aum:254,type:'C',asof:'Jun 2026'},
+    {amc:'Asian Tiger Capital',fund:'ATC Shariah Unit Fund',nav:7.54,  ytd:4.00,  aum:54,   type:'I',asof:'Jun 2026'},
+    {amc:'Capitec AMC',     fund:'Capitec-IBBL Shariah Fund',nav:8.68,  ytd:6.30,  aum:219,  type:'I',asof:'Jun 2026'}
+  ];
+  /* LIFE INSURERS — claim settlement ratio + claims paid (the comparison that matters most for BD life cover).
+     Source: IDRA figures via The Daily Star, FY2022 (MetLife also reported 97.79% in 2024). */
+  var INS_DATA=[
+    {co:'Popular Life',        type:'C',claim:99.97,paid:576, asof:'FY2022'},
+    {co:'MetLife',             type:'C',claim:96.00,paid:3229,asof:'FY2022'},
+    {co:'Meghna Life',         type:'C',claim:98.00,paid:421, asof:'FY2022'},
+    {co:'Pragati Life',        type:'C',claim:98.00,paid:313, asof:'FY2022'},
+    {co:'Guardian Life',       type:'C',claim:98.00,paid:297, asof:'FY2022'},
+    {co:'Delta Life',          type:'C',claim:93.00,paid:841, asof:'FY2022'},
+    {co:'Sandhani Life',       type:'C',claim:90.00,paid:211, asof:'FY2022'},
+    {co:'Prime Islami Life',   type:'I',claim:90.00,paid:290, asof:'FY2022'},
+    {co:'National Life',       type:'C',claim:76.00,paid:1042,asof:'FY2022'},
+    {co:'Fareast Islami Life', type:'I',claim:21.00,paid:970, asof:'FY2022'}
+  ];
+  var DATA=FALLBACK.slice();
+  var FILTER='all';   /* all | I | C | N */
+
+  function L(en,bn){ return (typeof LANG!=='undefined'&&LANG==='bn')?bn:en; }
+  function fmt(v){ var s=(v==null||v==='')?'—':(Number(v).toFixed(2)+'%');
+    return (typeof loc==='function')?loc(s):s; }
+
+  /* reliability tiers + hover source popover */
+  var REL={
+    P :{c:'#34d399',en:'Primary — institution’s own published sheet',bn:'প্রাইমারি — প্রতিষ্ঠানের নিজস্ব প্রকাশিত শিট'},
+    R :{c:'#38bdf8',en:'Regulator / exchange (Bangladesh Bank · IDRA · DSE · CDBL)',bn:'নিয়ন্ত্রক / এক্সচেঞ্জ (বাংলাদেশ ব্যাংক · আইডিআরএ · ডিএসই · সিডিবিএল)'},
+    B :{c:'#fbbf24',en:'Brokerage / fund portal',bn:'ব্রোকারেজ / ফান্ড পোর্টাল'},
+    Pr:{c:'#fb923c',en:'Press (regulator figures, reported)',bn:'সংবাদমাধ্যম (নিয়ন্ত্রকের তথ্য, প্রকাশিত)'},
+    X :{c:'#7d7790',en:'No data — primary source not reachable yet',bn:'কোনো তথ্য নেই — উৎস এখনো পাওয়া যায়নি'}
+  };
+  /* accessible reliability dot (aria-label, not colour-only) */
+  function relDot(t){ var m=REL[t]||REL.X; return '<span class="rt-dotr" role="img" aria-label="'+L(m.en,m.bn)+'" title="'+L(m.en,m.bn)+'" style="background:'+m.c+'"></span>'; }
+
+  /* date parsing + staleness (handles "2026-06-24", "Jan 2026", "FY2022") */
+  function parseAsof(s){ s=String(s||''); var m;
+    if(m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s)) return new Date(+m[1],+m[2]-1,+m[3]);
+    if(m=/^([A-Za-z]{3,9})\s+(\d{4})$/.exec(s)){ var mo={jan:0,feb:1,mar:2,apr:3,may:4,jun:5,jul:6,aug:7,sep:8,oct:9,nov:10,dec:11}[s.slice(0,3).toLowerCase()]; if(mo!=null) return new Date(+m[2],mo,1); }
+    if(m=/FY\s*(\d{4})/i.exec(s)) return new Date(+m[1],6,1);
+    return null; }
+  function isStale(s){ var d=parseAsof(s); return d ? (Date.now()-d.getTime() > 1000*60*60*24*195) : false; }  /* ~6.5 months */
+
+  /* per-row conditions notes (honest comparison context) */
+  var RT_NOTES={
+    'BRAC Bank':{en:'Savings 0.50% is the ৳1L–25L balance tier (savings is balance-tiered).',bn:'সেভিংস ০.৫০% হলো ৳১লাখ–২৫লাখ ব্যালেন্স ধাপ (সেভিংস ব্যালেন্স-ভিত্তিক)।'},
+    'Eastern Bank':{en:'Regular FD shown; EBL “Super FD” promos can run higher.',bn:'সাধারণ এফডি দেখানো; EBL “Super FD” প্রোমো বেশি হতে পারে।'},
+    'Trust Bank':{en:'FDR is the under-৳50 Lac individual tier; DPS = scheme rate.',bn:'এফডিআর <৳৫০ লাখ ব্যক্তি ধাপের; ডিপিএস = স্কিম রেট।'},
+    'IIDFC':{en:'NBFI term-deposit rates; +0.25% for senior citizens.',bn:'এনবিএফআই মেয়াদি আমানত রেট; প্রবীণ নাগরিকদের +০.২৫%।'}
+  };
+  function noteFor(r){ if(r&&r.note) return r.note; var n=r&&RT_NOTES[r.bank]; return n?L(n.en,n.bn):''; }
+
+  function infoBtn(tier,srcName,src,asof,note){
+    var m=REL[tier]||REL.X, p='<b style="color:'+m.c+'">'+L(m.en,m.bn)+'</b>';
+    if(srcName) p+='<br>'+srcName;
+    if(asof) p+='<br>'+L('As of ','হালনাগাদ ')+asof+(isStale(asof)?' · '+L('may be stale','পুরোনো হতে পারে'):'');
+    p+= src ? '<br><a href="'+src+'" target="_blank" rel="noopener">'+L('View source ↗','উৎস দেখুন ↗')+'</a>'
+            : '<br><i>'+L('source not captured','উৎস সংরক্ষিত হয়নি')+'</i>';
+    if(note) p+='<br><span class="rt-cond">'+L('Note: ','নোট: ')+note+'</span>';
+    return '<button type="button" class="rt-info" aria-label="'+L('source & details','উৎস ও বিস্তারিত')+'">ⓘ<span class="rt-pop">'+p+'</span></button>';
+  }
+
+  /* sort state + handlers. Default = ALPHABETICAL (deliberate: the site doesn't editorialize
+     which rate is "best" — visitors can click a rate column themselves if they want that view). */
+  var RT_TEXTKEYS={bank:1,amc:1,co:1,fund:1};
+  var SORT={k:'bank',dir:1}, ASORT={k:'amc',dir:1}, ISORT={k:'co',dir:1}, FUND_ALL=false;
+  function rtNextDir(k){ return RT_TEXTKEYS[k]?1:-1; }   /* text: A→Z first; numbers: high-first */
+  window.rtSortBank=function(k){ if(SORT.k===k) SORT.dir*=-1; else { SORT.k=k; SORT.dir=rtNextDir(k); } render(); };
+  window.rtSortAmc =function(k){ if(ASORT.k===k) ASORT.dir*=-1; else { ASORT.k=k; ASORT.dir=rtNextDir(k); } render(); };
+  window.rtSortIns =function(k){ if(ISORT.k===k) ISORT.dir*=-1; else { ISORT.k=k; ISORT.dir=rtNextDir(k); } render(); };
+  window.rtFundsAll=function(){ FUND_ALL=!FUND_ALL; render(); };
+  function rtSortRows(rows,st,sinkNoData){ rows.sort(function(a,b){
+    if(sinkNoData){ var an=(a.tier==='X'),bn=(b.tier==='X'); if(an!==bn) return an?1:-1; }
+    var x=a[st.k], y=b[st.k];
+    if(RT_TEXTKEYS[st.k]){ x=String(x==null?'':x).toLowerCase(); y=String(y==null?'':y).toLowerCase();
+      return x===y?0:(x<y?-1:1)*st.dir; }
+    x=(x==null||x==='')?-Infinity:Number(x); y=(y==null||y==='')?-Infinity:Number(y);
+    return x===y?0:(x<y?-1:1)*st.dir; }); return rows; }
+  function sortArrow(st,k){ return st.k===k?(st.dir<0?' ▾':' ▴'):''; }
+
+  /* jump a rate straight into the Growth calculator */
+  window.rtUseRate=function(rate){ rate=Number(rate); if(!isFinite(rate)) return;
+    try{ if(history.replaceState) history.replaceState(null,'','#tools'); }catch(e){}
+    if(window.renderRoute) renderRoute('tools'); if(window.showTool) showTool('growth');
+    setTimeout(function(){ var el=document.getElementById('gRate'); if(el){ el.value=Math.max(1,Math.min(25,Math.round(rate*2)/2)); el.dispatchEvent(new Event('input',{bubbles:true})); } try{window.scrollTo(0,0);}catch(e){} },60);
+    if(window.track) window.track('rate_to_calc',String(rate)); };
+
+  function render(){
+    var head=document.getElementById('rt-head'), body=document.getElementById('rt-body');
+    if(!head||!body) return;
+    /* filter by type, then sort (best-on-top; no-data sinks) */
+    var rows=DATA.filter(function(r){ return FILTER==='all'||r.type===FILTER; });
+    rtSortRows(rows,SORT,true);
+    /* header — every column is click-to-sort; bank name included (alphabetical default) */
+    var h='<tr><th class="rt-sort'+(SORT.k==='bank'?' on':'')+'" role="button" tabindex="0" onclick="rtSortBank(\'bank\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();rtSortBank(\'bank\');}">'+L('Bank','ব্যাংক')+sortArrow(SORT,'bank')+'</th>';
+    COLS.forEach(function(c){ h+='<th class="rt-sort'+(SORT.k===c.k?' on':'')+'" role="button" tabindex="0" onclick="rtSortBank(\''+c.k+'\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();rtSortBank(\''+c.k+'\');}">'+L(c.en,c.bn)+sortArrow(SORT,c.k)+'</th>'; });
+    head.innerHTML=h+'</tr>';
+    /* rows */
+    var html='';
+    rows.forEach(function(r){
+      var tag = (r.type==='C') ? '<span class="rt-tag rt-conv">'+L('Conventional','প্রচলিত')+'</span>'
+              : (r.type==='N') ? '<span class="rt-tag rt-nbfi">'+L('NBFI','এনবিএফআই')+'</span>'
+              : '<span class="rt-tag rt-isl">'+L('Islamic','ইসলামী')+'</span>';
+      var stale = r.tier!=='X' && isStale(r.asof);
+      var calcRate = (r.tier==='X') ? null : (r.fdr_1y!=null?r.fdr_1y:(r.fdr_6m!=null?r.fdr_6m:(r.fdr_3m!=null?r.fdr_3m:(r.dps_5y!=null?r.dps_5y:null))));
+      var calcBtn = (calcRate!=null) ? '<button type="button" class="rt-calc" title="'+L('Use this rate in the Growth calculator','গ্রোথ ক্যালকুলেটরে এই রেট ব্যবহার করুন')+'" onclick="rtUseRate('+calcRate+')">'+L('→ calc','→ ক্যালক')+'</button>' : '';
+      html+='<tr'+(r.tier==='X'?' class="rt-norow"':'')+'><th>'+relDot(r.tier)+r.bank+tag+infoBtn(r.tier,r.srcName,r.src,r.asof,noteFor(r))
+            +(r.tier==='X'?'<span class="rt-asof rt-nd">'+L('no data yet','এখনো তথ্য নেই')+'</span>'
+                          :(r.asof?'<span class="rt-asof'+(stale?' rt-stale':'')+'">'+L('as of ','হার: ')+r.asof+(stale?' ⚠':'')+'</span>':''))+calcBtn+'</th>';
+      COLS.forEach(function(c){
+        var v=Number(r[c.k]);
+        /* month-over-month trend (live feed carries last month's published value) */
+        var tr='';
+        if(r.prev && isFinite(v) && isFinite(Number(r.prev[c.k]))){
+          var pd=v-Number(r.prev[c.k]);
+          if(Math.abs(pd)>=0.01) tr='<span class="rt-tr '+(pd>0?'rt-up':'rt-dn')+'" title="'+L('was ','আগে ')+fmt(r.prev[c.k])+'">'+(pd>0?'▲':'▼')+'</span>';
+        }
+        html+='<td>'+fmt(r[c.k])+tr+'</td>';   /* no "best" crown — the site doesn't pick winners */
+      });
+      html+='</tr>';
+    });
+    body.innerHTML=html;
+    var stamp=document.getElementById('rt-stamp');
+    if(stamp) stamp.textContent=L('Confirm with the bank before deciding','সিদ্ধান্তের আগে ব্যাংকে নিশ্চিত হন');
+    var fresh=document.getElementById('rt-fresh');   /* shows only once the live feed supplies real fetch dates */
+    if(fresh){ var ds=[]; [DATA,AMC_DATA,INS_DATA].forEach(function(a){a.forEach(function(r){ if(/^\d{4}-\d{2}-\d{2}$/.test(r.asof)) ds.push(r.asof); });}); ds.sort();
+      fresh.textContent = ds.length ? L('· Live data refreshed ','· লাইভ তথ্য হালনাগাদ ')+(typeof loc==='function'?loc(ds[ds.length-1]):ds[ds.length-1]) : ''; }
+    var fb=document.querySelectorAll('#rt-filter [data-f]');
+    for(var fi=0;fi<fb.length;fi++) fb[fi].className=(fb[fi].getAttribute('data-f')===FILTER)?'rt-fbtn on':'rt-fbtn';
+    renderAMC(); renderIns();
+  }
+
+  /* ---- Mutual funds (AMC) mini-table: sortable; default = best fund per manager, toggle to show all ---- */
+  function renderAMC(){
+    var head=document.getElementById('rt-amc-head'), body=document.getElementById('rt-amc-body');
+    if(!head||!body) return;
+    var cols=[{k:'nav',en:'NAV / unit',bn:'এনএভি/ইউনিট',pct:false},
+              {k:'ytd',en:'Return YTD',bn:'রিটার্ন YTD',pct:true},
+              {k:'aum',en:'Fund size (৳ mn)',bn:'ফান্ড আকার (৳ মি)',pct:false}];
+    /* collapse to one (largest) fund per manager unless "show all" */
+    var data=AMC_DATA.slice();
+    if(!FUND_ALL){ var byM={}; data.forEach(function(r){ if(!byM[r.amc]||Number(r.aum)>Number(byM[r.amc].aum)) byM[r.amc]=r; }); data=Object.keys(byM).map(function(k){return byM[k];}); }
+    rtSortRows(data,ASORT,false);
+    var h='<tr><th class="rt-sort'+(ASORT.k==='amc'?' on':'')+'" role="button" tabindex="0" onclick="rtSortAmc(\'amc\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();rtSortAmc(\'amc\');}">'+L('Asset manager','অ্যাসেট ম্যানেজার')+sortArrow(ASORT,'amc')+'</th><th>'+L('Fund','ফান্ড')+'</th>';
+    cols.forEach(function(c){ h+='<th class="rt-sort'+(ASORT.k===c.k?' on':'')+'" role="button" tabindex="0" onclick="rtSortAmc(\''+c.k+'\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();rtSortAmc(\''+c.k+'\');}">'+L(c.en,c.bn)+sortArrow(ASORT,c.k)+'</th>'; });
+    head.innerHTML=h+'</tr>';
+    var html='';
+    data.forEach(function(r){
+      var tag=(r.type==='I')?'<span class="rt-tag rt-isl">'+L('Shariah','শরীয়াহ')+'</span>':'';
+      var aTier=r.tier||'B', aSrc=r.src||'https://www.lankabd.com/MF/OpenEndMutualFund', aName=r.srcName||'LankaBangla open-end fund review';
+      html+='<tr><th>'+relDot(aTier)+r.amc+tag+infoBtn(aTier,aName,aSrc,r.asof,r.note||'')+(r.asof?'<span class="rt-asof">'+L('NAV ','এনএভি ')+r.asof+'</span>':'')+'</th><td class="rt-fund">'+r.fund+'</td>';
+      cols.forEach(function(c){
+        var v=Number(r[c.k]), disp=c.pct?(loc(v.toFixed(2)+'%')):loc(v.toLocaleString('en-US'));
+        html+='<td>'+disp+'</td>';   /* no "best" crown */
+      });
+      html+='</tr>';
+    });
+    body.innerHTML=html;
+    var tog=document.getElementById('rt-funds-toggle');
+    if(tog) tog.textContent = FUND_ALL ? L('Show one per manager','প্রতি ম্যানেজারে একটি দেখান') : L('Show all funds','সব ফান্ড দেখান');
+  }
+
+  /* ---- Insurers mini-table: sortable; claim settlement ratio + claims paid ---- */
+  function renderIns(){
+    var head=document.getElementById('rt-ins-head'), body=document.getElementById('rt-ins-body');
+    if(!head||!body) return;
+    var data=INS_DATA.slice(); rtSortRows(data,ISORT,false);
+    var ic=[{k:'claim',en:'Claim settlement',bn:'দাবি নিষ্পত্তি'},{k:'paid',en:'Claims paid (৳ cr)',bn:'পরিশোধিত দাবি (৳ কোটি)'}];
+    var h='<tr><th class="rt-sort'+(ISORT.k==='co'?' on':'')+'" role="button" tabindex="0" onclick="rtSortIns(\'co\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();rtSortIns(\'co\');}">'+L('Insurer','বিমাকারী')+sortArrow(ISORT,'co')+'</th>';
+    ic.forEach(function(c){ h+='<th class="rt-sort'+(ISORT.k===c.k?' on':'')+'" role="button" tabindex="0" onclick="rtSortIns(\''+c.k+'\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();rtSortIns(\''+c.k+'\');}">'+L(c.en,c.bn)+sortArrow(ISORT,c.k)+'</th>'; });
+    head.innerHTML=h+'</tr>';
+    var html='';
+    data.forEach(function(r){
+      var tag=(r.type==='I')?'<span class="rt-tag rt-isl">'+L('Islami / Takaful','ইসলামী / তাকাফুল')+'</span>':'<span class="rt-tag rt-conv">'+L('Conventional','প্রচলিত')+'</span>';
+      var iTier=r.tier||'Pr', iSrc=r.src||'https://www.thedailystar.net/business/economy/news/bright-spots-insurance-claim-settlement-3384166', iName=r.srcName||'IDRA figures, reported by The Daily Star';
+      var stale=isStale(r.asof);
+      html+='<tr><th>'+relDot(iTier)+r.co+tag+infoBtn(iTier,iName,iSrc,r.asof,r.note||'')+(r.asof?'<span class="rt-asof'+(stale?' rt-stale':'')+'">'+r.asof+(stale?' ⚠':'')+'</span>':'')+'</th>';
+      var cd=loc(Number(r.claim).toFixed(2)+'%');
+      html+='<td>'+cd+'</td>';   /* no "best" crown */
+      html+='<td>'+loc(Number(r.paid).toLocaleString('en-US'))+'</td></tr>';
+    });
+    body.innerHTML=html;
+  }
+
+  function setFilter(f){ FILTER=f; render(); }
+  window.rtSetFilter=setFilter;
+  window.renderRates=render;
+
+  /* pull the live feed if the Apps Script rates branch is deployed.
+     stale-while-revalidate: paint from the last good feed first, then refresh. */
+  var RT_CACHE_KEY='rafiu_rates_cache_v1';
+  function ingest(d){
+        if(d&&d.rates&&d.rates.length){
+          DATA=d.rates.map(function(x){
+            var pv=null; try{ if(x.Prev) pv=(typeof x.Prev==='string')?JSON.parse(x.Prev):x.Prev; }catch(e){}
+            return {bank:x.Bank||x.bank,type:(x.Type||x.type||'I'),savings:x.savings,fdr_3m:x.fdr_3m,fdr_6m:x.fdr_6m,
+              fdr_1y:x.fdr_1y,fdr_3y:x.fdr_3y,dps_3y:x.dps_3y,dps_5y:x.dps_5y,
+              tier:(x.Tier||x.tier||'P'),srcName:(x.Source||x.srcName||''),src:(x.SourceURL||x.src||''),
+              asof:x.AsOf||x.FetchedOn||x.asof||'',prev:pv};
+          });
+        }
+        if(d&&d.funds&&d.funds.length){
+          AMC_DATA=d.funds.map(function(x){
+            return {amc:x.Manager||x.amc,fund:x.Fund||x.fund,nav:Number(x.NAV||x.nav),ytd:Number(x.ReturnYTD||x.ytd),
+              aum:Number(x.AUM||x.aum),type:(x.Type||x.type||'C'),asof:x.AsOf||x.asof||'',
+              tier:(x.Tier||x.tier||'B'),srcName:(x.Source||x.srcName||''),src:(x.SourceURL||x.src||'')};
+          });
+        }
+        if(d&&d.insurers&&d.insurers.length){
+          INS_DATA=d.insurers.map(function(x){
+            return {co:x.Company||x.co,type:(x.Type||x.type||'C'),claim:Number(x.ClaimRatio||x.claim),paid:Number(x.ClaimsPaidCr||x.paid),
+              asof:x.AsOf||x.asof||'',tier:(x.Tier||x.tier||'Pr'),srcName:(x.Source||x.srcName||''),src:(x.SourceURL||x.src||'')};
+          });
+        }
+        render();
+  }
+  function load(){
+    if(typeof RESOURCES_API==='undefined'||!RESOURCES_API){ render(); return; }
+    try{ var c=localStorage.getItem(RT_CACHE_KEY); if(c){ ingest(JSON.parse(c)); } else { render(); } }catch(e){ render(); }
+    fetch(RESOURCES_API+(RESOURCES_API.indexOf('?')>-1?'&':'?')+'rates=1')
+      .then(function(r){return r.json();})
+      .then(function(d){
+        ingest(d);
+        if(d&&((d.rates&&d.rates.length)||(d.funds&&d.funds.length))){ try{ localStorage.setItem(RT_CACHE_KEY,JSON.stringify(d)); }catch(e){} }
+      })
+      .catch(function(){ render(); });
+  }
+
+  /* re-render on language toggle */
+  var lb=document.getElementById('langbtn');
+  if(lb) lb.addEventListener('click',function(){ setTimeout(render,30); });
+
+  if(document.readyState!=='loading') load();
+  else document.addEventListener('DOMContentLoaded',load);
+})();
 </script>
 </body>
 </html>
