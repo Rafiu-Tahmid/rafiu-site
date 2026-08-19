@@ -1,0 +1,8 @@
+{
+  "_readme": "Self-heal layer for the rafiu.me rates pipeline. Apps Script fetches this file from https://rafiu.me/rates-overrides.json on EVERY run, so a fix here goes live with a normal git push — no Apps Script redeploy. Edited by the AI repair agent (monthly Cowork task); Rafiu only pushes. Keys = exact institution names from BR_BANKS. Per institution: url / url2 (replace a rotated rate-sheet URL) · page + pdfMatch (auto-find the PDF link on a listing page) · route:'bb' + re:'NAME REGEX' (primary source died -> serve from Bangladesh Bank's chart, Tier R) · values:{savings,fdr_3m,fdr_6m,fdr_1y,fdr_3y,dps_3y,dps_5y} + asof + tier + srcName (emergency manual pin) · skip:true (institution gone -> honest no-data). Special key _funds:{url} overrides the mutual-fund source. Unknown keys and bad JSON are ignored fail-safe. KEEP THIS FILE VALID JSON.",
+  "_example_do_not_use": {
+    "IBBL": { "url": "https://www.islamibankbd.com/.../new-profit-rates.pdf" },
+    "City Bank": { "route": "bb", "re": "CITY BANK" },
+    "Premier Bank": { "values": { "fdr_1y": 9.25 }, "asof": "2026-08-01", "tier": "P", "srcName": "Premier rate sheet (read manually)" }
+  }
+}
