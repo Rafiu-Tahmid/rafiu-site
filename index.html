@@ -2919,7 +2919,7 @@ attachRangeNumbers();
     {bank:'IBBL',          type:'I',savings:2.50,fdr_3m:9.50,fdr_6m:9.80,fdr_1y:10.00,fdr_3y:10.50,dps_3y:6.75,dps_5y:7.25,tier:'P',srcName:'IBBL Mudaraba profit-rate sheet',src:'https://www.islamibankbd.com/',asof:'Jan 2026'},
     {bank:'EXIM Bank',     type:'I',savings:3.00,fdr_3m:5.00,fdr_6m:5.25,fdr_1y:5.50, fdr_3y:6.00, dps_3y:5.25,dps_5y:5.50,tier:'P',srcName:'EXIM Bank profit-rate sheet (w.e.f. 1 Jul 2026)',src:'https://www.eximbankbd.com/deposit/Deposit_Rates',asof:'Jul 2026'},
     {bank:'SIBL',          type:'I',savings:3.00,fdr_3m:8.50,fdr_6m:8.75,fdr_1y:10.00,fdr_3y:10.50,dps_3y:8.75,dps_5y:9.00,tier:'P',srcName:'SIBL provisional profit-rate sheet (eff. 1 Jun 2024)',src:'https://www.siblbd.com/',asof:'Jun 2024'},
-    {bank:'AB Islami',     type:'I',savings:4.00,fdr_3m:12.00,fdr_6m:12.00,fdr_1y:12.00,fdr_3y:null,dps_3y:10.00,dps_5y:10.00,tier:'P',srcName:'AB Bank Islami provisional profit rates (w.e.f. 24 Oct 2024)',src:'https://abbl.com/islami-banking/provisional-profit-rates/',asof:'Oct 2024'},
+    {bank:'AB Islami',     type:'I',savings:4.00,fdr_3m:12.00,fdr_6m:12.00,fdr_1y:12.00,fdr_3y:null,dps_3y:10.00,dps_5y:10.00,tier:'P',srcName:'AB Bank Islami provisional profit rates (w.e.f. 01 Jan 2026)',src:'https://abbl.com/islami-banking/provisional-profit-rates/',asof:'Jan 2026'},
     {bank:'Al-Arafah Islami',type:'I',savings:3.00,fdr_3m:10.00,fdr_6m:10.00,fdr_1y:10.50,fdr_3y:11.00,dps_3y:null,dps_5y:null,tier:'P',srcName:'AIBL revised provisional profit-rate circular (26 Jan 2025)',src:'https://www.aibl.com.bd/',asof:'Jan 2025'},
     {bank:'UCB Islamic',   type:'I',savings:2.75,fdr_3m:null,fdr_6m:null,fdr_1y:null, fdr_3y:null, dps_3y:null,dps_5y:null,tier:'R',srcName:'Bangladesh Bank deposit rate chart (UCB row; term rates published only as ranges)',src:'https://www.bb.org.bd/en/index.php/financialactivity/interestdeposit',asof:'Jun 2026'},
     {bank:'Shahjalal Islami',type:'I',savings:2.00,fdr_3m:7.50,fdr_6m:7.50,fdr_1y:8.00, fdr_3y:8.25, dps_3y:9.00,dps_5y:9.25,tier:'P',srcName:'Shahjalal Islami profit-rate sheet',src:'https://www.sjiblbd.com/',asof:'Apr 2026'},
@@ -2933,7 +2933,9 @@ attachRangeNumbers();
     {bank:'Pubali Bank',   type:'C',savings:2.50,fdr_3m:8.00,fdr_6m:8.25,fdr_1y:8.50,fdr_3y:null,dps_3y:null,dps_5y:null,tier:'R',srcName:'Bangladesh Bank deposit rate chart (Pubali row)',src:'https://www.bb.org.bd/en/index.php/financialactivity/interestdeposit',asof:'Jun 2026'},
     {bank:'DBH Finance',   type:'N',savings:null,fdr_3m:9.25,fdr_6m:9.25,fdr_1y:9.25,fdr_3y:8.50,dps_3y:8.50,dps_5y:8.00,tier:'P',srcName:'DBH deposit card rates (eff. 2 Nov 2025)',src:'https://dbhfinance.com/',asof:'Nov 2025'},
     {bank:'LankaBangla Finance',type:'N',savings:null,fdr_3m:10.00,fdr_6m:10.50,fdr_1y:10.75,fdr_3y:10.50,dps_3y:null,dps_5y:null,tier:'P',srcName:'LankaBangla deposit rates (eff. 27 Apr 2025)',src:'https://www.lankabangla.com/deposit-rates/',asof:'Apr 2025'},
-    /* — named but NO reliable current rate captured yet (primary sites are JS-only / scanned PDFs / captcha-walled). Shown honestly as no-data. — */
+    /* — offline-fallback no-data rows. Since Jul 2026 the LIVE feed back-fills all of these from
+         Bangladesh Bank's chart (Tier R) where the chart has single figures; any that stay
+         range-only/absent remain honest no-data. These nd() rows only show if the feed is down. — */
     nd('First Security Islami','I'), nd('Global Islami','I'), nd('Union Bank','I'),
     nd('Standard Chartered','C'), nd('HSBC Bangladesh','C'), nd('City Bank','C'), nd('Dutch-Bangla','C'), nd('Dhaka Bank','C'),
     nd('National Bank','C'), nd('Prime Bank','C'), nd('Bank Asia','C'), nd('Mutual Trust','C'),
@@ -2957,10 +2959,11 @@ attachRangeNumbers();
     {amc:'Capitec AMC',     fund:'Capitec-IBBL Shariah Fund',nav:8.68,  ytd:6.30,  aum:219,  type:'I',asof:'Jun 2026'}
   ];
   /* LIFE INSURERS — claim settlement ratio + claims paid (the comparison that matters most for BD life cover).
-     Source: IDRA figures via The Daily Star, FY2022 (MetLife also reported 97.79% in 2024). */
+     Source: IDRA figures via The Daily Star, FY2022 = last complete company-wise set.
+     MetLife row = its official 2024 figures (IDRA data via TBS, 21 May 2025). */
   var INS_DATA=[
     {co:'Popular Life',        type:'C',claim:99.97,paid:576, asof:'FY2022'},
-    {co:'MetLife',             type:'C',claim:96.00,paid:3229,asof:'FY2022'},
+    {co:'MetLife',             type:'C',claim:97.79,paid:2895,asof:'2024'},
     {co:'Meghna Life',         type:'C',claim:98.00,paid:421, asof:'FY2022'},
     {co:'Pragati Life',        type:'C',claim:98.00,paid:313, asof:'FY2022'},
     {co:'Guardian Life',       type:'C',claim:98.00,paid:297, asof:'FY2022'},
@@ -2993,6 +2996,7 @@ attachRangeNumbers();
     if(m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s)) return new Date(+m[1],+m[2]-1,+m[3]);
     if(m=/^([A-Za-z]{3,9})\s+(\d{4})$/.exec(s)){ var mo={jan:0,feb:1,mar:2,apr:3,may:4,jun:5,jul:6,aug:7,sep:8,oct:9,nov:10,dec:11}[s.slice(0,3).toLowerCase()]; if(mo!=null) return new Date(+m[2],mo,1); }
     if(m=/FY\s*(\d{4})/i.exec(s)) return new Date(+m[1],6,1);
+    if(m=/^(\d{4})$/.exec(s)) return new Date(+m[1],6,1);   /* bare year ("2024") — mid-year, so staleness stays honest */
     return null; }
   function isStale(s){ var d=parseAsof(s); return d ? (Date.now()-d.getTime() > 1000*60*60*24*195) : false; }  /* ~6.5 months */
 
@@ -3144,6 +3148,10 @@ attachRangeNumbers();
   /* pull the live feed if the Apps Script rates branch is deployed.
      stale-while-revalidate: paint from the last good feed first, then refresh. */
   var RT_CACHE_KEY='rafiu_rates_cache_v1';
+  /* name normalizer so feed names ("EXIM") and fallback names ("EXIM Bank") match up */
+  function rtNorm(s){ return String(s||'').toLowerCase()
+    .replace(/\b(bank|islami|islamic|finance|fin\.?|plc|ltd|limited|bangladesh)\b/g,'')
+    .replace(/[^a-z]+/g,''); }
   function ingest(d){
         if(d&&d.rates&&d.rates.length){
           DATA=d.rates.map(function(x){
@@ -3153,6 +3161,11 @@ attachRangeNumbers();
               tier:(x.Tier||x.tier||'P'),srcName:(x.Source||x.srcName||''),src:(x.SourceURL||x.src||''),
               asof:x.AsOf||x.FetchedOn||x.asof||'',prev:pv};
           });
+          /* keep institutions the feed doesn't carry: gaps stay VISIBLE (grey no-data rows /
+             last-known fallback rows with their honest old dates) instead of silently
+             disappearing whenever the live feed loads */
+          var seen={}; DATA.forEach(function(r){ seen[rtNorm(r.bank)]=1; });
+          FALLBACK.forEach(function(r){ if(!seen[rtNorm(r.bank)]) DATA.push(r); });
         }
         if(d&&d.funds&&d.funds.length){
           AMC_DATA=d.funds.map(function(x){
