@@ -1,8 +1,27 @@
 {
-  "_readme": "Self-heal layer for the rafiu.me rates pipeline. Apps Script fetches this file from https://rafiu.me/rates-overrides.json on EVERY run, so a fix here goes live with a normal git push — no Apps Script redeploy. Edited by the AI repair agent (monthly Cowork task); Rafiu only pushes. Keys = exact institution names from BR_BANKS. Per institution: url / url2 (replace a rotated rate-sheet URL) · page + pdfMatch (auto-find the PDF link on a listing page) · route:'bb' + re:'NAME REGEX' (primary source died -> serve from Bangladesh Bank's chart, Tier R) · values:{savings,fdr_3m,fdr_6m,fdr_1y,fdr_3y,dps_3y,dps_5y} + asof + tier + srcName (emergency manual pin) · skip:true (institution gone -> honest no-data). Special key _funds:{url} overrides the mutual-fund source. Unknown keys and bad JSON are ignored fail-safe. KEEP THIS FILE VALID JSON.",
+  "_readme": "Self-heal layer for the rafiu.me rates pipeline. Apps Script fetches this file from https://raw.githubusercontent.com/Rafiu-Tahmid/rafiu-site/main/rates-overrides.json on EVERY run, so a fix here goes live with a normal git push - no Apps Script redeploy. A faster channel exists too: the 'Overrides' tab inside the Google Sheet, same field names, and the Sheet WINS over this file. Keys = exact institution names from BR_BANKS.",
+  "_fields": {
+    "url": "replace a rotated rate-sheet URL",
+    "url2": "second document merged into the same text",
+    "page": "the bank's rate-sheet LISTING page. Since 21 Aug 2026 the pipeline reads this page every run, date-ranks every PDF on it (filename, link text, or /uploads/YYYY/MM/ path) and takes the NEWEST - so a rotating filename fixes itself. Pair it with pdfMatch.",
+    "pdfMatch": "regex picking the right document when a page lists several, e.g. 'Provisional' to skip 'Final Rates'",
+    "pdfMatch2": "same, for the second merged document (set in the .gs, not overridable yet)",
+    "route": "'bb' + re:'NAME REGEX' - primary source died, serve that institution from Bangladesh Bank's chart instead (Tier R)",
+    "values": "{savings,fdr_3m,fdr_6m,fdr_1y,fdr_3y,dps_3y,dps_5y} - emergency manual pin, skips the fetch entirely",
+    "asof": "pin the effective date shown on the site (yyyy-mm-dd). Normally the pipeline reads this out of the document itself.",
+    "tier": "P primary / R regulator / B portal / Pr press",
+    "srcName": "the source label shown in the row's info popover",
+    "skip": "true - institution gone, show an honest no-data row",
+    "_funds": "{url} - swap the mutual-fund source page"
+  },
+  "_notes": [
+    "Nothing is ever held waiting for approval any more. A row that trips a check publishes with a visible badge, so an override is about ACCURACY, never about un-hiding a row.",
+    "AsOf is the date the institution's own sheet took effect, not the date we read it. Only pin 'asof' when the document genuinely carries no readable date.",
+    "Unknown keys and bad JSON are ignored fail-safe. KEEP THIS FILE VALID JSON."
+  ],
   "_example_do_not_use": {
-    "IBBL": { "url": "https://www.islamibankbd.com/.../new-profit-rates.pdf" },
+    "IBBL": { "page": "https://www.islamibankbd.com/profit-rates-on-deposits", "pdfMatch": "Provisional" },
     "City Bank": { "route": "bb", "re": "CITY BANK" },
-    "Premier Bank": { "values": { "fdr_1y": 9.25 }, "asof": "2026-08-01", "tier": "P", "srcName": "Premier rate sheet (read manually)" }
+    "Premier Bank": { "values": { "fdr_1y": 9.25 }, "asof": "2026-04-01", "tier": "P", "srcName": "Premier rate sheet (read by hand)" }
   }
 }
