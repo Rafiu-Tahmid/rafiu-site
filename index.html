@@ -1007,7 +1007,6 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
     #page-rates .rt-isl{background:rgba(52,211,153,.14);color:#34d399;border:1px solid rgba(52,211,153,.3)}
     #page-rates .rt-conv{background:rgba(167,139,250,.14);color:var(--violet-bright);border:1px solid rgba(167,139,250,.3)}
     #page-rates .rt-nbfi{background:rgba(245,158,66,.14);color:#f59e42;border:1px solid rgba(245,158,66,.3)}
-    #page-rates #rt-filter{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 14px}
     #page-rates .rt-fbtn{font-family:var(--ui);font-weight:700;font-size:12.5px;padding:7px 15px;border-radius:20px;background:rgba(139,92,246,.07);border:1px solid var(--line);color:var(--ink-soft);cursor:pointer;transition:all .15s}
     #page-rates .rt-fbtn.on{background:linear-gradient(135deg,#7C3AED,#5B21B6);color:#fff;border-color:transparent;box-shadow:0 6px 20px rgba(124,58,237,.32)}
     #page-rates .rt-disc-link{background:none;border:none;padding:0;margin:0 2px 16px;cursor:pointer;font-family:var(--body);font-size:13px;color:#fbbf24;text-decoration:underline dotted;text-underline-offset:3px}
@@ -1017,6 +1016,40 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
     .rt-dm ol{margin:0 0 4px 18px;padding:0;color:var(--ink-soft);font-size:14px;line-height:1.65}
     .rt-dm ol li{margin-bottom:8px}
     .rt-dm .rt-dm-ok{margin-top:18px;width:100%;font-family:var(--ui);font-size:15px;font-weight:600;padding:12px;border:none;border-radius:12px;cursor:pointer;background:linear-gradient(135deg,#7C3AED,#5B21B6);color:#fff}
+    /* ── tabs, control strips, badges (added 21 Aug 2026) ── */
+    #page-rates .rt-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0;border-bottom:1px solid var(--line);padding-bottom:12px}
+    #page-rates .rt-tabs button{font-family:var(--ui);font-weight:700;font-size:13.5px;padding:9px 18px;border-radius:12px;background:rgba(139,92,246,.07);border:1px solid var(--line);color:var(--ink-soft);cursor:pointer;transition:all .15s}
+    #page-rates .rt-tabs button:hover{color:var(--ink)}
+    #page-rates .rt-tabs button.on{background:linear-gradient(135deg,#7C3AED,#5B21B6);color:#fff;border-color:transparent;box-shadow:0 6px 20px rgba(124,58,237,.32)}
+    #page-rates .rt-panel{display:none}
+    #page-rates .rt-panel.on{display:block}
+    #page-rates .rt-ctl{margin:0 0 14px}
+    #page-rates .rt-ctl-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
+    #page-rates .rt-ctl-lbl{font-family:var(--ui);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);min-width:78px}
+    #page-rates .rt-search{position:relative;display:inline-flex;align-items:center;flex:1 1 220px;max-width:340px}
+    #page-rates .rt-search .rt-mag{position:absolute;left:12px;font-size:15px;color:var(--ink-soft);pointer-events:none}
+    #page-rates .rt-search input{width:100%;font-family:var(--body);font-size:13.5px;padding:9px 12px 9px 30px;border-radius:20px;border:1px solid var(--line);background:rgba(139,92,246,.07);color:var(--ink)}
+    #page-rates .rt-search input:focus{outline:2px solid rgba(167,139,250,.5);outline-offset:1px}
+    #page-rates .rt-reset{font-family:var(--ui);font-size:11.5px;font-weight:700;padding:7px 13px;border-radius:20px;background:none;border:1px dashed var(--line);color:var(--ink-soft);cursor:pointer}
+    #page-rates .rt-reset:hover{color:var(--ink);border-color:var(--violet-bright)}
+    #page-rates .rt-count{font-size:11.5px;color:var(--ink-soft);margin-left:auto}
+    #page-rates .rt-window{margin:0 0 14px}
+    #page-rates .rt-window-in{border:1px solid rgba(251,191,36,.32);background:rgba(251,191,36,.07);color:#f5dfb0;border-radius:12px;padding:11px 14px;font-size:12.5px;line-height:1.65}
+    #page-rates .rt-window-in b{color:#fbbf24}
+    #page-rates .rt-cf{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.04em;padding:2px 7px;border-radius:20px;margin-left:6px;vertical-align:middle;cursor:help}
+    #page-rates .rt-cf-check{background:rgba(251,191,36,.14);color:#fbbf24;border:1px solid rgba(251,191,36,.32)}
+    #page-rates .rt-cf-stale{background:rgba(224,160,77,.13);color:#e0a04d;border:1px solid rgba(224,160,77,.3)}
+    #page-rates .rt-cat{display:inline-block;font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:20px;background:rgba(167,139,250,.13);color:#c4b5fd;border:1px solid rgba(167,139,250,.26);white-space:nowrap}
+    #page-rates .rt-cat-un{background:rgba(125,119,144,.14);color:var(--ink-soft);border-color:var(--line);font-weight:600;font-style:italic}
+    #page-rates .rt-tbl th.rt-left,#page-rates .rt-tbl td.rt-left,#page-rates .rt-tbl tbody th.rt-left{text-align:left}
+    #page-rates .rt-tbl td.rt-when{font-size:11.5px;color:var(--ink-soft);white-space:nowrap}
+    #page-rates .rt-tbl td.rt-when .rt-asof{display:block;font-size:10px;margin-top:2px}
+    #page-rates .rt-tbl td.rt-grp{font-size:11px;color:var(--ink-soft);white-space:nowrap}
+    #page-rates .rt-tbl td.rt-macval{font-size:16px;white-space:nowrap}
+    #page-rates .rt-tbl td.rt-macval b{color:var(--ink)}
+    #page-rates .rt-unit{font-size:11px;color:var(--ink-soft);font-weight:600}
+    #page-rates .rt-empty{color:var(--ink-soft);font-style:italic;padding:26px 12px}
+    @media (max-width:640px){#page-rates .rt-ctl-lbl{min-width:100%}#page-rates .rt-count{margin-left:0}}
   </style>
   <div class="wrap">
     <div class="res-head">
@@ -1031,34 +1064,57 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
       <span id="rt-fresh" class="rt-fresh" data-dyn="1"></span>
     </div>
     <button type="button" class="rt-disc-link" onclick="rtDiscShow()">ⓘ <span data-en="Important notes about this data — please read once" data-bn="এই তথ্য নিয়ে জরুরি কথা — একবার পড়ে নিন">Important notes about this data — please read once</span></button>
-    <div id="rt-filter">
-      <button class="rt-fbtn on" data-f="all" onclick="rtSetFilter('all')" data-en="All banks" data-bn="সব ব্যাংক">All banks</button>
-      <button class="rt-fbtn" data-f="I" onclick="rtSetFilter('I')" data-en="☪ Islamic" data-bn="☪ ইসলামী">☪ Islamic</button>
-      <button class="rt-fbtn" data-f="C" onclick="rtSetFilter('C')" data-en="Conventional" data-bn="প্রচলিত">Conventional</button>
-      <button class="rt-fbtn" data-f="N" onclick="rtSetFilter('N')" data-en="NBFI" data-bn="এনবিএফআই">NBFI</button>
-    </div>
-    <!-- Static rows below = crawlable fallback data (same numbers as the JS fallback); render() replaces them on load with sorted/live data -->
-    <div class="rt-scroll"><table class="rt-tbl"><thead id="rt-head"><tr><th>Bank</th><th>Savings</th><th>FDR 3m</th><th>FDR 6m</th><th>FDR 1y</th><th>FDR 3y</th><th>DPS 3y</th><th>DPS 5y</th></tr></thead><tbody id="rt-body"><tr><th>BRAC Bank</th><td>0.50%</td><td>8.50%</td><td>9.00%</td><td>9.00%</td><td>9.00%</td><td>9.00%</td><td>9.00%</td></tr><tr><th>Eastern Bank</th><td>2.00%</td><td>6.35%</td><td>6.50%</td><td>6.50%</td><td>7.25%</td><td>9.75%</td><td>9.75%</td></tr><tr><th>EXIM Bank (Islamic)</th><td>3.00%</td><td>5.00%</td><td>5.25%</td><td>5.50%</td><td>6.00%</td><td>5.25%</td><td>5.50%</td></tr><tr><th>IBBL (Islamic)</th><td>2.50%</td><td>9.50%</td><td>9.80%</td><td>10.00%</td><td>10.50%</td><td>6.75%</td><td>7.25%</td></tr><tr><th>IIDFC (NBFI)</th><td>—</td><td>10.00%</td><td>11.00%</td><td>11.00%</td><td>11.00%</td><td>—</td><td>—</td></tr><tr><th>LankaBangla Finance (NBFI)</th><td>—</td><td>10.00%</td><td>10.50%</td><td>10.75%</td><td>10.50%</td><td>—</td><td>—</td></tr><tr><th>Shahjalal Islami</th><td>2.00%</td><td>7.50%</td><td>7.50%</td><td>8.00%</td><td>8.25%</td><td>9.00%</td><td>9.25%</td></tr><tr><th>Trust Bank</th><td>0.50%</td><td>8.00%</td><td>8.00%</td><td>8.00%</td><td>—</td><td>10.00%</td><td>10.00%</td></tr><tr><th>UCB Islamic</th><td>2.75%</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><th>SIBL (Islamic)</th><td>3.00%</td><td>8.50%</td><td>8.75%</td><td>10.00%</td><td>10.50%</td><td>8.75%</td><td>9.00%</td></tr><tr><th>Al-Arafah Islami</th><td>3.00%</td><td>10.00%</td><td>10.00%</td><td>10.50%</td><td>11.00%</td><td>—</td><td>—</td></tr><tr><th>DBH Finance (NBFI)</th><td>—</td><td>9.25%</td><td>9.25%</td><td>9.25%</td><td>8.50%</td><td>8.50%</td><td>8.00%</td></tr></tbody></table></div>
-    <p class="rt-note" data-en="⚠ Rates change without notice. Always confirm with the bank before deciding. Shown for comparison only — this is not financial advice." data-bn="⚠ হার যেকোনো সময় পরিবর্তন হতে পারে। সিদ্ধান্তের আগে অবশ্যই ব্যাংকে নিশ্চিত হয়ে নিন। শুধু তুলনার জন্য — এটি আর্থিক পরামর্শ নয়।">⚠ Rates change without notice. Always confirm with the bank before deciding.</p>
-    <p class="rt-foot" data-en="Sorted alphabetically — click any column heading to sort by it. FDR = fixed/term deposit, DPS = monthly savings scheme. Hover the ⓘ on any row to see its source & date." data-bn="বর্ণানুক্রমে সাজানো — যেকোনো কলামের শিরোনামে ক্লিক করে সাজাতে পারেন। FDR = মেয়াদি আমানত, DPS = মাসিক সঞ্চয় স্কিম। যেকোনো সারির ⓘ-তে হোভার করলে উৎস ও তারিখ দেখা যাবে।">Sorted alphabetically — click any column heading to sort by it. FDR = term deposit, DPS = monthly savings scheme.</p>
-    <div class="rt-legend" aria-label="reliability key">
-      <span data-en="Data reliability:" data-bn="তথ্যের নির্ভরযোগ্যতা:">Data reliability:</span>
-      <span><i style="background:#34d399"></i><span data-en="Primary (own sheet)" data-bn="প্রাইমারি (নিজস্ব শিট)">Primary (own sheet)</span></span>
-      <span><i style="background:#38bdf8"></i><span data-en="Regulator / exchange" data-bn="নিয়ন্ত্রক / এক্সচেঞ্জ">Regulator / exchange</span></span>
-      <span><i style="background:#fbbf24"></i><span data-en="Brokerage portal" data-bn="ব্রোকারেজ পোর্টাল">Brokerage portal</span></span>
-      <span><i style="background:#fb923c"></i><span data-en="Press" data-bn="সংবাদমাধ্যম">Press</span></span>
-      <span><i style="background:#7d7790"></i><span data-en="No data yet" data-bn="এখনো তথ্য নেই">No data yet</span></span>
+    <div class="rt-tabs" role="tablist" aria-label="Rates sections">
+      <button class="on" id="rtab-banks" role="tab" aria-selected="true" onclick="rtTab('banks')" data-en="Banks &amp; NBFIs" data-bn="ব্যাংক ও এনবিএফআই">Banks &amp; NBFIs</button>
+      <button id="rtab-funds" role="tab" aria-selected="false" onclick="rtTab('funds')" data-en="Mutual funds" data-bn="মিউচুয়াল ফান্ড">Mutual funds</button>
+      <button id="rtab-ins" role="tab" aria-selected="false" onclick="rtTab('ins')" data-en="Life insurers" data-bn="লাইফ বিমা">Life insurers</button>
+      <button id="rtab-macro" role="tab" aria-selected="false" onclick="rtTab('macro')" data-en="Inflation &amp; policy" data-bn="মূল্যস্ফীতি ও পলিসি">Inflation &amp; policy</button>
     </div>
 
-    <h2 class="rt-subh" data-en="Mutual funds — by asset manager" data-bn="মিউচুয়াল ফান্ড — অ্যাসেট ম্যানেজার অনুযায়ী">Mutual funds — by asset manager</h2>
-    <p class="rt-subnote" data-en="One open-end fund per manager. NAV is the per-unit value; “Return YTD” is the fund’s net asset value growth so far this year — past performance, not a promise." data-bn="প্রতি ম্যানেজারের একটি ওপেন-এন্ড ফান্ড। NAV হলো প্রতি ইউনিটের মূল্য; “রিটার্ন YTD” মানে এ বছর ফান্ডের সম্পদমূল্যের বৃদ্ধি — অতীত ফলাফল, কোনো নিশ্চয়তা নয়।">One open-end fund per manager. NAV = per-unit value; “Return YTD” is fund growth so far this year — past performance, not a promise.</p>
-    <div style="margin:0 2px 10px"><button type="button" id="rt-funds-toggle" class="rt-fbtn" onclick="rtFundsAll()" data-en="Show all funds" data-bn="সব ফান্ড দেখান">Show all funds</button></div>
-    <div class="rt-scroll"><table class="rt-tbl"><thead id="rt-amc-head"></thead><tbody id="rt-amc-body"></tbody></table></div>
+    <!-- ===== BANKS & NBFIs ===== -->
+    <div class="rt-panel on" id="rtp-banks">
+      <div class="rt-ctl" id="rt-ctl-banks"></div>
+      <div class="rt-window" id="rt-window"></div>
+      <!-- Static rows below = crawlable fallback data; render() replaces them on load with sorted/live data -->
+      <div class="rt-scroll"><table class="rt-tbl"><thead id="rt-head"><tr><th>Bank</th><th>Savings</th><th>FDR 3m</th><th>FDR 6m</th><th>FDR 1y</th><th>FDR 3y</th><th>DPS 3y</th><th>DPS 5y</th></tr></thead><tbody id="rt-body"><tr><th>BRAC Bank</th><td>0.50%</td><td>8.50%</td><td>9.00%</td><td>9.00%</td><td>9.00%</td><td>9.00%</td><td>9.00%</td></tr><tr><th>Eastern Bank</th><td>2.00%</td><td>6.35%</td><td>6.50%</td><td>6.50%</td><td>7.25%</td><td>9.75%</td><td>9.75%</td></tr><tr><th>EXIM Bank (Islamic)</th><td>3.00%</td><td>5.00%</td><td>5.25%</td><td>5.50%</td><td>6.00%</td><td>5.25%</td><td>5.50%</td></tr><tr><th>IBBL (Islamic)</th><td>2.50%</td><td>9.50%</td><td>9.80%</td><td>10.00%</td><td>10.50%</td><td>6.75%</td><td>7.25%</td></tr><tr><th>IIDFC (NBFI)</th><td>—</td><td>10.00%</td><td>11.00%</td><td>11.00%</td><td>11.00%</td><td>—</td><td>—</td></tr><tr><th>LankaBangla Finance (NBFI)</th><td>—</td><td>10.00%</td><td>10.50%</td><td>10.75%</td><td>10.50%</td><td>—</td><td>—</td></tr><tr><th>Shahjalal Islami</th><td>2.00%</td><td>7.50%</td><td>7.50%</td><td>8.00%</td><td>8.25%</td><td>9.00%</td><td>9.25%</td></tr><tr><th>Trust Bank</th><td>0.50%</td><td>8.00%</td><td>8.00%</td><td>8.00%</td><td>—</td><td>10.00%</td><td>10.00%</td></tr><tr><th>UCB Islamic</th><td>2.75%</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><th>SIBL (Islamic)</th><td>3.00%</td><td>8.50%</td><td>8.75%</td><td>10.00%</td><td>10.50%</td><td>8.75%</td><td>9.00%</td></tr><tr><th>Al-Arafah Islami</th><td>3.00%</td><td>10.00%</td><td>10.00%</td><td>10.50%</td><td>11.00%</td><td>—</td><td>—</td></tr><tr><th>DBH Finance (NBFI)</th><td>—</td><td>9.25%</td><td>9.25%</td><td>9.25%</td><td>8.50%</td><td>8.50%</td><td>8.00%</td></tr></tbody></table></div>
+      <p class="rt-note" data-en="⚠ Rates change without notice, and each bank revises its own sheet on its own schedule — so the dates in the last column are not all the same. Always confirm with the bank before deciding. Shown for comparison only — this is not financial advice." data-bn="⚠ হার যেকোনো সময় পরিবর্তন হতে পারে, আর প্রতিটি ব্যাংক নিজের সময়মতো তার শিট হালনাগাদ করে — তাই শেষ কলামের তারিখগুলো সব এক নয়। সিদ্ধান্তের আগে অবশ্যই ব্যাংকে নিশ্চিত হয়ে নিন। শুধু তুলনার জন্য — এটি আর্থিক পরামর্শ নয়।">⚠ Rates change without notice, and each bank revises its own sheet on its own schedule — so the dates in the last column are not all the same. Always confirm with the bank before deciding.</p>
+      <p class="rt-foot" data-en="Click any column heading to sort by it, and use the filters above to narrow the list. FDR = fixed/term deposit, DPS = monthly savings scheme. “Effective” is the date the bank’s own rate sheet took effect — not the date we read it. Hover the ⓘ on any row for its source." data-bn="যেকোনো কলামের শিরোনামে ক্লিক করে সাজাতে পারেন, আর উপরের ফিল্টার দিয়ে তালিকা ছোট করতে পারেন। FDR = মেয়াদি আমানত, DPS = মাসিক সঞ্চয় স্কিম। “কার্যকর” মানে ব্যাংকের নিজস্ব শিট যেদিন থেকে চালু — আমরা যেদিন পড়েছি সেদিন নয়। যেকোনো সারির ⓘ-তে হোভার করলে উৎস দেখা যাবে।">Click any column heading to sort by it, and use the filters above to narrow the list. “Effective” is the date the bank’s own rate sheet took effect — not the date we read it.</p>
+      <div class="rt-legend" aria-label="reliability key">
+        <span data-en="Data reliability:" data-bn="তথ্যের নির্ভরযোগ্যতা:">Data reliability:</span>
+        <span><i style="background:#34d399"></i><span data-en="Primary (own sheet)" data-bn="প্রাইমারি (নিজস্ব শিট)">Primary (own sheet)</span></span>
+        <span><i style="background:#38bdf8"></i><span data-en="Regulator / exchange" data-bn="নিয়ন্ত্রক / এক্সচেঞ্জ">Regulator / exchange</span></span>
+        <span><i style="background:#fbbf24"></i><span data-en="Brokerage portal" data-bn="ব্রোকারেজ পোর্টাল">Brokerage portal</span></span>
+        <span><i style="background:#fb923c"></i><span data-en="Press" data-bn="সংবাদমাধ্যম">Press</span></span>
+        <span><i style="background:#7d7790"></i><span data-en="No data yet" data-bn="এখনো তথ্য নেই">No data yet</span></span>
+      </div>
+    </div>
 
-    <h2 class="rt-subh" data-en="Life insurers — who actually pays claims" data-bn="লাইফ বিমা — কারা আসলে দাবি পরিশোধ করে">Life insurers — who actually pays claims</h2>
-    <p class="rt-subnote" data-en="For life cover the number that matters is the claim settlement ratio — the share of claims the company actually paid. Figures are IDRA data (FY2022) reported via the press." data-bn="লাইফ কভারের ক্ষেত্রে আসল সংখ্যা হলো দাবি নিষ্পত্তির হার — কোম্পানি কত শতাংশ দাবি আসলে পরিশোধ করেছে। তথ্য আইডিআরএ (অর্থবছর ২০২২), সংবাদমাধ্যমে প্রকাশিত।">For life cover the number that matters is the claim settlement ratio — the share of claims actually paid. Figures: IDRA (FY2022), via press.</p>
-    <div class="rt-scroll"><table class="rt-tbl"><thead id="rt-ins-head"></thead><tbody id="rt-ins-body"></tbody></table></div>
-    <p class="rt-foot" data-en="☪ Shariah / Takaful rows are tagged. Profit rate, not interest. NBFI & insurer coverage grows over time." data-bn="☪ শরীয়াহ / তাকাফুল সারি ট্যাগ করা। মুনাফার হার, সুদ নয়। সময়ের সাথে এনবিএফআই ও বিমার কভারেজ বাড়বে।">☪ Shariah / Takaful rows are tagged. Profit rate, not interest.</p>
+    <!-- ===== MUTUAL FUNDS ===== -->
+    <div class="rt-panel" id="rtp-funds">
+      <h2 class="rt-subh" data-en="Open-end mutual funds" data-bn="ওপেন-এন্ড মিউচুয়াল ফান্ড">Open-end mutual funds</h2>
+      <p class="rt-subnote" data-en="Every open-end fund on the market, not one hand-picked fund per manager. A balanced fund and an SME growth fund are not the same product, so filter to one type before you compare. The type is read from the fund’s own name — where the name doesn’t say, it says so instead of guessing. NAV is the per-unit value; “Return YTD” is the fund’s growth so far this year — past performance, not a promise." data-bn="বাজারের প্রতিটি ওপেন-এন্ড ফান্ড, প্রতি ম্যানেজারে বেছে নেওয়া একটি নয়। ব্যালান্সড ফান্ড আর এসএমই গ্রোথ ফান্ড এক জিনিস নয়, তাই তুলনার আগে এক ধরনে ফিল্টার করে নিন। ধরনটি ফান্ডের নিজের নাম থেকে পড়া — নাম না বললে অনুমান না করে সেটাই লেখা থাকে। NAV হলো প্রতি ইউনিটের মূল্য; “রিটার্ন YTD” মানে এ বছর ফান্ডের বৃদ্ধি — অতীত ফলাফল, কোনো নিশ্চয়তা নয়।">Every open-end fund on the market. A balanced fund and an SME growth fund are not the same product, so filter to one type before you compare.</p>
+      <div class="rt-ctl" id="rt-ctl-funds"></div>
+      <div class="rt-scroll"><table class="rt-tbl"><thead id="rt-amc-head"></thead><tbody id="rt-amc-body"></tbody></table></div>
+      <p class="rt-foot" data-en="Fund size is in millions of taka. ☪ marks Shariah funds. Figures come from LankaBangla’s open-end fund review, which republishes the managers’ own NAV filings." data-bn="ফান্ডের আকার টাকার মিলিয়নে। ☪ চিহ্ন শরীয়াহ ফান্ড বোঝায়। তথ্য এসেছে ল্যাংকাবাংলার ওপেন-এন্ড ফান্ড রিভিউ থেকে, যা ম্যানেজারদের নিজস্ব NAV রিপোর্ট পুনঃপ্রকাশ করে।">Fund size is in millions of taka. ☪ marks Shariah funds.</p>
+    </div>
+
+    <!-- ===== LIFE INSURERS ===== -->
+    <div class="rt-panel" id="rtp-ins">
+      <h2 class="rt-subh" data-en="Life insurers — who actually pays claims" data-bn="লাইফ বিমা — কারা আসলে দাবি পরিশোধ করে">Life insurers — who actually pays claims</h2>
+      <p class="rt-subnote" data-en="For life cover the number that matters is the claim settlement ratio — the share of claims the company actually paid. Figures are IDRA data (FY2022) reported via the press; MetLife’s row carries its official 2024 figures. These are older than the bank rows, and deliberately so: FY2022 is the last complete company-wise set IDRA has published." data-bn="লাইফ কভারের ক্ষেত্রে আসল সংখ্যা হলো দাবি নিষ্পত্তির হার — কোম্পানি কত শতাংশ দাবি আসলে পরিশোধ করেছে। তথ্য আইডিআরএ (অর্থবছর ২০২২), সংবাদমাধ্যমে প্রকাশিত; মেটলাইফের সারিতে তাদের সরকারি ২০২৪ তথ্য। এগুলো ব্যাংকের সারির চেয়ে পুরোনো, এবং ইচ্ছাকৃতভাবেই: অর্থবছর ২০২২ হলো আইডিআরএ-র প্রকাশ করা সর্বশেষ পূর্ণ কোম্পানিভিত্তিক তালিকা।">For life cover the number that matters is the claim settlement ratio — the share of claims actually paid. Figures: IDRA (FY2022), via press.</p>
+      <div class="rt-ctl" id="rt-ctl-ins"></div>
+      <div class="rt-scroll"><table class="rt-tbl"><thead id="rt-ins-head"></thead><tbody id="rt-ins-body"></tbody></table></div>
+    </div>
+
+    <!-- ===== MACRO: INFLATION & POLICY ===== -->
+    <div class="rt-panel" id="rtp-macro">
+      <h2 class="rt-subh" data-en="Inflation, policy rates and the government’s own rates" data-bn="মূল্যস্ফীতি, পলিসি রেট আর সরকারের নিজের হার">Inflation, policy rates and the government’s own rates</h2>
+      <p class="rt-subnote" data-en="A 9% profit rate means one thing when prices are rising 8% a year and something else when they are rising 4%. These are the numbers to hold a bank rate up against: what prices are doing, what Bangladesh Bank is doing, what the government pays on Sanchayapatra, and what the dollar and gold are doing. Each figure carries its own date and source, same as the bank rows." data-bn="৯% মুনাফার হার এক জিনিস বোঝায় যখন দাম বছরে ৮% বাড়ছে, আরেক জিনিস যখন ৪% বাড়ছে। ব্যাংকের হার এগুলোর সাথে মিলিয়ে দেখা উচিত: দাম কী করছে, বাংলাদেশ ব্যাংক কী করছে, সরকার সঞ্চয়পত্রে কত দিচ্ছে, আর ডলার ও স্বর্ণের কী অবস্থা। প্রতিটি সংখ্যার নিজস্ব তারিখ ও উৎস আছে, ব্যাংকের সারির মতোই।">A 9% profit rate means one thing when prices are rising 8% a year and something else when they are rising 4%. These are the numbers to hold a bank rate up against.</p>
+      <div class="rt-ctl" id="rt-ctl-macro"></div>
+      <div class="rt-scroll"><table class="rt-tbl"><thead id="rt-mac-head"></thead><tbody id="rt-mac-body"></tbody></table></div>
+      <p class="rt-foot" data-en="Sanchayapatra figures are the rate at maturity for the smallest investment slab, and apply to new purchases only — an existing certificate keeps the rate it was bought at. Gold is the BAJUS price including VAT, per bhori (11.664 g), before making charges." data-bn="সঞ্চয়পত্রের সংখ্যাগুলো সবচেয়ে ছোট বিনিয়োগ ধাপের মেয়াদপূর্তির হার, এবং শুধু নতুন ক্রয়ে প্রযোজ্য — চালু সঞ্চয়পত্র যে হারে কেনা হয়েছিল সেই হারেই চলবে। স্বর্ণ = ভ্যাটসহ বাজুস দাম, প্রতি ভরি (১১.৬৬৪ গ্রাম), মজুরি ছাড়া।">Sanchayapatra figures are the rate at maturity for the smallest investment slab, and apply to new purchases only.</p>
+    </div>
+    <p class="rt-foot" data-en="☪ Shariah / Takaful rows are tagged. Profit rate, not interest. Coverage grows over time." data-bn="☪ শরীয়াহ / তাকাফুল সারি ট্যাগ করা। মুনাফার হার, সুদ নয়। সময়ের সাথে কভারেজ বাড়বে।">☪ Shariah / Takaful rows are tagged. Profit rate, not interest.</p>
   </div>
 </section>
 
@@ -1445,6 +1501,9 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
       <li>Islamic bank profit rates are provisional (expected) — the final profit can be a little different.</li>
       <li>Rates shown are for regular individual accounts at the smallest published amount tier. Bigger deposits often earn more, and some banks' savings rates rise with your balance.</li>
       <li>All numbers are before tax — government tax on profit and excise duty on deposits will reduce what you actually receive.</li>
+      <li><b>The rows are not all from the same date.</b> Each institution revises its own rate sheet whenever it wants to, so this table can be holding a sheet published last month against one published two years ago. The last column shows when each sheet took effect and how old it is, and the note above the table shows the full spread. A low number may simply be an old number.</li>
+      <li>Some rows carry a small label. “Unverified” means something about that row needs a human eye — the reader may have drifted, or a figure moved a lot in one month. “Old sheet” means the figure was read correctly and the institution simply has not revised it in over a year. Nothing is hidden from you; it is labelled instead.</li>
+      <li>Where a figure could not be confirmed from a named source, the cell is left empty rather than filled with an estimate.</li>
       <li>Every row shows its source and date — tap the ⓘ on a row to see where its number came from. Where a bank blocks automatic reading of its own site, the row comes from Bangladesh Bank's published chart instead (blue dot).</li>
       <li>This page is for comparison and learning only. It is not financial advice. Always confirm with the bank before deciding.</li>
     </ol>
@@ -1455,6 +1514,9 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
       <li>ইসলামী ব্যাংকের মুনাফার হার সাময়িক (প্রত্যাশিত) — চূড়ান্ত মুনাফা কিছুটা ভিন্ন হতে পারে।</li>
       <li>দেখানো হারগুলো সাধারণ ব্যক্তিগত অ্যাকাউন্টের, সবচেয়ে ছোট প্রকাশিত অঙ্কের স্তরের। বড় আমানতে প্রায়ই বেশি হার মেলে, আর কিছু ব্যাংকে সঞ্চয়ের হার ব্যালেন্সের সাথে বাড়ে।</li>
       <li>সব সংখ্যা করের আগের হিসাব — মুনাফার ওপর সরকারি কর আর আমানতের ওপর আবগারি শুল্ক বাদ দিলে হাতে কম আসবে।</li>
+      <li><b>সব সারি এক তারিখের নয়।</b> প্রতিটি প্রতিষ্ঠান নিজের ইচ্ছেমতো সময়ে তার রেট শিট বদলায়, তাই এই টেবিলে গত মাসের শিটের পাশে দুই বছর আগের শিটও থাকতে পারে। শেষ কলামে প্রতিটি শিট কবে থেকে কার্যকর আর কত পুরোনো তা লেখা, আর টেবিলের উপরের নোটে পুরো ব্যবধান দেখানো আছে। কম সংখ্যা মানে হয়তো শুধু পুরোনো সংখ্যা।</li>
+      <li>কিছু সারিতে ছোট একটা লেবেল থাকে। “যাচাই হয়নি” মানে ওই সারির কিছু একটা মানুষের চোখে দেখা দরকার — তথ্য পড়ায় গোলমাল হতে পারে, বা এক মাসে সংখ্যা অনেক বদলেছে। “পুরোনো শিট” মানে সংখ্যাটা ঠিকভাবেই পড়া হয়েছে, প্রতিষ্ঠানটিই এক বছরের বেশি সময় ধরে শিট বদলায়নি। কিছুই আপনার কাছ থেকে লুকানো হয় না; বরং লেবেল দিয়ে বলে দেওয়া হয়।</li>
+      <li>যেসব সংখ্যা নির্দিষ্ট উৎস থেকে নিশ্চিত করা যায়নি, সেই ঘর অনুমান দিয়ে ভরা হয় না — ফাঁকা রাখা হয়।</li>
       <li>প্রতিটি সারিতে উৎস ও তারিখ দেওয়া আছে — সারির ⓘ চাপলে দেখবেন সংখ্যাটা কোথা থেকে এসেছে। কোনো ব্যাংকের সাইট স্বয়ংক্রিয়ভাবে পড়া না গেলে সারিটা আসে বাংলাদেশ ব্যাংকের প্রকাশিত চার্ট থেকে (নীল বিন্দু)।</li>
       <li>এই পেজ শুধু তুলনা আর শেখার জন্য। এটি আর্থিক পরামর্শ নয়। সিদ্ধান্তের আগে অবশ্যই ব্যাংকে নিশ্চিত হয়ে নিন।</li>
     </ol>
@@ -2899,7 +2961,17 @@ attachRangeNumbers();
 <!-- ================= BANK RATES (Bangladesh Money) — isolated ================= -->
 <script>
 (function(){
-  /* 7-field schema + bilingual column labels */
+  /* ══════════════════════════════════════════════════════════════════════════
+     RATES — banks · mutual funds · life insurers · inflation & policy
+     Rebuilt 21 Aug 2026. Three things changed:
+       1) "as of" is now the DATE THE INSTITUTION'S OWN SHEET TOOK EFFECT, not the
+          date we read it. Rows are effective on different dates, so the table says
+          so out loud — a comparison-window line above it and an age on every row.
+       2) Every table gets the same control strip: free-text search, chip filters on
+          every categorical column, click-to-sort on every column, live row count.
+       3) A row that trips a check now publishes with a visible badge instead of
+          disappearing. Nothing is ever hidden waiting for a human.
+     ══════════════════════════════════════════════════════════════════════════ */
   var COLS=[
     {k:'savings',en:'Savings',bn:'সেভিংস'},
     {k:'fdr_3m', en:'FDR 3m', bn:'এফডিআর ৩মা'},
@@ -2910,32 +2982,35 @@ attachRangeNumbers();
     {k:'dps_5y', en:'DPS 5y', bn:'ডিপিএস ৫বছ'}
   ];
   /* REAL numbers pulled live from each bank's own published rate sheet.
-     This is the offline fallback; the live ?rates=1 feed (when present) overrides it. */
-  /* tiers: P=Primary (bank's own site / Bangladesh Bank) · R=Regulator/exchange (BB/IDRA/DSE/CDBL)
-            · B=Brokerage portal · Pr=Press · X=No data found. Every row carries src+srcName+asof+tier. */
+     This is the offline fallback; the live ?rates=1 feed (when present) overrides it.
+     `asof` = the date the bank's OWN sheet took effect, never the date we read it. */
+  /* tiers: P=Primary (institution's own sheet) · R=Regulator/exchange (BB/IDRA/DSE/CDBL)
+            · B=Brokerage/fund portal · Pr=Press · X=No data found. */
   function nd(bank,type){ return {bank:bank,type:type,savings:null,fdr_3m:null,fdr_6m:null,fdr_1y:null,fdr_3y:null,dps_3y:null,dps_5y:null,tier:'X',src:'',srcName:'',asof:''}; }
   var FALLBACK=[
-    /* — banks/NBFIs with data from the institution's OWN published rate sheet (Primary) — */
-    {bank:'IBBL',          type:'I',savings:2.50,fdr_3m:9.50,fdr_6m:9.80,fdr_1y:10.00,fdr_3y:10.50,dps_3y:6.75,dps_5y:7.25,tier:'P',srcName:'IBBL Mudaraba profit-rate sheet',src:'https://www.islamibankbd.com/',asof:'Jan 2026'},
-    {bank:'EXIM Bank',     type:'I',savings:3.00,fdr_3m:5.00,fdr_6m:5.25,fdr_1y:5.50, fdr_3y:6.00, dps_3y:5.25,dps_5y:5.50,tier:'P',srcName:'EXIM Bank profit-rate sheet (w.e.f. 1 Jul 2026)',src:'https://www.eximbankbd.com/deposit/Deposit_Rates',asof:'Jul 2026'},
-    {bank:'SIBL',          type:'I',savings:3.00,fdr_3m:8.50,fdr_6m:8.75,fdr_1y:10.00,fdr_3y:10.50,dps_3y:8.75,dps_5y:9.00,tier:'P',srcName:'SIBL provisional profit-rate sheet (eff. 1 Jun 2024)',src:'https://www.siblbd.com/',asof:'Jun 2024'},
-    {bank:'AB Islami',     type:'I',savings:4.00,fdr_3m:12.00,fdr_6m:12.00,fdr_1y:12.00,fdr_3y:null,dps_3y:10.00,dps_5y:10.00,tier:'P',srcName:'AB Bank Islami provisional profit rates (w.e.f. 01 Jan 2026)',src:'https://abbl.com/islami-banking/provisional-profit-rates/',asof:'Jan 2026'},
-    {bank:'Al-Arafah Islami',type:'I',savings:3.00,fdr_3m:10.00,fdr_6m:10.00,fdr_1y:10.50,fdr_3y:11.00,dps_3y:null,dps_5y:null,tier:'P',srcName:'AIBL revised provisional profit-rate circular (26 Jan 2025)',src:'https://www.aibl.com.bd/',asof:'Jan 2025'},
-    {bank:'UCB Islamic',   type:'I',savings:2.75,fdr_3m:null,fdr_6m:null,fdr_1y:null, fdr_3y:null, dps_3y:null,dps_5y:null,tier:'R',srcName:'Bangladesh Bank deposit rate chart (UCB row; term rates published only as ranges)',src:'https://www.bb.org.bd/en/index.php/financialactivity/interestdeposit',asof:'Jun 2026'},
-    {bank:'Shahjalal Islami',type:'I',savings:2.00,fdr_3m:7.50,fdr_6m:7.50,fdr_1y:8.00, fdr_3y:8.25, dps_3y:9.00,dps_5y:9.25,tier:'P',srcName:'Shahjalal Islami profit-rate sheet',src:'https://www.sjiblbd.com/',asof:'Apr 2026'},
-    {bank:'BRAC Bank',     type:'C',savings:0.50,fdr_3m:8.50,fdr_6m:9.00,fdr_1y:9.00, fdr_3y:9.00, dps_3y:9.00,dps_5y:9.00,tier:'P',srcName:'BRAC Bank deposit interest rate',src:'https://www.bracbank.com/en/page/deposit-interest-rate',asof:'Mar 2026'},
-    {bank:'Eastern Bank',  type:'C',savings:2.00,fdr_3m:6.35,fdr_6m:6.50,fdr_1y:6.50, fdr_3y:7.25, dps_3y:9.75,dps_5y:9.75,tier:'P',srcName:'EBL deposit rates',src:'https://www.ebl.com.bd/',asof:'May 2026'},
-    {bank:'Trust Bank',    type:'C',savings:0.50,fdr_3m:8.00,fdr_6m:8.00,fdr_1y:8.00, fdr_3y:null, dps_3y:10.00,dps_5y:10.00,tier:'P',srcName:'Trust Bank deposit rates (eff. 26 Jan 2026)',src:'https://www.tblbd.com/rates-and-charges/deposit-rates',asof:'Jan 2026'},
-    {bank:'IIDFC',         type:'N',savings:null,fdr_3m:10.00,fdr_6m:11.00,fdr_1y:11.00,fdr_3y:11.00,dps_3y:null,dps_5y:null,tier:'P',srcName:'IIDFC deposit rate sheet (eff. 1 Jul 2026)',src:'https://www.iidfc.com/deposit/interest-rate-details/deposit-rate-sheet',asof:'Jul 2026'},
-    {bank:'Jamuna Bank',   type:'C',savings:2.00,fdr_3m:null,fdr_6m:null,fdr_1y:null,fdr_3y:null,dps_3y:9.50,dps_5y:9.00,tier:'P',srcName:'Jamuna Bank deposit schemes sheet (eff. 1 Mar 2025; FDR published only as a range)',src:'https://jamunabankbd.com/',asof:'Mar 2025'},
-    {bank:'NCC Bank',      type:'C',savings:0.50,fdr_3m:8.75,fdr_6m:9.00,fdr_1y:9.25,fdr_3y:8.75,dps_3y:null,dps_5y:null,tier:'P',srcName:'NCC Bank deposit rate chart (eff. 8 Jan 2026)',src:'https://www.nccbank.com.bd/',asof:'Jan 2026'},
-    {bank:'Premier Bank',  type:'C',savings:3.00,fdr_3m:9.00,fdr_6m:9.00,fdr_1y:9.25,fdr_3y:7.00,dps_3y:null,dps_5y:null,tier:'P',srcName:'Premier Bank deposit rates (w.e.f. May 2025)',src:'https://premierbankltd.com/',asof:'May 2025'},
-    {bank:'Pubali Bank',   type:'C',savings:2.50,fdr_3m:8.00,fdr_6m:8.25,fdr_1y:8.50,fdr_3y:null,dps_3y:null,dps_5y:null,tier:'R',srcName:'Bangladesh Bank deposit rate chart (Pubali row)',src:'https://www.bb.org.bd/en/index.php/financialactivity/interestdeposit',asof:'Jun 2026'},
-    {bank:'DBH Finance',   type:'N',savings:null,fdr_3m:9.25,fdr_6m:9.25,fdr_1y:9.25,fdr_3y:8.50,dps_3y:8.50,dps_5y:8.00,tier:'P',srcName:'DBH deposit card rates (eff. 2 Nov 2025)',src:'https://dbhfinance.com/',asof:'Nov 2025'},
-    {bank:'LankaBangla Finance',type:'N',savings:null,fdr_3m:10.00,fdr_6m:10.50,fdr_1y:10.75,fdr_3y:10.50,dps_3y:null,dps_5y:null,tier:'P',srcName:'LankaBangla deposit rates (eff. 27 Apr 2025)',src:'https://www.lankabangla.com/deposit-rates/',asof:'Apr 2025'},
-    /* — offline-fallback no-data rows. Since Jul 2026 the LIVE feed back-fills all of these from
-         Bangladesh Bank's chart (Tier R) where the chart has single figures; any that stay
-         range-only/absent remain honest no-data. These nd() rows only show if the feed is down. — */
+    {bank:'IBBL',          type:'I',savings:2.50,fdr_3m:9.50,fdr_6m:9.80,fdr_1y:10.00,fdr_3y:10.50,dps_3y:6.75,dps_5y:7.25,tier:'P',srcName:'IBBL provisional profit rates (w.e.f. 1 Jan 2026)',src:'https://www.islamibankbd.com/profit-rates-on-deposits',asof:'2026-01-01'},
+    {bank:'EXIM Bank',     type:'I',savings:3.00,fdr_3m:5.00,fdr_6m:5.25,fdr_1y:5.50, fdr_3y:6.00, dps_3y:5.25,dps_5y:5.50,tier:'P',srcName:'EXIM Bank profit-rate sheet (w.e.f. 1 Jul 2026)',src:'https://www.eximbankbd.com/deposit/Deposit_Rates',asof:'2026-07-01'},
+    /* SIBL 21 Aug 26: read off the bank's own 1 Feb 2026 sheet. The 1-year and 3-year
+       MTDR rows on that sheet read "Based On Market" — no figure, so no figure here. */
+    {bank:'SIBL',          type:'I',savings:3.00,fdr_3m:8.75,fdr_6m:9.25,fdr_1y:null,fdr_3y:null,dps_3y:6.75,dps_5y:7.25,tier:'P',srcName:'SIBL provisional profit rate sheet (eff. 1 Feb 2026)',src:'https://www.siblbd.com/profit-rates',asof:'2026-02-01',note:'The bank publishes its 1-year and 3-year term rates as “based on market” rather than a fixed figure.'},
+    {bank:'AB Islami',     type:'I',savings:4.00,fdr_3m:12.00,fdr_6m:12.00,fdr_1y:12.00,fdr_3y:null,dps_3y:10.00,dps_5y:10.00,tier:'P',srcName:'AB Bank Islami provisional profit rates (w.e.f. 1 Jan 2026)',src:'https://abbl.com/islami-banking/provisional-profit-rates/',asof:'2026-01-01'},
+    {bank:'Al-Arafah Islami',type:'I',savings:3.00,fdr_3m:10.00,fdr_6m:10.00,fdr_1y:10.50,fdr_3y:11.00,dps_3y:null,dps_5y:null,tier:'P',srcName:'AIBL revised provisional profit-rate circular (23 Jan 2025)',src:'https://www.aibl.com.bd/rates-schedule-of-charges/',asof:'2025-01-23',note:'A newer circular dated 21 Apr 2026 is published as a scanned image; the live pipeline reads it by OCR and will replace these figures on its next run.'},
+    {bank:'UCB Islamic',   type:'I',savings:2.75,fdr_3m:null,fdr_6m:null,fdr_1y:null, fdr_3y:null, dps_3y:null,dps_5y:null,tier:'R',srcName:'Bangladesh Bank deposit rate chart (UCB row; term rates published only as ranges)',src:'https://www.bb.org.bd/en/index.php/financialactivity/interestdeposit',asof:'2026-06-01'},
+    {bank:'Shahjalal Islami',type:'I',savings:2.00,fdr_3m:7.50,fdr_6m:7.50,fdr_1y:8.00, fdr_3y:8.25, dps_3y:9.00,dps_5y:9.25,tier:'P',srcName:'Shahjalal Islami profit-rate page',src:'https://sjiblbd.com/profit_rate.php',asof:'2026-04-01'},
+    {bank:'BRAC Bank',     type:'C',savings:0.50,fdr_3m:8.50,fdr_6m:9.00,fdr_1y:9.00, fdr_3y:9.00, dps_3y:9.00,dps_5y:9.00,tier:'P',srcName:'BRAC Bank deposit rate sheet (w.e.f. 16 Mar 2026)',src:'https://www.bracbank.com/en/page/deposit-interest-rate',asof:'2026-03-16'},
+    /* EBL 21 Aug 26: read off the bank's own 2 Aug 2026 sheet. The scheme rate moved 9.75 -> 9.00. */
+    {bank:'Eastern Bank',  type:'C',savings:2.00,fdr_3m:6.35,fdr_6m:6.50,fdr_1y:6.50, fdr_3y:7.25, dps_3y:9.00,dps_5y:9.00,tier:'P',srcName:'EBL deposit rate sheet (eff. 2 Aug 2026)',src:'https://www.ebl.com.bd/interest-rates',asof:'2026-08-02',note:'Savings 2.00% is the top balance tier; smaller balances earn less, down to 0%.'},
+    {bank:'Trust Bank',    type:'C',savings:0.50,fdr_3m:8.00,fdr_6m:8.00,fdr_1y:8.00, fdr_3y:null, dps_3y:10.00,dps_5y:10.00,tier:'P',srcName:'Trust Bank deposit rates (eff. 26 Jan 2026)',src:'https://www.tblbd.com/rates-and-charges/deposit-rates',asof:'2026-01-26'},
+    {bank:'IIDFC',         type:'N',savings:null,fdr_3m:10.00,fdr_6m:11.00,fdr_1y:11.00,fdr_3y:11.00,dps_3y:null,dps_5y:null,tier:'P',srcName:'IIDFC deposit rate sheet (eff. 1 Jul 2026)',src:'https://www.iidfc.com/deposit/interest-rate-details/deposit-rate-sheet',asof:'2026-07-01'},
+    {bank:'Jamuna Bank',   type:'C',savings:2.00,fdr_3m:null,fdr_6m:null,fdr_1y:null,fdr_3y:null,dps_3y:9.50,dps_5y:9.00,tier:'P',srcName:'Jamuna Bank deposit schemes sheet (eff. 1 Mar 2025)',src:'https://jamunabankbd.com/interest-rates/',asof:'2025-03-01',note:'Jamuna publishes its term-deposit rates as a band (7.25–9.75% on its Aug 2026 chart), not a single figure, so those cells stay empty.'},
+    {bank:'NCC Bank',      type:'C',savings:0.50,fdr_3m:8.75,fdr_6m:9.00,fdr_1y:9.25,fdr_3y:8.75,dps_3y:null,dps_5y:null,tier:'P',srcName:'NCC Bank deposit rate chart (eff. 8 Jan 2026)',src:'https://www.nccbank.com.bd/NccbRates',asof:'2026-01-08'},
+    {bank:'Premier Bank',  type:'C',savings:3.00,fdr_3m:9.00,fdr_6m:9.00,fdr_1y:9.25,fdr_3y:7.00,dps_3y:null,dps_5y:null,tier:'P',srcName:'Premier Bank deposit rates (w.e.f. May 2025)',src:'https://thepremierbankplc.com/interest-rate-matrix/',asof:'2025-05-01',note:'A newer sheet dated 1 Apr 2026 is published on the bank’s new site; the live pipeline picks it up on its next run.'},
+    {bank:'Pubali Bank',   type:'C',savings:2.50,fdr_3m:8.00,fdr_6m:8.25,fdr_1y:8.50,fdr_3y:null,dps_3y:null,dps_5y:null,tier:'R',srcName:'Bangladesh Bank deposit rate chart (Pubali row)',src:'https://www.bb.org.bd/en/index.php/financialactivity/interestdeposit',asof:'2026-06-01'},
+    {bank:'DBH Finance',   type:'N',savings:null,fdr_3m:9.25,fdr_6m:9.25,fdr_1y:9.25,fdr_3y:8.50,dps_3y:8.50,dps_5y:8.00,tier:'P',srcName:'DBH deposit card rates (eff. 2 Nov 2025)',src:'https://dbhfinance.com/deposit/flexible-fixed-deposit',asof:'2025-11-02'},
+    {bank:'LankaBangla Finance',type:'N',savings:null,fdr_3m:10.00,fdr_6m:10.50,fdr_1y:10.75,fdr_3y:10.50,dps_3y:null,dps_5y:null,tier:'P',srcName:'LankaBangla deposit rates (eff. 27 Apr 2025)',src:'https://www.lankabangla.com/deposit-rates/',asof:'2025-04-27',note:'The finance company’s own page still carries the April 2025 schedule — checked again 21 Aug 2026 and it has not been revised.'},
+    /* — offline-fallback no-data rows. The LIVE feed back-fills these from Bangladesh
+         Bank's chart (Tier R) where the chart carries single figures; the ones published
+         only as ranges stay honest no-data. These rows only show if the feed is down. — */
     nd('First Security Islami','I'), nd('Global Islami','I'), nd('Union Bank','I'),
     nd('Standard Chartered','C'), nd('HSBC Bangladesh','C'), nd('City Bank','C'), nd('Dutch-Bangla','C'), nd('Dhaka Bank','C'),
     nd('National Bank','C'), nd('Prime Bank','C'), nd('Bank Asia','C'), nd('Mutual Trust','C'),
@@ -2944,23 +3019,22 @@ attachRangeNumbers();
     nd('IDLC Finance','N'), nd('IPDC Finance','N'), nd('United Finance','N'),
     nd('National Housing Fin.','N'), nd('Phoenix Finance','N'), nd('Bay Leasing','N'), nd('Uttara Finance','N')
   ];
-  /* ASSET MANAGEMENT COMPANIES — representative open-end fund per AMC.
-     NAV/unit, NAV return YTD, AUM (BDT mn). Source: LankaBangla weekly open-end review, NAV as on 11 Jun 2026. */
+  /* OPEN-END MUTUAL FUNDS. `cat` is read from the fund's own name — where the name does
+     not say what the fund is, it says so rather than guessing. Offline fallback only. */
   var AMC_DATA=[
-    {amc:'ICB AMC',         fund:'Bangladesh Fund',          nav:86.48, ytd:10.70, aum:15102, type:'C',asof:'Jun 2026'},
-    {amc:'IDLC AML',        fund:'IDLC Growth Fund',         nav:13.22, ytd:13.10, aum:931,  type:'C',asof:'Jun 2026'},
-    {amc:'LankaBangla AMC', fund:'LankaBangla 1st Balanced', nav:11.46, ytd:8.70,  aum:360,  type:'C',asof:'Jun 2026'},
-    {amc:'VIPB AMC',        fund:'VIPB Accelerated Income',  nav:12.67, ytd:9.00,  aum:328,  type:'C',asof:'Jun 2026'},
-    {amc:'Shanta AMC',      fund:'Shanta Fixed Income Fund', nav:11.96, ytd:7.00,  aum:2191, type:'C',asof:'Jun 2026'},
-    {amc:'UCB AML',         fund:'UCB Income Plus Fund',     nav:14.16, ytd:5.30,  aum:3687, type:'C',asof:'Jun 2026'},
-    {amc:'EDGE AMC',        fund:'EDGE AMC Growth Fund',     nav:16.11, ytd:12.40, aum:427,  type:'C',asof:'Jun 2026'},
-    {amc:'RACE Management',  fund:'RACE Financial Inclusion Fund',nav:10.14,ytd:2.10,aum:254,type:'C',asof:'Jun 2026'},
-    {amc:'Asian Tiger Capital',fund:'ATC Shariah Unit Fund',nav:7.54,  ytd:4.00,  aum:54,   type:'I',asof:'Jun 2026'},
-    {amc:'Capitec AMC',     fund:'Capitec-IBBL Shariah Fund',nav:8.68,  ytd:6.30,  aum:219,  type:'I',asof:'Jun 2026'}
+    {amc:'ICB AMC',           fund:'Bangladesh Fund',              nav:86.48,ytd:10.70,aum:15102,cat:'Unclassified',shariah:false,type:'C',asof:'2026-06-01'},
+    {amc:'IDLC AML',          fund:'IDLC Growth Fund',             nav:13.22,ytd:13.10,aum:931,  cat:'Growth',      shariah:false,type:'C',asof:'2026-06-01'},
+    {amc:'LankaBangla AMC',   fund:'LankaBangla 1st Balanced Fund',nav:11.46,ytd:8.70, aum:360,  cat:'Balanced',    shariah:false,type:'C',asof:'2026-06-01'},
+    {amc:'VIPB AMC',          fund:'VIPB Accelerated Income Fund', nav:12.67,ytd:9.00, aum:328,  cat:'Income',      shariah:false,type:'C',asof:'2026-06-01'},
+    {amc:'Shanta AMC',        fund:'Shanta Fixed Income Fund',     nav:11.96,ytd:7.00, aum:2191, cat:'Fixed income',shariah:false,type:'C',asof:'2026-06-01'},
+    {amc:'UCB AML',           fund:'UCB Income Plus Fund',         nav:14.16,ytd:5.30, aum:3687, cat:'Income',      shariah:false,type:'C',asof:'2026-06-01'},
+    {amc:'EDGE AMC',          fund:'EDGE AMC Growth Fund',         nav:16.11,ytd:12.40,aum:427,  cat:'Growth',      shariah:false,type:'C',asof:'2026-06-01'},
+    {amc:'RACE Management',   fund:'RACE Financial Inclusion Fund',nav:10.14,ytd:2.10, aum:254,  cat:'Unclassified',shariah:false,type:'C',asof:'2026-06-01'},
+    {amc:'Asian Tiger Capital',fund:'ATC Shariah Unit Fund',       nav:7.54, ytd:4.00, aum:54,   cat:'Unclassified',shariah:true, type:'I',asof:'2026-06-01'},
+    {amc:'Capitec AMC',       fund:'Capitec-IBBL Shariah Fund',    nav:8.68, ytd:6.30, aum:219,  cat:'Unclassified',shariah:true, type:'I',asof:'2026-06-01'}
   ];
-  /* LIFE INSURERS — claim settlement ratio + claims paid (the comparison that matters most for BD life cover).
-     Source: IDRA figures via The Daily Star, FY2022 = last complete company-wise set.
-     MetLife row = its official 2024 figures (IDRA data via TBS, 21 May 2025). */
+  /* LIFE INSURERS — claim settlement ratio + claims paid. IDRA figures via The Daily Star,
+     FY2022 = the last complete company-wise set. MetLife row = its official 2024 figures. */
   var INS_DATA=[
     {co:'Popular Life',        type:'C',claim:99.97,paid:576, asof:'FY2022'},
     {co:'MetLife',             type:'C',claim:97.79,paid:2895,asof:'2024'},
@@ -2973,12 +3047,35 @@ attachRangeNumbers();
     {co:'National Life',       type:'C',claim:76.00,paid:1042,asof:'FY2022'},
     {co:'Fareast Islami Life', type:'I',claim:21.00,paid:970, asof:'FY2022'}
   ];
+  /* MACRO — the numbers that decide whether a deposit rate is actually any good.
+     Each figure was read from a named source on 21 Aug 2026. Offline fallback only;
+     the live feed replaces it. Rows with no confirmed figure ship empty, not guessed. */
+  var MACRO_DATA=[
+    {key:'cpi_general',group:'prices',unit:'%',v:8.32,asof:'2026-07-31',en:'Inflation (point-to-point)',bn:'মূল্যস্ফীতি (পয়েন্ট-টু-পয়েন্ট)',nEn:'July 2026. What the same basket costs versus a year ago.',nBn:'জুলাই ২০২৬। এক বছর আগের তুলনায় একই পণ্যের ঝুড়ির দাম।',srcName:'Bangladesh Bureau of Statistics CPI, July 2026',src:'https://www.bb.org.bd/en/index.php/econdata/inflation',tier:'R'},
+    {key:'cpi_food',group:'prices',unit:'%',v:7.16,asof:'2026-07-31',en:'Food inflation',bn:'খাদ্য মূল্যস্ফীতি',nEn:'July 2026, point-to-point.',nBn:'জুলাই ২০২৬, পয়েন্ট-টু-পয়েন্ট।',srcName:'Bangladesh Bureau of Statistics CPI, July 2026',src:'https://www.bb.org.bd/en/index.php/econdata/inflation',tier:'R'},
+    {key:'cpi_nonfood',group:'prices',unit:'%',v:9.28,asof:'2026-07-31',en:'Non-food inflation',bn:'খাদ্যবহির্ভূত মূল্যস্ফীতি',nEn:'July 2026, point-to-point. Rent, transport, health, schooling.',nBn:'জুলাই ২০২৬, পয়েন্ট-টু-পয়েন্ট। বাসাভাড়া, যাতায়াত, স্বাস্থ্য, পড়াশোনা।',srcName:'Bangladesh Bureau of Statistics CPI, July 2026',src:'https://www.bb.org.bd/en/index.php/econdata/inflation',tier:'R'},
+    {key:'cpi_12m',group:'prices',unit:'%',v:8.66,asof:'2026-07-31',en:'Inflation, 12-month average',bn:'মূল্যস্ফীতি, ১২ মাসের গড়',nEn:'August 2025 to July 2026. Smoother than the monthly figure.',nBn:'আগস্ট ২০২৫ থেকে জুলাই ২০২৬। মাসিক হিসাবের চেয়ে স্থিতিশীল।',srcName:'Bangladesh Bureau of Statistics CPI, July 2026',src:'https://www.bb.org.bd/en/index.php/econdata/inflation',tier:'R'},
+    {key:'policy_repo',group:'policy',unit:'%',v:9.50,asof:'2026-08-02',en:'Policy rate (repo)',bn:'পলিসি রেট (রেপো)',nEn:'Cut from 10.00% on 2 August 2026, the first cut in six years. Deposit rates usually follow it down, slowly.',nBn:'২ আগস্ট ২০২৬-এ ১০.০০% থেকে কমানো হয়েছে, ছয় বছরে প্রথম। ডিপোজিটের হার সাধারণত ধীরে ধীরে এর পিছু নেয়।',srcName:'Bangladesh Bank Monetary Policy Committee, 13th meeting',src:'https://www.bb.org.bd/en/index.php/monetaryactivity/bbpolicyrate',tier:'R'},
+    {key:'policy_sdf',group:'policy',unit:'%',v:7.50,asof:'2026-08-02',en:'Standing deposit facility',bn:'স্ট্যান্ডিং ডিপোজিট ফ্যাসিলিটি',nEn:'The floor: what a bank earns parking money at Bangladesh Bank overnight.',nBn:'সর্বনিম্ন সীমা: ব্যাংক এক রাতের জন্য বাংলাদেশ ব্যাংকে টাকা রাখলে যা পায়।',srcName:'Bangladesh Bank Monetary Policy Committee, 13th meeting',src:'https://www.bb.org.bd/en/index.php/monetaryactivity/bbpolicyrate',tier:'R'},
+    {key:'policy_slf',group:'policy',unit:'%',v:11.00,asof:'2026-08-02',en:'Standing lending facility',bn:'স্ট্যান্ডিং লেন্ডিং ফ্যাসিলিটি',nEn:'The ceiling: what a bank pays to borrow from Bangladesh Bank overnight.',nBn:'সর্বোচ্চ সীমা: ব্যাংক এক রাতের জন্য বাংলাদেশ ব্যাংক থেকে ধার নিলে যা দেয়।',srcName:'Bangladesh Bank Monetary Policy Committee, 13th meeting',src:'https://www.bb.org.bd/en/index.php/monetaryactivity/bbpolicyrate',tier:'R'},
+    {key:'nsc_family',group:'nsc',unit:'%',v:10.54,asof:'2026-01-01',en:'Family Savings Certificate (5-yr)',bn:'পরিবার সঞ্চয়পত্র (৫ বছর)',nEn:'Maturity rate for up to ৳7.5 lakh; 10.41% above that. New purchases only — older certificates keep their old rate.',nBn:'৳৭.৫ লাখ পর্যন্ত মেয়াদপূর্তির হার; এর উপরে ১০.৪১%। শুধু নতুন ক্রয়ে প্রযোজ্য — পুরোনো সঞ্চয়পত্র আগের হারেই চলবে।',srcName:'Directorate of National Savings, effective 1 January 2026 (reported by The Daily Star)',src:'https://www.nationalsavings.gov.bd/',tier:'Pr'},
+    {key:'nsc_pensioner',group:'nsc',unit:'%',v:10.59,asof:'2026-01-01',en:'Pensioner Savings Certificate (5-yr)',bn:'পেনশনার সঞ্চয়পত্র (৫ বছর)',nEn:'Maturity rate for up to ৳7.5 lakh; 10.41% above that.',nBn:'৳৭.৫ লাখ পর্যন্ত মেয়াদপূর্তির হার; এর উপরে ১০.৪১%।',srcName:'Directorate of National Savings, effective 1 January 2026 (reported by The Daily Star)',src:'https://www.nationalsavings.gov.bd/',tier:'Pr'},
+    {key:'nsc_5yr',group:'nsc',unit:'%',v:10.44,asof:'2026-01-01',en:'5-year Bangladesh Sanchayapatra',bn:'৫ বছর মেয়াদি বাংলাদেশ সঞ্চয়পত্র',nEn:'Maturity rate for up to ৳7.5 lakh; 10.41% above that.',nBn:'৳৭.৫ লাখ পর্যন্ত মেয়াদপূর্তির হার; এর উপরে ১০.৪১%।',srcName:'Directorate of National Savings, effective 1 January 2026 (reported by The Daily Star)',src:'https://www.nationalsavings.gov.bd/',tier:'Pr'},
+    {key:'nsc_3monthly',group:'nsc',unit:'%',v:10.48,asof:'2026-01-01',en:'3-monthly profit certificate',bn:'৩ মাস অন্তর মুনাফাভিত্তিক সঞ্চয়পত্র',nEn:'Maturity rate for up to ৳7.5 lakh; 10.43% above that. Pays out every three months.',nBn:'৳৭.৫ লাখ পর্যন্ত মেয়াদপূর্তির হার; এর উপরে ১০.৪৩%। প্রতি তিন মাসে মুনাফা দেয়।',srcName:'Directorate of National Savings, effective 1 January 2026 (reported by The Daily Star)',src:'https://www.nationalsavings.gov.bd/',tier:'Pr'},
+    {key:'tbill_91',group:'market',unit:'%',v:null,asof:'',en:'91-day treasury bill yield',bn:'৯১ দিনের ট্রেজারি বিল ইল্ড',nEn:'Fills automatically from Bangladesh Bank auction results on the next monthly run.',nBn:'পরের মাসিক রানে বাংলাদেশ ব্যাংকের নিলামের ফল থেকে স্বয়ংক্রিয়ভাবে আসবে।',srcName:'Bangladesh Bank treasury auction results',src:'https://www.bb.org.bd/en/index.php/monetaryactivity/treasury',tier:'R'},
+    {key:'tbill_182',group:'market',unit:'%',v:null,asof:'',en:'182-day treasury bill yield',bn:'১৮২ দিনের ট্রেজারি বিল ইল্ড',nEn:'Fills automatically from Bangladesh Bank auction results on the next monthly run.',nBn:'পরের মাসিক রানে বাংলাদেশ ব্যাংকের নিলামের ফল থেকে স্বয়ংক্রিয়ভাবে আসবে।',srcName:'Bangladesh Bank treasury auction results',src:'https://www.bb.org.bd/en/index.php/monetaryactivity/treasury',tier:'R'},
+    {key:'tbill_364',group:'market',unit:'%',v:null,asof:'',en:'364-day treasury bill yield',bn:'৩৬৪ দিনের ট্রেজারি বিল ইল্ড',nEn:'The closest government benchmark to a 1-year bank deposit. Fills automatically on the next monthly run.',nBn:'১ বছরের ব্যাংক ডিপোজিটের সবচেয়ে কাছাকাছি সরকারি মানদণ্ড। পরের মাসিক রানে স্বয়ংক্রিয়ভাবে আসবে।',srcName:'Bangladesh Bank treasury auction results',src:'https://www.bb.org.bd/en/index.php/monetaryactivity/treasury',tier:'R'},
+    {key:'usdbdt',group:'market',unit:'৳',v:122.20,asof:'2026-08-20',en:'US dollar',bn:'মার্কিন ডলার',nEn:'Taka per dollar. Matters if you send, receive or spend in foreign currency.',nBn:'প্রতি ডলারে টাকা। বিদেশে পাঠালে, পেলে বা খরচ করলে এটি জরুরি।',srcName:'Market rate, 20 August 2026',src:'https://www.bb.org.bd/en/index.php/econdata/exchangerate',tier:'R'},
+    {key:'gold_22k',group:'market',unit:'৳/ভরি',v:236779,asof:'2026-08-13',en:'Gold, 22 carat (per bhori)',bn:'স্বর্ণ, ২২ ক্যারেট (প্রতি ভরি)',nEn:'BAJUS price including VAT. One bhori is 11.664 grams. Jewellery also carries a making charge on top.',nBn:'ভ্যাটসহ বাজুস নির্ধারিত দাম। এক ভরি = ১১.৬৬৪ গ্রাম। গহনায় এর উপর মজুরি যোগ হয়।',srcName:'Bangladesh Jewellers Association (BAJUS), effective 13 August 2026',src:'https://www.bajus.org/gold-price',tier:'Pr'}
+  ];
   var DATA=FALLBACK.slice();
-  var FILTER='all';   /* all | I | C | N */
 
   function L(en,bn){ return (typeof LANG!=='undefined'&&LANG==='bn')?bn:en; }
-  function fmt(v){ var s=(v==null||v==='')?'—':(Number(v).toFixed(2)+'%');
-    return (typeof loc==='function')?loc(s):s; }
+  function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function lc(s){ return (typeof loc==='function')?loc(String(s)):String(s); }
+  function fmt(v){ return lc((v==null||v===''||!isFinite(Number(v)))?'—':(Number(v).toFixed(2)+'%')); }
+  function fmtNum(v,dp){ if(v==null||v===''||!isFinite(Number(v))) return lc('—');
+    return lc(Number(v).toLocaleString('en-US',{minimumFractionDigits:(dp||0),maximumFractionDigits:(dp==null?2:dp)})); }
 
   /* reliability tiers + hover source popover */
   var REL={
@@ -2988,54 +3085,167 @@ attachRangeNumbers();
     Pr:{c:'#fb923c',en:'Press (regulator figures, reported)',bn:'সংবাদমাধ্যম (নিয়ন্ত্রকের তথ্য, প্রকাশিত)'},
     X :{c:'#7d7790',en:'No data — primary source not reachable yet',bn:'কোনো তথ্য নেই — উৎস এখনো পাওয়া যায়নি'}
   };
-  /* accessible reliability dot (aria-label, not colour-only) */
-  function relDot(t){ var m=REL[t]||REL.X; return '<span class="rt-dotr" role="img" aria-label="'+L(m.en,m.bn)+'" title="'+L(m.en,m.bn)+'" style="background:'+m.c+'"></span>'; }
+  function relDot(t){ var m=REL[t]||REL.X; return '<span class="rt-dotr" role="img" aria-label="'+esc(L(m.en,m.bn))+'" title="'+esc(L(m.en,m.bn))+'" style="background:'+m.c+'"></span>'; }
 
-  /* date parsing + staleness (handles "2026-06-24", "Jan 2026", "FY2022") */
-  function parseAsof(s){ s=String(s||''); var m;
+  /* confidence badge — a row that trips a check is LABELLED, never hidden */
+  var CONF={
+    check:{cls:'rt-cf-check',en:'unverified',bn:'যাচাই হয়নি',
+      tEn:'Something about this row needs a human eye — the reader may have drifted, or a number moved a lot. Treat it as indicative and confirm with the institution.',
+      tBn:'এই সারিতে কিছু একটা মানুষের চোখে দেখা দরকার — তথ্য পড়ায় গোলমাল হতে পারে, বা সংখ্যা হঠাৎ অনেক বদলেছে। প্রাথমিক ধরে নিন, প্রতিষ্ঠানে নিশ্চিত হয়ে নিন।'},
+    stale:{cls:'rt-cf-stale',en:'old sheet',bn:'পুরোনো শিট',
+      tEn:'Read correctly — the institution simply has not revised its own published sheet in over a year.',
+      tBn:'ঠিকভাবেই পড়া হয়েছে — প্রতিষ্ঠানটি নিজেই এক বছরের বেশি সময় ধরে তার প্রকাশিত শিট হালনাগাদ করেনি।'}
+  };
+  function confBadge(c){ var m=CONF[String(c||'').toLowerCase()]; if(!m) return '';
+    return '<span class="rt-cf '+m.cls+'" title="'+esc(L(m.tEn,m.tBn))+'">'+L(m.en,m.bn)+'</span>'; }
+
+  /* date parsing + age. Handles "2026-06-24", "Jan 2026", "FY2022", "2024". */
+  function parseAsof(s){ s=String(s||'').trim(); var m;
     if(m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s)) return new Date(+m[1],+m[2]-1,+m[3]);
     if(m=/^([A-Za-z]{3,9})\s+(\d{4})$/.exec(s)){ var mo={jan:0,feb:1,mar:2,apr:3,may:4,jun:5,jul:6,aug:7,sep:8,oct:9,nov:10,dec:11}[s.slice(0,3).toLowerCase()]; if(mo!=null) return new Date(+m[2],mo,1); }
     if(m=/FY\s*(\d{4})/i.exec(s)) return new Date(+m[1],6,1);
-    if(m=/^(\d{4})$/.exec(s)) return new Date(+m[1],6,1);   /* bare year ("2024") — mid-year, so staleness stays honest */
+    if(m=/^(\d{4})$/.exec(s)) return new Date(+m[1],6,1);
     return null; }
-  function isStale(s){ var d=parseAsof(s); return d ? (Date.now()-d.getTime() > 1000*60*60*24*195) : false; }  /* ~6.5 months */
+  function ageMonths(s){ var d=parseAsof(s); return d?Math.max(0,Math.round((Date.now()-d.getTime())/(30.44*864e5))):null; }
+  function isStale(s){ var a=ageMonths(s); return a==null?false:a>6; }
+  function ageLabel(s){ var a=ageMonths(s); if(a==null) return '';
+    if(a<1) return L('this month','এই মাসের');
+    if(a===1) return L('1 month old','১ মাস পুরোনো');
+    if(a<12) return L(a+' months old',lc(a)+' মাস পুরোনো');
+    var y=Math.floor(a/12);
+    return L(y===1?'over a year old':(y+' years old'), y===1?'এক বছরের বেশি পুরোনো':(lc(y)+' বছরের বেশি পুরোনো')); }
+  function niceDate(s){ var d=parseAsof(s); if(!d) return lc(s||'');
+    if(/^\d{4}-\d{2}-\d{2}$/.test(String(s))){
+      var M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      var Mb=['জানু','ফেব্রু','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্ট','অক্টো','নভে','ডিসে'];
+      return lc(d.getDate()+' ')+L(M[d.getMonth()],Mb[d.getMonth()])+lc(' '+d.getFullYear()); }
+    return lc(s); }
 
   /* per-row conditions notes (honest comparison context) */
   var RT_NOTES={
     'BRAC Bank':{en:'Savings 0.50% is the ৳1L–25L balance tier (savings is balance-tiered).',bn:'সেভিংস ০.৫০% হলো ৳১লাখ–২৫লাখ ব্যালেন্স ধাপ (সেভিংস ব্যালেন্স-ভিত্তিক)।'},
-    'Eastern Bank':{en:'Regular FD shown; EBL “Super FD” promos can run higher.',bn:'সাধারণ এফডি দেখানো; EBL “Super FD” প্রোমো বেশি হতে পারে।'},
     'Trust Bank':{en:'FDR is the under-৳50 Lac individual tier; DPS = scheme rate.',bn:'এফডিআর <৳৫০ লাখ ব্যক্তি ধাপের; ডিপিএস = স্কিম রেট।'},
-    'IIDFC':{en:'NBFI term-deposit rates; +0.25% for senior citizens.',bn:'এনবিএফআই মেয়াদি আমানত রেট; প্রবীণ নাগরিকদের +০.২৫%।'}
+    'IIDFC':{en:'Term-deposit rates; +0.25% for senior citizens.',bn:'মেয়াদি আমানতের হার; প্রবীণ নাগরিকদের +০.২৫%।'}
   };
   function noteFor(r){ if(r&&r.note) return r.note; var n=r&&RT_NOTES[r.bank]; return n?L(n.en,n.bn):''; }
 
-  function infoBtn(tier,srcName,src,asof,note){
-    var m=REL[tier]||REL.X, p='<b style="color:'+m.c+'">'+L(m.en,m.bn)+'</b>';
-    if(srcName) p+='<br>'+srcName;
-    if(asof) p+='<br>'+L('As of ','হালনাগাদ ')+asof+(isStale(asof)?' · '+L('may be stale','পুরোনো হতে পারে'):'');
-    p+= src ? '<br><a href="'+src+'" target="_blank" rel="noopener">'+L('View source ↗','উৎস দেখুন ↗')+'</a>'
+  function infoBtn(tier,srcName,src,asof,note,extra){
+    var m=REL[tier]||REL.X, p='<b style="color:'+m.c+'">'+esc(L(m.en,m.bn))+'</b>';
+    if(srcName) p+='<br>'+esc(srcName);
+    if(asof) p+='<br>'+L('Effective ','কার্যকর ')+niceDate(asof)+' · '+ageLabel(asof);
+    p+= src ? '<br><a href="'+esc(src)+'" target="_blank" rel="noopener">'+L('View source ↗','উৎস দেখুন ↗')+'</a>'
             : '<br><i>'+L('source not captured','উৎস সংরক্ষিত হয়নি')+'</i>';
-    if(note) p+='<br><span class="rt-cond">'+L('Note: ','নোট: ')+note+'</span>';
+    if(extra) p+='<br><span class="rt-cond">'+esc(extra)+'</span>';
+    if(note) p+='<br><span class="rt-cond">'+L('Note: ','নোট: ')+esc(note)+'</span>';
     return '<button type="button" class="rt-info" aria-label="'+L('source & details','উৎস ও বিস্তারিত')+'">ⓘ<span class="rt-pop">'+p+'</span></button>';
   }
 
-  /* sort state + handlers. Default = ALPHABETICAL (deliberate: the site doesn't editorialize
-     which rate is "best" — visitors can click a rate column themselves if they want that view). */
-  var RT_TEXTKEYS={bank:1,amc:1,co:1,fund:1};
-  var SORT={k:'bank',dir:1}, ASORT={k:'amc',dir:1}, ISORT={k:'co',dir:1}, FUND_ALL=false;
-  function rtNextDir(k){ return RT_TEXTKEYS[k]?1:-1; }   /* text: A→Z first; numbers: high-first */
-  window.rtSortBank=function(k){ if(SORT.k===k) SORT.dir*=-1; else { SORT.k=k; SORT.dir=rtNextDir(k); } render(); };
-  window.rtSortAmc =function(k){ if(ASORT.k===k) ASORT.dir*=-1; else { ASORT.k=k; ASORT.dir=rtNextDir(k); } render(); };
-  window.rtSortIns =function(k){ if(ISORT.k===k) ISORT.dir*=-1; else { ISORT.k=k; ISORT.dir=rtNextDir(k); } render(); };
-  window.rtFundsAll=function(){ FUND_ALL=!FUND_ALL; render(); };
-  function rtSortRows(rows,st,sinkNoData){ rows.sort(function(a,b){
-    if(sinkNoData){ var an=(a.tier==='X'),bn=(b.tier==='X'); if(an!==bn) return an?1:-1; }
+  /* ── generic sort + filter engine, shared by all four tables ───────────────
+     Every column sorts. Every categorical column filters. A search box matches
+     any text field. One implementation so the four tables behave identically. */
+  var RT_TEXTKEYS={bank:1,amc:1,co:1,fund:1,cat:1,label:1,group:1};
+  function nextDir(k){ return RT_TEXTKEYS[k]?1:-1; }   /* text A→Z first; numbers high-first */
+  function sortRows(rows,st,sinkNoData){ rows.sort(function(a,b){
+    if(sinkNoData){ var an=(a.tier==='X'),bn2=(b.tier==='X'); if(an!==bn2) return an?1:-1; }
     var x=a[st.k], y=b[st.k];
     if(RT_TEXTKEYS[st.k]){ x=String(x==null?'':x).toLowerCase(); y=String(y==null?'':y).toLowerCase();
       return x===y?0:(x<y?-1:1)*st.dir; }
     x=(x==null||x==='')?-Infinity:Number(x); y=(y==null||y==='')?-Infinity:Number(y);
+    if(!isFinite(x)) x=-Infinity; if(!isFinite(y)) y=-Infinity;
     return x===y?0:(x<y?-1:1)*st.dir; }); return rows; }
-  function sortArrow(st,k){ return st.k===k?(st.dir<0?' ▾':' ▴'):''; }
+  function arrow(st,k){ return st.k===k?(st.dir<0?' ▾':' ▴'):''; }
+  function th(st,fn,k,en,bn,extraCls){
+    return '<th class="rt-sort'+(st.k===k?' on':'')+(extraCls?' '+extraCls:'')+'" role="button" tabindex="0" '+
+      'onclick="'+fn+'(\''+k+'\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();'+fn+'(\''+k+'\');}">'+
+      L(en,bn)+arrow(st,k)+'</th>'; }
+
+  /* control-strip state: one entry per table */
+  var CTL={
+    banks:{ q:'', f:{type:'all', data:'all', fresh:'all'} },
+    funds:{ q:'', f:{cat:'all', shariah:'all', view:'all'} },
+    ins:  { q:'', f:{type:'all'} },
+    macro:{ q:'', f:{group:'all'} }
+  };
+  var CTL_DEFS={
+    banks:[
+      {k:'type',en:'Kind',bn:'ধরন',opts:[['all','All','সব'],['I','☪ Islamic','☪ ইসলামী'],['C','Conventional','প্রচলিত'],['N','NBFI','এনবিএফআই']]},
+      {k:'data',en:'Data',bn:'তথ্য',opts:[['all','Any','যেকোনো'],['1y','Has a 1-year rate','১ বছরের হার আছে'],['dps','Has a DPS rate','ডিপিএস হার আছে'],['none','No data yet','এখনো তথ্য নেই']]},
+      {k:'fresh',en:'Freshness',bn:'হালনাগাদ',opts:[['all','Any age','যেকোনো সময়ের'],['6','Effective in the last 6 months','গত ৬ মাসে কার্যকর'],['old','Over a year old','এক বছরের বেশি পুরোনো']]}
+    ],
+    funds:[
+      {k:'cat',en:'Fund type',bn:'ফান্ডের ধরন',opts:[['all','All types','সব ধরন'],['Balanced','Balanced','ব্যালান্সড'],['Growth','Growth','গ্রোথ'],['Income','Income','ইনকাম'],['Fixed income','Fixed income','ফিক্সড ইনকাম'],['Equity','Equity','ইক্যুইটি'],['SME','SME','এসএমই'],['Unclassified','Name doesn’t say','নাম বলে না']]},
+      {k:'shariah',en:'Shariah',bn:'শরীয়াহ',opts:[['all','Both','উভয়'],['yes','☪ Shariah only','☪ শুধু শরীয়াহ'],['no','Conventional only','শুধু প্রচলিত']]},
+      {k:'view',en:'Show',bn:'দেখান',opts:[['all','Every fund','প্রতিটি ফান্ড'],['one','Largest per manager','প্রতি ম্যানেজারে সবচেয়ে বড়']]}
+    ],
+    ins:[
+      {k:'type',en:'Kind',bn:'ধরন',opts:[['all','All','সব'],['C','Conventional','প্রচলিত'],['I','☪ Islami / Takaful','☪ ইসলামী / তাকাফুল']]}
+    ],
+    macro:[
+      {k:'group',en:'Group',bn:'বিভাগ',opts:[['all','Everything','সবকিছু'],['prices','Prices','দাম'],['policy','Policy rates','পলিসি রেট'],['nsc','Sanchayapatra','সঞ্চয়পত্র'],['market','Market','বাজার']]}
+    ]
+  };
+  window.rtCtlSet=function(tbl,key,val){ CTL[tbl].f[key]=val; render(); };
+  window.rtCtlSearch=function(tbl,val){ CTL[tbl].q=String(val||''); render(); };
+  window.rtCtlReset=function(tbl){ CTL[tbl].q=''; var d=CTL_DEFS[tbl];
+    d.forEach(function(g){ CTL[tbl].f[g.k]=g.opts[0][0]; }); render(); };
+
+  function renderCtl(tbl,shown,total){
+    var el=document.getElementById('rt-ctl-'+tbl); if(!el) return;
+    var h='<div class="rt-ctl-row"><label class="rt-search"><span class="rt-mag" aria-hidden="true">⌕</span>'+
+      '<input type="search" id="rt-q-'+tbl+'" value="'+esc(CTL[tbl].q)+'" '+
+      'placeholder="'+L('Search by name…','নাম দিয়ে খুঁজুন…')+'" aria-label="'+L('Search','খুঁজুন')+'" '+
+      'oninput="rtCtlSearch(\''+tbl+'\',this.value)"></label>'+
+      '<button type="button" class="rt-reset" onclick="rtCtlReset(\''+tbl+'\')">'+L('Reset','রিসেট')+'</button>'+
+      '<span class="rt-count">'+lc(shown)+L(' of ',' / ')+lc(total)+L(' shown',' দেখানো হচ্ছে')+'</span></div>';
+    CTL_DEFS[tbl].forEach(function(g){
+      h+='<div class="rt-ctl-row"><span class="rt-ctl-lbl">'+L(g.en,g.bn)+'</span>';
+      g.opts.forEach(function(o){
+        var on=(CTL[tbl].f[g.k]===o[0]);
+        h+='<button type="button" class="rt-fbtn'+(on?' on':'')+'" aria-pressed="'+on+'" '+
+           'onclick="rtCtlSet(\''+tbl+'\',\''+g.k+'\',\''+String(o[0]).replace(/'/g,"\\'")+'\')">'+L(o[1],o[2])+'</button>';
+      });
+      h+='</div>';
+    });
+    el.innerHTML=h;
+    var q=document.getElementById('rt-q-'+tbl);
+    if(q && document.activeElement!==q && CTL[tbl].q) q.value=CTL[tbl].q;
+  }
+  function hit(q,fields){ if(!q) return true; q=q.toLowerCase();
+    for(var i=0;i<fields.length;i++){ if(String(fields[i]==null?'':fields[i]).toLowerCase().indexOf(q)>-1) return true; }
+    return false; }
+
+  /* ── the comparison window: rows are effective on DIFFERENT dates, say it out loud ── */
+  function windowLine(rows){
+    var ds=[]; rows.forEach(function(r){ var d=parseAsof(r.asof); if(d) ds.push(d.getTime()); });
+    if(ds.length<2) return '';
+    ds.sort(function(a,b){return a-b;});
+    var lo=ds[0], hi=ds[ds.length-1];
+    var spread=Math.round((hi-lo)/(30.44*864e5));
+    if(spread<2) return '';
+    function iso(t){ var d=new Date(t); function z(n){return(n<10?'0':'')+n;} return d.getFullYear()+'-'+z(d.getMonth()+1)+'-'+z(d.getDate()); }
+    return '<div class="rt-window-in"><b>'+L('These rows are not all from the same date.','এই সারিগুলো সব একই তারিখের নয়।')+'</b> '+
+      L('The oldest sheet here took effect ','সবচেয়ে পুরোনো শিট কার্যকর হয়েছে ')+niceDate(iso(lo))+
+      L(' and the newest ',' আর সবচেয়ে নতুনটি ')+niceDate(iso(hi))+
+      L(' — a spread of about ',' — অর্থাৎ প্রায় ')+lc(spread)+L(' months. Banks revise on their own schedule, so a low number may simply be an old number. Check the date on each row before you compare.',' মাসের ব্যবধান। ব্যাংক নিজের সময়মতো হার বদলায়, তাই কম সংখ্যা মানে হয়তো পুরোনো সংখ্যা। তুলনার আগে প্রতিটি সারির তারিখ দেখে নিন।')+'</div>';
+  }
+
+  /* sort state per table */
+  var SORT={k:'bank',dir:1}, ASORT={k:'amc',dir:1}, ISORT={k:'co',dir:1}, MSORT={k:'group',dir:1};
+  window.rtSortBank=function(k){ if(SORT.k===k) SORT.dir*=-1; else { SORT.k=k; SORT.dir=nextDir(k); } render(); };
+  window.rtSortAmc =function(k){ if(ASORT.k===k) ASORT.dir*=-1; else { ASORT.k=k; ASORT.dir=nextDir(k); } render(); };
+  window.rtSortIns =function(k){ if(ISORT.k===k) ISORT.dir*=-1; else { ISORT.k=k; ISORT.dir=nextDir(k); } render(); };
+  window.rtSortMac =function(k){ if(MSORT.k===k) MSORT.dir*=-1; else { MSORT.k=k; MSORT.dir=nextDir(k); } render(); };
+
+  /* tabs */
+  var TAB='banks';
+  window.rtTab=function(t){ TAB=t;
+    ['banks','funds','ins','macro'].forEach(function(x){
+      var p=document.getElementById('rtp-'+x), b=document.getElementById('rtab-'+x);
+      if(p) p.className='rt-panel'+(x===t?' on':'');
+      if(b){ b.className=(x===t?'on':''); b.setAttribute('aria-selected',String(x===t)); }
+    });
+    if(window.track) window.track('rates_tab',t);
+    render(); };
 
   /* jump a rate straight into the Growth calculator */
   window.rtUseRate=function(rate){ rate=Number(rate); if(!isFinite(rate)) return;
@@ -3044,17 +3254,28 @@ attachRangeNumbers();
     setTimeout(function(){ var el=document.getElementById('gRate'); if(el){ el.value=Math.max(1,Math.min(25,Math.round(rate*2)/2)); el.dispatchEvent(new Event('input',{bubbles:true})); } try{window.scrollTo(0,0);}catch(e){} },60);
     if(window.track) window.track('rate_to_calc',String(rate)); };
 
-  function render(){
+  function render(){ renderBanks(); renderAMC(); renderIns(); renderMacro(); }
+
+  function renderBanks(){
     var head=document.getElementById('rt-head'), body=document.getElementById('rt-body');
     if(!head||!body) return;
-    /* filter by type, then sort (best-on-top; no-data sinks) */
-    var rows=DATA.filter(function(r){ return FILTER==='all'||r.type===FILTER; });
-    rtSortRows(rows,SORT,true);
-    /* header — every column is click-to-sort; bank name included (alphabetical default) */
-    var h='<tr><th class="rt-sort'+(SORT.k==='bank'?' on':'')+'" role="button" tabindex="0" onclick="rtSortBank(\'bank\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();rtSortBank(\'bank\');}">'+L('Bank','ব্যাংক')+sortArrow(SORT,'bank')+'</th>';
-    COLS.forEach(function(c){ h+='<th class="rt-sort'+(SORT.k===c.k?' on':'')+'" role="button" tabindex="0" onclick="rtSortBank(\''+c.k+'\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();rtSortBank(\''+c.k+'\');}">'+L(c.en,c.bn)+sortArrow(SORT,c.k)+'</th>'; });
+    var f=CTL.banks.f, q=CTL.banks.q;
+    var rows=DATA.filter(function(r){
+      if(f.type!=='all' && r.type!==f.type) return false;
+      if(f.data==='1y'  && r.fdr_1y==null) return false;
+      if(f.data==='dps' && r.dps_3y==null && r.dps_5y==null) return false;
+      if(f.data==='none'&& r.tier!=='X') return false;
+      if(f.fresh==='6'  && !(ageMonths(r.asof)!=null && ageMonths(r.asof)<=6)) return false;
+      if(f.fresh==='old'&& !(ageMonths(r.asof)!=null && ageMonths(r.asof)>12)) return false;
+      return hit(q,[r.bank,r.srcName]);
+    });
+    renderCtl('banks',rows.length,DATA.length);
+    var w=document.getElementById('rt-window'); if(w) w.innerHTML=windowLine(rows);
+    sortRows(rows,SORT,true);
+    var h='<tr>'+th(SORT,'rtSortBank','bank','Bank / NBFI','ব্যাংক / এনবিএফআই');
+    COLS.forEach(function(c){ h+=th(SORT,'rtSortBank',c.k,c.en,c.bn); });
+    h+=th(SORT,'rtSortBank','asof','Effective','কার্যকর');
     head.innerHTML=h+'</tr>';
-    /* rows */
     var html='';
     rows.forEach(function(r){
       var tag = (r.type==='C') ? '<span class="rt-tag rt-conv">'+L('Conventional','প্রচলিত')+'</span>'
@@ -3063,128 +3284,193 @@ attachRangeNumbers();
       var stale = r.tier!=='X' && isStale(r.asof);
       var calcRate = (r.tier==='X') ? null : (r.fdr_1y!=null?r.fdr_1y:(r.fdr_6m!=null?r.fdr_6m:(r.fdr_3m!=null?r.fdr_3m:(r.dps_5y!=null?r.dps_5y:null))));
       var calcBtn = (calcRate!=null) ? '<button type="button" class="rt-calc" title="'+L('Use this rate in the Growth calculator','গ্রোথ ক্যালকুলেটরে এই রেট ব্যবহার করুন')+'" onclick="rtUseRate('+calcRate+')">'+L('→ calc','→ ক্যালক')+'</button>' : '';
-      html+='<tr'+(r.tier==='X'?' class="rt-norow"':'')+'><th>'+relDot(r.tier)+r.bank+tag+infoBtn(r.tier,r.srcName,r.src,r.asof,noteFor(r))
-            +(r.tier==='X'?'<span class="rt-asof rt-nd">'+L('no data yet','এখনো তথ্য নেই')+'</span>'
-                          :(r.asof?'<span class="rt-asof'+(stale?' rt-stale':'')+'">'+L('as of ','হার: ')+r.asof+(stale?' ⚠':'')+'</span>':''))+calcBtn+'</th>';
+      var extra = r.asofHow ? L('Date read from: ','তারিখ এসেছে: ')+r.asofHow : '';
+      html+='<tr'+(r.tier==='X'?' class="rt-norow"':'')+'><th>'+relDot(r.tier)+esc(r.bank)+tag+confBadge(r.conf)
+            +infoBtn(r.tier,r.srcName,r.src,r.asof,noteFor(r),extra)
+            +(r.tier==='X'?'<span class="rt-asof rt-nd">'+L('no data yet','এখনো তথ্য নেই')+'</span>':'')+calcBtn+'</th>';
       COLS.forEach(function(c){
         var v=Number(r[c.k]);
-        /* month-over-month trend (live feed carries last month's published value) */
         var tr='';
-        if(r.prev && isFinite(v) && isFinite(Number(r.prev[c.k]))){
+        if(r.prev && isFinite(v) && r[c.k]!=null && isFinite(Number(r.prev[c.k]))){
           var pd=v-Number(r.prev[c.k]);
           if(Math.abs(pd)>=0.01) tr='<span class="rt-tr '+(pd>0?'rt-up':'rt-dn')+'" title="'+L('was ','আগে ')+fmt(r.prev[c.k])+'">'+(pd>0?'▲':'▼')+'</span>';
         }
-        html+='<td>'+fmt(r[c.k])+tr+'</td>';   /* no "best" crown — the site doesn't pick winners */
+        html+='<td>'+fmt(r[c.k])+tr+'</td>';
       });
+      html+='<td class="rt-when">'+(r.asof?('<span class="'+(stale?'rt-stale':'')+'">'+niceDate(r.asof)+'</span><span class="rt-asof">'+ageLabel(r.asof)+(stale?' ⚠':'')+'</span>'):lc('—'))+'</td>';
       html+='</tr>';
     });
-    body.innerHTML=html;
+    body.innerHTML=html||('<tr><td colspan="'+(COLS.length+2)+'" class="rt-empty">'+L('Nothing matches those filters.','এই ফিল্টারে কিছু মেলেনি।')+'</td></tr>');
     var stamp=document.getElementById('rt-stamp');
     if(stamp) stamp.textContent=L('Confirm with the bank before deciding','সিদ্ধান্তের আগে ব্যাংকে নিশ্চিত হন');
-    var fresh=document.getElementById('rt-fresh');   /* shows only once the live feed supplies real fetch dates */
-    if(fresh){ var ds=[]; [DATA,AMC_DATA,INS_DATA].forEach(function(a){a.forEach(function(r){ if(/^\d{4}-\d{2}-\d{2}$/.test(r.asof)) ds.push(r.asof); });}); ds.sort();
-      fresh.textContent = ds.length ? L('· Live data refreshed ','· লাইভ তথ্য হালনাগাদ ')+(typeof loc==='function'?loc(ds[ds.length-1]):ds[ds.length-1]) : ''; }
-    var fb=document.querySelectorAll('#rt-filter [data-f]');
-    for(var fi=0;fi<fb.length;fi++) fb[fi].className=(fb[fi].getAttribute('data-f')===FILTER)?'rt-fbtn on':'rt-fbtn';
-    renderAMC(); renderIns();
+    var fresh=document.getElementById('rt-fresh');
+    if(fresh){ var ds=[]; DATA.forEach(function(r){ if(r.checked && /^\d{4}-\d{2}-\d{2}$/.test(r.checked)) ds.push(r.checked); }); ds.sort();
+      fresh.textContent = ds.length ? L('· Sources last checked ','· উৎস শেষ দেখা হয়েছে ')+lc(ds[ds.length-1]) : ''; }
   }
 
-  /* ---- Mutual funds (AMC) mini-table: sortable; default = best fund per manager, toggle to show all ---- */
   function renderAMC(){
     var head=document.getElementById('rt-amc-head'), body=document.getElementById('rt-amc-body');
     if(!head||!body) return;
     var cols=[{k:'nav',en:'NAV / unit',bn:'এনএভি/ইউনিট',pct:false},
               {k:'ytd',en:'Return YTD',bn:'রিটার্ন YTD',pct:true},
               {k:'aum',en:'Fund size (৳ mn)',bn:'ফান্ড আকার (৳ মি)',pct:false}];
-    /* collapse to one (largest) fund per manager unless "show all" */
-    var data=AMC_DATA.slice();
-    if(!FUND_ALL){ var byM={}; data.forEach(function(r){ if(!byM[r.amc]||Number(r.aum)>Number(byM[r.amc].aum)) byM[r.amc]=r; }); data=Object.keys(byM).map(function(k){return byM[k];}); }
-    rtSortRows(data,ASORT,false);
-    var h='<tr><th class="rt-sort'+(ASORT.k==='amc'?' on':'')+'" role="button" tabindex="0" onclick="rtSortAmc(\'amc\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();rtSortAmc(\'amc\');}">'+L('Asset manager','অ্যাসেট ম্যানেজার')+sortArrow(ASORT,'amc')+'</th><th>'+L('Fund','ফান্ড')+'</th>';
-    cols.forEach(function(c){ h+='<th class="rt-sort'+(ASORT.k===c.k?' on':'')+'" role="button" tabindex="0" onclick="rtSortAmc(\''+c.k+'\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();rtSortAmc(\''+c.k+'\');}">'+L(c.en,c.bn)+sortArrow(ASORT,c.k)+'</th>'; });
+    var f=CTL.funds.f, q=CTL.funds.q;
+    var data=AMC_DATA.filter(function(r){
+      if(f.cat!=='all' && String(r.cat||'Unclassified')!==f.cat) return false;
+      if(f.shariah==='yes' && !r.shariah) return false;
+      if(f.shariah==='no'  &&  r.shariah) return false;
+      return hit(q,[r.amc,r.fund,r.cat]);
+    });
+    if(f.view==='one'){ var byM={};
+      data.forEach(function(r){ var a=Number(r.aum); if(!isFinite(a)) a=-1;
+        var cur=byM[r.amc]; var ca=cur?Number(cur.aum):-Infinity; if(!isFinite(ca)) ca=-1;
+        if(!cur||a>ca) byM[r.amc]=r; });
+      data=Object.keys(byM).map(function(k){return byM[k];}); }
+    renderCtl('funds',data.length,AMC_DATA.length);
+    sortRows(data,ASORT,false);
+    var h='<tr>'+th(ASORT,'rtSortAmc','amc','Asset manager','অ্যাসেট ম্যানেজার')
+                +th(ASORT,'rtSortAmc','fund','Fund','ফান্ড','rt-left')
+                +th(ASORT,'rtSortAmc','cat','Type','ধরন');
+    cols.forEach(function(c){ h+=th(ASORT,'rtSortAmc',c.k,c.en,c.bn); });
+    h+=th(ASORT,'rtSortAmc','asof','NAV date','এনএভি তারিখ');
     head.innerHTML=h+'</tr>';
+    var CATBN={'Balanced':'ব্যালান্সড','Growth':'গ্রোথ','Income':'ইনকাম','Fixed income':'ফিক্সড ইনকাম','Equity':'ইক্যুইটি','SME':'এসএমই','Unclassified':'নাম বলে না'};
     var html='';
     data.forEach(function(r){
-      var tag=(r.type==='I')?'<span class="rt-tag rt-isl">'+L('Shariah','শরীয়াহ')+'</span>':'';
+      var tag=r.shariah?'<span class="rt-tag rt-isl">'+L('Shariah','শরীয়াহ')+'</span>':'';
       var aTier=r.tier||'B', aSrc=r.src||'https://www.lankabd.com/MF/OpenEndMutualFund', aName=r.srcName||'LankaBangla open-end fund review';
-      html+='<tr><th>'+relDot(aTier)+r.amc+tag+infoBtn(aTier,aName,aSrc,r.asof,r.note||'')+(r.asof?'<span class="rt-asof">'+L('NAV ','এনএভি ')+r.asof+'</span>':'')+'</th><td class="rt-fund">'+r.fund+'</td>';
+      var cat=String(r.cat||'Unclassified');
+      html+='<tr><th>'+relDot(aTier)+esc(r.amc)+tag+confBadge(r.conf)+infoBtn(aTier,aName,aSrc,r.asof,r.note||'')+'</th>'+
+            '<td class="rt-fund">'+esc(r.fund)+'</td>'+
+            '<td><span class="rt-cat'+(cat==='Unclassified'?' rt-cat-un':'')+'">'+L(cat,CATBN[cat]||cat)+'</span></td>';
       cols.forEach(function(c){
-        var v=Number(r[c.k]), disp=c.pct?(loc(v.toFixed(2)+'%')):loc(v.toLocaleString('en-US'));
-        html+='<td>'+disp+'</td>';   /* no "best" crown */
+        var v=r[c.k];
+        html+='<td>'+(c.pct?fmt(v):fmtNum(v,(c.k==='nav'?2:0)))+'</td>';
       });
-      html+='</tr>';
+      html+='<td class="rt-when">'+(r.asof?niceDate(r.asof):lc('—'))+'</td></tr>';
     });
-    body.innerHTML=html;
-    var tog=document.getElementById('rt-funds-toggle');
-    if(tog) tog.textContent = FUND_ALL ? L('Show one per manager','প্রতি ম্যানেজারে একটি দেখান') : L('Show all funds','সব ফান্ড দেখান');
+    body.innerHTML=html||('<tr><td colspan="7" class="rt-empty">'+L('Nothing matches those filters.','এই ফিল্টারে কিছু মেলেনি।')+'</td></tr>');
   }
 
-  /* ---- Insurers mini-table: sortable; claim settlement ratio + claims paid ---- */
   function renderIns(){
     var head=document.getElementById('rt-ins-head'), body=document.getElementById('rt-ins-body');
     if(!head||!body) return;
-    var data=INS_DATA.slice(); rtSortRows(data,ISORT,false);
+    var f=CTL.ins.f, q=CTL.ins.q;
+    var data=INS_DATA.filter(function(r){
+      if(f.type!=='all' && r.type!==f.type) return false;
+      return hit(q,[r.co]);
+    });
+    renderCtl('ins',data.length,INS_DATA.length);
+    sortRows(data,ISORT,false);
     var ic=[{k:'claim',en:'Claim settlement',bn:'দাবি নিষ্পত্তি'},{k:'paid',en:'Claims paid (৳ cr)',bn:'পরিশোধিত দাবি (৳ কোটি)'}];
-    var h='<tr><th class="rt-sort'+(ISORT.k==='co'?' on':'')+'" role="button" tabindex="0" onclick="rtSortIns(\'co\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();rtSortIns(\'co\');}">'+L('Insurer','বিমাকারী')+sortArrow(ISORT,'co')+'</th>';
-    ic.forEach(function(c){ h+='<th class="rt-sort'+(ISORT.k===c.k?' on':'')+'" role="button" tabindex="0" onclick="rtSortIns(\''+c.k+'\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();rtSortIns(\''+c.k+'\');}">'+L(c.en,c.bn)+sortArrow(ISORT,c.k)+'</th>'; });
+    var h='<tr>'+th(ISORT,'rtSortIns','co','Insurer','বিমাকারী');
+    ic.forEach(function(c){ h+=th(ISORT,'rtSortIns',c.k,c.en,c.bn); });
+    h+=th(ISORT,'rtSortIns','asof','Period','সময়কাল');
     head.innerHTML=h+'</tr>';
     var html='';
     data.forEach(function(r){
       var tag=(r.type==='I')?'<span class="rt-tag rt-isl">'+L('Islami / Takaful','ইসলামী / তাকাফুল')+'</span>':'<span class="rt-tag rt-conv">'+L('Conventional','প্রচলিত')+'</span>';
       var iTier=r.tier||'Pr', iSrc=r.src||'https://www.thedailystar.net/business/economy/news/bright-spots-insurance-claim-settlement-3384166', iName=r.srcName||'IDRA figures, reported by The Daily Star';
-      var stale=isStale(r.asof);
-      html+='<tr><th>'+relDot(iTier)+r.co+tag+infoBtn(iTier,iName,iSrc,r.asof,r.note||'')+(r.asof?'<span class="rt-asof'+(stale?' rt-stale':'')+'">'+r.asof+(stale?' ⚠':'')+'</span>':'')+'</th>';
-      var cd=loc(Number(r.claim).toFixed(2)+'%');
-      html+='<td>'+cd+'</td>';   /* no "best" crown */
-      html+='<td>'+loc(Number(r.paid).toLocaleString('en-US'))+'</td></tr>';
+      html+='<tr><th>'+relDot(iTier)+esc(r.co)+tag+infoBtn(iTier,iName,iSrc,r.asof,r.note||'')+'</th>'+
+            '<td>'+fmt(r.claim)+'</td><td>'+fmtNum(r.paid,0)+'</td>'+
+            '<td class="rt-when">'+lc(r.asof||'—')+'</td></tr>';
     });
-    body.innerHTML=html;
+    body.innerHTML=html||('<tr><td colspan="4" class="rt-empty">'+L('Nothing matches those filters.','এই ফিল্টারে কিছু মেলেনি।')+'</td></tr>');
   }
 
-  function setFilter(f){ FILTER=f; render(); }
-  window.rtSetFilter=setFilter;
+  var GRP={prices:{en:'Prices',bn:'দাম'},policy:{en:'Policy rates',bn:'পলিসি রেট'},nsc:{en:'Sanchayapatra',bn:'সঞ্চয়পত্র'},market:{en:'Market',bn:'বাজার'}};
+  function renderMacro(){
+    var head=document.getElementById('rt-mac-head'), body=document.getElementById('rt-mac-body');
+    if(!head||!body) return;
+    var f=CTL.macro.f, q=CTL.macro.q;
+    var data=MACRO_DATA.filter(function(r){
+      if(f.group!=='all' && r.group!==f.group) return false;
+      return hit(q,[r.en,r.bn,r.srcName,(GRP[r.group]||{}).en]);
+    }).map(function(r){ var o={}; for(var k in r) o[k]=r[k];
+      o.label=L(r.en,r.bn); o.groupLabel=L((GRP[r.group]||{}).en||r.group,(GRP[r.group]||{}).bn||r.group); return o; });
+    renderCtl('macro',data.length,MACRO_DATA.length);
+    sortRows(data,MSORT,false);
+    var h='<tr>'+th(MSORT,'rtSortMac','group','Group','বিভাগ')
+                +th(MSORT,'rtSortMac','label','Indicator','সূচক','rt-left')
+                +th(MSORT,'rtSortMac','v','Latest','সর্বশেষ')
+                +th(MSORT,'rtSortMac','asof','As of','তারিখ');
+    head.innerHTML=h+'</tr>';
+    var html='';
+    data.forEach(function(r){
+      var val;
+      if(r.v==null||r.v===''||!isFinite(Number(r.v))) val='<span class="rt-nd">'+L('not published yet','এখনো প্রকাশিত হয়নি')+'</span>';
+      else if(r.unit==='%') val='<b>'+fmt(r.v)+'</b>';
+      else val='<b>'+lc((r.unit==='৳'?'৳':'')+Number(r.v).toLocaleString('en-US',{maximumFractionDigits:2}))+'</b>'+
+               (r.unit&&r.unit!=='৳'?'<span class="rt-unit"> '+lc(r.unit)+'</span>':'');
+      var stale=r.asof&&isStale(r.asof);
+      html+='<tr><td class="rt-grp">'+esc(r.groupLabel)+'</td>'+
+            '<th class="rt-left">'+relDot(r.tier||'R')+esc(r.label)+confBadge(r.conf)+
+              infoBtn(r.tier||'R',r.srcName,r.src,r.asof,L(r.nEn,r.nBn))+'</th>'+
+            '<td class="rt-macval">'+val+'</td>'+
+            '<td class="rt-when">'+(r.asof?('<span class="'+(stale?'rt-stale':'')+'">'+niceDate(r.asof)+'</span><span class="rt-asof">'+ageLabel(r.asof)+'</span>'):lc('—'))+'</td></tr>';
+    });
+    body.innerHTML=html||('<tr><td colspan="4" class="rt-empty">'+L('Nothing matches those filters.','এই ফিল্টারে কিছু মেলেনি।')+'</td></tr>');
+  }
+
   window.renderRates=render;
+  /* kept for anything still calling the old filter API */
+  window.rtSetFilter=function(f){ CTL.banks.f.type=f; render(); };
 
   /* pull the live feed if the Apps Script rates branch is deployed.
      stale-while-revalidate: paint from the last good feed first, then refresh. */
-  var RT_CACHE_KEY='rafiu_rates_cache_v1';
-  /* name normalizer so feed names ("EXIM") and fallback names ("EXIM Bank") match up */
+  var RT_CACHE_KEY='rafiu_rates_cache_v2';
   function rtNorm(s){ return String(s||'').toLowerCase()
     .replace(/\b(bank|islami|islamic|finance|fin\.?|plc|ltd|limited|bangladesh)\b/g,'')
     .replace(/[^a-z]+/g,''); }
+  function n(x){ var v=Number(x); return (x==null||x===''||!isFinite(v))?null:v; }
   function ingest(d){
-        if(d&&d.rates&&d.rates.length){
-          DATA=d.rates.map(function(x){
-            var pv=null; try{ if(x.Prev) pv=(typeof x.Prev==='string')?JSON.parse(x.Prev):x.Prev; }catch(e){}
-            return {bank:x.Bank||x.bank,type:(x.Type||x.type||'I'),savings:x.savings,fdr_3m:x.fdr_3m,fdr_6m:x.fdr_6m,
-              fdr_1y:x.fdr_1y,fdr_3y:x.fdr_3y,dps_3y:x.dps_3y,dps_5y:x.dps_5y,
-              tier:(x.Tier||x.tier||'P'),srcName:(x.Source||x.srcName||''),src:(x.SourceURL||x.src||''),
-              asof:x.AsOf||x.FetchedOn||x.asof||'',prev:pv};
-          });
-          /* keep institutions the feed doesn't carry: gaps stay VISIBLE (grey no-data rows /
-             last-known fallback rows with their honest old dates) instead of silently
-             disappearing whenever the live feed loads */
-          var seen={}; DATA.forEach(function(r){ seen[rtNorm(r.bank)]=1; });
-          FALLBACK.forEach(function(r){ if(!seen[rtNorm(r.bank)]) DATA.push(r); });
-        }
-        if(d&&d.funds&&d.funds.length){
-          AMC_DATA=d.funds.map(function(x){
-            return {amc:x.Manager||x.amc,fund:x.Fund||x.fund,nav:Number(x.NAV||x.nav),ytd:Number(x.ReturnYTD||x.ytd),
-              aum:Number(x.AUM||x.aum),type:(x.Type||x.type||'C'),asof:x.AsOf||x.asof||'',
-              tier:(x.Tier||x.tier||'B'),srcName:(x.Source||x.srcName||''),src:(x.SourceURL||x.src||'')};
-          });
-        }
-        if(d&&d.insurers&&d.insurers.length){
-          INS_DATA=d.insurers.map(function(x){
-            return {co:x.Company||x.co,type:(x.Type||x.type||'C'),claim:Number(x.ClaimRatio||x.claim),paid:Number(x.ClaimsPaidCr||x.paid),
-              asof:x.AsOf||x.asof||'',tier:(x.Tier||x.tier||'Pr'),srcName:(x.Source||x.srcName||''),src:(x.SourceURL||x.src||'')};
-          });
-        }
-        render();
+    if(d&&d.rates&&d.rates.length){
+      DATA=d.rates.map(function(x){
+        var pv=null; try{ if(x.Prev) pv=(typeof x.Prev==='string')?JSON.parse(x.Prev):x.Prev; }catch(e){}
+        return {bank:x.Bank||x.bank,type:(x.Type||x.type||'I'),
+          savings:n(x.savings),fdr_3m:n(x.fdr_3m),fdr_6m:n(x.fdr_6m),fdr_1y:n(x.fdr_1y),
+          fdr_3y:n(x.fdr_3y),dps_3y:n(x.dps_3y),dps_5y:n(x.dps_5y),
+          tier:(x.Tier||x.tier||'P'),srcName:(x.Source||x.srcName||''),src:(x.SourceURL||x.src||''),
+          asof:x.AsOf||x.asof||'',asofHow:x.AsOfHow||'',checked:x.Checked||'',
+          conf:String(x.Confidence||'').toLowerCase(),prev:pv};
+      });
+      /* keep institutions the feed doesn't carry: gaps stay VISIBLE (grey no-data rows /
+         last-known fallback rows with their honest old dates) instead of disappearing */
+      var seen={}; DATA.forEach(function(r){ seen[rtNorm(r.bank)]=1; });
+      FALLBACK.forEach(function(r){ if(!seen[rtNorm(r.bank)]) DATA.push(r); });
+    }
+    if(d&&d.funds&&d.funds.length){
+      AMC_DATA=d.funds.map(function(x){
+        return {amc:x.Manager||x.amc,fund:x.Fund||x.fund,nav:n(x.NAV||x.nav),ytd:n(x.ReturnYTD!=null?x.ReturnYTD:x.ytd),
+          aum:n(x.AUM!=null?x.AUM:x.aum),cat:(x.Category||x.cat||'Unclassified'),
+          shariah:(String(x.Shariah||'').toLowerCase()==='yes')||(x.Type||x.type)==='I'||!!x.shariah,
+          type:(x.Type||x.type||'C'),asof:x.AsOf||x.asof||'',conf:String(x.Confidence||'').toLowerCase(),
+          tier:(x.Tier||x.tier||'B'),srcName:(x.Source||x.srcName||''),src:(x.SourceURL||x.src||'')};
+      });
+    }
+    if(d&&d.insurers&&d.insurers.length){
+      INS_DATA=d.insurers.map(function(x){
+        return {co:x.Company||x.co,type:(x.Type||x.type||'C'),claim:n(x.ClaimRatio!=null?x.ClaimRatio:x.claim),
+          paid:n(x.ClaimsPaidCr!=null?x.ClaimsPaidCr:x.paid),
+          asof:x.AsOf||x.asof||'',tier:(x.Tier||x.tier||'Pr'),srcName:(x.Source||x.srcName||''),src:(x.SourceURL||x.src||'')};
+      });
+    }
+    if(d&&d.macro&&d.macro.length){
+      MACRO_DATA=d.macro.map(function(x){
+        return {key:x.Key||x.key,group:x.Group||x.group||'market',unit:x.Unit||x.unit||'',
+          v:n(x.Value!=null?x.Value:x.v),asof:x.AsOf||x.asof||'',
+          en:x.LabelEN||x.en||x.Key,bn:x.LabelBN||x.bn||x.LabelEN||x.en||x.Key,
+          nEn:x.NoteEN||x.nEn||'',nBn:x.NoteBN||x.nBn||x.NoteEN||x.nEn||'',
+          srcName:x.Source||x.srcName||'',src:x.SourceURL||x.src||'',
+          tier:x.Tier||x.tier||'R',conf:String(x.Confidence||'').toLowerCase()};
+      });
+    }
+    render();
   }
   function load(){
     if(typeof RESOURCES_API==='undefined'||!RESOURCES_API){ render(); return; }
     try{ var c=localStorage.getItem(RT_CACHE_KEY); if(c){ ingest(JSON.parse(c)); } else { render(); } }catch(e){ render(); }
+    if(typeof fetch!=='function'){ render(); return; }   /* no fetch (very old browser / blocked) -> fallback table stands */
     fetch(RESOURCES_API+(RESOURCES_API.indexOf('?')>-1?'&':'?')+'rates=1')
       .then(function(r){return r.json();})
       .then(function(d){
@@ -3194,7 +3480,6 @@ attachRangeNumbers();
       .catch(function(){ render(); });
   }
 
-  /* re-render on language toggle */
   var lb=document.getElementById('langbtn');
   if(lb) lb.addEventListener('click',function(){ setTimeout(render,30); });
 
