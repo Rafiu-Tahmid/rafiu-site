@@ -989,6 +989,11 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
     #page-rates .rt-dotr{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px;vertical-align:middle;box-shadow:0 0 0 2px rgba(0,0,0,.12)}
     #page-rates tr.rt-norow th,#page-rates tr.rt-norow td{opacity:.62}
     #page-rates .rt-nd{color:#b08; color:var(--ink-soft); font-style:italic}
+    #page-rates .rt-why{display:block; margin-top:2px; font-size:.74rem; line-height:1.35;
+      color:var(--ink-soft); font-style:normal; max-width:34ch}
+    #page-rates .rt-merged{display:inline-block; margin-left:6px; padding:1px 7px; border-radius:999px;
+      font-size:.68rem; font-weight:600; letter-spacing:.02em; white-space:nowrap;
+      background:rgba(167,139,250,.16); color:var(--violet-bright); border:1px solid rgba(167,139,250,.34)}
     #page-rates .rt-info{position:relative;display:inline-block;margin-left:7px;width:16px;height:16px;line-height:14px;text-align:center;font-size:11px;font-weight:700;color:var(--ink-soft);background:none;border:1px solid var(--line);border-radius:50%;cursor:help;vertical-align:middle;padding:0;font-family:var(--ui)}
     #page-rates .rt-sort{cursor:pointer;user-select:none}
     #page-rates .rt-sort:hover{color:var(--violet-bright)}
@@ -2986,13 +2991,15 @@ attachRangeNumbers();
      `asof` = the date the bank's OWN sheet took effect, never the date we read it. */
   /* tiers: P=Primary (institution's own sheet) · R=Regulator/exchange (BB/IDRA/DSE/CDBL)
             · B=Brokerage/fund portal · Pr=Press · X=No data found. */
-  function nd(bank,type){ return {bank:bank,type:type,savings:null,fdr_3m:null,fdr_6m:null,fdr_1y:null,fdr_3y:null,dps_3y:null,dps_5y:null,tier:'X',src:'',srcName:'',asof:''}; }
+  function nd(bank,type,why){ return {bank:bank,type:type,savings:null,fdr_3m:null,fdr_6m:null,fdr_1y:null,fdr_3y:null,dps_3y:null,dps_5y:null,tier:'X',src:'',srcName:'',asof:'',why:why||'not-on-bb-chart'}; }
+  /* merged into United Islami Bank, 1 Dec 2025 (Bangladesh Bank, via The Business Standard) */
+  function ndm(bank,type){ var r=nd(bank,type,'merged'); r.mergedInto='United Islami Bank'; return r; }
   var FALLBACK=[
     {bank:'IBBL',          type:'I',savings:2.50,fdr_3m:9.50,fdr_6m:9.80,fdr_1y:10.00,fdr_3y:10.50,dps_3y:6.75,dps_5y:7.25,tier:'P',srcName:'IBBL provisional profit rates (w.e.f. 1 Jan 2026)',src:'https://www.islamibankbd.com/profit-rates-on-deposits',asof:'2026-01-01'},
-    {bank:'EXIM Bank',     type:'I',savings:3.00,fdr_3m:5.00,fdr_6m:5.25,fdr_1y:5.50, fdr_3y:6.00, dps_3y:5.25,dps_5y:5.50,tier:'P',srcName:'EXIM Bank profit-rate sheet (w.e.f. 1 Jul 2026)',src:'https://www.eximbankbd.com/deposit/Deposit_Rates',asof:'2026-07-01'},
+    {bank:'EXIM Bank',     type:'I',savings:3.00,fdr_3m:5.00,fdr_6m:5.25,fdr_1y:5.50, fdr_3y:6.00, dps_3y:5.25,dps_5y:5.50,tier:'P',srcName:'EXIM Bank profit-rate sheet (w.e.f. 1 Jul 2026)',src:'https://www.eximbankbd.com/deposit/Deposit_Rates',asof:'2026-07-01',mergedInto:'United Islami Bank'},
     /* SIBL 21 Aug 26: read off the bank's own 1 Feb 2026 sheet. The 1-year and 3-year
        MTDR rows on that sheet read "Based On Market" — no figure, so no figure here. */
-    {bank:'SIBL',          type:'I',savings:3.00,fdr_3m:8.75,fdr_6m:9.25,fdr_1y:null,fdr_3y:null,dps_3y:6.75,dps_5y:7.25,tier:'P',srcName:'SIBL provisional profit rate sheet (eff. 1 Feb 2026)',src:'https://www.siblbd.com/profit-rates',asof:'2026-02-01',note:'The bank publishes its 1-year and 3-year term rates as “based on market” rather than a fixed figure.'},
+    {bank:'SIBL',          type:'I',savings:3.00,fdr_3m:8.75,fdr_6m:9.25,fdr_1y:null,fdr_3y:null,dps_3y:6.75,dps_5y:7.25,tier:'P',srcName:'SIBL provisional profit rate sheet (eff. 1 Feb 2026)',src:'https://www.siblbd.com/profit-rates',asof:'2026-02-01',mergedInto:'United Islami Bank',note:'The bank publishes its 1-year and 3-year term rates as “based on market” rather than a fixed figure.'},
     {bank:'AB Islami',     type:'I',savings:4.00,fdr_3m:12.00,fdr_6m:12.00,fdr_1y:12.00,fdr_3y:null,dps_3y:10.00,dps_5y:10.00,tier:'P',srcName:'AB Bank Islami provisional profit rates (w.e.f. 1 Jan 2026)',src:'https://abbl.com/islami-banking/provisional-profit-rates/',asof:'2026-01-01'},
     {bank:'Al-Arafah Islami',type:'I',savings:3.00,fdr_3m:10.00,fdr_6m:10.00,fdr_1y:10.50,fdr_3y:11.00,dps_3y:null,dps_5y:null,tier:'P',srcName:'AIBL revised provisional profit-rate circular (23 Jan 2025)',src:'https://www.aibl.com.bd/rates-schedule-of-charges/',asof:'2025-01-23',note:'A newer circular dated 21 Apr 2026 is published as a scanned image; the live pipeline reads it by OCR and will replace these figures on its next run.'},
     {bank:'UCB Islamic',   type:'I',savings:2.75,fdr_3m:null,fdr_6m:null,fdr_1y:null, fdr_3y:null, dps_3y:null,dps_5y:null,tier:'R',srcName:'Bangladesh Bank deposit rate chart (UCB row; term rates published only as ranges)',src:'https://www.bb.org.bd/en/index.php/financialactivity/interestdeposit',asof:'2026-06-01'},
@@ -3011,11 +3018,25 @@ attachRangeNumbers();
     /* — offline-fallback no-data rows. The LIVE feed back-fills these from Bangladesh
          Bank's chart (Tier R) where the chart carries single figures; the ones published
          only as ranges stay honest no-data. These rows only show if the feed is down. — */
-    nd('First Security Islami','I'), nd('Global Islami','I'), nd('Union Bank','I'),
+    /* The three remaining banks of the 1 Dec 2025 five-way merger. The row stays and
+       carries the merger, because someone who banked with them still looks them up. */
+    ndm('First Security Islami','I'), ndm('Global Islami','I'), ndm('Union Bank','I'),
+    nd('United Islami Bank','I'),
     nd('Standard Chartered','C'), nd('HSBC Bangladesh','C'), nd('City Bank','C'), nd('Dutch-Bangla','C'), nd('Dhaka Bank','C'),
     nd('National Bank','C'), nd('Prime Bank','C'), nd('Bank Asia','C'), nd('Mutual Trust','C'),
     nd('Mercantile Bank','C'), nd('Midland Bank','C'), nd('One Bank','C'),
     nd('Sonali Bank','C'), nd('Agrani Bank','C'), nd('Janata Bank','C'),
+    /* the rest of the scheduled banks. Offline they are honest gaps; the live feed
+       fills whichever of them Bangladesh Bank's chart carries a single figure for. */
+    nd('Rupali Bank','C'), nd('Uttara Bank','C'), nd('IFIC Bank','C'), nd('Southeast Bank','C'),
+    nd('Meghna Bank','C'), nd('Modhumoti Bank','C'), nd('NRB Bank','C'), nd('NRBC Bank','C'),
+    nd('SBAC Bank','C'), nd('Shimanto Bank','C'), nd('Citizens Bank','C'), nd('Community Bank','C'),
+    nd('Bengal Commercial','C'), nd('Bangladesh Commerce','C'), nd('Padma Bank','C'),
+    nd('BASIC Bank','C'), nd('Bangladesh Development','C'),
+    nd('Bangladesh Krishi Bank','C'), nd('Rajshahi Krishi Unnayan','C'), nd('Probashi Kallyan Bank','C'),
+    nd('Standard Bank','I'), nd('ICB Islamic','I'),
+    nd('Citibank N.A.','C'), nd('Commercial Bank of Ceylon','C'), nd('State Bank of India','C'),
+    nd('Woori Bank','C'), nd('Bank Alfalah','C'), nd('Habib Bank','C'), nd('National Bank of Pakistan','C'),
     nd('IDLC Finance','N'), nd('IPDC Finance','N'), nd('United Finance','N'),
     nd('National Housing Fin.','N'), nd('Phoenix Finance','N'), nd('Bay Leasing','N'), nd('Uttara Finance','N')
   ];
@@ -3099,6 +3120,39 @@ attachRangeNumbers();
   function confBadge(c){ var m=CONF[String(c||'').toLowerCase()]; if(!m) return '';
     return '<span class="rt-cf '+m.cls+'" title="'+esc(L(m.tEn,m.tBn))+'">'+L(m.en,m.bn)+'</span>'; }
 
+  /* ── WHY A ROW IS EMPTY ──────────────────────────────────────────────────
+     An empty row with no explanation reads as neglect, and the reader is left
+     wondering whether the bank is missing or the site is broken. The pipeline
+     writes a short code; this turns it into a sentence in both languages. */
+  var WHY={
+    'bb-ranges-only':{en:'Bangladesh Bank lists this one, but publishes its rates only as a range — there is no single honest figure to show.',
+                      bn:'বাংলাদেশ ব্যাংকের তালিকায় আছে, তবে হার প্রকাশ করা হয়েছে শুধু একটা সীমা হিসেবে — একক নির্ভরযোগ্য সংখ্যা নেই।'},
+    'not-on-bb-chart':{en:"Not on Bangladesh Bank's rate chart this month, and this bank does not publish a readable rate sheet on its own website.",
+                      bn:'এই মাসে বাংলাদেশ ব্যাংকের হারের চার্টে নেই, আর ব্যাংকটির নিজের ওয়েবসাইটেও পড়ার মতো কোনো রেট শিট নেই।'},
+    'site-blocks-fetch':{en:"This bank's website refuses automated reading, so its own sheet cannot be checked from here.",
+                      bn:'এই ব্যাংকের ওয়েবসাইট স্বয়ংক্রিয়ভাবে পড়তে দেয় না, তাই এখান থেকে তাদের নিজের শিট দেখা যাচ্ছে না।'},
+    'scanned-pdf':{en:'The published sheet is a scanned picture that could not be turned into text.',
+                      bn:'প্রকাশিত শিটটি একটি স্ক্যান করা ছবি, যেটা লেখায় রূপান্তর করা যায়নি।'},
+    'no-published-sheet':{en:'This institution does not publish a deposit-rate sheet on its website.',
+                      bn:'এই প্রতিষ্ঠানটি তাদের ওয়েবসাইটে আমানতের হারের শিট প্রকাশ করে না।'},
+    'source-unreachable':{en:'The source could not be reached the last time we looked.',
+                      bn:'শেষবার দেখার সময় উৎসটিতে পৌঁছানো যায়নি।'},
+    'merged':{en:'This bank has been merged into another — see the note on this row.',
+                      bn:'এই ব্যাংকটি অন্য একটি ব্যাংকের সঙ্গে একীভূত হয়েছে — সারির নোট দেখুন।'},
+    'disabled':{en:'Switched off by hand while its source is being fixed.',
+                      bn:'উৎস ঠিক করার সময় পর্যন্ত হাতে বন্ধ রাখা হয়েছে।'},
+    'nothing-parsed':{en:'The source was read but no rate could be recognised in it.',
+                      bn:'উৎসটি পড়া হয়েছে, কিন্তু সেখানে কোনো হার শনাক্ত করা যায়নি।'}
+  };
+  function whyText(code){ var w=WHY[String(code||'').trim()]; return w?L(w.en,w.bn):''; }
+  /* true when a row carries no figure at all — the feed serves these on purpose */
+  function isNoData(r){ return ['savings','fdr_3m','fdr_6m','fdr_1y','fdr_3y','dps_3y','dps_5y']
+    .every(function(k){ return r[k]==null; }); }
+  function mergedChip(r){ if(!r.mergedInto) return '';
+    return '<span class="rt-merged" title="'+esc(L('Merged into '+r.mergedInto+'. Your account and deposits moved with it — confirm the current rate with the merged bank.',
+      r.mergedInto+'-এর সঙ্গে একীভূত হয়েছে। আপনার হিসাব ও আমানত সেখানেই গেছে — বর্তমান হার একীভূত ব্যাংকে নিশ্চিত করে নিন।'))+'">'
+      +L('now '+r.mergedInto,'এখন '+r.mergedInto)+'</span>'; }
+
   /* date parsing + age. Handles "2026-06-24", "Jan 2026", "FY2022", "2024". */
   function parseAsof(s){ s=String(s||'').trim(); var m;
     if(m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s)) return new Date(+m[1],+m[2]-1,+m[3]);
@@ -3146,7 +3200,7 @@ attachRangeNumbers();
   var RT_TEXTKEYS={bank:1,amc:1,co:1,fund:1,cat:1,label:1,group:1};
   function nextDir(k){ return RT_TEXTKEYS[k]?1:-1; }   /* text A→Z first; numbers high-first */
   function sortRows(rows,st,sinkNoData){ rows.sort(function(a,b){
-    if(sinkNoData){ var an=(a.tier==='X'),bn2=(b.tier==='X'); if(an!==bn2) return an?1:-1; }
+    if(sinkNoData){ var an=(a.tier==='X'||isNoData(a)),bn2=(b.tier==='X'||isNoData(b)); if(an!==bn2) return an?1:-1; }
     var x=a[st.k], y=b[st.k];
     if(RT_TEXTKEYS[st.k]){ x=String(x==null?'':x).toLowerCase(); y=String(y==null?'':y).toLowerCase();
       return x===y?0:(x<y?-1:1)*st.dir; }
@@ -3264,7 +3318,7 @@ attachRangeNumbers();
       if(f.type!=='all' && r.type!==f.type) return false;
       if(f.data==='1y'  && r.fdr_1y==null) return false;
       if(f.data==='dps' && r.dps_3y==null && r.dps_5y==null) return false;
-      if(f.data==='none'&& r.tier!=='X') return false;
+      if(f.data==='none'&& !(r.tier==='X'||isNoData(r))) return false;
       if(f.fresh==='6'  && !(ageMonths(r.asof)!=null && ageMonths(r.asof)<=6)) return false;
       if(f.fresh==='old'&& !(ageMonths(r.asof)!=null && ageMonths(r.asof)>12)) return false;
       return hit(q,[r.bank,r.srcName]);
@@ -3281,13 +3335,17 @@ attachRangeNumbers();
       var tag = (r.type==='C') ? '<span class="rt-tag rt-conv">'+L('Conventional','প্রচলিত')+'</span>'
               : (r.type==='N') ? '<span class="rt-tag rt-nbfi">'+L('NBFI','এনবিএফআই')+'</span>'
               : '<span class="rt-tag rt-isl">'+L('Islamic','ইসলামী')+'</span>';
-      var stale = r.tier!=='X' && isStale(r.asof);
-      var calcRate = (r.tier==='X') ? null : (r.fdr_1y!=null?r.fdr_1y:(r.fdr_6m!=null?r.fdr_6m:(r.fdr_3m!=null?r.fdr_3m:(r.dps_5y!=null?r.dps_5y:null))));
+      var nd = r.tier==='X' || isNoData(r);
+      var stale = !nd && isStale(r.asof);
+      var calcRate = nd ? null : (r.fdr_1y!=null?r.fdr_1y:(r.fdr_6m!=null?r.fdr_6m:(r.fdr_3m!=null?r.fdr_3m:(r.dps_5y!=null?r.dps_5y:null))));
       var calcBtn = (calcRate!=null) ? '<button type="button" class="rt-calc" title="'+L('Use this rate in the Growth calculator','গ্রোথ ক্যালকুলেটরে এই রেট ব্যবহার করুন')+'" onclick="rtUseRate('+calcRate+')">'+L('→ calc','→ ক্যালক')+'</button>' : '';
       var extra = r.asofHow ? L('Date read from: ','তারিখ এসেছে: ')+r.asofHow : '';
-      html+='<tr'+(r.tier==='X'?' class="rt-norow"':'')+'><th>'+relDot(r.tier)+esc(r.bank)+tag+confBadge(r.conf)
+      var why = nd ? whyText(r.why) : '';
+      html+='<tr'+(nd?' class="rt-norow"':'')+'><th>'+relDot(r.tier)+esc(r.bank)+tag+mergedChip(r)+confBadge(r.conf)
             +infoBtn(r.tier,r.srcName,r.src,r.asof,noteFor(r),extra)
-            +(r.tier==='X'?'<span class="rt-asof rt-nd">'+L('no data yet','এখনো তথ্য নেই')+'</span>':'')+calcBtn+'</th>';
+            +(nd?('<span class="rt-asof rt-nd">'+L('no rate published','প্রকাশিত হার নেই')+'</span>'
+                  +(why?'<span class="rt-why">'+esc(why)+'</span>':'')):'')
+            +calcBtn+'</th>';
       COLS.forEach(function(c){
         var v=Number(r[c.k]);
         var tr='';
@@ -3297,7 +3355,7 @@ attachRangeNumbers();
         }
         html+='<td>'+fmt(r[c.k])+tr+'</td>';
       });
-      html+='<td class="rt-when">'+(r.asof?('<span class="'+(stale?'rt-stale':'')+'">'+niceDate(r.asof)+'</span><span class="rt-asof">'+ageLabel(r.asof)+(stale?' ⚠':'')+'</span>'):lc('—'))+'</td>';
+      html+='<td class="rt-when">'+((!nd&&r.asof)?('<span class="'+(stale?'rt-stale':'')+'">'+niceDate(r.asof)+'</span><span class="rt-asof">'+ageLabel(r.asof)+(stale?' ⚠':'')+'</span>'):lc('—'))+'</td>';
       html+='</tr>';
     });
     body.innerHTML=html||('<tr><td colspan="'+(COLS.length+2)+'" class="rt-empty">'+L('Nothing matches those filters.','এই ফিল্টারে কিছু মেলেনি।')+'</td></tr>');
@@ -3432,6 +3490,7 @@ attachRangeNumbers();
           fdr_3y:n(x.fdr_3y),dps_3y:n(x.dps_3y),dps_5y:n(x.dps_5y),
           tier:(x.Tier||x.tier||'P'),srcName:(x.Source||x.srcName||''),src:(x.SourceURL||x.src||''),
           asof:x.AsOf||x.asof||'',asofHow:x.AsOfHow||'',checked:x.Checked||'',
+          why:x.Why||x.why||'',mergedInto:x.MergedInto||x.mergedInto||'',
           conf:String(x.Confidence||'').toLowerCase(),prev:pv};
       });
       /* keep institutions the feed doesn't carry: gaps stay VISIBLE (grey no-data rows /
