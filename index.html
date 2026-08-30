@@ -1646,7 +1646,18 @@ function _normRes(item){
 }
 /* stale-while-revalidate: render instantly from the last good feed (localStorage),
    then refresh quietly in the background. Site stays up even if Apps Script hiccups. */
-var FEED_CACHE_KEY='rafiu_feed_cache_v1';
+var FEED_CACHE_KEY='rafiu_feed_cache_v2';
+/* Same reasoning as the rates cache: a cached copy is a courtesy, not a substitute for
+   the feed. Bumped to v2 so untimed caches already in readers' browsers are dropped. */
+var FEED_CACHE_MAX=45*864e5;
+function feedCacheRead(){
+  try{ var c=localStorage.getItem(FEED_CACHE_KEY); if(!c) return null;
+    var o=JSON.parse(c);
+    if(!o||!o.t||!o.d) return null;
+    if(Date.now()-o.t>FEED_CACHE_MAX){ try{localStorage.removeItem(FEED_CACHE_KEY);}catch(e){} return null; }
+    return o.d; }catch(e){ return null; }
+}
+function feedCacheWrite(d){ try{ localStorage.setItem(FEED_CACHE_KEY,JSON.stringify({t:Date.now(),d:d})); }catch(e){} }
 function applyFeed(d){
   var list=(d&&d.resources)?d.resources:(Object.prototype.toString.call(d)==='[object Array]'?d:null);
   if(!list||!list.length) return false;
@@ -1663,9 +1674,9 @@ function applyFeed(d){
 }
 function loadResources(){
   if(!RESOURCES_API) return;
-  try{ var c=localStorage.getItem(FEED_CACHE_KEY); if(c) applyFeed(JSON.parse(c)); }catch(e){}
+  var cached=feedCacheRead(); if(cached) applyFeed(cached);
   fetch(RESOURCES_API).then(function(r){return r.json();}).then(function(d){
-    if(applyFeed(d)){ try{ localStorage.setItem(FEED_CACHE_KEY,JSON.stringify(d)); }catch(e){} }
+    if(applyFeed(d)) feedCacheWrite(d);
   }).catch(function(){});
 }
 
@@ -3090,6 +3101,7 @@ attachRangeNumbers();
     {key:'gold_22k',group:'market',unit:'৳/ভরি',v:236779,asof:'2026-08-13',en:'Gold, 22 carat (per bhori)',bn:'স্বর্ণ, ২২ ক্যারেট (প্রতি ভরি)',nEn:'BAJUS price including VAT. One bhori is 11.664 grams. Jewellery also carries a making charge on top.',nBn:'ভ্যাটসহ বাজুস নির্ধারিত দাম। এক ভরি = ১১.৬৬৪ গ্রাম। গহনায় এর উপর মজুরি যোগ হয়।',srcName:'Bangladesh Jewellers Association (BAJUS), effective 13 August 2026',src:'https://www.bajus.org/gold-price',tier:'Pr'}
   ];
   var DATA=FALLBACK.slice();
+  var RT_LAST_CHECKED=null;   /* invalidated whenever DATA is replaced (see ingest) */
 
   function L(en,bn){ return (typeof LANG!=='undefined'&&LANG==='bn')?bn:en; }
   function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
@@ -3147,16 +3159,24 @@ attachRangeNumbers();
                       bn:'উৎসটি পড়া হয়েছে, কিন্তু সেখানে কোনো হার শনাক্ত করা যায়নি।'}
   };
   function whyText(code){ var w=WHY[String(code||'').trim()]; return w?L(w.en,w.bn):''; }
-  /* true when a row carries no figure at all — the feed serves these on purpose */
-  function isNoData(r){ return ['savings','fdr_3m','fdr_6m','fdr_1y','fdr_3y','dps_3y','dps_5y']
-    .every(function(k){ return r[k]==null; }); }
+  /* true when a row carries no figure at all — the feed serves these on purpose.
+     Called from inside the sort comparator, so the key list is hoisted rather than
+     rebuilt on every comparison. */
+  var RT_RATE_KEYS=['savings','fdr_3m','fdr_6m','fdr_1y','fdr_3y','dps_3y','dps_5y'];
+  function isNoData(r){ for(var i=0;i<RT_RATE_KEYS.length;i++){ if(r[RT_RATE_KEYS[i]]!=null) return false; } return true; }
   function mergedChip(r){ if(!r.mergedInto) return '';
     return '<span class="rt-merged" title="'+esc(L('Merged into '+r.mergedInto+'. Your account and deposits moved with it — confirm the current rate with the merged bank.',
       r.mergedInto+'-এর সঙ্গে একীভূত হয়েছে। আপনার হিসাব ও আমানত সেখানেই গেছে — বর্তমান হার একীভূত ব্যাংকে নিশ্চিত করে নিন।'))+'">'
       +L('now '+r.mergedInto,'এখন '+r.mergedInto)+'</span>'; }
 
   /* date parsing + age. Handles "2026-06-24", "Jan 2026", "FY2022", "2024". */
-  function parseAsof(s){ s=String(s||'').trim(); var m;
+  var RT_ASOF_CACHE={};
+  function parseAsof(s){
+    var key=String(s||'');
+    if(RT_ASOF_CACHE.hasOwnProperty(key)) return RT_ASOF_CACHE[key];
+    return (RT_ASOF_CACHE[key]=parseAsofRaw(key));
+  }
+  function parseAsofRaw(s){ s=String(s||'').trim(); var m;
     if(m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s)) return new Date(+m[1],+m[2]-1,+m[3]);
     if(m=/^([A-Za-z]{3,9})\s+(\d{4})$/.exec(s)){ var mo={jan:0,feb:1,mar:2,apr:3,may:4,jun:5,jul:6,aug:7,sep:8,oct:9,nov:10,dec:11}[s.slice(0,3).toLowerCase()]; if(mo!=null) return new Date(+m[2],mo,1); }
     if(m=/FY\s*(\d{4})/i.exec(s)) return new Date(+m[1],6,1);
@@ -3242,31 +3262,54 @@ attachRangeNumbers();
       {k:'group',en:'Group',bn:'বিভাগ',opts:[['all','Everything','সবকিছু'],['prices','Prices','দাম'],['policy','Policy rates','পলিসি রেট'],['nsc','Sanchayapatra','সঞ্চয়পত্র'],['market','Market','বাজার']]}
     ]
   };
-  window.rtCtlSet=function(tbl,key,val){ CTL[tbl].f[key]=val; render(); };
-  window.rtCtlSearch=function(tbl,val){ CTL[tbl].q=String(val||''); render(); };
+  /* Each of these used to call render(), which rebuilds ALL FOUR tables. Typing one
+     letter into the bank search re-rendered the funds, insurer and macro tables too. */
+  window.rtCtlSet=function(tbl,key,val){ CTL[tbl].f[key]=val; renderTbl(tbl); };
+  window.rtCtlSearch=function(tbl,val){ CTL[tbl].q=String(val||''); renderTbl(tbl); };
   window.rtCtlReset=function(tbl){ CTL[tbl].q=''; var d=CTL_DEFS[tbl];
-    d.forEach(function(g){ CTL[tbl].f[g.k]=g.opts[0][0]; }); render(); };
+    d.forEach(function(g){ CTL[tbl].f[g.k]=g.opts[0][0]; });
+    var el=document.getElementById('rt-ctl-'+tbl), q=el&&el.querySelector('input');
+    if(q) q.value='';                      /* clear it even while it holds focus */
+    renderTbl(tbl); };
 
-  function renderCtl(tbl,shown,total){
-    var el=document.getElementById('rt-ctl-'+tbl); if(!el) return;
+  function ctlHTML(tbl){
     var h='<div class="rt-ctl-row"><label class="rt-search"><span class="rt-mag" aria-hidden="true">⌕</span>'+
-      '<input type="search" id="rt-q-'+tbl+'" value="'+esc(CTL[tbl].q)+'" '+
+      '<input type="search" id="rt-q-'+tbl+'" '+
       'placeholder="'+L('Search by name…','নাম দিয়ে খুঁজুন…')+'" aria-label="'+L('Search','খুঁজুন')+'" '+
       'oninput="rtCtlSearch(\''+tbl+'\',this.value)"></label>'+
       '<button type="button" class="rt-reset" onclick="rtCtlReset(\''+tbl+'\')">'+L('Reset','রিসেট')+'</button>'+
-      '<span class="rt-count">'+lc(shown)+L(' of ',' / ')+lc(total)+L(' shown',' দেখানো হচ্ছে')+'</span></div>';
+      '<span class="rt-count"></span></div>';
     CTL_DEFS[tbl].forEach(function(g){
       h+='<div class="rt-ctl-row"><span class="rt-ctl-lbl">'+L(g.en,g.bn)+'</span>';
       g.opts.forEach(function(o){
-        var on=(CTL[tbl].f[g.k]===o[0]);
-        h+='<button type="button" class="rt-fbtn'+(on?' on':'')+'" aria-pressed="'+on+'" '+
+        h+='<button type="button" class="rt-fbtn" data-k="'+esc(g.k)+'" data-v="'+esc(o[0])+'" aria-pressed="false" '+
            'onclick="rtCtlSet(\''+tbl+'\',\''+g.k+'\',\''+String(o[0]).replace(/'/g,"\\'")+'\')">'+L(o[1],o[2])+'</button>';
       });
       h+='</div>';
     });
-    el.innerHTML=h;
-    var q=document.getElementById('rt-q-'+tbl);
-    if(q && document.activeElement!==q && CTL[tbl].q) q.value=CTL[tbl].q;
+    return h;
+  }
+  /* ── THE CONTROL STRIP IS BUILT ONCE ────────────────────────────────────────
+     It used to be re-created with innerHTML on every render. That destroys the
+     <input> the reader is typing into: the first keystroke moved focus to <body>
+     and the second went nowhere, so the search box was effectively one character
+     wide on every table. State is now written onto the existing nodes; the strip
+     is only rebuilt when the language changes, because that is the one thing that
+     changes its labels. */
+  function renderCtl(tbl,shown,total){
+    var el=document.getElementById('rt-ctl-'+tbl); if(!el) return;
+    var lang=(typeof LANG!=='undefined'?LANG:'en');
+    if(el.getAttribute('data-ctl')!==lang){ el.innerHTML=ctlHTML(tbl); el.setAttribute('data-ctl',lang); }
+    var c=el.querySelector('.rt-count');
+    if(c) c.textContent=lc(shown)+L(' of ',' / ')+lc(total)+L(' shown',' দেখানো হচ্ছে');
+    var q=el.querySelector('input');
+    if(q && document.activeElement!==q && q.value!==CTL[tbl].q) q.value=CTL[tbl].q;
+    var btns=el.querySelectorAll('.rt-fbtn');
+    for(var i=0;i<btns.length;i++){
+      var b=btns[i], on=(CTL[tbl].f[b.getAttribute('data-k')]===b.getAttribute('data-v'));
+      b.className='rt-fbtn'+(on?' on':'');
+      b.setAttribute('aria-pressed',String(on));
+    }
   }
   function hit(q,fields){ if(!q) return true; q=q.toLowerCase();
     for(var i=0;i<fields.length;i++){ if(String(fields[i]==null?'':fields[i]).toLowerCase().indexOf(q)>-1) return true; }
@@ -3289,10 +3332,10 @@ attachRangeNumbers();
 
   /* sort state per table */
   var SORT={k:'bank',dir:1}, ASORT={k:'amc',dir:1}, ISORT={k:'co',dir:1}, MSORT={k:'group',dir:1};
-  window.rtSortBank=function(k){ if(SORT.k===k) SORT.dir*=-1; else { SORT.k=k; SORT.dir=nextDir(k); } render(); };
-  window.rtSortAmc =function(k){ if(ASORT.k===k) ASORT.dir*=-1; else { ASORT.k=k; ASORT.dir=nextDir(k); } render(); };
-  window.rtSortIns =function(k){ if(ISORT.k===k) ISORT.dir*=-1; else { ISORT.k=k; ISORT.dir=nextDir(k); } render(); };
-  window.rtSortMac =function(k){ if(MSORT.k===k) MSORT.dir*=-1; else { MSORT.k=k; MSORT.dir=nextDir(k); } render(); };
+  window.rtSortBank=function(k){ if(SORT.k===k) SORT.dir*=-1; else { SORT.k=k; SORT.dir=nextDir(k); } renderTbl('banks'); };
+  window.rtSortAmc =function(k){ if(ASORT.k===k) ASORT.dir*=-1; else { ASORT.k=k; ASORT.dir=nextDir(k); } renderTbl('funds'); };
+  window.rtSortIns =function(k){ if(ISORT.k===k) ISORT.dir*=-1; else { ISORT.k=k; ISORT.dir=nextDir(k); } renderTbl('ins'); };
+  window.rtSortMac =function(k){ if(MSORT.k===k) MSORT.dir*=-1; else { MSORT.k=k; MSORT.dir=nextDir(k); } renderTbl('macro'); };
 
   /* tabs */
   var TAB='banks';
@@ -3303,7 +3346,7 @@ attachRangeNumbers();
       if(b){ b.className=(x===t?'on':''); b.setAttribute('aria-selected',String(x===t)); }
     });
     if(window.track) window.track('rates_tab',t);
-    render(); };
+    renderTbl(t); };
 
   /* jump a rate straight into the Growth calculator */
   window.rtUseRate=function(rate){ rate=Number(rate); if(!isFinite(rate)) return;
@@ -3313,6 +3356,10 @@ attachRangeNumbers();
     if(window.track) window.track('rate_to_calc',String(rate)); };
 
   function render(){ renderBanks(); renderAMC(); renderIns(); renderMacro(); }
+  /* One interaction should cost one table, not four. render() stays for the cases
+     that really do change everything: a new feed, and the language switch. */
+  var RT_RENDER={banks:renderBanks,funds:renderAMC,ins:renderIns,macro:renderMacro};
+  function renderTbl(t){ var f=RT_RENDER[t]; if(f) f(); else render(); }
 
   function renderBanks(){
     var head=document.getElementById('rt-head'), body=document.getElementById('rt-body');
@@ -3328,12 +3375,24 @@ attachRangeNumbers();
       return hit(q,[r.bank,r.srcName]);
     });
     renderCtl('banks',rows.length,DATA.length);
-    var w=document.getElementById('rt-window'); if(w) w.innerHTML=windowLine(rows);
+    /* Same for the comparison-window banner: it depends only on the set of dates on
+       screen, so it is rebuilt only when that set actually moves. */
+    var w=document.getElementById('rt-window');
+    if(w){
+      var wsig=rows.length+'|'+(typeof LANG!=='undefined'?LANG:'en')+'|'+rows.map(function(r){return r.asof||'';}).join(',');
+      if(w.getAttribute('data-sig')!==wsig){ w.innerHTML=windowLine(rows); w.setAttribute('data-sig',wsig); }
+    }
     sortRows(rows,SORT,true);
-    var h='<tr>'+th(SORT,'rtSortBank','bank','Bank / NBFI','ব্যাংক / এনবিএফআই');
-    COLS.forEach(function(c){ h+=th(SORT,'rtSortBank',c.k,c.en,c.bn); });
-    h+=th(SORT,'rtSortBank','asof','Effective','কার্যকর');
-    head.innerHTML=h+'</tr>';
+    /* The header only changes when the sort or the language does; re-parsing it on
+       every keystroke was pure waste. */
+    var hsig=SORT.k+'|'+SORT.dir+'|'+(typeof LANG!=='undefined'?LANG:'en');
+    if(head.getAttribute('data-sig')!==hsig){
+      var h='<tr>'+th(SORT,'rtSortBank','bank','Bank / NBFI','ব্যাংক / এনবিএফআই');
+      COLS.forEach(function(c){ h+=th(SORT,'rtSortBank',c.k,c.en,c.bn); });
+      h+=th(SORT,'rtSortBank','asof','Effective','কার্যকর');
+      head.innerHTML=h+'</tr>';
+      head.setAttribute('data-sig',hsig);
+    }
     var html='';
     rows.forEach(function(r){
       var tag = (r.type==='C') ? '<span class="rt-tag rt-conv">'+L('Conventional','প্রচলিত')+'</span>'
@@ -3365,9 +3424,17 @@ attachRangeNumbers();
     body.innerHTML=html||('<tr><td colspan="'+(COLS.length+2)+'" class="rt-empty">'+L('Nothing matches those filters.','এই ফিল্টারে কিছু মেলেনি।')+'</td></tr>');
     var stamp=document.getElementById('rt-stamp');
     if(stamp) stamp.textContent=L('Confirm with the bank before deciding','সিদ্ধান্তের আগে ব্যাংকে নিশ্চিত হন');
+    /* The newest check date is a property of the DATA set, not of the filter, so it
+       is computed once per ingest rather than once per keystroke. */
     var fresh=document.getElementById('rt-fresh');
-    if(fresh){ var ds=[]; DATA.forEach(function(r){ if(r.checked && /^\d{4}-\d{2}-\d{2}$/.test(r.checked)) ds.push(r.checked); }); ds.sort();
-      fresh.textContent = ds.length ? L('· Sources last checked ','· উৎস শেষ দেখা হয়েছে ')+lc(ds[ds.length-1]) : ''; }
+    if(fresh){
+      if(RT_LAST_CHECKED===null){
+        var newest='';
+        DATA.forEach(function(r){ if(r.checked && /^\d{4}-\d{2}-\d{2}$/.test(r.checked) && r.checked>newest) newest=r.checked; });
+        RT_LAST_CHECKED=newest;
+      }
+      fresh.textContent = RT_LAST_CHECKED ? L('· Sources last checked ','· উৎস শেষ দেখা হয়েছে ')+lc(RT_LAST_CHECKED) : '';
+    }
   }
 
   function renderAMC(){
@@ -3476,17 +3543,36 @@ attachRangeNumbers();
 
   window.renderRates=render;
   /* kept for anything still calling the old filter API */
-  window.rtSetFilter=function(f){ CTL.banks.f.type=f; render(); };
+  window.rtSetFilter=function(f){ CTL.banks.f.type=f; renderTbl('banks'); };
 
   /* pull the live feed if the Apps Script rates branch is deployed.
      stale-while-revalidate: paint from the last good feed first, then refresh. */
-  var RT_CACHE_KEY='rafiu_rates_cache_v2';
+  var RT_CACHE_KEY='rafiu_rates_cache_v3';
+  /* 45 days. The feed refreshes monthly, so a cache older than this means the pipeline
+     has been down for over a month — and a table of confident-looking figures nobody
+     has rechecked since is worse than the honest offline fallback, which at least
+     carries its own dates and reasons. The key was bumped to v3 so the old untimed
+     caches already sitting in readers' browsers are dropped rather than trusted. */
+  var RT_CACHE_MAX=45*864e5;
+  function rtCacheRead(){
+    try{
+      var c=localStorage.getItem(RT_CACHE_KEY); if(!c) return null;
+      var o=JSON.parse(c);
+      if(!o||!o.t||!o.d) return null;
+      if(Date.now()-o.t>RT_CACHE_MAX){ try{localStorage.removeItem(RT_CACHE_KEY);}catch(e){} return null; }
+      return o.d;
+    }catch(e){ return null; }
+  }
+  function rtCacheWrite(d){
+    try{ localStorage.setItem(RT_CACHE_KEY,JSON.stringify({t:Date.now(),d:d})); }catch(e){}
+  }
   function rtNorm(s){ return String(s||'').toLowerCase()
     .replace(/\b(bank|islami|islamic|finance|fin\.?|plc|ltd|limited|bangladesh)\b/g,'')
     .replace(/[^a-z]+/g,''); }
   function n(x){ var v=Number(x); return (x==null||x===''||!isFinite(v))?null:v; }
   function ingest(d){
     if(d&&d.rates&&d.rates.length){
+      RT_LAST_CHECKED=null;
       DATA=d.rates.map(function(x){
         var pv=null; try{ if(x.Prev) pv=(typeof x.Prev==='string')?JSON.parse(x.Prev):x.Prev; }catch(e){}
         return {bank:x.Bank||x.bank,type:(x.Type||x.type||'I'),
@@ -3497,10 +3583,31 @@ attachRangeNumbers();
           why:x.Why||x.why||'',mergedInto:x.MergedInto||x.mergedInto||'',note:x.Note||x.note||'',
           conf:String(x.Confidence||'').toLowerCase(),prev:pv};
       });
-      /* keep institutions the feed doesn't carry: gaps stay VISIBLE (grey no-data rows /
-         last-known fallback rows with their honest old dates) instead of disappearing */
-      var seen={}; DATA.forEach(function(r){ seen[rtNorm(r.bank)]=1; });
-      FALLBACK.forEach(function(r){ if(!seen[rtNorm(r.bank)]) DATA.push(r); });
+      /* A feed carrying the same institution twice — a chart spelling the pipeline has
+         not been taught to name yet — would render it twice. Keep the first. */
+      var fseen={};
+      DATA=DATA.filter(function(r){
+        var k=String(r.bank||'').trim().toLowerCase();
+        if(!k || fseen[k]) return false; fseen[k]=1; return true; });
+
+      /* Keep institutions the feed doesn't carry: gaps stay VISIBLE (grey no-data rows /
+         last-known fallback rows with their honest old dates) instead of disappearing.
+         Match on the EXACT name first, then on the loose key PLUS the kind.
+         The loose key alone was deleting real institutions. rtNorm strips "bank" and
+         "finance", so "Uttara Bank" and "Uttara Finance" both collapse to "uttara", and
+         "United Islami Bank" and "United Finance" both to "united". The moment the live
+         feed carried one of each pair — which is exactly what Bangladesh Bank's chart
+         produces, since it lists the banks and not the finance companies — the other
+         silently disappeared from the site. Adding the kind keeps a bank and a finance
+         company apart while still collapsing "Global Islami" onto "Global Islami Bank". */
+      var seenName={}, seenKind={};
+      DATA.forEach(function(r){
+        seenName[String(r.bank||'').trim().toLowerCase()]=1;
+        seenKind[rtNorm(r.bank)+'|'+String(r.type||'')]=1; });
+      FALLBACK.forEach(function(r){
+        if(seenName[String(r.bank||'').trim().toLowerCase()]) return;
+        if(seenKind[rtNorm(r.bank)+'|'+String(r.type||'')]) return;
+        DATA.push(r); });
     }
     if(d&&d.funds&&d.funds.length){
       AMC_DATA=d.funds.map(function(x){
@@ -3532,15 +3639,22 @@ attachRangeNumbers();
   }
   function load(){
     if(typeof RESOURCES_API==='undefined'||!RESOURCES_API){ render(); return; }
-    try{ var c=localStorage.getItem(RT_CACHE_KEY); if(c){ ingest(JSON.parse(c)); } else { render(); } }catch(e){ render(); }
-    if(typeof fetch!=='function'){ render(); return; }   /* no fetch (very old browser / blocked) -> fallback table stands */
-    fetch(RESOURCES_API+(RESOURCES_API.indexOf('?')>-1?'&':'?')+'rates=1')
+    var cached=rtCacheRead();
+    if(cached) ingest(cached); else render();            /* paint something immediately, either way */
+    if(typeof fetch!=='function') return;                /* no fetch (very old browser / blocked) -> what we painted stands */
+    /* A deadline, so a hung /exec ends in the catch instead of leaving a promise
+       pending for the life of the page. */
+    var ctl=null, timer=null;
+    try{ if(typeof AbortController==='function'){ ctl=new AbortController();
+      timer=setTimeout(function(){ try{ctl.abort();}catch(e){} },15000); } }catch(e){}
+    fetch(RESOURCES_API+(RESOURCES_API.indexOf('?')>-1?'&':'?')+'rates=1', ctl?{signal:ctl.signal}:undefined)
       .then(function(r){return r.json();})
       .then(function(d){
+        if(timer) clearTimeout(timer);
         ingest(d);
-        if(d&&((d.rates&&d.rates.length)||(d.funds&&d.funds.length))){ try{ localStorage.setItem(RT_CACHE_KEY,JSON.stringify(d)); }catch(e){} }
+        if(d&&((d.rates&&d.rates.length)||(d.funds&&d.funds.length))) rtCacheWrite(d);
       })
-      .catch(function(){ render(); });
+      .catch(function(){ if(timer) clearTimeout(timer); });   /* already painted; nothing more to do */
   }
 
   var lb=document.getElementById('langbtn');
