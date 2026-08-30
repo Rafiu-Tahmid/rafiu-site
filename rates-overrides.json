@@ -1,5 +1,5 @@
 {
-  "_readme": "Self-heal layer for the rafiu.me rates pipeline. Apps Script fetches this file from https://raw.githubusercontent.com/Rafiu-Tahmid/rafiu-site/main/rates-overrides.json on EVERY run, so a fix here goes live with a normal git push - no Apps Script redeploy. A faster channel exists too: the 'Overrides' tab inside the Google Sheet, same field names, and the Sheet WINS over this file. Keys = exact institution names from BR_BANKS.",
+  "_readme": "Self-heal layer for the rafiu.me rates pipeline. Apps Script fetches this file from https://raw.githubusercontent.com/Rafiu-Tahmid/rafiu-site/main/rates-overrides.json on EVERY run, so a fix here goes live with a normal git push - no Apps Script redeploy. A faster channel exists too: the 'Overrides' tab inside the Google Sheet, same field names, and the Sheet WINS field by field (a Sheet row setting only srcName no longer wipes the page/pdfMatch pair in this file). Keys = institution names as they appear on the site. An exact name is best; a near miss (case, spacing, 'Ltd') is matched anyway and reported so you can tidy it. A key that matches NOTHING is now reported in the monthly email and in ?health=1 instead of failing in silence - run validateOverrides() in the Apps Script editor to check a key before waiting a month to find out.",
   "_fields": {
     "url": "replace a rotated rate-sheet URL",
     "url2": "second document merged into the same text",
@@ -8,7 +8,9 @@
     "pdfMatch2": "same, for the second merged document (set in the .gs, not overridable yet)",
     "route": "'bb' + re:'NAME REGEX' - primary source died, serve that institution from Bangladesh Bank's chart instead (Tier R)",
     "values": "{savings,fdr_3m,fdr_6m,fdr_1y,fdr_3y,dps_3y,dps_5y} - emergency manual pin, skips the fetch entirely",
-    "asof": "pin the effective date shown on the site (yyyy-mm-dd). Normally the pipeline reads this out of the document itself.",
+    "asof": "pin the effective date shown on the site (yyyy-mm-dd). LIVE since 30 Aug 2026 - it was accepted but never read before that, so any asof pinned earlier did nothing. A malformed date is refused rather than shown. Normally the pipeline reads this out of the document itself; only pin it when the document genuinely carries no readable date.",
+    "why": "the reason code shown under a bank with no figures. LIVE since 30 Aug 2026. Use it when you have LOOKED at the institution's site and know why it is empty, because the pipeline can only guess from structure. One of: bb-ranges-only, not-on-bb-chart, site-blocks-fetch, scanned-pdf, no-published-sheet, source-unreachable, chart-unreadable, merged, disabled, nothing-parsed. An unrecognised code is ignored. The site turns the code into a sentence in both languages.",
+    "note": "a caveat shown in the row's info popover, e.g. 'the published savings figure is the top balance tier'. LIVE since 30 Aug 2026 - the Overrides tab's Note column used to be read and then thrown away. Outranks the note the parser writes itself.",
     "tier": "P primary / R regulator / B portal / Pr press",
     "srcName": "the source label shown in the row's info popover",
     "skip": "true - institution gone, show an honest no-data row",
@@ -17,11 +19,14 @@
   "_notes": [
     "Nothing is ever held waiting for approval any more. A row that trips a check publishes with a visible badge, so an override is about ACCURACY, never about un-hiding a row.",
     "AsOf is the date the institution's own sheet took effect, not the date we read it. Only pin 'asof' when the document genuinely carries no readable date.",
-    "Unknown keys and bad JSON are ignored fail-safe. KEEP THIS FILE VALID JSON."
+    "Never invent a rate. An honest labelled gap - a 'why' code and no figures - is a finished result, not a failure.",
+    "Unknown keys and bad JSON are ignored fail-safe. KEEP THIS FILE VALID JSON.",
+    "After editing: run validateOverrides() in the Apps Script editor, then View - Logs. It says which keys landed, which were matched loosely, and which matched nothing."
   ],
   "_example_do_not_use": {
     "IBBL": { "page": "https://www.islamibankbd.com/profit-rates-on-deposits", "pdfMatch": "Provisional" },
     "City Bank": { "route": "bb", "re": "CITY BANK" },
-    "Premier Bank": { "values": { "fdr_1y": 9.25 }, "asof": "2026-04-01", "tier": "P", "srcName": "Premier rate sheet (read by hand)" }
+    "Premier Bank": { "values": { "fdr_1y": 9.25 }, "asof": "2026-04-01", "tier": "P", "srcName": "Premier rate sheet (read by hand)" },
+    "Some Bank": { "why": "scanned-pdf", "note": "The bank publishes its rate sheet as a photograph of a printed page." }
   }
 }
