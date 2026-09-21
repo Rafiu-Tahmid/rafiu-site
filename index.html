@@ -705,7 +705,7 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
 </style>
 <script>
 /* Theme boot — runs before paint so there's no flash. Saved choice wins; otherwise follow the OS/system setting. Default dark if anything fails. */
-(function(){try{var t=localStorage.getItem('rafiu_theme');if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark';}document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();
+(function(){try{var t=localStorage.getItem('rafiu_theme');if(t!=='light'&&t!=='dark'){t='dark';}/* default is dark; only a visitor's own toggle choice overrides it */document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();
 </script>
 </head>
 <body>
@@ -1016,11 +1016,97 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
     #page-rates .rt-fbtn.on{background:linear-gradient(135deg,#7C3AED,#5B21B6);color:#fff;border-color:transparent;box-shadow:0 6px 20px rgba(124,58,237,.32)}
     #page-rates .rt-disc-link{background:none;border:none;padding:0;margin:0 2px 16px;cursor:pointer;font-family:var(--body);font-size:13px;color:#fbbf24;text-decoration:underline dotted;text-underline-offset:3px}
     #page-rates .rt-disc-link:hover{color:var(--ink)}
-    .rt-dm .modalbox{max-width:600px;max-height:82vh;overflow-y:auto}
-    .rt-dm h4{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--violet-bright);margin:18px 0 8px}
-    .rt-dm ol{margin:0 0 4px 18px;padding:0;color:var(--ink-soft);font-size:14px;line-height:1.65}
-    .rt-dm ol li{margin-bottom:8px}
-    .rt-dm .rt-dm-ok{margin-top:18px;width:100%;font-family:var(--ui);font-size:15px;font-weight:600;padding:12px;border:none;border-radius:12px;cursor:pointer;background:linear-gradient(135deg,#7C3AED,#5B21B6);color:#fff}
+    /* rates disclaimers: 4-step swipe carousel (3 key notes, then "other things to know") */
+    .rt-dm .modalbox{max-width:520px;max-height:90vh;overflow-y:auto;padding:26px 26px 0}
+    .rt-dm-foot{position:sticky;bottom:0;background:#0f0720;padding:14px 0 18px;margin-top:4px;box-shadow:0 -14px 14px -12px rgba(0,0,0,.25)}
+    .rt-dm-top{display:flex;align-items:center;gap:12px;margin:0 34px 14px 0}
+    .rt-dm-eyebrow{font-family:var(--ui);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--violet-bright);font-weight:600}
+    .rt-dm-lang{font-family:var(--ui);font-size:12.5px;font-weight:600;padding:4px 10px;border-radius:999px;border:1px solid var(--line);background:none;color:var(--violet-bright);cursor:pointer}
+    .rt-dm-lang:hover{border-color:rgba(167,139,250,.45)}
+    .rt-dm-count{margin-left:auto;font-family:var(--ui);font-size:12.5px;color:var(--ink-soft);white-space:nowrap}
+    .rt-dm-bars{display:flex;gap:6px;margin-bottom:18px}
+    .rt-dm-bars button{flex:1;height:24px;padding:0;border:none;background:none;cursor:pointer;position:relative}
+    .rt-dm-bars button::before{content:"";position:absolute;left:0;right:0;top:50%;height:4px;margin-top:-2px;border-radius:4px;background:var(--line);transition:background .25s}
+    .rt-dm-bars button.done::before{background:rgba(167,139,250,.55)}
+    .rt-dm-bars button.on::before{background:var(--violet-bright)}
+    .rt-dm-vp{overflow:hidden;touch-action:pan-y;transition:height .3s ease;user-select:none;-webkit-user-select:none}
+    .rt-dm-track{display:flex;align-items:flex-start;transition:transform .35s cubic-bezier(.22,.8,.3,1)}
+    .rt-dm-track.drag{transition:none}
+    .rt-dm-slide{flex:0 0 100%;min-width:0;padding:2px 2px 4px}
+    .rt-dm-tag{display:inline-block;font-family:var(--ui);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:rgba(251,191,36,.14);color:#fbbf24;margin-bottom:12px}
+    html[data-theme="light"] .rt-dm-tag{color:#92400e;background:rgba(245,158,11,.16)}
+    .rt-dm-ico{font-size:30px;line-height:1;margin-bottom:10px}
+    .rt-dm-slide h3{font-family:var(--display);font-size:23px;line-height:1.25;margin:0 0 10px;color:var(--ink)}
+    .rt-dm-slide p{color:var(--ink-soft);font-size:15px;line-height:1.65;margin:0 0 12px}
+    .rt-dm-slide p b{color:var(--ink);font-weight:600}
+    .rt-dm-do{border-left:3px solid #fbbf24;background:rgba(251,191,36,.08);border-radius:0 12px 12px 0;padding:12px 14px;margin:4px 0 6px;color:var(--ink);font-size:14.5px;line-height:1.6}
+    .rt-dm-do b{display:block;font-family:var(--ui);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#fbbf24;margin-bottom:4px}
+    html[data-theme="light"] .rt-dm-do b{color:#b45309}
+    .rt-dm-list{list-style:none;margin:0;padding:0}
+    .rt-dm-list li{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-top:1px solid var(--line);color:var(--ink-soft);font-size:14px;line-height:1.6}
+    .rt-dm-list li:first-child{border-top:none;padding-top:2px}
+    .rt-dm-list li>span:first-child{flex:0 0 22px;font-size:17px;line-height:1.4;text-align:center}
+    .rt-dm-list li b{color:var(--ink);font-weight:600}
+    html[data-theme="light"] .rt-dm-foot{background:#F4ECDC;box-shadow:0 -14px 14px -12px rgba(54,13,84,.12)}
+    .rt-dm-nav{display:flex;gap:10px}
+    .rt-dm-nav button{font-family:var(--ui);font-size:15px;font-weight:600;padding:12px 16px;border-radius:12px;cursor:pointer}
+    .rt-dm-back{flex:0 0 auto;background:none;border:1px solid var(--line);color:var(--ink-soft)}
+    .rt-dm-back:hover{color:var(--ink);border-color:rgba(167,139,250,.4)}
+    .rt-dm-back[hidden]{display:none}
+    .rt-dm-next{flex:1;border:none;background:linear-gradient(135deg,#7C3AED,#5B21B6);color:#fff}
+    .rt-dm-next:focus-visible,.rt-dm-back:focus-visible,.rt-dm-bars button:focus-visible{outline:2px solid var(--violet-bright);outline-offset:2px}
+    .rt-dm-hint{text-align:center;font-family:var(--ui);font-size:12px;color:var(--ink-soft);margin-top:10px;opacity:.8}
+    @media (hover:hover) and (pointer:fine){.rt-dm-hint .rt-dm-touch{display:none}}
+    @media (hover:none),(pointer:coarse){.rt-dm-hint .rt-dm-keys{display:none}}
+    @media (max-width:520px){.rt-dm.modalwrap{padding:12px}.rt-dm .modalbox{padding:22px 18px 18px;border-radius:18px}.rt-dm-slide h3{font-size:21px}.rt-dm .modalbox{padding-bottom:0}.rt-dm-ico{display:none}.rt-dm-eyebrow{font-size:10.5px}.rt-dm-slide p{font-size:14.5px}}
+    @media (prefers-reduced-motion:reduce){.rt-dm-track,.rt-dm-vp,.rt-dm-bars button::before{transition:none}}
+    /* rates page tour: spotlight + explainer card */
+    #page-rates .rt-tour-row{margin-top:18px}
+    #page-rates .rt-tour-btn{position:relative;display:inline-flex;align-items:center;gap:12px;font-family:var(--ui);text-align:left;cursor:pointer;color:#fff;border:none;border-radius:16px;padding:12px 20px 12px 14px;background:linear-gradient(135deg,#7C3AED,#5B21B6);box-shadow:0 10px 30px rgba(124,58,237,.45);animation:rtPulse 2.2s ease-out infinite;transition:transform .15s,box-shadow .15s}
+    #page-rates .rt-tour-btn:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(124,58,237,.55)}
+    #page-rates .rt-tour-btn:focus-visible{outline:2px solid var(--violet-bright);outline-offset:3px}
+    #page-rates .rt-tour-btn .rt-tb-ico{flex:0 0 40px;height:40px;border-radius:12px;background:rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;font-size:22px}
+    #page-rates .rt-tour-btn .rt-tb-txt{display:flex;flex-direction:column;gap:2px;line-height:1.25}
+    #page-rates .rt-tour-btn .rt-tb-main{font-size:16px;font-weight:700}
+    #page-rates .rt-tour-btn .rt-tb-sub{font-size:12.5px;font-weight:500;opacity:.85}
+    #page-rates .rt-tour-btn .rt-tb-arr{font-size:20px;margin-left:4px;transition:transform .15s}
+    #page-rates .rt-tour-btn:hover .rt-tb-arr{transform:translateX(3px)}
+    #page-rates .rt-tour-btn.rt-taken{animation:none}
+    #page-rates .rt-tour-btn.rt-nudge{animation:rtNudge .9s ease-in-out 3}
+    @keyframes rtPulse{0%{box-shadow:0 10px 30px rgba(124,58,237,.45),0 0 0 0 rgba(167,139,250,.6)}70%{box-shadow:0 10px 30px rgba(124,58,237,.45),0 0 0 16px rgba(167,139,250,0)}100%{box-shadow:0 10px 30px rgba(124,58,237,.45),0 0 0 0 rgba(167,139,250,0)}}
+    @keyframes rtNudge{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+    @media (max-width:520px){#page-rates .rt-tour-btn{width:100%}#page-rates .rt-tour-btn .rt-tb-arr{margin-left:auto}}
+    #page-rates .rt-info.rt-tour-open .rt-pop{display:block}
+    .rt-tour{position:fixed;inset:0;z-index:90;display:none}
+    .rt-tour.show{display:block}
+    .rt-tour-hole{position:fixed;border-radius:12px;box-shadow:0 0 0 9999px rgba(6,3,12,.74);outline:2px solid var(--violet-bright);outline-offset:0;pointer-events:none;transition:top .3s ease,left .3s ease,width .3s ease,height .3s ease}
+    html[data-theme="light"] .rt-tour-hole{box-shadow:0 0 0 9999px rgba(30,12,48,.62)}
+    .rt-tour-card{position:fixed;width:min(370px,calc(100vw - 32px));background:var(--modal-bg);border:1px solid rgba(167,139,250,.35);border-radius:16px;padding:16px 18px 14px;box-shadow:0 24px 60px rgba(0,0,0,.55);transition:top .3s ease,left .3s ease}
+    .rt-tour-top{display:flex;align-items:center;gap:10px;margin:0 30px 10px 0}
+    .rt-tour-count{font-family:var(--ui);font-size:12px;color:var(--ink-soft);white-space:nowrap}
+    .rt-tour-prog{flex:1;height:4px;border-radius:4px;background:var(--line);overflow:hidden}
+    .rt-tour-prog i{display:block;height:100%;background:var(--violet-bright);border-radius:4px;transition:width .3s ease}
+    .rt-tour-lang{font-family:var(--ui);font-size:12px;font-weight:600;padding:3px 9px;border-radius:999px;border:1px solid var(--line);background:none;color:var(--violet-bright);cursor:pointer}
+    .rt-tour-x{position:absolute;top:10px;right:12px;background:none;border:none;color:var(--ink-soft);font-size:22px;line-height:1;cursor:pointer;padding:2px 4px}
+    .rt-tour-x:hover{color:var(--ink)}
+    .rt-tour-card h4{font-family:var(--display);font-size:19px;line-height:1.3;margin:0 0 6px;color:var(--ink)}
+    .rt-tour-card p{font-size:14px;line-height:1.6;color:var(--ink-soft);margin:0 0 8px}
+    .rt-tour-card p b{color:var(--ink);font-weight:600}
+    .rt-tour-key{list-style:none;margin:2px 0 8px;padding:0;display:grid;gap:5px;font-size:13px;color:var(--ink-soft)}
+    .rt-tour-key li{display:flex;align-items:center;gap:8px}
+    .rt-tour-key i{flex:0 0 10px;width:10px;height:10px;border-radius:50%;box-shadow:0 0 0 2px rgba(0,0,0,.12)}
+    .rt-tour-chip{display:inline-block;font-size:10px;font-weight:700;padding:1px 7px;border-radius:20px;vertical-align:1px;white-space:nowrap}
+    .rt-tour-link{background:none;border:none;padding:0;font:inherit;color:#fbbf24;text-decoration:underline dotted;text-underline-offset:3px;cursor:pointer}
+    html[data-theme="light"] .rt-tour-link{color:#b45309}
+    .rt-tour-nav{display:flex;gap:8px;margin-top:10px}
+    .rt-tour-nav button{font-family:var(--ui);font-size:14px;font-weight:600;padding:10px 14px;border-radius:11px;cursor:pointer}
+    .rt-tour-back{background:none;border:1px solid var(--line);color:var(--ink-soft)}
+    .rt-tour-back:hover{color:var(--ink)}
+    .rt-tour-back[hidden]{display:none}
+    .rt-tour-next{flex:1;border:none;background:linear-gradient(135deg,#7C3AED,#5B21B6);color:#fff}
+    .rt-tour-next:focus-visible,.rt-tour-back:focus-visible{outline:2px solid var(--violet-bright);outline-offset:2px}
+    @media (max-width:640px){.rt-tour-card{left:10px!important;right:10px;bottom:10px;top:auto!important;width:auto;padding:14px 16px 12px}.rt-tour-card.rt-tour-up{top:10px!important;bottom:auto}.rt-tour-card h4{font-size:17px}.rt-tour-card p{font-size:13.5px}}
+    @media (prefers-reduced-motion:reduce){.rt-tour-hole,.rt-tour-card,.rt-tour-prog i{transition:none}#page-rates .rt-tour-btn,#page-rates .rt-tour-btn.rt-nudge{animation:none}}
     /* ── tabs, control strips, badges (added 21 Aug 2026) ── */
     #page-rates .rt-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0;border-bottom:1px solid var(--line);padding-bottom:12px}
     #page-rates .rt-tabs button{font-family:var(--ui);font-weight:700;font-size:13.5px;padding:9px 18px;border-radius:12px;background:rgba(139,92,246,.07);border:1px solid var(--line);color:var(--ink-soft);cursor:pointer;transition:all .15s}
@@ -1062,13 +1148,14 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
       <h1 class="display" data-en='Bank profit rates, <span class="grad">side by side.</span>' data-bn='ব্যাংক মুনাফার হার, <span class="grad">পাশাপাশি।</span>' data-html="1">Bank profit rates, <span class="grad">side by side.</span></h1>
       <p class="lede" data-en="Shariah-compliant deposit & DPS profit rates from across Bangladesh, in one place. The numbers the banks publish — gathered automatically so you don't have to dig through 20 websites." data-bn="বাংলাদেশের নানা ব্যাংকের শরীয়াহসম্মত ডিপোজিট ও ডিপিএস মুনাফার হার, এক জায়গায়। ব্যাংকের প্রকাশিত হার — স্বয়ংক্রিয়ভাবে সংগ্রহ করা, যাতে আপনাকে ২০টা ওয়েবসাইট ঘাঁটতে না হয়।">Shariah-compliant deposit &amp; DPS profit rates from across Bangladesh, in one place.</p>
       <span class="rt-badge" data-en="☪ Profit rate — not interest" data-bn="☪ মুনাফার হার — সুদ নয়">☪ Profit rate — not interest</span>
+      <div class="rt-tour-row"><button type="button" class="rt-tour-btn" id="rtTourBtn" onclick="rtTourStart()"><span class="rt-tb-ico" aria-hidden="true">🧭</span><span class="rt-tb-txt"><span class="rt-tb-main" data-en="New here? Take the 1-minute tour" data-bn="প্রথমবার? ১ মিনিটের ট্যুর দেখুন">New here? Take the 1-minute tour</span><span class="rt-tb-sub" data-en="What every symbol, colour and button on this page means" data-bn="এই পেজের প্রতিটি চিহ্ন, রঙ আর বাটনের মানে">What every symbol, colour and button on this page means</span></span><span class="rt-tb-arr" aria-hidden="true">→</span></button></div>
     </div>
     <div class="rt-meta">
       <span><span class="rt-dot"></span><b data-en="Auto-updated monthly" data-bn="প্রতি মাসে স্বয়ংক্রিয় হালনাগাদ">Auto-updated monthly</b></span>
       <span id="rt-stamp" data-dyn="1"></span>
       <span id="rt-fresh" class="rt-fresh" data-dyn="1"></span>
     </div>
-    <button type="button" class="rt-disc-link" onclick="rtDiscShow()">ⓘ <span data-en="Important notes about this data — please read once" data-bn="এই তথ্য নিয়ে জরুরি কথা — একবার পড়ে নিন">Important notes about this data — please read once</span></button>
+    <button type="button" class="rt-disc-link" onclick="rtDiscShow()">ⓘ <span data-en="Read before you compare: 4 quick notes about these rates" data-bn="তুলনার আগে পড়ুন: এই হারগুলো নিয়ে ৪টি ছোট কথা">Read before you compare: 4 quick notes about these rates</span></button>
     <div class="rt-tabs" role="tablist" aria-label="Rates sections">
       <button class="on" id="rtab-banks" role="tab" aria-selected="true" onclick="rtTab('banks')" data-en="Banks &amp; NBFIs" data-bn="ব্যাংক ও এনবিএফআই">Banks &amp; NBFIs</button>
       <button id="rtab-funds" role="tab" aria-selected="false" onclick="rtTab('funds')" data-en="Mutual funds" data-bn="মিউচুয়াল ফান্ড">Mutual funds</button>
@@ -1494,38 +1581,78 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
   </div>
 </div>
 
-<!-- Rates disclaimers — auto-opens once per device on first visit to #rates; the ⓘ link reopens it anytime. Both languages always shown. -->
-<div id="rtDiscModal" class="modalwrap rt-dm" role="dialog" aria-modal="true" aria-label="Important notes about the rates data" aria-hidden="true">
+<!-- Rates disclaimers — 4-step swipe carousel: 3 key notes one at a time, then "other things to know".
+     Auto-opens once per device on first visit to #rates; the ⓘ link reopens it at step 1. Follows the site language. -->
+<div id="rtDiscModal" class="modalwrap rt-dm" role="dialog" aria-modal="true" aria-labelledby="rtDmEyebrow" aria-hidden="true">
   <div class="modalbox">
     <button class="modalx" onclick="rtDiscHide()" aria-label="Close">×</button>
-    <h3 class="display" style="margin-top:4px">Before you use these numbers <span style="color:var(--ink-soft)">·</span> এই সংখ্যাগুলো ব্যবহারের আগে</h3>
-    <h4>In plain English</h4>
-    <ol>
-      <li>These rates come from the banks' own published rate sheets. Your real offer can be different — banks change rates, add conditions, and sometimes negotiate.</li>
-      <li>A higher rate is not always better. How strong the bank is, how good the service is, and how easily you can take your money out matter just as much.</li>
-      <li>Islamic bank profit rates are provisional (expected) — the final profit can be a little different.</li>
-      <li>Rates shown are for regular individual accounts at the smallest published amount tier. Bigger deposits often earn more, and some banks' savings rates rise with your balance.</li>
-      <li>All numbers are before tax — government tax on profit and excise duty on deposits will reduce what you actually receive.</li>
-      <li><b>The rows are not all from the same date.</b> Each institution revises its own rate sheet whenever it wants to, so this table can be holding a sheet published last month against one published two years ago. The last column shows when each sheet took effect and how old it is, and the note above the table shows the full spread. A low number may simply be an old number.</li>
-      <li>Some rows carry a small label. “Unverified” means something about that row needs a human eye — the reader may have drifted, or a figure moved a lot in one month. “Old sheet” means the figure was read correctly and the institution simply has not revised it in over a year. Nothing is hidden from you; it is labelled instead.</li>
-      <li>Where a figure could not be confirmed from a named source, the cell is left empty rather than filled with an estimate.</li>
-      <li>Every row shows its source and date — tap the ⓘ on a row to see where its number came from. Where a bank blocks automatic reading of its own site, the row comes from Bangladesh Bank's published chart instead (blue dot).</li>
-      <li>This page is for comparison and learning only. It is not financial advice. Always confirm with the bank before deciding.</li>
-    </ol>
-    <h4>সহজ বাংলায়</h4>
-    <ol>
-      <li>এই হারগুলো ব্যাংকের নিজস্ব প্রকাশিত রেট শিট থেকে নেওয়া। আপনি বাস্তবে ভিন্ন হার পেতে পারেন — ব্যাংক হার বদলায়, শর্ত জোড়ে, কখনো দরকষাকষিও হয়।</li>
-      <li>বেশি হার মানেই ভালো নয়। ব্যাংক কতটা মজবুত, সেবা কেমন, আর টাকা তুলতে কতটা সহজ — এগুলোও সমান জরুরি।</li>
-      <li>ইসলামী ব্যাংকের মুনাফার হার সাময়িক (প্রত্যাশিত) — চূড়ান্ত মুনাফা কিছুটা ভিন্ন হতে পারে।</li>
-      <li>দেখানো হারগুলো সাধারণ ব্যক্তিগত অ্যাকাউন্টের, সবচেয়ে ছোট প্রকাশিত অঙ্কের স্তরের। বড় আমানতে প্রায়ই বেশি হার মেলে, আর কিছু ব্যাংকে সঞ্চয়ের হার ব্যালেন্সের সাথে বাড়ে।</li>
-      <li>সব সংখ্যা করের আগের হিসাব — মুনাফার ওপর সরকারি কর আর আমানতের ওপর আবগারি শুল্ক বাদ দিলে হাতে কম আসবে।</li>
-      <li><b>সব সারি এক তারিখের নয়।</b> প্রতিটি প্রতিষ্ঠান নিজের ইচ্ছেমতো সময়ে তার রেট শিট বদলায়, তাই এই টেবিলে গত মাসের শিটের পাশে দুই বছর আগের শিটও থাকতে পারে। শেষ কলামে প্রতিটি শিট কবে থেকে কার্যকর আর কত পুরোনো তা লেখা, আর টেবিলের উপরের নোটে পুরো ব্যবধান দেখানো আছে। কম সংখ্যা মানে হয়তো শুধু পুরোনো সংখ্যা।</li>
-      <li>কিছু সারিতে ছোট একটা লেবেল থাকে। “যাচাই হয়নি” মানে ওই সারির কিছু একটা মানুষের চোখে দেখা দরকার — তথ্য পড়ায় গোলমাল হতে পারে, বা এক মাসে সংখ্যা অনেক বদলেছে। “পুরোনো শিট” মানে সংখ্যাটা ঠিকভাবেই পড়া হয়েছে, প্রতিষ্ঠানটিই এক বছরের বেশি সময় ধরে শিট বদলায়নি। কিছুই আপনার কাছ থেকে লুকানো হয় না; বরং লেবেল দিয়ে বলে দেওয়া হয়।</li>
-      <li>যেসব সংখ্যা নির্দিষ্ট উৎস থেকে নিশ্চিত করা যায়নি, সেই ঘর অনুমান দিয়ে ভরা হয় না — ফাঁকা রাখা হয়।</li>
-      <li>প্রতিটি সারিতে উৎস ও তারিখ দেওয়া আছে — সারির ⓘ চাপলে দেখবেন সংখ্যাটা কোথা থেকে এসেছে। কোনো ব্যাংকের সাইট স্বয়ংক্রিয়ভাবে পড়া না গেলে সারিটা আসে বাংলাদেশ ব্যাংকের প্রকাশিত চার্ট থেকে (নীল বিন্দু)।</li>
-      <li>এই পেজ শুধু তুলনা আর শেখার জন্য। এটি আর্থিক পরামর্শ নয়। সিদ্ধান্তের আগে অবশ্যই ব্যাংকে নিশ্চিত হয়ে নিন।</li>
-    </ol>
-    <button type="button" class="rt-dm-ok" onclick="rtDiscHide()">I understand · বুঝেছি</button>
+    <div class="rt-dm-top">
+      <span class="rt-dm-eyebrow" id="rtDmEyebrow" data-en="Before you use these numbers" data-bn="এই সংখ্যাগুলো ব্যবহারের আগে" data-html="1">Before you use these numbers</span>
+      <span class="rt-dm-count" id="rtDmCount" aria-live="polite">1 / 4</span>
+      <button type="button" class="rt-dm-lang" id="rtDmLang" onclick="document.getElementById('langbtn').click()" aria-label="Switch language">বাংলা</button>
+    </div>
+    <div class="rt-dm-bars" id="rtDmBars">
+      <button type="button" aria-label="Note 1"></button><button type="button" aria-label="Note 2"></button><button type="button" aria-label="Note 3"></button><button type="button" aria-label="Note 4"></button>
+    </div>
+    <div class="rt-dm-vp" id="rtDmVp">
+      <div class="rt-dm-track" id="rtDmTrack">
+      <section class="rt-dm-slide" role="group" aria-roledescription="slide">
+        <span class="rt-dm-tag" data-en="Most important" data-bn="সবচেয়ে জরুরি" data-html="1">Most important</span>
+        <div class="rt-dm-ico" aria-hidden="true">🗓️</div>
+        <h3 data-en="These rates were not all published on the same day" data-bn="সব হার একই দিনে প্রকাশিত নয়" data-html="1">These rates were not all published on the same day</h3>
+        <p data-en="This page pulls the newest rate each institution has put on its own website. But every bank updates on its own schedule, so one row can be from last month and the row next to it from two years ago. <b>A low rate may simply be an old rate.</b> The last column shows when each rate took effect and how old it is." data-bn="প্রতিটি প্রতিষ্ঠান নিজের ওয়েবসাইটে সর্বশেষ যে হার দিয়েছে, এই পেজ সেটাই তুলে আনে। কিন্তু প্রতিটি ব্যাংক নিজের সময়মতো হার বদলায়, তাই এক সারি হয়তো গত মাসের, আর ঠিক পাশের সারিটা দুই বছর আগের। <b>কম হার মানে হয়তো শুধু পুরোনো হার।</b> শেষ কলামে দেখবেন প্রতিটি হার কবে থেকে কার্যকর আর কত পুরোনো।" data-html="1">This page pulls the newest rate each institution has put on its own website. But every bank updates on its own schedule, so one row can be from last month and the row next to it from two years ago. <b>A low rate may simply be an old rate.</b> The last column shows when each rate took effect and how old it is.</p>
+        <div class="rt-dm-do" data-en="<b>Before you decide</b>Check the rate on the bank's own website, or call or visit the bank to confirm it. Tap ⓘ on any row to see where its number came from." data-bn="<b>সিদ্ধান্তের আগে</b>ব্যাংকের নিজের ওয়েবসাইটে হারটা দেখে নিন, অথবা ফোন করে বা শাখায় গিয়ে নিশ্চিত হোন। যেকোনো সারির ⓘ চাপলে দেখবেন সংখ্যাটা কোথা থেকে এসেছে।" data-html="1"><b>Before you decide</b>Check the rate on the bank's own website, or call or visit the bank to confirm it. Tap ⓘ on any row to see where its number came from.</div>
+      </section>
+      <section class="rt-dm-slide" role="group" aria-roledescription="slide">
+        <div class="rt-dm-ico" aria-hidden="true">🏦</div>
+        <h3 data-en="The rate you actually get can be different" data-bn="আপনি বাস্তবে যে হার পাবেন, তা ভিন্ন হতে পারে" data-html="1">The rate you actually get can be different</h3>
+        <p data-en="These are the rates banks publish, for a regular individual account at the <b>smallest amount tier</b>. Bigger deposits often earn more, banks add conditions, and some negotiate." data-bn="এগুলো ব্যাংকের প্রকাশিত হার, সাধারণ ব্যক্তিগত অ্যাকাউন্টের <b>সবচেয়ে ছোট অঙ্কের স্তরের</b>। বড় আমানতে প্রায়ই বেশি হার মেলে, ব্যাংক শর্ত জোড়ে, কখনো দরকষাকষিও হয়।" data-html="1">These are the rates banks publish, for a regular individual account at the <b>smallest amount tier</b>. Bigger deposits often earn more, banks add conditions, and some negotiate.</p>
+        <p data-en="Islamic banks' profit rates are <b>provisional</b> (expected). The final profit you receive can come out a little different." data-bn="ইসলামী ব্যাংকের মুনাফার হার <b>সাময়িক</b> (প্রত্যাশিত)। শেষে হাতে আসা মুনাফা কিছুটা ভিন্ন হতে পারে।" data-html="1">Islamic banks' profit rates are <b>provisional</b> (expected). The final profit you receive can come out a little different.</p>
+      </section>
+      <section class="rt-dm-slide" role="group" aria-roledescription="slide">
+        <div class="rt-dm-ico" aria-hidden="true">⚖️</div>
+        <h3 data-en="A higher rate is not automatically better" data-bn="বেশি হার মানেই ভালো নয়" data-html="1">A higher rate is not automatically better</h3>
+        <p data-en="How strong the bank is, how good its service is, and how easily you can take your money out when you need it matter just as much as the rate." data-bn="ব্যাংক কতটা মজবুত, সেবা কেমন, আর দরকারের সময় টাকা তোলা কতটা সহজ, এগুলো হারের মতোই জরুরি।" data-html="1">How strong the bank is, how good its service is, and how easily you can take your money out when you need it matter just as much as the rate.</p>
+        <p data-en="Use this table as a <b>starting point, not a verdict</b>." data-bn="এই টেবিলকে <b>শুরুর জায়গা হিসেবে দেখুন, চূড়ান্ত রায় হিসেবে নয়</b>।" data-html="1">Use this table as a <b>starting point, not a verdict</b>.</p>
+      </section>
+      <section class="rt-dm-slide" role="group" aria-roledescription="slide">
+        <h3 data-en="Other things to know" data-bn="আরও কিছু কথা" data-html="1">Other things to know</h3>
+        <ul class="rt-dm-list">
+          <li><span aria-hidden="true">🎓</span><span data-en="<b>Not financial advice.</b> This page is for comparison and learning only." data-bn="<b>এটি আর্থিক পরামর্শ নয়।</b> এই পেজ শুধু তুলনা আর শেখার জন্য।" data-html="1"><b>Not financial advice.</b> This page is for comparison and learning only.</span></li>
+          <li><span aria-hidden="true">🧾</span><span data-en="<b>All numbers are before tax.</b> Tax on profit and excise duty on deposits will reduce what you actually receive." data-bn="<b>সব সংখ্যা করের আগের হিসাব।</b> মুনাফার ওপর সরকারি কর আর আমানতের ওপর আবগারি শুল্ক বাদ দিলে হাতে কম আসবে।" data-html="1"><b>All numbers are before tax.</b> Tax on profit and excise duty on deposits will reduce what you actually receive.</span></li>
+          <li><span aria-hidden="true">🏷️</span><span data-en="<b>Labels, not hiding.</b> “Unverified” means a row needs a human eye (the reader may have drifted, or a figure jumped in one month). “Old sheet” means the figure was read correctly, but the institution has not revised it in over a year." data-bn="<b>লুকানো নয়, লেবেল।</b> “যাচাই হয়নি” মানে ওই সারিটা মানুষের চোখে দেখা দরকার (তথ্য পড়ায় গোলমাল হতে পারে, বা এক মাসে সংখ্যা অনেক বদলেছে)। “পুরোনো শিট” মানে সংখ্যাটা ঠিকভাবেই পড়া হয়েছে, কিন্তু প্রতিষ্ঠানটি এক বছরের বেশি সময় শিট বদলায়নি।" data-html="1"><b>Labels, not hiding.</b> “Unverified” means a row needs a human eye (the reader may have drifted, or a figure jumped in one month). “Old sheet” means the figure was read correctly, but the institution has not revised it in over a year.</span></li>
+          <li><span aria-hidden="true">⬜</span><span data-en="<b>Empty cell = not confirmed.</b> If a figure could not be confirmed from a named source, the cell stays empty instead of holding a guess." data-bn="<b>ফাঁকা ঘর = নিশ্চিত নয়।</b> নির্দিষ্ট উৎস থেকে নিশ্চিত করা যায়নি এমন সংখ্যা অনুমান দিয়ে ভরা হয় না, ঘর ফাঁকা রাখা হয়।" data-html="1"><b>Empty cell = not confirmed.</b> If a figure could not be confirmed from a named source, the cell stays empty instead of holding a guess.</span></li>
+          <li><span aria-hidden="true">🔵</span><span data-en="<b>Blue dot = Bangladesh Bank chart.</b> Where a bank blocks automatic reading of its own site, the row comes from Bangladesh Bank's published chart instead." data-bn="<b>নীল বিন্দু = বাংলাদেশ ব্যাংকের চার্ট।</b> কোনো ব্যাংকের সাইট স্বয়ংক্রিয়ভাবে পড়া না গেলে সারিটা আসে বাংলাদেশ ব্যাংকের প্রকাশিত চার্ট থেকে।" data-html="1"><b>Blue dot = Bangladesh Bank chart.</b> Where a bank blocks automatic reading of its own site, the row comes from Bangladesh Bank's published chart instead.</span></li>
+        </ul>
+      </section>
+      </div>
+    </div>
+    <div class="rt-dm-foot">
+    <div class="rt-dm-nav">
+      <button type="button" class="rt-dm-back" id="rtDmBack" onclick="rtDmGo(RT_DM.i-1)" hidden>←</button>
+      <button type="button" class="rt-dm-next" id="rtDmNext" onclick="rtDmNext()">Next →</button>
+    </div>
+    <div class="rt-dm-hint" id="rtDmHint"><span class="rt-dm-touch" data-en="Swipe to see the next note" data-bn="পরের কথাটা দেখতে সোয়াইপ করুন">Swipe to see the next note</span><span class="rt-dm-keys" data-en="Tip: use the ← → keys" data-bn="টিপ: ← → কী ব্যবহার করতে পারেন">Tip: use the ← → keys</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Rates page tour — spotlight walkthrough of the symbols and controls. Started by the 🧭 button under the rates header. -->
+<div id="rtTour" class="rt-tour" aria-hidden="true">
+  <div class="rt-tour-hole" id="rtTourHole"></div>
+  <div class="rt-tour-card" id="rtTourCard" role="dialog" aria-modal="true" aria-labelledby="rtTourTitle">
+    <button type="button" class="rt-tour-x" onclick="rtTourEnd()" aria-label="Close tour">×</button>
+    <div class="rt-tour-top">
+      <span class="rt-tour-count" id="rtTourCount" aria-live="polite"></span>
+      <span class="rt-tour-prog"><i id="rtTourProg"></i></span>
+      <button type="button" class="rt-tour-lang" id="rtTourLang" onclick="document.getElementById('langbtn').click()" aria-label="Switch language">বাংলা</button>
+    </div>
+    <h4 id="rtTourTitle"></h4>
+    <div id="rtTourBody"></div>
+    <div class="rt-tour-nav">
+      <button type="button" class="rt-tour-back" id="rtTourBack" onclick="rtTourGo(RT_TOUR.i-1)">←</button>
+      <button type="button" class="rt-tour-next" id="rtTourNext" onclick="rtTourNext()"></button>
+    </div>
   </div>
 </div>
 
@@ -1786,19 +1913,190 @@ function renderRoute(h){
   revealInit();
 }
 
-/* ---------- rates disclaimers popup (auto once per device; ⓘ link reopens) ---------- */
-var RT_DISC_KEY='rafiu_rt_disc_v1';
+/* ---------- rates disclaimers: 4-step swipe carousel (auto once per device; ⓘ link reopens at step 1) ---------- */
+var RT_DISC_KEY='rafiu_rt_disc_v2';   /* v2: new "not all from the same day" note — returning visitors see it once */
+var RT_DM={i:0,n:4};
+function rtDmEls(){ return {m:document.getElementById('rtDiscModal'),vp:document.getElementById('rtDmVp'),tr:document.getElementById('rtDmTrack'),
+  bars:document.querySelectorAll('#rtDmBars button'),slides:document.querySelectorAll('#rtDmTrack .rt-dm-slide'),
+  back:document.getElementById('rtDmBack'),next:document.getElementById('rtDmNext'),count:document.getElementById('rtDmCount'),hint:document.getElementById('rtDmHint')}; }
+function rtDmFit(){ var e=rtDmEls(); if(!e.vp||!e.slides[RT_DM.i]) return; e.vp.style.height=e.slides[RT_DM.i].offsetHeight+'px'; }
+function rtDmGo(i,noFocus){ var e=rtDmEls(); if(!e.tr) return;
+  RT_DM.i=Math.max(0,Math.min(RT_DM.n-1,i)); var k=RT_DM.i, bn=(LANG==='bn');
+  e.tr.style.transform='translateX('+(-100*k)+'%)';
+  for(var j=0;j<e.slides.length;j++){ var on=(j===k); e.slides[j].setAttribute('aria-hidden',on?'false':'true');
+    if(on) e.slides[j].removeAttribute('inert'); else e.slides[j].setAttribute('inert','');
+    e.slides[j].setAttribute('aria-label',(bn?num2bn(j+1)+' / '+num2bn(RT_DM.n):(j+1)+' of '+RT_DM.n)); }
+  for(var b=0;b<e.bars.length;b++){ e.bars[b].className=(b===k?'on':(b<k?'done':''));
+    e.bars[b].setAttribute('aria-current',b===k?'step':'false');
+    e.bars[b].setAttribute('aria-label',(bn?'কথা ':'Note ')+(bn?num2bn(b+1):(b+1))); }
+  var lb=document.getElementById('rtDmLang'); if(lb) lb.textContent=bn?'EN':'বাংলা';
+  e.count.textContent=bn?(num2bn(k+1)+' / '+num2bn(RT_DM.n)):((k+1)+' / '+RT_DM.n);
+  e.back.hidden=(k===0); e.back.setAttribute('aria-label',bn?'আগের কথা':'Previous note');
+  var last=(k===RT_DM.n-1);
+  e.next.textContent=last?(bn?'বুঝেছি':'I understand'):(bn?'পরের কথা →':'Next →');
+  if(e.hint) e.hint.style.visibility=(k===0?'visible':'hidden');
+  rtDmFit();
+  if(!noFocus && e.m && e.m.classList.contains('show')) try{ e.next.focus({preventScroll:true}); }catch(x){}
+  if(window.track) track('rates_disclaimer_step',String(k+1)); }
+function rtDmNext(){ if(RT_DM.i>=RT_DM.n-1) rtDiscHide(); else rtDmGo(RT_DM.i+1); }
 function rtDiscShow(){ var m=document.getElementById('rtDiscModal'); if(!m) return;
   m.classList.add('show'); m.setAttribute('aria-hidden','false');
+  rtDmGo(0,true); requestAnimationFrame(rtDmFit);
+  try{ document.getElementById('rtDmNext').focus({preventScroll:true}); }catch(x){}
   if(window.track) track('rates_disclaimer_open',''); }
-function rtDiscHide(){ var m=document.getElementById('rtDiscModal'); if(!m) return;
+function rtDiscHide(){ var m=document.getElementById('rtDiscModal'); if(!m||!m.classList.contains('show')) return;
   m.classList.remove('show'); m.setAttribute('aria-hidden','true');
-  try{ localStorage.setItem(RT_DISC_KEY,'1'); }catch(e){} }
-function rtDiscMaybe(){ var seen=null; try{ seen=localStorage.getItem(RT_DISC_KEY); }catch(e){}
-  if(!seen) rtDiscShow(); }
+  try{ localStorage.setItem(RT_DISC_KEY,'1'); }catch(e){}
+  try{ sessionStorage.setItem(RT_DISC_KEY,'1'); }catch(e){}
+  rtTourNudge();
+  if(window.track) track('rates_disclaimer_close',String(RT_DM.i+1)); }
+function rtDiscMaybe(){ /* disclaimers come first on every new visit (per browser session), before anything else on the page */
+  var seen=null; try{ seen=sessionStorage.getItem(RT_DISC_KEY); }catch(e){}
+  if(!seen && !(window.RT_TOUR&&RT_TOUR.on)) rtDiscShow(); }
+function rtTourNudge(){ var b=document.getElementById('rtTourBtn'); if(!b) return;   /* after the notes close, point at the tour */
+  b.classList.remove('rt-nudge'); void b.offsetWidth; b.classList.add('rt-nudge'); }
+(function(){ /* progress bars, swipe/drag, keys, resize */
+  var bars=document.querySelectorAll('#rtDmBars button');
+  for(var b=0;b<bars.length;b++) (function(i){ bars[i].addEventListener('click',function(){ rtDmGo(i); }); })(b);
+  var vp=document.getElementById('rtDmVp'), tr=document.getElementById('rtDmTrack'); if(!vp||!tr) return;
+  var x0=null,y0=0,t0=0,dx=0,locked=null,pid=null;
+  vp.addEventListener('pointerdown',function(e){ if(e.pointerType==='mouse'&&e.button!==0) return;
+    x0=e.clientX; y0=e.clientY; t0=Date.now(); dx=0; locked=null; pid=e.pointerId; });
+  vp.addEventListener('pointermove',function(e){ if(x0===null||e.pointerId!==pid) return;
+    var ddx=e.clientX-x0, ddy=e.clientY-y0;
+    if(locked===null){ if(Math.abs(ddx)<8&&Math.abs(ddy)<8) return; locked=(Math.abs(ddx)>Math.abs(ddy))?'x':'y';
+      if(locked==='x'){ tr.classList.add('drag'); try{ vp.setPointerCapture(pid); }catch(x){} } }
+    if(locked!=='x') return;
+    dx=ddx; var k=RT_DM.i; if((k===0&&dx>0)||(k===RT_DM.n-1&&dx<0)) dx=dx/3;   /* rubber-band at the ends */
+    tr.style.transform='translateX(calc('+(-100*k)+'% + '+dx+'px))'; });
+  function end(){ if(x0===null) return; var wasX=(locked==='x'); tr.classList.remove('drag');
+    var fast=(Date.now()-t0)<300&&Math.abs(dx)>30, far=Math.abs(dx)>vp.offsetWidth*0.2;
+    x0=null; locked=null;
+    if(wasX&&(fast||far)) rtDmGo(RT_DM.i+(dx<0?1:-1),true); else rtDmGo(RT_DM.i,true); }
+  vp.addEventListener('pointerup',end); vp.addEventListener('pointercancel',end);
+  document.addEventListener('keydown',function(e){ var m=document.getElementById('rtDiscModal');
+    if(!m||!m.classList.contains('show')) return;
+    if(e.key==='ArrowRight'){ e.preventDefault(); rtDmGo(RT_DM.i+1); }
+    else if(e.key==='ArrowLeft'){ e.preventDefault(); rtDmGo(RT_DM.i-1); } });
+  window.addEventListener('resize',rtDmFit);
+  document.getElementById('langbtn').addEventListener('click',function(){ var m=document.getElementById('rtDiscModal');
+    if(m&&m.classList.contains('show')) setTimeout(function(){ rtDmGo(RT_DM.i,true); },0); });
+})();
 document.addEventListener('keydown',function(e){ if(e.key==='Escape') rtDiscHide(); });
 document.addEventListener('click',function(e){ var m=document.getElementById('rtDiscModal');
   if(m && e.target===m) rtDiscHide(); });
+/* ---------- rates page tour: dims the page, spotlights one real element at a time, explains it ---------- */
+var RT_TOUR={i:0,on:false,steps:[]};
+try{ if(localStorage.getItem('rafiu_rt_tour_v1')){ var _tb=document.getElementById('rtTourBtn'); if(_tb) _tb.classList.add('rt-taken'); } }catch(e){}
+(function(){
+  function q(sel){ return document.querySelector(sel); }
+  function row(){ /* one ordinary row with a rate + calc button, a few rows down so the ⓘ popover has room */
+    var rs=document.querySelectorAll('#rt-body tr'), ok=[];
+    for(var i=0;i<rs.length;i++){ if(!rs[i].classList.contains('rt-norow') && rs[i].querySelector('.rt-calc') && rs[i].offsetParent) ok.push(rs[i]); }
+    return ok[Math.min(3,ok.length-1)]||null; }
+  function inRow(sel){ var r=row(); return r?r.querySelector(sel):null; }
+  var DOT=function(c,en,bn){ return '<li><i style="background:'+c+'"></i>'+(LANG==='bn'?bn:en)+'</li>'; };
+  var CH=function(cls,txt){ return '<span class="rt-tour-chip '+cls+'">'+txt+'</span>'; };
+  RT_TOUR.steps=[
+    {el:function(){ return q('#page-rates .rt-tabs'); },
+     en:['Four sections','<p>Banks &amp; NBFIs, Mutual funds, Life insurers, and Inflation &amp; policy. Tap a tab to switch.</p><p>This tour walks through the bank table. The other tabs work the same way.</p>'],
+     bn:['চারটি অংশ','<p>ব্যাংক ও এনবিএফআই, মিউচুয়াল ফান্ড, লাইফ বিমা, আর মূল্যস্ফীতি ও পলিসি। বদলাতে ট্যাবে চাপুন।</p><p>এই ট্যুরে ব্যাংকের টেবিলটা দেখানো হবে। বাকি ট্যাবগুলোও একইভাবে কাজ করে।</p>']},
+    {el:function(){ return q('#rt-ctl-banks'); },
+     en:['Search and filter','<p>Type a bank\'s name, or narrow the list by <b>Kind</b> (☪ Islamic, Conventional, NBFI), by what <b>Data</b> a row has, or by how <b>fresh</b> its rate sheet is.</p><p><b>Reset</b> clears everything. The counter on the right shows how many rows are left.</p>'],
+     bn:['খুঁজুন ও ছাঁকুন','<p>ব্যাংকের নাম লিখুন, অথবা তালিকা ছোট করুন <b>ধরন</b> (☪ ইসলামী, প্রচলিত, এনবিএফআই), সারিতে কী <b>তথ্য</b> আছে, বা রেট শিট কতটা <b>নতুন</b> তা দিয়ে।</p><p><b>রিসেট</b> চাপলে সব আগের মতো হয়। ডানের সংখ্যাটা বলে কয়টা সারি দেখাচ্ছে।</p>']},
+    {el:function(){ var w=q('#rt-window'); return (w&&w.textContent.trim())?w:null; },
+     en:['Not all from the same date','<p>This amber note shows the oldest and newest rate sheet in the table. Banks update on their own schedule, so compare the dates, not just the numbers.</p>'],
+     bn:['সব এক তারিখের নয়','<p>এই হলুদ নোটে টেবিলের সবচেয়ে পুরোনো আর সবচেয়ে নতুন রেট শিটের তারিখ দেখানো আছে। ব্যাংক নিজের সময়মতো হার বদলায়, তাই শুধু সংখ্যা নয়, তারিখও মিলিয়ে দেখুন।</p>']},
+    {el:function(){ return q('#rt-head'); },
+     en:['Sort by any column','<p>Tap a heading to sort by it, tap again to flip the order. ▴ ▾ shows the direction.</p><p><b>Savings</b> = savings account · <b>FDR</b> = fixed (term) deposit, from 3 months to 3 years · <b>DPS</b> = monthly savings scheme.</p>'],
+     bn:['যেকোনো কলাম দিয়ে সাজান','<p>শিরোনামে চাপলে সেই কলাম দিয়ে সাজানো হবে, আবার চাপলে উল্টো ক্রমে। ▴ ▾ দিক দেখায়।</p><p><b>সেভিংস</b> = সঞ্চয়ী হিসাব · <b>এফডিআর</b> = মেয়াদি আমানত, ৩ মাস থেকে ৩ বছর · <b>ডিপিএস</b> = মাসিক সঞ্চয় স্কিম।</p>']},
+    {el:function(){ var r=row(); return r?r.querySelector('th'):null; },
+     en:['The coloured dot and the tag',function(){ return '<p>The <b>dot</b> shows where the numbers came from:</p><ul class="rt-tour-key">'+DOT('#34d399','The bank\'s own published sheet','ব্যাংকের নিজের প্রকাশিত শিট')+DOT('#38bdf8','Bangladesh Bank / regulator chart','বাংলাদেশ ব্যাংক / নিয়ন্ত্রকের চার্ট')+DOT('#7d7790','No data yet','এখনো তথ্য নেই')+'</ul><p>The <b>tag</b> says what kind of institution it is: '+CH('rt-tag rt-isl','Islamic')+' '+CH('rt-tag rt-conv','Conventional')+' '+CH('rt-tag rt-nbfi','NBFI')+'</p>'; }],
+     bn:['রঙিন বিন্দু আর ট্যাগ',function(){ return '<p><b>বিন্দু</b> বলে সংখ্যাগুলো কোথা থেকে এসেছে:</p><ul class="rt-tour-key">'+DOT('#34d399','','ব্যাংকের নিজের প্রকাশিত শিট')+DOT('#38bdf8','','বাংলাদেশ ব্যাংক / নিয়ন্ত্রকের চার্ট')+DOT('#7d7790','','এখনো তথ্য নেই')+'</ul><p><b>ট্যাগ</b> বলে প্রতিষ্ঠানটা কোন ধরনের: '+CH('rt-tag rt-isl','ইসলামী')+' '+CH('rt-tag rt-conv','প্রচলিত')+' '+CH('rt-tag rt-nbfi','এনবিএফআই')+'</p>'; }]},
+    {el:function(){ var b=inRow('.rt-info'); if(!b) return null; b.classList.add('rt-tour-open'); var p=b.querySelector('.rt-pop'); return p?[b,p]:b; },
+     leave:function(){ var o=document.querySelectorAll('#page-rates .rt-tour-open'); for(var i=0;i<o.length;i++) o[i].classList.remove('rt-tour-open'); },
+     en:['ⓘ = source and date','<p>Hover or tap the ⓘ to see which rate sheet the numbers came from, when it took effect, any notes, and a <b>View source ↗</b> link so you can check it yourself.</p>'],
+     bn:['ⓘ = উৎস আর তারিখ','<p>ⓘ-এর ওপর মাউস রাখুন বা চাপুন। দেখবেন সংখ্যাগুলো কোন রেট শিট থেকে, কবে থেকে কার্যকর, কোনো নোট আছে কি না, আর <b>উৎস দেখুন ↗</b> লিংক, যাতে নিজেই মিলিয়ে নিতে পারেন।</p>']},
+    {el:function(){ return inRow('.rt-calc'); },
+     en:['→ calc','<p>Sends this bank\'s rate (the 1-year FDR when there is one) to the Growth calculator, so you can see what your money could grow to.</p>'],
+     bn:['→ ক্যালক','<p>এই ব্যাংকের হার (থাকলে ১ বছরের এফডিআর) গ্রোথ ক্যালকুলেটরে পাঠিয়ে দেয়, যাতে দেখতে পারেন আপনার টাকা কত হতে পারে।</p>']},
+    {el:function(){ var r=row(); if(!r) return null; var t=r.querySelectorAll('td:not(.rt-when)'); return t.length?[t[0],t[t.length-1]]:null; },
+     en:['Reading the rates',function(){ return '<p>Each cell is a yearly profit rate, before tax.</p><p><b>—</b> means that rate isn\'t published or couldn\'t be confirmed. A small <span style="color:#34d399">▲</span> or <span style="color:#f87171">▼</span> means it changed since last month. Hover it to see the old rate.</p>'; }],
+     bn:['হার পড়বেন যেভাবে',function(){ return '<p>প্রতিটি ঘর বছরে মুনাফার হার, করের আগের হিসাব।</p><p><b>—</b> মানে ওই হার প্রকাশিত নয় বা নিশ্চিত করা যায়নি। ছোট <span style="color:#34d399">▲</span> বা <span style="color:#f87171">▼</span> মানে গত মাসের পর হার বদলেছে। মাউস রাখলে আগের হার দেখবেন।</p>'; }]},
+    {el:function(){ return inRow('.rt-when'); },
+     en:['When the rate took effect','<p>The date the bank\'s own rate sheet took effect, and how old it is. <span style="color:#e0a04d"><b>Amber with ⚠</b></span> means older than 6 months, so the bank may have changed it since.</p>'],
+     bn:['হার কবে থেকে কার্যকর','<p>ব্যাংকের রেট শিট কবে থেকে কার্যকর, আর সেটা কত পুরোনো। <span style="color:#e0a04d"><b>হলুদ রঙ আর ⚠</b></span> মানে ৬ মাসের বেশি পুরোনো, ব্যাংক হয়তো এর মধ্যে হার বদলেছে।</p>']},
+    {el:function(){ var r=q('#rt-body tr.rt-norow'); return (r&&r.offsetParent)?r.querySelector('th'):null; },
+     en:['Faded rows and small labels',function(){ return '<p>A faded row has no confirmed rate yet. The small line under the name says why.</p><p>Some rows carry a label: '+CH('rt-cf rt-cf-check','unverified')+' needs a human check, '+CH('rt-cf rt-cf-stale','old sheet')+' hasn\'t been revised in over a year, and '+CH('rt-merged','now …')+' means the bank merged into another one.</p>'; }],
+     bn:['ঝাপসা সারি আর ছোট লেবেল',function(){ return '<p>ঝাপসা সারিতে এখনো নিশ্চিত কোনো হার নেই। নামের নিচের ছোট লাইনে কারণ লেখা থাকে।</p><p>কিছু সারিতে লেবেল থাকে: '+CH('rt-cf rt-cf-check','যাচাই হয়নি')+' মানে মানুষের চোখে দেখা দরকার, '+CH('rt-cf rt-cf-stale','পুরোনো শিট')+' মানে এক বছরের বেশি বদলায়নি, আর '+CH('rt-merged','এখন …')+' মানে ব্যাংকটি অন্য ব্যাংকের সঙ্গে একীভূত হয়েছে।</p>'; }]},
+    {el:function(){ return q('#rtp-banks .rt-legend'); },
+     en:['The full colour key','<p>The complete key for the dots lives here, under the table: green = own sheet, blue = regulator or exchange, yellow = brokerage portal, orange = press, grey = no data yet.</p>'],
+     bn:['পুরো রঙের চাবি','<p>বিন্দুগুলোর পুরো ব্যাখ্যা টেবিলের নিচে এখানে: সবুজ = নিজস্ব শিট, নীল = নিয়ন্ত্রক বা এক্সচেঞ্জ, হলুদ = ব্রোকারেজ পোর্টাল, কমলা = সংবাদমাধ্যম, ধূসর = এখনো তথ্য নেই।</p>']}
+  ];
+})();
+function rtTourEls(){ return {w:document.getElementById('rtTour'),hole:document.getElementById('rtTourHole'),card:document.getElementById('rtTourCard')}; }
+function rtTourTarget(st){ var t=st.el(); if(!t) return null; var a=Array.isArray(t)?t:[t];
+  var r={top:1e9,left:1e9,right:-1e9,bottom:-1e9};
+  for(var i=0;i<a.length;i++){ var b=a[i].getBoundingClientRect(); r.top=Math.min(r.top,b.top); r.left=Math.min(r.left,b.left); r.right=Math.max(r.right,b.right); r.bottom=Math.max(r.bottom,b.bottom); }
+  var sc=a[0].closest&&a[0].closest('.rt-scroll');   /* clip to the table's visible window (it scrolls sideways on phones) */
+  if(sc){ var s=sc.getBoundingClientRect(); r.left=Math.max(r.left,s.left); r.right=Math.min(r.right,s.right); }
+  return {el:a[0],r:r}; }
+function rtTourHeaderH(){ var h=document.querySelector('header'); return h?h.getBoundingClientRect().height:0; }
+function rtTourPlace(){ if(!RT_TOUR.on) return; var e=rtTourEls(), st=RT_TOUR.steps[RT_TOUR.i], t=rtTourTarget(st); if(!t) return;
+  var r=t.r, pad=6, vw=window.innerWidth, vh=window.innerHeight;
+  var top=Math.max(r.top-pad,0), left=Math.max(r.left-pad,4), bot=Math.min(r.bottom+pad,vh), right=Math.min(r.right+pad,vw-4);
+  e.hole.style.top=top+'px'; e.hole.style.left=left+'px'; e.hole.style.width=Math.max(right-left,0)+'px'; e.hole.style.height=Math.max(bot-top,0)+'px';
+  if(vw<=640){ e.card.style.left=''; e.card.classList.toggle('rt-tour-up',bot>vh-e.card.offsetHeight-16); return; }   /* phones: bottom sheet, flips to the top if it would cover the target */
+  var cw=e.card.offsetWidth, ch=e.card.offsetHeight, y;
+  if(bot+12+ch<vh-12) y=bot+12; else if(top-12-ch>rtTourHeaderH()) y=top-12-ch; else y=vh-ch-12;
+  e.card.style.top=y+'px'; e.card.style.left=Math.max(16,Math.min(r.left,vw-cw-16))+'px'; }
+function rtTourGo(i){ var e=rtTourEls(), S=RT_TOUR.steps, dir=(i<RT_TOUR.i?-1:1);
+  var prev=S[RT_TOUR.i]; if(prev&&prev.leave) prev.leave();
+  while(i>=0&&i<S.length&&!rtTourTarget(S[i])){ if(S[i].leave) S[i].leave(); i+=dir; }   /* skip a step whose target isn't on screen (e.g. filtered out) */
+  if(i<0||i>=S.length){ if(i>=S.length) rtTourEnd(); return; }
+  RT_TOUR.i=i; var st=S[i], bn=(LANG==='bn'), c=bn?st.bn:st.en, body=(typeof c[1]==='function')?c[1]():c[1];
+  var t=rtTourTarget(st);
+  var sc=t.el.closest&&t.el.closest('.rt-scroll');
+  if(sc){ var sr=sc.getBoundingClientRect(), er=t.el.getBoundingClientRect();
+    if(t.el.tagName!=='TD') sc.scrollLeft=0;   /* name column / headings: start from the left */
+    else if(er.left<sr.left||er.left>sr.left+sr.width*0.5) sc.scrollLeft+=er.left-sr.left-8; }   /* a data cell: slide it into view (phones) */
+  document.getElementById('rtTourTitle').textContent=c[0];
+  document.getElementById('rtTourBody').innerHTML=body;
+  var n=S.length; document.getElementById('rtTourCount').textContent=bn?(num2bn(i+1)+' / '+num2bn(n)):((i+1)+' / '+n);
+  document.getElementById('rtTourProg').style.width=((i+1)/n*100)+'%';
+  document.getElementById('rtTourLang').textContent=bn?'EN':'বাংলা';
+  var back=document.getElementById('rtTourBack'); back.hidden=(i===0); back.setAttribute('aria-label',bn?'আগের ধাপ':'Previous step');
+  var last=(i===n-1); document.getElementById('rtTourNext').textContent=last?(bn?'শেষ ✓':'Done ✓'):(bn?'পরের ধাপ →':'Next →');
+  /* scroll the target to just under the sticky header (phones: keep it above the bottom-sheet card) */
+  t=rtTourTarget(st); var hh=rtTourHeaderH(), want=hh+16;
+  if(window.innerWidth<=640){ var room=window.innerHeight-e.card.offsetHeight-20-want, h=t.r.bottom-t.r.top; if(h<room) want=hh+Math.max(16,(room-h)/2); }
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  window.scrollTo({top:Math.max(0,window.pageYOffset+t.r.top-want),behavior:reduce?'auto':'smooth'});
+  rtTourPlace(); setTimeout(rtTourPlace,120); setTimeout(rtTourPlace,450);
+  try{ document.getElementById('rtTourNext').focus({preventScroll:true}); }catch(x){}
+  if(window.track) track('rates_tour_step',String(i+1)); }
+function rtTourNext(){ if(RT_TOUR.i>=RT_TOUR.steps.length-1){ if(window.track) track('rates_tour_done',''); rtTourEnd(); } else rtTourGo(RT_TOUR.i+1); }
+function rtTourStart(){ var e=rtTourEls(); if(!e.w) return;
+  try{ localStorage.setItem('rafiu_rt_tour_v1','1'); }catch(x){} var tb=document.getElementById('rtTourBtn'); if(tb) tb.classList.add('rt-taken');
+  rtDiscHide(); if(window.rtTab) rtTab('banks');
+  RT_TOUR.on=true; RT_TOUR.i=0; e.w.classList.add('show'); e.w.setAttribute('aria-hidden','false');
+  if(window.track) track('rates_tour_start','');
+  rtTourGo(0); }
+function rtTourEnd(){ var e=rtTourEls(); if(!RT_TOUR.on) return; RT_TOUR.on=false;
+  var st=RT_TOUR.steps[RT_TOUR.i]; if(st&&st.leave) st.leave();
+  e.w.classList.remove('show'); e.w.setAttribute('aria-hidden','true');
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  window.scrollTo({top:0,behavior:reduce?'auto':'smooth'});   /* back to the top of the page when the tour ends */
+  var b=document.getElementById('rtTourBtn'); if(b) try{ b.focus({preventScroll:true}); }catch(x){} }
+window.addEventListener('scroll',function(){ if(RT_TOUR.on) rtTourPlace(); },{passive:true});
+window.addEventListener('resize',function(){ if(RT_TOUR.on) rtTourPlace(); });
+window.addEventListener('hashchange',function(){ if(RT_TOUR.on) rtTourEnd(); });
+document.addEventListener('keydown',function(e){ if(!RT_TOUR.on) return;
+  if(e.key==='Escape'){ rtTourEnd(); }
+  else if(e.key==='ArrowRight'){ e.preventDefault(); rtTourNext(); }
+  else if(e.key==='ArrowLeft'){ e.preventDefault(); rtTourGo(RT_TOUR.i-1); } });
+document.getElementById('langbtn').addEventListener('click',function(){ if(RT_TOUR.on) setTimeout(function(){ rtTourGo(RT_TOUR.i); },30); });
+document.getElementById('rtTour').addEventListener('click',function(e){ if(e.target===this) rtTourNext(); });   /* tap the dimmed area = next */
 window.addEventListener('hashchange',route);
 document.getElementById('menubtn').addEventListener('click',function(){
   document.getElementById('navlinks').classList.toggle('open');
