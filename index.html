@@ -272,6 +272,7 @@ html[data-lang="bn"] .chip{text-transform:none;letter-spacing:.02em;font-size:13
 .resmeta p{font-size:14px;color:var(--ink-soft)}
 .resmeta .tag{font-family:var(--display);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--violet-bright);border:1px solid var(--line);border-radius:999px;padding:6px 13px;white-space:nowrap}
 .rescard.soonc{opacity:.55;pointer-events:none}
+html[data-theme="light"] .rescard.soonc{opacity:.8}
 
 /* ---------- resource detail ---------- */
 .rdetail{display:grid;grid-template-columns:1fr 1fr;gap:54px;padding:84px 0;align-items:start}
@@ -987,7 +988,7 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
     #page-rates .rt-subnote{color:var(--ink-soft);font-size:12.5px;line-height:1.6;margin:0 2px 14px;max-width:760px}
     #page-rates .rt-tbl td.rt-fund{text-align:left;color:var(--ink-soft);font-size:12.5px;white-space:nowrap}
     #page-rates .rt-dotr{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px;vertical-align:middle;box-shadow:0 0 0 2px rgba(0,0,0,.12)}
-    #page-rates tr.rt-norow th,#page-rates tr.rt-norow td{opacity:.62}
+    #page-rates tr.rt-norow th,#page-rates tr.rt-norow td{opacity:.8}
     #page-rates .rt-nd{color:#b08; color:var(--ink-soft); font-style:italic}
     #page-rates .rt-why{display:block; margin-top:2px; font-size:.74rem; line-height:1.35;
       color:var(--ink-soft); font-style:normal; max-width:34ch}
@@ -1114,7 +1115,7 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
     #page-rates .rt-tbl thead th:first-child.rt-sort.on{background-color:var(--bg);background-image:linear-gradient(rgba(124,58,237,.32),rgba(124,58,237,.32))}
     #page-rates .rt-tbl tbody tr:hover th:first-child,#page-rates .rt-tbl tbody th:first-child:focus-within{z-index:4}
     #page-rates tr.rt-norow th:first-child{opacity:1;color:var(--ink-soft)}
-    #page-rates tr.rt-norow th:first-child>*{opacity:.62}
+    #page-rates tr.rt-norow th:first-child>*{opacity:.8}
     #page-rates .rt-sx.can-l .rt-tbl tbody th:first-child,#page-rates .rt-sx.can-l .rt-tbl thead th:first-child{box-shadow:8px 0 10px -6px rgba(0,0,0,.45)}
     html[data-theme="light"] #page-rates .rt-sx.can-l .rt-tbl tbody th:first-child,html[data-theme="light"] #page-rates .rt-sx.can-l .rt-tbl thead th:first-child{box-shadow:8px 0 10px -6px rgba(54,13,84,.18)}
     #page-rates .rt-sx-bar{display:none;align-items:center;gap:10px;margin:0 0 8px;font-family:var(--ui);font-size:12.5px;color:var(--ink-soft)}
@@ -1277,6 +1278,29 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
     }
     html #page-rates .rt-pop-calc .rt-pop-go{color:#c4b5fd;font-weight:600;text-decoration:underline;cursor:pointer;display:inline-block;padding:4px 0}
     @media (hover:hover) and (pointer:fine) and (min-width:761px){html #page-rates .rt-pop-calc{display:none}}
+    /* light theme: readable versions of the amber/pastel colours that were tuned for the dark background */
+    html[data-theme="light"] #page-rates .rt-window-in{background:#FFF3D1;border-color:#E3B04B;color:#4A3510}
+    html[data-theme="light"] #page-rates .rt-window-in b{color:#8A3A00}
+    html[data-theme="light"] #page-rates .rt-window:not(.open)::after{color:#8A3A00}
+    html[data-theme="light"] #page-rates .rt-tbl thead th.rt-sort.on,html[data-theme="light"] #page-rates .rt-tbl thead th:first-child.rt-sort.on{background-color:#6D28D9;background-image:none;color:#fff}
+    html[data-theme="light"] #page-rates .rt-cat{color:#5B21B6;background:rgba(124,58,237,.1);border-color:rgba(124,58,237,.3)}
+    html[data-theme="light"] #page-rates .rt-cat-un{color:var(--ink-soft);background:rgba(54,13,84,.05)}
+    html[data-theme="light"] #page-rates .rt-note{color:#9F1239}
+    html[data-theme="light"] #page-rates .rt-stale{color:#9A3412}
+    html[data-theme="light"] #page-rates .rt-tbl .rt-nbfi{color:#9A3412}
+    html[data-theme="light"] #page-rates .rt-up{color:#047857}
+    html[data-theme="light"] #page-rates .rt-dn{color:#B91C1C}
+    html[data-theme="light"] #page-rates .rt-cf-check{color:#8A3A00;background:rgba(245,158,11,.14);border-color:rgba(180,83,9,.35)}
+    html[data-theme="light"] #page-rates .rt-cf-stale{color:#9A3412;background:rgba(234,88,12,.1);border-color:rgba(154,52,18,.3)}
+    html:not([data-theme="light"]) #page-rates tr.rt-norow .rt-merged{color:#DDD6FE}
+    html[data-theme="light"] #page-rates .rt-merged{color:#5B21B6}
+    html[data-theme="light"] #page-rates .rt-cond{color:#ffd9a8}
+    html[data-theme="light"] #page-rates tr.rt-norow td,html[data-theme="light"] #page-rates tr.rt-norow th:first-child>*{opacity:1}
+    html[data-theme="light"] #page-rates tr.rt-norow th:first-child{color:var(--ink-soft)}
+    html[data-theme="light"] .rt-dm-do b{color:#8A3A00}
+    html[data-theme="light"] .rt-dm-hint{opacity:1}
+    html[data-theme="light"] .rt-dm-tag{color:#8A3A00}
+    html[data-theme="light"] .rt-tour-link{color:#8A3A00}
   </style>
   <div class="wrap">
     <div class="res-head">
