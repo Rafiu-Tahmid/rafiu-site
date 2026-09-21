@@ -1138,6 +1138,55 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
     @media (hover:none),(pointer:coarse){#page-rates .rt-sx-hint .rt-sx-mouse{display:none}}
     @media (max-width:640px){#page-rates .rt-tbl tbody th:first-child{white-space:normal;min-width:124px;max-width:150px;padding-left:10px;padding-right:8px}#page-rates .rt-tbl thead th:first-child{white-space:normal}#page-rates .rt-tbl tbody th .rt-tag{margin-left:0;margin-right:4px}#page-rates .rt-sx-track{display:none}}
     @media (prefers-reduced-motion:reduce){#page-rates .rt-sx-hint b{animation:none}}
+    /* above-the-fold layout: compact header, one status line, filters behind a toggle, one-line date note */
+    html #page-rates .res-head{padding:26px 0 4px;max-width:none;display:grid;grid-template-columns:auto 1fr auto;column-gap:14px;align-items:center}
+    html #page-rates .res-head .eyebrow{grid-column:1;grid-row:1}
+    html #page-rates .res-head .rt-badge{grid-column:2;grid-row:1;justify-self:start;margin:0}
+    html #page-rates .res-head h1{grid-column:1 / 3;grid-row:2;font-size:clamp(26px,3.3vw,40px);margin:8px 0 6px;line-height:1.15}
+    html #page-rates .res-head .lede{grid-column:1 / 3;grid-row:3;font-size:15px;line-height:1.55;margin:0;max-width:660px}
+    html #page-rates .res-head .rt-tour-row{grid-column:3;grid-row:1 / 4;margin:0;align-self:center}
+    html #page-rates .rt-meta{display:inline-flex;margin:12px 14px 6px 0;font-size:12px;gap:4px 12px}
+    html #page-rates .rt-disc-link{display:inline-block;margin:0 0 6px;font-size:12.5px}
+    html #page-rates .rt-tabs{margin:8px 0 12px;padding-bottom:10px}
+    html #page-rates .rt-ctl{margin:0 0 10px}
+    html #page-rates .rt-ctl:not(.open) .rt-ctl-more{display:none}
+    html #page-rates .rt-ctl-more{padding-top:4px}
+    html #page-rates .rt-ftog{font-family:var(--ui);font-size:12.5px;font-weight:700;padding:8px 14px;border-radius:20px;background:rgba(139,92,246,.07);border:1px solid var(--line);color:var(--ink);cursor:pointer;white-space:nowrap}
+    html #page-rates .rt-ftog:hover{border-color:var(--violet-bright)}
+    html #page-rates .rt-ftog.has{border-color:var(--violet-bright);color:var(--violet-bright)}
+    html #page-rates .rt-ftog .rt-fchev{display:inline-block;margin-left:4px;transition:transform .2s}
+    html #page-rates .rt-ctl.open .rt-ftog .rt-fchev{transform:rotate(180deg)}
+    html #page-rates .rt-window{margin:0 0 10px;position:relative}
+    html #page-rates .rt-tbl th,html #page-rates .rt-tbl td{padding:12px 10px}
+    html #page-rates .rt-window:not(.open) .rt-window-in{overflow:hidden;cursor:pointer;padding-right:78px;line-height:20px;max-height:44px;white-space:nowrap;text-overflow:ellipsis}
+    html #page-rates .rt-window:not(.open)::after{content:attr(data-more);position:absolute;right:12px;top:12px;font-family:var(--ui);font-size:11.5px;font-weight:700;color:#fbbf24;pointer-events:none}
+    html #page-rates .rt-window:empty::after{display:none}
+    html[data-theme="light"] #page-rates .rt-window:not(.open)::after{color:#b45309}
+    @media (max-width:760px){
+      html #page-rates .res-head{padding:14px 0 2px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+      html #page-rates .res-head h1{width:100%;font-size:24px;margin:2px 0 4px}
+      html #page-rates .res-head .lede{display:none}
+      html #page-rates .res-head .rt-tour-row{width:100%;margin:2px 0 0}
+      html #page-rates .rt-tour-btn{padding:9px 14px 9px 10px;gap:10px;border-radius:14px}
+      html #page-rates .rt-tour-btn .rt-tb-ico{flex-basis:32px;height:32px;font-size:18px;border-radius:10px}
+      html #page-rates .rt-tour-btn .rt-tb-main{font-size:14.5px}
+      html #page-rates .rt-tour-btn .rt-tb-sub{display:none}
+      html #page-rates .rt-meta{margin:10px 0 4px;font-size:11.5px;gap:2px 10px}
+      html #page-rates .rt-disc-link{margin:0 0 4px}
+      html #page-rates .rt-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:6px -16px 10px;padding:0 16px 8px;-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent)}
+      html #page-rates .rt-tabs::-webkit-scrollbar{display:none}
+      html #page-rates .rt-tabs button{flex:0 0 auto;padding:8px 14px;font-size:13px;white-space:nowrap}
+      html #page-rates .rt-ctl-row:first-child .rt-search{flex:1 1 140px}
+      html #page-rates .rt-ctl-row:first-child .rt-count{flex-basis:100%;margin:2px 0 0;font-size:11px}
+      html #page-rates .rt-window:not(.open) .rt-window-in{padding-right:62px;max-height:40px}
+      html #page-rates #rt-stamp{display:none}
+      html #page-rates .rt-ctl:not(.filtered) .rt-ctl-row:first-child .rt-count{display:none}
+      html #page-rates .res-head .eyebrow{display:none}
+      html #page-rates .rt-window-in{font-size:12px;padding:9px 12px}
+      html #page-rates .rt-tbl th,#page-rates .rt-tbl td{padding:10px 8px}
+      html #page-rates .rt-tbl tbody th .rt-info{margin-left:4px}
+      html #page-rates .rt-tbl tbody th .rt-calc{margin-left:4px}
+    }
     /* ── tabs, control strips, badges (added 21 Aug 2026) ── */
     #page-rates .rt-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0;border-bottom:1px solid var(--line);padding-bottom:12px}
     #page-rates .rt-tabs button{font-family:var(--ui);font-weight:700;font-size:13.5px;padding:9px 18px;border-radius:12px;background:rgba(139,92,246,.07);border:1px solid var(--line);color:var(--ink-soft);cursor:pointer;transition:all .15s}
@@ -1172,21 +1221,79 @@ html[data-lang="bn"] .cur-line{line-height:1.7;font-size:clamp(16px,2.4vw,20px)}
     #page-rates .rt-unit{font-size:11px;color:var(--ink-soft);font-weight:600}
     #page-rates .rt-empty{color:var(--ink-soft);font-style:italic;padding:26px 12px}
     @media (max-width:640px){#page-rates .rt-ctl-lbl{min-width:100%}#page-rates .rt-count{margin-left:0}}
+    /* calmer rates page: one accent (violet) + amber only for the date warning */
+    html #page-rates .res-head{grid-template-columns:minmax(0,1fr) auto;column-gap:32px}
+    html #page-rates .res-head .eyebrow{grid-column:1;grid-row:1}
+    html #page-rates .res-head h1{grid-column:1;grid-row:2}
+    html #page-rates .res-head .lede{grid-column:1;grid-row:3;color:var(--ink-soft)}
+    html #page-rates .res-head .rt-sub{grid-column:1;grid-row:4}
+    html #page-rates .res-head .rt-tour-row{grid-column:2;grid-row:1 / 5}
+    html #page-rates .rt-sub{display:flex;flex-wrap:wrap;align-items:center;gap:4px 0;margin-top:10px;font-family:var(--ui);font-size:12.5px;color:var(--ink-soft)}
+    html #page-rates .rt-sub>*+*::before{content:"·";margin:0 10px;color:var(--ink-soft);opacity:.6;text-decoration:none;display:inline-block}
+    html #page-rates .rt-sub .rt-badge{background:none;border:none;padding:0;margin:0;font-size:12.5px;font-weight:600;color:#34d399}
+    html[data-theme="light"] #page-rates .rt-sub .rt-badge{color:#047857}
+    html #page-rates .rt-sub .rt-meta{display:inline-flex;align-items:center;margin:0;gap:0 6px;font-size:12.5px}
+    html #page-rates .rt-sub .rt-meta b{font-weight:500}
+    html #page-rates .rt-sub .rt-meta .rt-dot{box-shadow:none;width:6px;height:6px}
+    html #page-rates .rt-sub .rt-fresh{color:var(--ink-soft);font-weight:400}
+    html #page-rates #rt-stamp{display:none}
+    html #page-rates .rt-sub .rt-disc-link{margin:0;font-size:12.5px;font-family:var(--ui);color:var(--violet-bright);text-decoration:none;font-weight:600}
+    html #page-rates .rt-sub .rt-disc-link:hover{text-decoration:underline}
+    html #page-rates .rt-tour-btn{animation:none;padding:11px 18px 11px 12px;gap:10px;border-radius:14px;box-shadow:0 6px 18px rgba(124,58,237,.3)}
+    html #page-rates .rt-tour-btn:hover{box-shadow:0 8px 22px rgba(124,58,237,.4)}
+    html #page-rates .rt-tour-btn .rt-tb-ico{flex-basis:32px;height:32px;font-size:18px;border-radius:10px}
+    html #page-rates .rt-tour-btn .rt-tb-main{font-size:14.5px;font-weight:600}
+    html #page-rates .rt-tour-btn .rt-tb-arr{font-size:17px}
+    html #page-rates .rt-tabs{border-bottom:none;padding-bottom:0;margin:18px 0 14px}
+    html #page-rates .rt-sx-bar{margin:0 0 6px;font-size:12px;gap:6px}
+    html #page-rates .rt-sx-hint{margin-right:auto}
+    html #page-rates .rt-sx-btn{width:28px;height:28px;font-size:16px;background:none;border-color:var(--line)}
+    html #page-rates .rt-sx-btn:hover{background:rgba(139,92,246,.12)}
+    html #page-rates .rt-tbl .rt-tag{background:none;border:none;padding:0;margin-left:8px;font-size:10.5px;font-weight:600;letter-spacing:.02em}
+    html #page-rates .rt-tbl .rt-isl{color:#34d399}
+    html #page-rates .rt-tbl .rt-conv{color:var(--ink-soft)}
+    html #page-rates .rt-tbl .rt-nbfi{color:#f59e42}
+    html[data-theme="light"] #page-rates .rt-tbl .rt-isl{color:#047857}
+    html[data-theme="light"] #page-rates .rt-tbl .rt-nbfi{color:#b45309}
+    html #page-rates .rt-tbl .rt-calc{background:none;border-color:transparent}
+    html #page-rates .rt-tbl .rt-calc:hover,html #page-rates .rt-tbl .rt-calc:focus-visible{border-color:rgba(124,58,237,.35);background:rgba(124,58,237,.1)}
+    @media (hover:hover) and (pointer:fine){
+      html #page-rates .rt-tbl .rt-calc{opacity:0;transition:opacity .15s}
+      html #page-rates .rt-tbl tr:hover .rt-calc,html #page-rates .rt-tbl .rt-calc:focus-visible,html body.rt-touring #page-rates .rt-tbl .rt-calc{opacity:1}
+    }
+    @media (max-width:760px){
+      html #page-rates .res-head{display:flex}
+      html #page-rates .rt-sub{margin-top:0;font-size:12px}
+      html #page-rates .rt-sub>*,html #page-rates .rt-sub .rt-meta,html #page-rates .rt-sub .rt-badge,html #page-rates .rt-sub .rt-disc-link{font-size:12px}
+      html #page-rates .rt-sub .rt-fresh{display:none}
+      html #page-rates .res-head .rt-tour-row{margin-top:10px}
+      html #page-rates .rt-tabs{margin:14px -16px 10px;padding:0 16px 2px}
+      html #page-rates .rt-sub .rt-disc-link{flex-basis:100%;text-align:left;margin-top:2px}
+      html #page-rates .rt-sub .rt-disc-link::before{display:none}
+      html #page-rates .rt-tbl tbody th .rt-tag{margin:0 0 0 6px}
+      html #page-rates .rt-tbl tbody th .rt-calc{display:none}
+      html #page-rates .rt-tbl tbody th .rt-info{position:static}
+      html #page-rates .rt-tbl tbody th .rt-pop{top:calc(100% - 4px);bottom:auto;left:6px;transform:none;width:min(240px,calc(100vw - 70px))}
+    }
+    html #page-rates .rt-pop-calc .rt-pop-go{color:#c4b5fd;font-weight:600;text-decoration:underline;cursor:pointer;display:inline-block;padding:4px 0}
+    @media (hover:hover) and (pointer:fine) and (min-width:761px){html #page-rates .rt-pop-calc{display:none}}
   </style>
   <div class="wrap">
     <div class="res-head">
       <span class="eyebrow" data-en="Bangladesh Money · Rates" data-bn="বাংলাদেশ মানি · রেট">Bangladesh Money · Rates</span>
       <h1 class="display" data-en='Bank profit rates, <span class="grad">side by side.</span>' data-bn='ব্যাংক মুনাফার হার, <span class="grad">পাশাপাশি।</span>' data-html="1">Bank profit rates, <span class="grad">side by side.</span></h1>
       <p class="lede" data-en="Shariah-compliant deposit & DPS profit rates from across Bangladesh, in one place. The numbers the banks publish — gathered automatically so you don't have to dig through 20 websites." data-bn="বাংলাদেশের নানা ব্যাংকের শরীয়াহসম্মত ডিপোজিট ও ডিপিএস মুনাফার হার, এক জায়গায়। ব্যাংকের প্রকাশিত হার — স্বয়ংক্রিয়ভাবে সংগ্রহ করা, যাতে আপনাকে ২০টা ওয়েবসাইট ঘাঁটতে না হয়।">Shariah-compliant deposit &amp; DPS profit rates from across Bangladesh, in one place.</p>
-      <span class="rt-badge" data-en="☪ Profit rate — not interest" data-bn="☪ মুনাফার হার — সুদ নয়">☪ Profit rate — not interest</span>
-      <div class="rt-tour-row"><button type="button" class="rt-tour-btn" id="rtTourBtn" onclick="rtTourStart()"><span class="rt-tb-ico" aria-hidden="true">🧭</span><span class="rt-tb-txt"><span class="rt-tb-main" data-en="New here? Take the 1-minute tour" data-bn="প্রথমবার? ১ মিনিটের ট্যুর দেখুন">New here? Take the 1-minute tour</span><span class="rt-tb-sub" data-en="What every symbol, colour and button on this page means" data-bn="এই পেজের প্রতিটি চিহ্ন, রঙ আর বাটনের মানে">What every symbol, colour and button on this page means</span></span><span class="rt-tb-arr" aria-hidden="true">→</span></button></div>
+      <div class="rt-sub">
+        <span class="rt-badge" data-en="☪ Profit rate, not interest" data-bn="☪ মুনাফার হার, সুদ নয়">☪ Profit rate, not interest</span>
+  <div class="rt-meta">
+        <span><span class="rt-dot"></span><b data-en="Updated monthly" data-bn="প্রতি মাসে হালনাগাদ">Updated monthly</b></span>
+        <span id="rt-stamp" data-dyn="1"></span>
+        <span id="rt-fresh" class="rt-fresh" data-dyn="1"></span>
+      </div>
+        <button type="button" class="rt-disc-link" onclick="rtDiscShow()">ⓘ <span data-en="4 notes before you compare" data-bn="তুলনার আগে ৪টি কথা">4 notes before you compare</span></button>
+      </div>
+      <div class="rt-tour-row"><button type="button" class="rt-tour-btn" id="rtTourBtn" onclick="rtTourStart()"><span class="rt-tb-ico" aria-hidden="true">🧭</span><span class="rt-tb-txt"><span class="rt-tb-main" data-en="New here? Take the 1-minute tour" data-bn="প্রথমবার? ১ মিনিটের ট্যুর দেখুন">New here? Take the 1-minute tour</span></span><span class="rt-tb-arr" aria-hidden="true">→</span></button></div>
     </div>
-    <div class="rt-meta">
-      <span><span class="rt-dot"></span><b data-en="Auto-updated monthly" data-bn="প্রতি মাসে স্বয়ংক্রিয় হালনাগাদ">Auto-updated monthly</b></span>
-      <span id="rt-stamp" data-dyn="1"></span>
-      <span id="rt-fresh" class="rt-fresh" data-dyn="1"></span>
-    </div>
-    <button type="button" class="rt-disc-link" onclick="rtDiscShow()">ⓘ <span data-en="Read before you compare: 4 quick notes about these rates" data-bn="তুলনার আগে পড়ুন: এই হারগুলো নিয়ে ৪টি ছোট কথা">Read before you compare: 4 quick notes about these rates</span></button>
     <div class="rt-tabs" role="tablist" aria-label="Rates sections">
       <button class="on" id="rtab-banks" role="tab" aria-selected="true" onclick="rtTab('banks')" data-en="Banks &amp; NBFIs" data-bn="ব্যাংক ও এনবিএফআই">Banks &amp; NBFIs</button>
       <button id="rtab-funds" role="tab" aria-selected="false" onclick="rtTab('funds')" data-en="Mutual funds" data-bn="মিউচুয়াল ফান্ড">Mutual funds</button>
@@ -2032,12 +2139,13 @@ try{ if(localStorage.getItem('rafiu_rt_tour_v1')){ var _tb=document.getElementBy
     {el:function(){ return q('#page-rates .rt-tabs'); },
      en:['Four sections','<p>Banks &amp; NBFIs, Mutual funds, Life insurers, and Inflation &amp; policy. Tap a tab to switch.</p><p>This tour walks through the bank table. The other tabs work the same way.</p>'],
      bn:['চারটি অংশ','<p>ব্যাংক ও এনবিএফআই, মিউচুয়াল ফান্ড, লাইফ বিমা, আর মূল্যস্ফীতি ও পলিসি। বদলাতে ট্যাবে চাপুন।</p><p>এই ট্যুরে ব্যাংকের টেবিলটা দেখানো হবে। বাকি ট্যাবগুলোও একইভাবে কাজ করে।</p>']},
-    {el:function(){ return q('#rt-ctl-banks'); },
-     en:['Search and filter','<p>Type a bank\'s name, or narrow the list by <b>Kind</b> (☪ Islamic, Conventional, NBFI), by what <b>Data</b> a row has, or by how <b>fresh</b> its rate sheet is.</p><p><b>Reset</b> clears everything. The counter on the right shows how many rows are left.</p>'],
-     bn:['খুঁজুন ও ছাঁকুন','<p>ব্যাংকের নাম লিখুন, অথবা তালিকা ছোট করুন <b>ধরন</b> (☪ ইসলামী, প্রচলিত, এনবিএফআই), সারিতে কী <b>তথ্য</b> আছে, বা রেট শিট কতটা <b>নতুন</b> তা দিয়ে।</p><p><b>রিসেট</b> চাপলে সব আগের মতো হয়। ডানের সংখ্যাটা বলে কয়টা সারি দেখাচ্ছে।</p>']},
+    {el:function(){ var c=q('#rt-ctl-banks'); if(c){ if(c._tw===undefined) c._tw=c.classList.contains('open'); c.classList.add('open'); } return c; },
+     leave:function(){ var c=q('#rt-ctl-banks'); if(c&&c._tw!==undefined){ if(!c._tw) c.classList.remove('open'); delete c._tw; } },
+     en:['Search and filter','<p>Type a bank\'s name, or tap <b>Filters</b> to narrow the list by <b>Kind</b> (☪ Islamic, Conventional, NBFI), by what <b>Data</b> a row has, or by how <b>fresh</b> its rate sheet is.</p><p><b>Reset</b> clears everything. The counter on the right shows how many rows are left.</p>'],
+     bn:['খুঁজুন ও ছাঁকুন','<p>ব্যাংকের নাম লিখুন, অথবা <b>ফিল্টার</b> চেপে তালিকা ছোট করুন <b>ধরন</b> (☪ ইসলামী, প্রচলিত, এনবিএফআই), সারিতে কী <b>তথ্য</b> আছে, বা রেট শিট কতটা <b>নতুন</b> তা দিয়ে।</p><p><b>রিসেট</b> চাপলে সব আগের মতো হয়। ডানের সংখ্যাটা বলে কয়টা সারি দেখাচ্ছে।</p>']},
     {el:function(){ var w=q('#rt-window'); return (w&&w.textContent.trim())?w:null; },
-     en:['Not all from the same date','<p>This amber note shows the oldest and newest rate sheet in the table. Banks update on their own schedule, so compare the dates, not just the numbers.</p>'],
-     bn:['সব এক তারিখের নয়','<p>এই হলুদ নোটে টেবিলের সবচেয়ে পুরোনো আর সবচেয়ে নতুন রেট শিটের তারিখ দেখানো আছে। ব্যাংক নিজের সময়মতো হার বদলায়, তাই শুধু সংখ্যা নয়, তারিখও মিলিয়ে দেখুন।</p>']},
+     en:['Not all from the same date','<p>This amber note shows the oldest and newest rate sheet in the table. Banks update on their own schedule, so compare the dates, not just the numbers. Tap it to read the whole note.</p>'],
+     bn:['সব এক তারিখের নয়','<p>এই হলুদ নোটে টেবিলের সবচেয়ে পুরোনো আর সবচেয়ে নতুন রেট শিটের তারিখ দেখানো আছে। ব্যাংক নিজের সময়মতো হার বদলায়, তাই শুধু সংখ্যা নয়, তারিখও মিলিয়ে দেখুন। পুরো নোট পড়তে এতে চাপুন।</p>']},
     {el:function(){ return q('#rt-head'); },
      en:['Sort by any column','<p>Tap a heading to sort by it, tap again to flip the order. ▴ ▾ shows the direction.</p><p><b>Savings</b> = savings account · <b>FDR</b> = fixed (term) deposit, from 3 months to 3 years · <b>DPS</b> = monthly savings scheme.</p>'],
      bn:['যেকোনো কলাম দিয়ে সাজান','<p>শিরোনামে চাপলে সেই কলাম দিয়ে সাজানো হবে, আবার চাপলে উল্টো ক্রমে। ▴ ▾ দিক দেখায়।</p><p><b>সেভিংস</b> = সঞ্চয়ী হিসাব · <b>এফডিআর</b> = মেয়াদি আমানত, ৩ মাস থেকে ৩ বছর · <b>ডিপিএস</b> = মাসিক সঞ্চয় স্কিম।</p>']},
@@ -2046,9 +2154,10 @@ try{ if(localStorage.getItem('rafiu_rt_tour_v1')){ var _tb=document.getElementBy
      bn:['রঙিন বিন্দু আর ট্যাগ',function(){ return '<p><b>বিন্দু</b> বলে সংখ্যাগুলো কোথা থেকে এসেছে:</p><ul class="rt-tour-key">'+DOT('#34d399','','ব্যাংকের নিজের প্রকাশিত শিট')+DOT('#38bdf8','','বাংলাদেশ ব্যাংক / নিয়ন্ত্রকের চার্ট')+DOT('#7d7790','','এখনো তথ্য নেই')+'</ul><p><b>ট্যাগ</b> বলে প্রতিষ্ঠানটা কোন ধরনের: '+CH('rt-tag rt-isl','ইসলামী')+' '+CH('rt-tag rt-conv','প্রচলিত')+' '+CH('rt-tag rt-nbfi','এনবিএফআই')+'</p>'; }]},
     {el:function(){ var b=inRow('.rt-info'); if(!b) return null; b.classList.add('rt-tour-open'); var p=b.querySelector('.rt-pop'); return p?[b,p]:b; },
      leave:function(){ var o=document.querySelectorAll('#page-rates .rt-tour-open'); for(var i=0;i<o.length;i++) o[i].classList.remove('rt-tour-open'); },
-     en:['ⓘ = source and date','<p>Hover or tap the ⓘ to see which rate sheet the numbers came from, when it took effect, any notes, and a <b>View source ↗</b> link so you can check it yourself.</p>'],
-     bn:['ⓘ = উৎস আর তারিখ','<p>ⓘ-এর ওপর মাউস রাখুন বা চাপুন। দেখবেন সংখ্যাগুলো কোন রেট শিট থেকে, কবে থেকে কার্যকর, কোনো নোট আছে কি না, আর <b>উৎস দেখুন ↗</b> লিংক, যাতে নিজেই মিলিয়ে নিতে পারেন।</p>']},
-    {el:function(){ return inRow('.rt-calc'); },
+     en:['ⓘ = source and date','<p>Hover or tap the ⓘ to see which rate sheet the numbers came from, when it took effect, any notes, and a <b>View source ↗</b> link so you can check it yourself. On a phone, it also has a shortcut to the Growth calculator.</p>'],
+     bn:['ⓘ = উৎস আর তারিখ','<p>ⓘ-এর ওপর মাউস রাখুন বা চাপুন। দেখবেন সংখ্যাগুলো কোন রেট শিট থেকে, কবে থেকে কার্যকর, কোনো নোট আছে কি না, আর <b>উৎস দেখুন ↗</b> লিংক, যাতে নিজেই মিলিয়ে নিতে পারেন। ফোনে এখানে গ্রোথ ক্যালকুলেটরের শর্টকাটও পাবেন।</p>']},
+    {avail:function(){ var c=inRow('.rt-calc'); return !!(c&&c.offsetParent); },
+     el:function(){ var c=inRow('.rt-calc'); return (c&&c.offsetParent)?c:null; },
      en:['→ calc','<p>Sends this bank\'s rate (the 1-year FDR when there is one) to the Growth calculator, so you can see what your money could grow to.</p>'],
      bn:['→ ক্যালক','<p>এই ব্যাংকের হার (থাকলে ১ বছরের এফডিআর) গ্রোথ ক্যালকুলেটরে পাঠিয়ে দেয়, যাতে দেখতে পারেন আপনার টাকা কত হতে পারে।</p>']},
     {el:function(){ var r=row(); if(!r) return null; var t=r.querySelectorAll('td:not(.rt-when)'); return t.length?[t[0],t[t.length-1]]:null; },
@@ -2096,11 +2205,12 @@ function rtTourGo(i){ var e=rtTourEls(), S=RT_TOUR.steps, dir=(i<RT_TOUR.i?-1:1)
     else if(er.left<sr.left+pw||er.left>sr.left+pw+(sr.width-pw)*0.5) sc.scrollLeft+=er.left-(sr.left+pw)-8; }   /* a data cell: slide it into view (phones) */
   document.getElementById('rtTourTitle').textContent=c[0];
   document.getElementById('rtTourBody').innerHTML=body;
-  var n=S.length; document.getElementById('rtTourCount').textContent=bn?(num2bn(i+1)+' / '+num2bn(n)):((i+1)+' / '+n);
-  document.getElementById('rtTourProg').style.width=((i+1)/n*100)+'%';
+  var ok=function(x){ return !x.avail||x.avail(); }, n=S.filter(ok).length, pos=S.slice(0,i+1).filter(ok).length;   /* count only the steps this screen shows */
+  document.getElementById('rtTourCount').textContent=bn?(num2bn(pos)+' / '+num2bn(n)):(pos+' / '+n);
+  document.getElementById('rtTourProg').style.width=(pos/n*100)+'%';
   document.getElementById('rtTourLang').textContent=bn?'EN':'বাংলা';
   var back=document.getElementById('rtTourBack'); back.hidden=(i===0); back.setAttribute('aria-label',bn?'আগের ধাপ':'Previous step');
-  var last=(i===n-1); document.getElementById('rtTourNext').textContent=last?(bn?'শেষ ✓':'Done ✓'):(bn?'পরের ধাপ →':'Next →');
+  var last=(pos===n); document.getElementById('rtTourNext').textContent=last?(bn?'শেষ ✓':'Done ✓'):(bn?'পরের ধাপ →':'Next →');
   /* scroll the target to just under the sticky header (phones: keep it above the bottom-sheet card) */
   t=rtTourTarget(st); var hh=rtTourHeaderH(), want=hh+16;
   if(window.innerWidth<=640){ var room=window.innerHeight-e.card.offsetHeight-20-want, h=t.r.bottom-t.r.top; if(h<room) want=hh+Math.max(16,(room-h)/2); }
@@ -2113,10 +2223,10 @@ function rtTourNext(){ if(RT_TOUR.i>=RT_TOUR.steps.length-1){ if(window.track) t
 function rtTourStart(){ var e=rtTourEls(); if(!e.w) return;
   try{ localStorage.setItem('rafiu_rt_tour_v1','1'); }catch(x){} var tb=document.getElementById('rtTourBtn'); if(tb) tb.classList.add('rt-taken');
   rtDiscHide(); if(window.rtTab) rtTab('banks');
-  RT_TOUR.on=true; RT_TOUR.i=0; e.w.classList.add('show'); e.w.setAttribute('aria-hidden','false');
+  RT_TOUR.on=true; RT_TOUR.i=0; document.body.classList.add('rt-touring'); e.w.classList.add('show'); e.w.setAttribute('aria-hidden','false');
   if(window.track) track('rates_tour_start','');
   rtTourGo(0); }
-function rtTourEnd(){ var e=rtTourEls(); if(!RT_TOUR.on) return; RT_TOUR.on=false;
+function rtTourEnd(){ var e=rtTourEls(); if(!RT_TOUR.on) return; RT_TOUR.on=false; document.body.classList.remove('rt-touring');
   var st=RT_TOUR.steps[RT_TOUR.i]; if(st&&st.leave) st.leave();
   e.w.classList.remove('show'); e.w.setAttribute('aria-hidden','true');
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -2140,9 +2250,8 @@ document.getElementById('rtTour').addEventListener('click',function(e){ if(e.tar
   Array.prototype.forEach.call(boxes,function(sc){
     var wrap=document.createElement('div'); wrap.className='rt-sx';
     var bar=document.createElement('div'); bar.className='rt-sx-bar';
-    bar.innerHTML='<span class="rt-sx-hint"><span class="rt-sx-touch">'+T('Swipe the table sideways to see every column','সব কলাম দেখতে টেবিলটা পাশে সোয়াইপ করুন')+'</span>'
-      +'<span class="rt-sx-mouse">'+T('More columns to the right. Scroll sideways or use the arrows','ডানে আরও কলাম আছে। পাশে স্ক্রল করুন বা তীর চাপুন')+'</span> <b aria-hidden="true">→</b></span>'
-      +'<span class="rt-sx-track" aria-hidden="true"><span class="rt-sx-thumb"></span></span>'
+    bar.innerHTML='<span class="rt-sx-hint"><span class="rt-sx-touch">'+T('Swipe sideways for more columns','আরও কলাম দেখতে পাশে সোয়াইপ করুন')+'</span>'
+      +'<span class="rt-sx-mouse">'+T('More columns to the right','ডানে আরও কলাম আছে')+'</span></span><span class="rt-sx-thumb" hidden></span>'
       +'<button type="button" class="rt-sx-btn" data-d="-1" aria-label="Scroll table left">‹</button>'
       +'<button type="button" class="rt-sx-btn" data-d="1" aria-label="Scroll table right">›</button>';
     var box=document.createElement('div'); box.className='rt-sx-box';
@@ -2174,6 +2283,11 @@ document.getElementById('rtTour').addEventListener('click',function(e){ if(e.tar
       io.observe(sc);
     }
   });
+})();
+(function(){ var w=document.getElementById('rt-window'); if(!w) return;
+  function lbl(){ w.setAttribute('data-more',LANG==='bn'?'আরও ▾':'more ▾'); }
+  lbl(); document.getElementById('langbtn').addEventListener('click',function(){ setTimeout(lbl,0); });
+  w.addEventListener('click',function(e){ if(e.target.closest('a')) return; w.classList.toggle('open'); });
 })();
 window.addEventListener('hashchange',route);
 document.getElementById('menubtn').addEventListener('click',function(){
@@ -3379,14 +3493,14 @@ attachRangeNumbers();
   /* tiers: P=Primary (institution's own sheet) · R=Regulator/exchange (BB/IDRA/DSE/CDBL)
             · B=Brokerage/fund portal · Pr=Press · X=No data found. */
   function nd(bank,type,why){ return {bank:bank,type:type,savings:null,fdr_3m:null,fdr_6m:null,fdr_1y:null,fdr_3y:null,dps_3y:null,dps_5y:null,tier:'X',src:'',srcName:'',asof:'',why:why||'not-on-bb-chart'}; }
-  /* merged into United Islami Bank, 1 Dec 2025 (Bangladesh Bank, via The Business Standard) */
-  function ndm(bank,type){ var r=nd(bank,type,'merged'); r.mergedInto='United Islami Bank'; return r; }
+  /* merged into Sammilito Islami Bank, 1 Dec 2025 (Bangladesh Bank, via The Business Standard) */
+  function ndm(bank,type){ var r=nd(bank,type,'merged'); r.mergedInto='Sammilito Islami Bank'; return r; }
   var FALLBACK=[
     {bank:'IBBL',          type:'I',savings:2.50,fdr_3m:9.50,fdr_6m:9.80,fdr_1y:10.00,fdr_3y:10.50,dps_3y:6.75,dps_5y:7.25,tier:'P',srcName:'IBBL provisional profit rates (w.e.f. 1 Jan 2026)',src:'https://www.islamibankbd.com/profit-rates-on-deposits',asof:'2026-01-01'},
-    {bank:'EXIM Bank',     type:'I',savings:3.00,fdr_3m:5.00,fdr_6m:5.25,fdr_1y:5.50, fdr_3y:6.00, dps_3y:5.25,dps_5y:5.50,tier:'P',srcName:'EXIM Bank profit-rate sheet (w.e.f. 1 Jul 2026)',src:'https://www.eximbankbd.com/deposit/Deposit_Rates',asof:'2026-07-01',mergedInto:'United Islami Bank'},
+    {bank:'EXIM Bank',     type:'I',savings:3.00,fdr_3m:5.00,fdr_6m:5.25,fdr_1y:5.50, fdr_3y:6.00, dps_3y:5.25,dps_5y:5.50,tier:'P',srcName:'EXIM Bank profit-rate sheet (w.e.f. 1 Jul 2026)',src:'https://www.eximbankbd.com/deposit/Deposit_Rates',asof:'2026-07-01',mergedInto:'Sammilito Islami Bank'},
     /* SIBL 21 Aug 26: read off the bank's own 1 Feb 2026 sheet. The 1-year and 3-year
        MTDR rows on that sheet read "Based On Market" — no figure, so no figure here. */
-    {bank:'SIBL',          type:'I',savings:3.00,fdr_3m:8.75,fdr_6m:9.25,fdr_1y:null,fdr_3y:null,dps_3y:6.75,dps_5y:7.25,tier:'P',srcName:'SIBL provisional profit rate sheet (eff. 1 Feb 2026)',src:'https://www.siblbd.com/profit-rates',asof:'2026-02-01',mergedInto:'United Islami Bank',note:'The bank publishes its 1-year and 3-year term rates as “based on market” rather than a fixed figure.'},
+    {bank:'SIBL',          type:'I',savings:3.00,fdr_3m:8.75,fdr_6m:9.25,fdr_1y:null,fdr_3y:null,dps_3y:6.75,dps_5y:7.25,tier:'P',srcName:'SIBL provisional profit rate sheet (eff. 1 Feb 2026)',src:'https://www.siblbd.com/profit-rates',asof:'2026-02-01',mergedInto:'Sammilito Islami Bank',note:'The bank publishes its 1-year and 3-year term rates as “based on market” rather than a fixed figure.'},
     {bank:'AB Islami',     type:'I',savings:4.00,fdr_3m:12.00,fdr_6m:12.00,fdr_1y:12.00,fdr_3y:null,dps_3y:10.00,dps_5y:10.00,tier:'P',srcName:'AB Bank Islami provisional profit rates (w.e.f. 1 Jan 2026)',src:'https://abbl.com/islami-banking/provisional-profit-rates/',asof:'2026-01-01'},
     {bank:'Al-Arafah Islami',type:'I',savings:3.00,fdr_3m:10.00,fdr_6m:10.00,fdr_1y:10.50,fdr_3y:11.00,dps_3y:null,dps_5y:null,tier:'P',srcName:'AIBL revised provisional profit-rate circular (23 Jan 2025)',src:'https://www.aibl.com.bd/rates-schedule-of-charges/',asof:'2025-01-23',note:'A newer circular dated 21 Apr 2026 is published as a scanned image; the live pipeline reads it by OCR and will replace these figures on its next run.'},
     {bank:'UCB',           type:'C',savings:2.75,fdr_3m:null,fdr_6m:null,fdr_1y:null, fdr_3y:null, dps_3y:null,dps_5y:null,tier:'R',srcName:'Bangladesh Bank deposit rate chart (UCBL row; term rates published only as ranges)',src:'https://www.bb.org.bd/en/index.php/financialactivity/interestdeposit',asof:'2026-06-01',note:'Bangladesh Bank publishes one row for United Commercial Bank as a whole. Its Islamic window (UCB Taqwa) is not shown separately, so this row is the conventional bank.'},
@@ -3408,7 +3522,7 @@ attachRangeNumbers();
     /* The three remaining banks of the 1 Dec 2025 five-way merger. The row stays and
        carries the merger, because someone who banked with them still looks them up. */
     ndm('First Security Islami','I'), ndm('Global Islami','I'), ndm('Union Bank','I'),
-    nd('United Islami Bank','I'),
+    nd('Sammilito Islami Bank','I'),
     nd('Standard Chartered','C'), nd('HSBC Bangladesh','C'), nd('City Bank','C'), nd('Dutch-Bangla','C'), nd('Dhaka Bank','C'),
     nd('National Bank','C'), nd('Prime Bank','C'), nd('Bank Asia','C'), nd('Mutual Trust','C'),
     nd('Mercantile Bank','C'), nd('Midland Bank','C'), nd('One Bank','C'),
@@ -3578,12 +3692,12 @@ attachRangeNumbers();
     'BRAC Bank':{en:'Savings 0.50% is the ৳1L–25L balance tier (savings is balance-tiered).',bn:'সেভিংস ০.৫০% হলো ৳১লাখ–২৫লাখ ব্যালেন্স ধাপ (সেভিংস ব্যালেন্স-ভিত্তিক)।'},
     'Trust Bank':{en:'FDR is the under-৳50 Lac individual tier; DPS = scheme rate.',bn:'এফডিআর <৳৫০ লাখ ব্যক্তি ধাপের; ডিপিএস = স্কিম রেট।'},
     'IIDFC':{en:'Term-deposit rates; +0.25% for senior citizens.',bn:'মেয়াদি আমানতের হার; প্রবীণ নাগরিকদের +০.২৫%।'},
-    'United Islami Bank':{en:'Formed on 1 Dec 2025 from EXIM, Social Islami, First Security Islami, Global Islami and Union Bank. Bangladesh Bank still lists those five separately on its rate chart, on matching rates — so look at their rows until this one appears.',bn:'১ ডিসেম্বর ২০২৫-এ এক্সিম, সোশ্যাল ইসলামী, ফার্স্ট সিকিউরিটি ইসলামী, গ্লোবাল ইসলামী ও ইউনিয়ন ব্যাংক মিলে গঠিত। বাংলাদেশ ব্যাংক এখনো ওই পাঁচটিকে আলাদা করে তালিকায় রাখে, একই হারে — এই সারিটি না আসা পর্যন্ত ওগুলোর সারি দেখুন।'},
+    'Sammilito Islami Bank':{en:'Formed on 1 Dec 2025 from EXIM, Social Islami, First Security Islami, Global Islami and Union Bank. Bangladesh Bank still lists those five separately on its rate chart, on matching rates — so look at their rows until this one appears.',bn:'১ ডিসেম্বর ২০২৫-এ এক্সিম, সোশ্যাল ইসলামী, ফার্স্ট সিকিউরিটি ইসলামী, গ্লোবাল ইসলামী ও ইউনিয়ন ব্যাংক মিলে গঠিত। বাংলাদেশ ব্যাংক এখনো ওই পাঁচটিকে আলাদা করে তালিকায় রাখে, একই হারে — এই সারিটি না আসা পর্যন্ত ওগুলোর সারি দেখুন।'},
     'UCB':{en:'Bangladesh Bank publishes one row for the whole bank; the Islamic window (UCB Taqwa) is not listed separately.',bn:'বাংলাদেশ ব্যাংক পুরো ব্যাংকের জন্য একটি সারি প্রকাশ করে; ইসলামী উইন্ডো (ইউসিবি তাকওয়া) আলাদা করে নেই।'}
   };
   function noteFor(r){ if(r&&r.note) return r.note; var n=r&&RT_NOTES[r.bank]; return n?L(n.en,n.bn):''; }
 
-  function infoBtn(tier,srcName,src,asof,note,extra){
+  function infoBtn(tier,srcName,src,asof,note,extra,calcRate){
     var m=REL[tier]||REL.X, p='<b style="color:'+m.c+'">'+esc(L(m.en,m.bn))+'</b>';
     if(srcName) p+='<br>'+esc(srcName);
     if(asof) p+='<br>'+L('Effective ','কার্যকর ')+niceDate(asof)+' · '+ageLabel(asof);
@@ -3591,6 +3705,7 @@ attachRangeNumbers();
             : '<br><i>'+L('source not captured','উৎস সংরক্ষিত হয়নি')+'</i>';
     if(extra) p+='<br><span class="rt-cond">'+esc(extra)+'</span>';
     if(note) p+='<br><span class="rt-cond">'+L('Note: ','নোট: ')+esc(note)+'</span>';
+    if(calcRate!=null) p+='<span class="rt-pop-calc"><br><span class="rt-pop-go" role="link" tabindex="0" onclick="event.stopPropagation();rtUseRate('+calcRate+')" onkeydown="if(event.key===\'Enter\'){event.preventDefault();rtUseRate('+calcRate+')}">'+L('→ Use this rate in the Growth calculator','→ গ্রোথ ক্যালকুলেটরে এই হার ব্যবহার করুন')+'</span></span>';
     return '<button type="button" class="rt-info" aria-label="'+L('source & details','উৎস ও বিস্তারিত')+'">ⓘ<span class="rt-pop">'+p+'</span></button>';
   }
 
@@ -3653,8 +3768,9 @@ attachRangeNumbers();
       '<input type="search" id="rt-q-'+tbl+'" '+
       'placeholder="'+L('Search by name…','নাম দিয়ে খুঁজুন…')+'" aria-label="'+L('Search','খুঁজুন')+'" '+
       'oninput="rtCtlSearch(\''+tbl+'\',this.value)"></label>'+
+      '<button type="button" class="rt-ftog" aria-expanded="false" onclick="rtCtlToggle(this)">'+L('Filters','ফিল্টার')+' <span class="rt-fn"></span><span class="rt-fchev" aria-hidden="true">▾</span></button>'+
       '<button type="button" class="rt-reset" onclick="rtCtlReset(\''+tbl+'\')">'+L('Reset','রিসেট')+'</button>'+
-      '<span class="rt-count"></span></div>';
+      '<span class="rt-count"></span></div><div class="rt-ctl-more">';
     CTL_DEFS[tbl].forEach(function(g){
       h+='<div class="rt-ctl-row"><span class="rt-ctl-lbl">'+L(g.en,g.bn)+'</span>';
       g.opts.forEach(function(o){
@@ -3663,8 +3779,11 @@ attachRangeNumbers();
       });
       h+='</div>';
     });
-    return h;
+    return h+'</div>';
   }
+  /* filters live behind a toggle so the table sits higher on the screen; the open/closed state survives re-renders */
+  window.rtCtlToggle=function(btn){ var el=btn.closest('.rt-ctl'); if(!el) return; var o=!el.classList.contains('open');
+    el.classList.toggle('open',o); btn.setAttribute('aria-expanded',String(o)); };
   /* ── THE CONTROL STRIP IS BUILT ONCE ────────────────────────────────────────
      It used to be re-created with innerHTML on every render. That destroys the
      <input> the reader is typing into: the first keystroke moved focus to <body>
@@ -3678,6 +3797,10 @@ attachRangeNumbers();
     if(el.getAttribute('data-ctl')!==lang){ el.innerHTML=ctlHTML(tbl); el.setAttribute('data-ctl',lang); }
     var c=el.querySelector('.rt-count');
     if(c) c.textContent=lc(shown)+L(' of ',' / ')+lc(total)+L(' shown',' দেখানো হচ্ছে');
+    var nOn=0; CTL_DEFS[tbl].forEach(function(g){ if(CTL[tbl].f[g.k]!==g.opts[0][0]) nOn++; });
+    el.classList.toggle('filtered',shown<total);
+    var fn=el.querySelector('.rt-fn'); if(fn) fn.textContent=nOn?('('+lc(nOn)+')'):'';
+    var ft=el.querySelector('.rt-ftog'); if(ft){ ft.classList.toggle('has',nOn>0); ft.setAttribute('aria-expanded',String(el.classList.contains('open'))); }
     var q=el.querySelector('input');
     if(q && document.activeElement!==q && q.value!==CTL[tbl].q) q.value=CTL[tbl].q;
     var btns=el.querySelectorAll('.rt-fbtn');
@@ -3781,7 +3904,7 @@ attachRangeNumbers();
       var extra = r.asofHow ? L('Date read from: ','তারিখ এসেছে: ')+r.asofHow : '';
       var why = nd ? whyText(r.why) : '';
       html+='<tr'+(nd?' class="rt-norow"':'')+'><th>'+relDot(r.tier)+esc(r.bank)+tag+mergedChip(r)+confBadge(r.conf)
-            +infoBtn(r.tier,r.srcName,r.src,r.asof,noteFor(r),extra)
+            +infoBtn(r.tier,r.srcName,r.src,r.asof,noteFor(r),extra,calcRate)
             +(nd?('<span class="rt-asof rt-nd">'+L('no rate published','প্রকাশিত হার নেই')+'</span>'
                   +(why?'<span class="rt-why">'+esc(why)+'</span>':'')):'')
             +calcBtn+'</th>';
@@ -3946,17 +4069,21 @@ attachRangeNumbers();
     .replace(/\b(bank|islami|islamic|finance|fin\.?|plc|ltd|limited|bangladesh)\b/g,'')
     .replace(/[^a-z]+/g,''); }
   function n(x){ var v=Number(x); return (x==null||x===''||!isFinite(v))?null:v; }
+  /* 21 Sep 2026: the merged bank's name is Sammilito Islami Bank. An Apps Script deployed
+     before that date still sends the old name; map it here so the site never shows the
+     bank twice, whichever of the two is updated first. */
+  function rtRename(s){ return (String(s||'').trim()==='United Islami Bank')?'Sammilito Islami Bank':s; }
   function ingest(d){
     if(d&&d.rates&&d.rates.length){
       RT_LAST_CHECKED=null;
       DATA=d.rates.map(function(x){
         var pv=null; try{ if(x.Prev) pv=(typeof x.Prev==='string')?JSON.parse(x.Prev):x.Prev; }catch(e){}
-        return {bank:x.Bank||x.bank,type:(x.Type||x.type||'I'),
+        return {bank:rtRename(x.Bank||x.bank),type:(x.Type||x.type||'I'),
           savings:n(x.savings),fdr_3m:n(x.fdr_3m),fdr_6m:n(x.fdr_6m),fdr_1y:n(x.fdr_1y),
           fdr_3y:n(x.fdr_3y),dps_3y:n(x.dps_3y),dps_5y:n(x.dps_5y),
           tier:(x.Tier||x.tier||'P'),srcName:(x.Source||x.srcName||''),src:(x.SourceURL||x.src||''),
           asof:x.AsOf||x.asof||'',asofHow:x.AsOfHow||'',checked:x.Checked||'',
-          why:x.Why||x.why||'',mergedInto:x.MergedInto||x.mergedInto||'',note:x.Note||x.note||'',
+          why:x.Why||x.why||'',mergedInto:rtRename(x.MergedInto||x.mergedInto||''),note:x.Note||x.note||'',
           conf:String(x.Confidence||'').toLowerCase(),prev:pv};
       });
       /* A feed carrying the same institution twice — a chart spelling the pipeline has
